@@ -1,0 +1,276 @@
+﻿@model IEnumerable<Polyteks.Katman.DAL.Concrete.EntityFramework.Mrv_MalzemeAna>
+
+@{
+    ViewBag.Title = "MalzemeAnaListe";
+    Layout = "~/Views/Shared/Layout.cshtml";
+}
+@if (TempData["Msg"] != null)
+{
+    <div class="custom-alerts alert alert-@TempData["class"] fade in">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true"></button>
+        <h2>@Html.Raw(TempData["Msg"])</h2>
+    </div>
+}
+
+<div class="row">
+        <div class="portlet light bordered">
+            <div class="portlet-title">
+               <h2><b>MALZEME TALEPLERİ LİSTESİ</b></h2>
+                @*<div class="container">
+                    <div class="form-group">
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-search"></i></span>
+                            <input type="text" id="Search" placeholder="ARA" class="form-control" />
+
+                        </div>
+                    </div>
+                </div>*@
+
+                @*<table class="table table-bordered table-striped table-dark">
+                    <thead class="thead-dark">
+                        <tr class="text-center table-info">
+                            <th>
+                                <b>TALEP NUMARASI</b>
+                            </th>
+                            <th>
+                                <b>TARİH</b>
+                            </th>
+                            <th>
+                                <b>TALEP EDEN BÖLÜM</b>
+                            </th>
+                            <th>
+                                <b>TALEP EDİLEN AMBAR</b>
+                            </th>
+                            <th><b>TALEPLER</b></th>
+                            <th>
+                                <b> ONAY DURUMU</b>
+                                    </th>
+                                    <th><b>ONAYLA</b></th>
+
+                                <th><b>ONAY DURUMU</b></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr class="Search">
+                                <td>
+                                    <center><b># @Html.DisplayFor(modelItem => item.MalzemeNo)</b></center>
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Tarih)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Bolum)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.AmbarAdi)
+                                </td>
+                                <td>
+
+                                    <ul>
+                                            @foreach (var detay in item.Mrv_MalzemeDetay)
+                                            {
+                                                <li>@(detay.StokAdi+" - "+detay.Parti+" - "+ detay.Miktar)</li>
+                                            }
+                                        </ul>
+                                    <table class="table table-bordered table-info">
+                                        <thead class="thead-dark">
+                                            <tr>
+                                                <th>
+                                                    Parti Numarası
+                                                </th>
+                                                <th>
+                                                    Stok Adı
+                                                </th>
+
+                                                <th>
+                                                    Kalite
+                                                </th>
+
+
+                                                <th>
+                                                    Chips Silosu
+                                                </th>
+
+                                                <th>
+                                                    Miktar
+                                                </th>
+
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach (var detay in item.Mrv_MalzemeDetay)
+                                            {
+                                                <tr>
+                                                    <td> @(detay.Parti)</td>
+                                                    <td>@(detay.StokAdi)</td>
+
+                                                    <td> @(detay.Kalite)</td>
+
+                                                    <td> @(detay.ChipsSilosu)</td>
+
+                                                    <td> @(detay.Miktar)</td>
+
+
+                                                </tr>
+                                            }
+                                        </tbody>
+                                    </table>
+
+                                </td>
+
+                                @Html.DisplayFor(modelItem => item.TamamlandiMi)
+                                    </td>
+
+
+                                                                                        @Html.DisplayFor(modelItem => item.TamamlandiMi)
+                                                                </td>
+                                <td>
+                                        @if (!item.TamamlandiMi.Value)
+                                        {
+                                            using (Html.BeginForm("FisAnaOnayla", "Sevkiyat", FormMethod.Post))
+                                            {
+                                                @Html.Hidden("id", item.MalzemeNo)
+                                                <div class="form-group">
+                                                    <div class="col-md-offset-2 col-md-10">
+                                                        <input type="submit" value="Onayla" class="btn btn-default" />
+                                                    </div>
+                                                </div>
+                                            }
+                                        }
+                                    </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>*@
+                <div class="tabs">
+                    <div class="tab-nav-wrapper">
+                        <ul>
+                            <li class="active"><a href="#tab1">Mamül Ambarı Talepleri</a></li>
+                            <li><a href="#tab2">Ham Madde Ambarı Talepleri</a></li>
+                            <li><a href="#tab3">Yedek Parça Ambarı Talepleri</a></li>
+                        </ul>
+                    </div>
+                    <div class="tab-content-wrapper">
+                        <div id="tab1" class="tab-content" style="display:none;">
+                            <input type="button" id="btn1" value="Mamül Ambarı Taleplerini Getir"style="background-color:black;color:white;" />
+                            <div id="result1"></div>
+                        </div>
+                        <div id="tab2" class="tab-content" style="display:none;">
+                            <input type="button" id="btn2" value="Ham Madde Ambarı Taleplerini Getir"style="background-color:black;color:white;"  />
+                            <div id="result2"></div>
+                        </div>
+                        <div id="tab3" class="tab-content" style="display:none;">
+                            <input type="button" id="btn3" value="Yedek Parça Ambarı Taleplerini Getir" style="background-color:black;color:white;" />
+                            <div id="result3"></div>
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+<script src="~/Scripts/jquery-3.0.0.min.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+<style>
+    .tabs {
+        height: 1475px;
+        width: 100%;
+        color: black;
+        text-align: left;
+    }
+
+    .tab-nav-wrapper {
+        width: 100%;
+        color: black;
+        overflow-x: auto;
+        position: relative !important;
+        z-index: 999 !important;
+        top: 3px;
+    }
+
+    .tabs ul {
+        display: block;
+        /*width: max-content;*/
+        color:black;
+        overflow-y: hidden;
+        margin: 0px;
+        padding-inline-start: 5px;
+    }
+
+        .tabs ul li {
+            display: inline-block;
+            border: 1px solid black;
+            color: black;
+            background-color: white;
+        }
+
+            .tabs ul li.active {
+                color: black;
+                border-bottom: 3px solid white;
+            }
+
+            .tabs ul li a {
+                text-decoration: none;
+                color: black;
+                padding: 10px;
+                line-height: 25px;
+                position: relative;
+                font-weight: bold;
+            }
+
+    .tab-content-wrapper {
+        position: relative !important;
+        z-index: 1 !important;
+        color: black;
+        padding: 20px;
+        min-height: 40px;
+    }
+</style>
+<script>
+    $(document).ready(function () {
+        $(".tab-nav-wrapper li.active").click();
+        $($(".tab-nav-wrapper li.active a").attr("href")).show();
+
+        $(".tab-nav-wrapper li").click(function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            $(".tab-nav-wrapper li").removeClass("active");
+            $(this).addClass("active");
+
+            var target = $(this).find("a").attr("href");
+            $(".tab-content-wrapper").find(".tab-content").hide();
+            $(".tab-content-wrapper").find(target).show();
+        })
+    });
+</script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#btn1').click(function () {
+            $('#result1').load('/Sevkiyat/MamulTalep');
+        });
+    });
+
+</script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#btn2').click(function () {
+            $('#result2').load('/Sevkiyat/HamMaddeTalep');
+        });
+    });
+
+</script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#btn3').click(function () {
+            $('#result3').load('/Sevkiyat/YedekParcaTalep');
+        });
+    });
+
+</script>

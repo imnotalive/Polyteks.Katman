@@ -1,0 +1,192 @@
+﻿@model Polyteks.Katman.DAL.Concrete.EntityFramework.Mrv_KaliteBildirimDetay
+
+@{
+    ViewBag.Title = "_IsletmeKaliteBildirimPusulasiDuzenle";
+    Layout = "~/Views/Shared/Layout.cshtml";
+}
+
+<h2>Kalite Bildirim Pusulasi Düzenle</h2>
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+<div class="form-horizontal">
+
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    @Html.HiddenFor(model => model.ID)
+
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Mrv_KaliteBildirimAna.LabBildirimTarihi,"LABORATUVAR BİLDİRİM TARİHİ", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Mrv_KaliteBildirimAna.LabBildirimTarihi, new { htmlAttributes = new { @class = "form-control", @readonly = true } })
+            @Html.ValidationMessageFor(model => model.MudahaleTarihSaat, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Mrv_KaliteBildirimAna.Personel,"PERSONEL" ,htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Mrv_KaliteBildirimAna.Personel, new { htmlAttributes = new { @class = "form-control", @readonly = true } })
+            @Html.ValidationMessageFor(model => model.MudahaleKullanici, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Mrv_KaliteBildirimAna.PersonelBolum,"PERSONEL BÖLÜM", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Mrv_KaliteBildirimAna.PersonelBolum, new { htmlAttributes = new { @class = "form-control", @readonly = true } })
+            @Html.ValidationMessageFor(model => model.MudahaleKullaniciBolum, "", new { @class = "text-danger" })
+        </div>
+    </div>
+  
+    <div class="form-group">
+        @Html.LabelFor(model => model.Isletme, "İŞLETME", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.DropDownList("Isletme", null, htmlAttributes: new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.Isletme, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Hata1, "HATA/1", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.DropDownList("Hata1", null, htmlAttributes: new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.Hata1, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Hata2, "HATA/2", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.DropDownList("Hata2", null, htmlAttributes: new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.Hata2, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Hata3, "HATA/3", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.DropDownList("Hata3", null, htmlAttributes: new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.Hata3, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+
+
+
+
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.MakineAdi, "MAKİNE ADI", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.DropDownList("MakineAdi", null, htmlAttributes: new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.MakineAdi, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.KanalNo, "KANAL NO", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.KanalNo, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.KanalNo, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.PozisyonNo, "POZİYON NO", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.PozisyonNo, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.PozisyonNo, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.PartiNo, "PARTİ NO", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.PartiNo, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.PartiNo, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.Aciklama, "AÇIKLAMA", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.TextAreaFor(model => model.Aciklama, 3, 50, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.Aciklama, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-12">
+            <input type="submit" value="DEĞİŞİKLİKLERİ KAYDET" class="btn btn-success" />
+        </div>
+    </div>
+</div>
+}
+
+<div>
+    @Html.ActionLink("LİSTEYE GERİ DÖN", "KaliteBildirimPusulasi")
+</div>
+<script src="~/Scripts/jquery-3.6.0.min.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+<script>
+    $(function () {
+        $('#Isletme').change(function () {
+            var id = $('#Isletme').val();
+            $.ajax({
+                url: '/Laboratuvar/hataGetir1',
+                data: { p: id },
+                type: "POST",
+                dataType: "Json",
+                success: function (data) {
+                    console.log(data);
+                    $('#Hata1').empty();
+                    for (var i = 0; i < data.length; i++) {
+                        $('#Hata1').append("<option value='" + data[i].Value + "'>" + data[i].Text + "</Option>");
+                    }
+                    $('#Hata2').empty();
+                    for (var i = 0; i < data.length; i++) {
+                        $('#Hata2').append("<option value='" + data[i].Value + "'>" + data[i].Text + "</Option>");
+                    }
+                    $('#Hata3').empty();
+                    for (var i = 0; i < data.length; i++) {
+                        $('#Hata3').append("<option value='" + data[i].Value + "'>" + data[i].Text + "</Option>");
+                    }
+                }
+            });
+        });
+    });
+
+
+
+</script>
+<script>
+    $(function () {
+        $('#Isletme').change(function () {
+            var id = $('#Isletme').val();
+            $.ajax({
+                url: '/Laboratuvar/makineGetir1',
+                data: { p: id },
+                type: "POST",
+                dataType: "Json",
+                success: function (data) {
+                    console.log(data);
+                    $('#MakineAdi').empty();
+                    for (var i = 0; i < data.length; i++) {
+                        $('#MakineAdi').append("<option value='" + data[i].Value + "'>" + data[i].Text + "</Option>");
+                    }
+
+                }
+            });
+        });
+    });
+
+
+
+</script>

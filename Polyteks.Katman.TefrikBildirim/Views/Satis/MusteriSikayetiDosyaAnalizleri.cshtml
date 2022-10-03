@@ -1,0 +1,134 @@
+﻿@model Polyteks.Katman.TefrikBildirim.Models.SatisModel
+
+@{
+    ViewBag.Title = "MusteriSikayetiDosyaAnalizleri";
+    Layout = "~/Views/Shared/Layout.cshtml";
+}
+
+
+@if (TempData["Msg"] != null)
+{
+    <div class="custom-alerts alert alert-@TempData["class"] fade in">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true"></button>
+        <h2>@Html.Raw(TempData["Msg"])</h2>
+    </div>
+}
+
+<div class="row">
+    <div class="col-md-12 ">
+        <div class="portlet light bordered">
+            <div class="portlet-title">
+                <div class="caption font-blue">
+                    <i class="icon-settings font-blue"></i>
+                    <span class="caption-subject bold uppercase"> MÜŞTERİ ŞİKAYETİ- ANALİZLER</span>
+                </div>
+            </div>
+            <div class="portlet-body form">
+                @Html.Partial("~/Views/Satis/_MusteriSikayetiOrtakButonlar.cshtml", Model)
+
+                <div class="row">
+                    @using (Html.BeginForm())
+                    {
+                        @Html.HiddenFor(a => a.MusteriSikayetDosya.MusteriSikayetDosyaId)
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <div class="col-md-6">
+                                    <label class="control-label">
+                                        <b>CARİ</b>
+                                    </label>
+                                    <div class="input-icon right">
+                                        @Html.TextBoxFor(a => a.MusteriSikayetDosya.CariAdi, new {@class = "form-control", @onkeydown = "return false",})
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="control-label">
+                                        <b>KAYIT YAPAN</b>
+                                    </label>
+                                    <div class="input-icon right">
+                                        @Html.TextBoxFor(a => a.MusteriSikayetDosya.KayitYapanKulAdi, new {@class = "form-control", @onkeydown = "return false",})
+                                    </div>
+                                </div>
+                            </div>
+
+
+                        </div>
+                    }
+                </div>
+                <hr/>
+                <div class="row">
+                    <div class="col-md-12">
+
+
+                        <table class="dtTable table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th class="text-center">
+                                        #
+                                    </th>
+                                    <th class="text-center">
+                                        KAYIT TARİH
+                                    </th>
+                                    <th class="text-center">
+                                        KAYIT YAPAN
+                                    </th>
+                                    <th class="text-center">
+                                        MALZEME
+                                    </th>
+                                    <th class="text-center">
+                                        ANALİZ DURUMU
+                                    </th>
+                                    <th class="text-center">
+                                        LABORATUVAR
+                                    </th>
+                                    <th class="text-center">
+                                        MÜŞTERİ
+                                    </th>
+                                    <th class="text-center">
+                                        #
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            @{
+                                var say = 0;
+
+                                foreach (var item in Model.LabAnalizleri)
+                                {
+                                    say++;
+                                    <tr>
+
+                                        <td class="text-center">@say</td>
+                                        <td class="text-center">@item.KayitTarihi</td>
+                                        <td class="text-center">@item.KayitYapanKulAdi</td>
+                                        <td class="text-center">@item.AnalizAdi</td>
+                                        <td class="text-center">
+                                            <b>@item.LabAnalizDurumuAdi</b>
+                                        </td>
+                                        <td class="text-center">
+                                            <a href="@Url.Action("LabFormIndir", "Satis", new {id = item.BagliOlduguDosyaId})" class="btn yellow btn-block">LABORATUVAR FORM</a>
+                                        </td>
+                                        <td class="text-center">
+                                            <a href="@Url.Action("MusteriFormIndir", "Satis", new {id = item.LabAnalizId})" class="btn red ">TÜRKÇE FORM </a>
+                                    
+                                            <a href="@Url.Action("MusteriFormIndirEng", "Satis", new {id = item.LabAnalizId})" class="btn red-thunderbird ">İNGİLİZCE FORM </a>
+                                        </td>
+                                        <td class="text-center">
+                                            <a href="@Url.Action("MusteriSikayetiDosyaAnalizDetay", "Satis", new {id = item.LabAnalizId})" class="btn blue btn-block">İncele</a>
+                                        </td>
+                                    </tr>
+                                }
+                            }
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts{
+    <script src="~/Temalar/Scripts/FormUpload.js"></script>
+    <script src="~/Temalar/Scripts/FormUploadEk.js"></script>
+}

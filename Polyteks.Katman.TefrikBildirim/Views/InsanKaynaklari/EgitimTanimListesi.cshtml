@@ -1,0 +1,130 @@
+﻿@model Polyteks.Katman.TefrikBildirim.Models.IkModel
+
+@{
+    ViewBag.Title = "EgitimTanimListesi";
+    Layout = "~/Views/Shared/Layout.cshtml";
+}
+@section styles
+{
+    <style>
+        label {
+            font-weight: bold;
+        }
+    </style>
+}
+
+@if (TempData["Msg"] != null)
+{
+    <div class="custom-alerts alert alert-@TempData["class"] fade in">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true"></button>
+        <h2>@Html.Raw(TempData["Msg"])</h2>
+    </div>
+}
+
+<div class="row">
+    <div class="col-md-12 ">
+        <div class="portlet light bordered">
+            <div class="portlet-title">
+                <div class="caption font-blue">
+                    <i class="icon-settings font-blue"></i>
+
+
+                    <span class="caption-subject bold uppercase">EĞİTİM TANIMLARI</span>
+                </div>
+            </div>
+            <div class="portlet-body form">
+                @Html.Partial("~/Views/InsanKaynaklari/_IkBaseButonlar.cshtml", Model)
+                <hr />
+                <div class="row">
+                    <div class="col-md-8">
+
+                    </div>
+                    <div class="col-md-4">
+                        <a class="btn blue-oleo btn-block " data-toggle="modal" data-target="#0">
+                            EĞİTİM TANIMI EKLE
+                        </a>
+                        @Html.Partial("~/Views/InsanKaynaklari/_IkEgitimModal.cshtml", Model.IkEgitim)
+
+                    </div>
+                </div>
+                <br />
+                <div class="row">
+                    <div class="col-md-12">
+
+
+                        <table class="dtTable table table-bordered">
+                            <thead>
+                            <tr>
+                                <th class="text-center">
+                                    #
+                                </th>
+                                <th class="text-center">
+                                    EĞİTİM TİPİ
+                                </th>
+                                <th class="text-center">
+                                    EĞİTİM
+                                </th>
+                                 
+                                <th class="text-center">#</th>
+                                <th class="text-center">#</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            @{
+                                int say = 0;
+
+                                foreach (var item in Model.IkEgitimler)
+                                {
+                                    say++;
+                                    <tr>
+                                        <td class="text-center">@say</td>
+                                        <td class="text-center">@item.IkEgitimTipiAdi</td>
+                                        <td class="text-center">@item.IkEgitimAdi</td>
+                                       
+                                        <td>
+                                            <a class="btn blue-sharp btn-block " data-toggle="modal" data-target="#@item.IkEgitimId">
+                                                DÜZENLE
+                                            </a>
+                                            @Html.Partial("~/Views/InsanKaynaklari/_IkEgitimModal.cshtml", item)
+                                        </td>
+                                        <td class="text-center"><a href="javascript:" onclick="Sil(@item.IkEgitimId)" class="btn red btn-block ">Sil</a></td>
+                                    </tr>
+                                }
+                            }
+
+                            </tbody>
+
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts{
+    <script src="~/Temalar/Scripts/sweetalert.js"></script>
+    <script>
+        function Sil(id) {
+            var url = "/InsanKaynaklari/EgitimSil/" + id;
+
+            swal({
+                title: "EMİN MİSİNİZ",
+                text: "Seçilen Kayıdı Listeden Kaldırmak İstiyor musunuz??",
+                icon: "warning",
+                buttons: {
+                    cancel: "Kapat",
+                    git: "Sil"
+                }
+            }).then((value) => {
+                switch (value) {
+                case "git":
+                    window.location.href = url;
+                    break;
+                }
+            });
+
+
+        }
+    </script>
+}

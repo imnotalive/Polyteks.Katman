@@ -1,0 +1,3411 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{F97E07F3-51EF-4414-B3E3-216B4EE939B9}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Polyteks.Katman.DAL</RootNamespace>
+    <AssemblyName>Polyteks.Katman.DAL</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Concrete\EntityFramework\ACIK_AKTARILACAKIPLIKLER_ALT.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\ACIK_ARABALAR.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\ACIK_ARABALAR_SILINEN.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\ACIK_AUTOMAIL.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\ACIK_BORCBAKIYEANALIZ_HAREKET_ALACAK.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\ACIK_CARIBAKIYELISTESI.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\ACIK_CARIBAKIYE_HAREKET_ALACAK.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\ACIK_CARIBAKIYE_HAREKET_BORC.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\ACIK_CARIBAKIYE_SEVK_BORC.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\ACIK_CARIBAKIYE_SEVK_SONKURTARIHI.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\ACIK_CARITAKIP_HAREKETLER.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\ACIK_CARITAKIP_HAREKETLER_SILMELOG.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\ACIK_CARITAKIP_KARSILIKSIZCEK.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\ACIK_CARITAKIP_KARSILIKSIZCEKIADE.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\ACIK_CARITAKIP_KARSILIKSIZCEKKAPATMA.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\ACIK_CARITAKIP_KARSILIKSIZCEKKAPATMA_SILMELOG.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\ACIK_CARITAKIP_SEVKLER.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\ACIK_DARATIP_KG_MAX.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\ACIK_DEPOHAZIRLIK.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\ACIK_DEPOHAZIRLIK_SECILENKUTULAR.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\ACIK_DEPOHAZIRLIK_SECILENKUTULAR_SEVKPLAN.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\ACIK_DEPOHAZIRLIK_SECILENKUTULAR_TUMU.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\ACIK_DEPOHAZIRLIK_SECILENKUTULAR_TUMU_SEVKPLAN.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\ACIK_DEPOHAZIRLIK_SESSIONS.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\ACIK_DEPOHAZIRLIK_SESSIONS_SEVKPLAN.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\ACIK_DEPOHAZIRLIK_SEVKPLAN.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\ACIK_DEPOHAZIRLIK_TEMP.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\ACIK_DEPOHAZIRLIK_TEMP_SEVKPLAN.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\ACIK_DEPOTOPLUCIKIS.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\ACIK_DEPOTOPLUCIKIS_SECILENKUTULAR.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\ACIK_DEPOTOPLUCIKIS_SECILENKUTULAR_TUMU.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\ACIK_DEPOTOPLUCIKIS_SESSIONS.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\ACIK_DIGERFINANSISLEMLERI.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\ACIK_FDY_PARAMETREKOPYALA_URETIMLOTSUZ_SONREFNOLAR.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\ACIK_IATOAMBARLAR.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\ACIK_IMSAAMBARESLESTIR.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\ACIK_IMSA_SATIS_TL_KG.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\ACIK_KUTULAR.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\ACIK_KUTULAR_SILINEN.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\ACIK_MakineTakip_IsListesi.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\ACIK_MRPSonuc.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\ACIK_OTOPAKETLEMESARF_SARFOLACAKBILDIRIMLER_BOBIN.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\ACIK_OTOPAKETLEMESARF_SARFOLACAKBILDIRIMLER_YENI.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\ACIK_PARTI_IATO.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\ACIK_RezervPlan_LOG.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\ACIK_SAFLATLOTNOLARI.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\ACIK_SARFKONTROL_ALTERNATIFUALISTESI.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\ACIK_SARFKONTROL_SARFSTOKKODU.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\ACIK_SARFKONTROL_UA1.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\ACIK_SARFKONTROL_UA2.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\ACIK_SARFKONTROL_UA3.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\ACIK_SARFKONTROL_UA4.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\ACIK_SARFKONTROL_UA5.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\ACIK_SARFKONTROL_UA6.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\ACIK_SAYIMGUNCELLE_SAYIMNO.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\ACIK_SEVKPLANKALITE.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\ACIK_STOKHAREKET_SILINEN.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\ACIK_UAKONTROL_ISEMIRLERI.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\ACIK_UASORGULAMA_S1.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\ACIK_URETIMPLANLAMA_TMIKTAR_ACIKKALAN.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\ACIK_URETIMPLANLAMA_TMIKTAR_KAPALIKALAN.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\ACIK_URETIMTEKNIGITESTLER.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\ACIK_URETIMTEKNIKLERI.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\ACIK_YASLANDIRMA_BAKIYE00.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\ACIK_YASLANDIRMA_BAKIYE01.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\ACIK_YASLANDIRMA_BAKIYE02.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\ACIK_YASLANDIRMA_BAKIYE03.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\ACIK_YASLANDIRMA_BAKIYE04.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\ACIK_YASLANDIRMA_BAKIYE05.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\ACIK_YASLANDIRMA_BAKIYE06.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\ACIK_YASLANDIRMA_BAKIYE07.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\ACIK_YASLANDIRMA_BAKIYE08.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\ACIK_YASLANDIRMA_BAKIYE09.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\ACIK_YASLANDIRMA_BAKIYE10.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\ACIK_YASLANDIRMA_BAKIYE11.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\ACIK_YASLANDIRMA_BAKIYE12.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\ACIK_YASLANDIRMA_BAKIYE13.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\ACIK_YASLANDIRMA_HAREKET_ALACAK.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\ACIK_YASLANDIRMA_HAREKET_BORC.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\ACIK_YASLANDIRMA_VADESIGELMEMISCEKSENET_GUNCELTUTAR.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\ACIK_zzz_CariPartiKaliteSonOnayliFiyatlar.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\ACIK_zzz_CariStokKoduFiyatlar.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\ACIK_zzz_CariStokKoduGenelVadeliFiyatlar.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\ACIK_zzz_CariStokKoduSonSiparisFiyatlari.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\AkreditifTur.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\AltRenkGrup.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\Ambalaj.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\AmbalajAna.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\AmbalajParti.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\AmbalajPartiAna.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\AmbalajPartiOzelAlanDeger.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\AmbalajTip.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\Ambar.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\AmbarAdres.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\AmortismanHareket.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\AnaMaliyetMerkezi.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\AnaRenkGrup.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\APQCOrnekGosterge.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\AtkiRapor.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\AtkiRaporDetay.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\AtkiRaporSablon.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\AtkiRaporTipleri.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\AtkiSablonAtkiSiralama.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\AtkiSablonPikPikRaporu.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\AyiklamaRotusAna.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\AyiklamaRotusHareket.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\AyiklamaRotusHareketHata.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\AyiklamaRotusIslemTur.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\Bakim.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\BakimHareket.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\BakimIsEmri.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\BakimIsEmriMalzeme.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\BakimNedeni.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\BakimTalimat.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\BakimTalimatAna.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\BakimTalimatMalzeme.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\BakimUygulama.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\Banka.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\BankaHesaplarim.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\BankaHesapTuru.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\BankaSube.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\BaskiDesen.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\BaskiDesenAltGrup.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\BaskiDesenGrup.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\BaskiDesenKapaliUlke.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\BaskiDesenTur.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\BaskiDesenUreticiKod.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\BaskiDesenVaryantSablon.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\BaskiSablon.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\BaskiVaryant.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\BelgeTur.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\BordroIsyeri.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\BordroKalem.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\BrodeDesen.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\BrodeDesenAltGrup.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\BrodeDesenGrup.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\BrodeDesenLogo.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\BrodeDesenMakineAyar.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\BrodeDesenParametre.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\BrodeDesenParametreDeger.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\BrodeDesenParametreSecimDeger.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\BrodeDesenRapor.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\BrodeDesenTip.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\BrodeDesenUrunGrup.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\Butce.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\ButceDonem.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\ButceHareket.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\ButceHesapPlani.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\ButceKalem.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\ButceKur.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\ButceSatisTahmin.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\ButceStokGrup.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\ButceUretimTahmin.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\CalisanMakineGrup.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\CalisanMakineGrupDetay.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\CalisanMakineYedekPersonel.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\CalisanMakineYedekPersonelDetay.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\CalismamaNedeni.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\CalismaParametreleri.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\Cari.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\CariAdres.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\CariAktar.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\CariBagliRapor.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\CariBankaIslemleri.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\CariBankaIslemleriAna.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\CariBankaSubeHesap.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\CariBordro.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\CariCekSenet.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\CariCekSenetDetay.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\CariGorusmeIerIlgiliProje.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\CariGorusmeIerIlgiliProjeTanim.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\CariGorusmeler.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\CariGorusmelerBagliPersonel.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\CariGorusmelerEylemPlani.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\CariGorusmeSonuc.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\CariGorusmeTuru.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\CariGrup.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\CariIslemler.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\CariIslemlerAna.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\CariKaliteKod.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\CariKaliteKontrolTalimatlari.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\CariKasaIslemleri.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\CariKKTalimatlariKisitEkIslem.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\CariKomisyoncu.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\CariLot.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\CariNoGrup.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\CariOdemePlani.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\CariOzelAlanDeger.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\CariPersonel.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\CariRenk.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\CariRisk.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\CariSatinalmaFiyatListe.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\CariSatisFiyatListe.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\CariTestPeriyot.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\Cek.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\CekKasasi.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\ChatMesajKullaniciBilgi.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\ChatMesajlar.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\CozguRapor.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\CozguRaporDetay.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\CozguRaporSablon.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\CozguRaporSablon1Rapor.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\DagitimAnahtari.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\DaraTip.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\DesenOzelAlanDeger.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\DesenRaporu.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\Dil.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\Din.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\DisVeriAlMap.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\DokumaDesen.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\Dokuman.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\DokumanDagitimYerleri.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\DokumanOnay.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\DokumanRevizyon.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\DokumanSinif.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\DokumanTur.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\DokumanYenilemeSiklik.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\Doviz.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\dtproperties.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\dt_getpropertiesbyid_Result.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\dt_getpropertiesbyid_u_Result.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\DurusNedeni.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\DuzeltmeKatsayi.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\EFQMSOS.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\EgitimDurum.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\EkIslemNedenleri.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\ElyafTur.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\EndirektMaliyetButce.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\EntegrasyonProgram.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\EntegrasyonProgramSQLleri.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\EtaEntegrasyon.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\EXCEL_UASORGULAMA_2_Result.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\EXCEL_UASORGULAMA_VERIYAZ_Result.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\Fatura.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\FaturaAna.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\FaturaIptalNedeni.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\FaturaKapatma.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\FHPBankaHesaplarim.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\FHPCari.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\FHPCekKasasi.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\FHPCekKasasiSablon.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\FHPCekKasasiSablonAna.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\FHPFaturaIskontoSablon.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\FHPFaturaIskontoSablonAna.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\FHPKasaKarti.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\FHPSenetKasasi.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\FHPSenetKasasiSablon.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\FHPSenetKasasiSablonAna.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\FHPStok.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\FHPStokMuhasebeGrubu.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\FHPStokSablon.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\FHPStokSablonAna.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\FHPStokTuru.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\FHPVergiOran.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\FinansBankaHesaplarimEntegrasyon.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\FinansBelgeTur.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\FinansCariEntegrasyon.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\FinansCekKasasiEntegrasyon.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\FinansDonemi.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\FinansFatura.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\FinansFaturaAna.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\FinansFaturaKapatma.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\FinansFaturaOdemePlani.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\FinansFaturaParametre.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\FinansFaturaParametreDeger.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\FinansFaturaParametreSecimDeger.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\FinansFaturaVergiOran.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\FinansHareket.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\FinansHareketAktarilan.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\FinansHareketAna.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\FinansHareketMasrafMerkezi.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\FinansHareketOdemePlani.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\FinansHareketOdemePlaniAna.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\FinansIskontoEntegrasyon.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\FinansIslemGrubu.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\FinansIslemTur.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\FinansIslemTurEntegrasyon.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\FinansIslemTurGrup.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\FinansIslemTuru.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\FinansIslemYeri.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\FinansKasaEntegrasyon.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\FinansKayitIslemYeri.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\FinansOzelKod.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\FinansSecimSQLParametre.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\FinansSenetKasasiEntegrasyon.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\FinansStokEntegrasyon.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\FinansTevkifatOraniEntegrasyon.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\FinansVergiOranEntegrasyon.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\Firma.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\FisTurGrup.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\FisTurleri.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\FisTurOzelAlanlari.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\FiyatCarpan.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\FiyatListe.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\FiyatListeAna.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\FormAdlari.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\FormAlanAdlari.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\FormAlanTanim.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\FormAlanYetki.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\FormIDleri.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\FormTanim.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\FormUyariTanim.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\FormUyariTanimKullanici.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\GecersizRefakatKarti.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\GelirVergisi.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\GKK.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\GKKAna.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\GKKDokuman.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\GKKDurum.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\GonderilenMesajlar.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\Gorev.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\Gorevler.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\GorusmeIzleme.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\GorusmeIzlemeAna.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\Grup.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\GTIPNo.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\Gun.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\GunlukKur.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\Hata.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\HataEkIslem.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\HataliUretimHareket.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\HataPuanIskonto.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\HataTur.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\HataUreticiKodu.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\HavRaporSablon.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\HazirlikHareket.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\HazirlikTipi.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\HesapPlani.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\HesapPlaniBakiyeSekli.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\HesapPlaniCalismaSekli.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\HesapPlaniHesapTipi.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\HesapSQLleri.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\HPS.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\IhracatDosya.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\IhracatDosyaDurumu.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\IhracatDosyaEvrak.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\IhracatDosyaFatura.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\IhracatEvrak.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\IhracatImalatciCariler.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\IhracatIrsaliye.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\IhracatProforma.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\IhracatTur.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\IhracatUlkeEvrakTakip.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\Il.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\Ilce.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\ImalatciTur.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\InternetAdresleri.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\IPSMakineKapasite.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\IPSMalzemeGrubu.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\IPSMalzemeGrubuAltMatris.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\IPSMalzemeGrubuAltMatrisHSuresi.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\IPSMalzemeGrubuAltMatrisMGrubu.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\IPSMalzemeGrubuHazirlikSureleri.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\IPSMalzemeGrubuStokTurOzelAlan.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\IPSParametreler.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\IPSPerformansKriter.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\IPSPerformansKriterSenaryo.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\IPSTransferSQL.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\IPSTransferVeritabaniBaglanti.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\IPSVeritabani.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\Irsaliye.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\IrsaliyeAna.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\IrsaliyeBelgeTur.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\IrsaliyeIslemTur.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\IrsaliyeOdemePlani.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\Islem.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\IslemGrup.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\IslemGrupMaliyet.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\IslemGrupOzelAlan.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\IslemMakineTur.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\IslemParametre.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\IslemParametreDeger.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\IslemStokGrubu.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\IslemStokGrubuHazirlik.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\IslemTerminAraligi.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\IslemTur.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\IslemUretimTest.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\Isyeri.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\IthalatDosya.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\IthalatDosyaDurumu.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\IthalatDosyaEvrak.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\IthalatDosyaFatura.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\IthalatEvrak.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\IthalatIhracatEvrakGrubu.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\IthalatImalatciCariler.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\IthalatIrsaliye.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\IthalatProforma.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\IthalatTur.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\IthalatUlkeEvrakTakip.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\Kalite.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\KaliteKontrolTalimatKisitEkIslem.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\KaliteKontrolTalimatlari.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\KaliteNedeni.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\KapaliUlkelerOnayTipKullanici.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\KapaliUlkelerOnayTipleri.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\KapaliUlkelerStokKod.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\KapaliUlkelerStokKodOnay.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\KapaliUlkelerTKumasDesen.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\KapaliUlkelerTKumasDesenOnay.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\KapaliUlkelerTKumasKalite.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\KapaliUlkelerTKumasKaliteOnay.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\Karisim.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\Kartela.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\KasaIslemleri.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\KasaKarti.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\KaynakCalismamaTakvimi.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\KaynakGrupTip.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\KaynakTakvimGrup.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\KendiCekimiz.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\KMTasi.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\Kolleksiyon.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\KontrolFrekansTanim.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\KontrolKarakteristikTanim.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\Kredi.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\KrediOdemePlani.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\KrediTur.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\Kullanici.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\KullaniciAmbarYetki.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\KullaniciCariGrubuYetki.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\KullaniciDetay.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\KullaniciFinansIslemTuruYetki.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\KullaniciFisTuruYetki.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\KullaniciGridRenkKosul.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\KullaniciGrup.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\KullaniciHataTurYetki.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\KullaniciIslemTuruYetki.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\KullaniciKisaYolTuslari.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\KullaniciListeDuzen.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\KullaniciMakineGrupYetki.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\KullaniciMakineTakipSQL.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\KullaniciMakineTakipSQLAlanlari.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\KullaniciMakineTurYetki.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\KullaniciRaporYetki.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\KullaniciSaklaSifre.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\KullaniciSatinalmaIstekTurYetki.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\KullaniciSatinalmaSiparisTurYetki.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\KullaniciSatisFiyatListeTurYetki.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\KullaniciSifreSistemKontrol.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\KullaniciSiparisTurYetki.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\KullaniciSiparisYetki.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\KullaniciSistemde.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\KullaniciSQLAnalizGridDuzen.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\KullaniciSQLAnalizYetki.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\KullaniciStokKoduYetki.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\KullaniciStokTuruYetki.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\KullaniciUretimRotaGrupYetki.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\KullaniciYetki.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\KullanmaKategorisi.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\KumasCins.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\KumasFasonKontrol.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\KumasTakipKarti.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\KumasTop.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\KumasTopHata.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\KumasTopHataDerece.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\KumasTopHataKisit.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\KumasTopHataKisitKontrol.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\KumasTopHataKontrol.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\KumasTopHataUA.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\KumasTopHataUAKontrol.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\KumasTopIskarta.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\KumasTopIslemOnay.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\KumasTopIslemOnayKontrol.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\KumasTopKontrol.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\KumasTopOzelAlanDeger.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\KumasTopParca.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\KumasTopParcaKontrol.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\KumasTopSakli.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\KumasTopSakliHata.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\KumasTopSakliParca.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\KumasTopSakliVardiya.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\KumasTopVardiya.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\KumasTopVardiyaKontrol.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\KurDegerlemeHesapPlani.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\KurDegerlemeTarih.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\KurTipi.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\Makine.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\MakineAyar.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\MakineAyarParametre.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\MakineDurus.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\MakineGrup.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\MakineLayout.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\MakineMalzemeAtama.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\MakineNoTip.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\MakinePlanlamaKriter.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\MakineTakvim.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\MakineTakvimDetay.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\MakineTip.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\MakineTipParametre.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\MakineTur.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\MaliTablo.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\MaliTabloAna.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\MaliTabloDipNot.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\MaliTabloGrup.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\Maliyet.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\MaliyetDonem.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\MaliyetDonemMasrafMerkezi.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\MaliyetDonemStok.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\MaliyetDonemUretim.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\MaliyetFiyat.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\MaliyetHesapDonemTutar.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\MaliyetHesapPlani.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\MaliyetMerkez.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\MaliyetMerkezDetay.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\MalzemeIhtiyac.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\MalzemeIhtiyacSiparis.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\MalzemeTalep.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\MalzemeTalepAna.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\MalzemeTalepStokRezerv.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\ManuelRefakatKarti.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\ManuelRefakatKartiDetay.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\ManuelRefakatKartiIliski.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\MasrafMerkeziDagitimAnahtari.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\MasrafMerkeziHesapPlaniCarpan.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\MasrafTur.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\Mesaj.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\ModelPoly.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ModelPoly.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\ModelPoly.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\ModelPoly.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ModelPoly.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\ModelPset.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ModelPset.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\ModelPset.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ModelPset.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\ModelPset.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ModelPset.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\ModelTasd.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ModelTasd.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\ModelTasd.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ModelTasd.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\ModelTasd.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ModelTasd.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\ModulProgram.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\MRP.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\MRPEksi.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\MRPSonuc.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\Mrv_KaliteBildirimAna.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\Mrv_KaliteBildirimBolumleri.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\Mrv_KaliteBildirimDetay.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\Mrv_KaliteBildirimHata.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\Mrv_KaliteBildirimHataMudahale.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\Mrv_KaliteBildirim_Makine.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\Mrv_MalzemeAna.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\Mrv_MalzemeDetay.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\Mrv_POY_Ikaz.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\MTGridDil.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\MudaheleNedeni.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\MuhasebeEntegrasyon.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\MuhasebeFisi.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\MuhasebeFisiAna.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\MuhasebeFisiAylikOzet.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\MuhasebeFisTuru.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\MuhasebeHesapDonem.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\MuhasebeHesapDonemTutar.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\NakisDesen.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\NakliyeSekli.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\NavigationButton.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\NumuneDesenAtkiRaporDetay.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\NumuneDesenCozguRaporDetay.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\NumuneDesenIslemMaliyet.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\NumuneDokumaDesen.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\OdemePlani.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\OdemeSekli.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\OlcuBirim.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\OlcuCevrim.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\OnDegerliRaporGrup.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\OnMaliyet.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\OnMaliyetCarpan.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\OnMaliyetEkMaliyetStok.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\OnMaliyetEkMaliyetStokLog.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\OnMaliyetEkMaliyetTip.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\OnMaliyetEkMaliyetTipDegerFiyat.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\OnMaliyetEndirekt.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\OnMaliyetIslemTip.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\OnMaliyetIslemTipDeger.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\OnMaliyetIslemTipDegerFiyat.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\OnMaliyetRota.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\OnMaliyetSablonAna.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\OnMaliyetSablonEkMaliyet.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\OnMaliyetSablonRota.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\OnMaliyetSablonUA.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\OnMaliyetStokRota.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\OnMaliyetStokRotaFiyat.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\OnMaliyetStokRotaFiyatLog.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\OnMaliyetStokUA.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\OnMaliyetStokUAFiyat.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\OnMaliyetStokUAFiyatLog.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\OnMaliyetTip.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\OnMaliyetUATip.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\OnMaliyetUATipDeger.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\OnMaliyetUATipDegerFiyat.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\OnMaliyetUrunAgaci.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\OrguTip.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\OrmeRaporSablon.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\OrmeRaporSablonParametre.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\OrmeRaporSablonParametreDeger.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\OrmeRaporSablonParametreSecimDeger.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\OrmeSablonSistemSiralama.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\OtomasyonDBAyarlari.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\OtomasyonIsNo.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\OtomatikAmbalajNo.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\OtomatikBaskiDesenNo.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\OtomatikBrodeDesenNo.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\OtomatikCariNo.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\OtomatikDesenNo.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\OtomatikDokumanNo.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\OtomatikIhracatNo.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\OtomatikIrsaliyeNo.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\OtomatikIthalatNo.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\OtomatikLotNo.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\OtomatikPaketNo.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\OtomatikPartiNo.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\OtomatikProjeNo.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\OtomatikReceteNo.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\OtomatikRefakatTopNo.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\OtomatikRenkKodu.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\OtomatikSabitKiymetKodu.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\OtomatikSatinalmaIstekNo.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\OtomatikSatinalmaSiparisNo.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\OtomatikSiparisNo.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\OtomatikStokHareketBelgeNo.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\OtomatikStokKodAd.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\OtomatikTeklifNo.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\OtomatikTezgahKumasKodu.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\OtomatikTezgahKumasSablonNo.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\OtomatikTopNo.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\OtomatikUretimRotaNo.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\OtoUretimMakineDeger.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\OtoUretimMakineParametre.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\OzelAlanGrup.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\OzelKodlar.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\PaketlemeSekli.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\PaketlemeSekliSablonu.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\PaketNo.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\PartilenmemisSiparisIhtiyac.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\PCSonKullanici.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\Personel.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\PersonelDuyuru.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\PersonelGorevTakip.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\PersonelHareket.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\PersonelHareketTurleri.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\PersonelIzleme.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\PersonelKazancKesintiBilgileri.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\PersonelKisilikAltFaktor.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\PersonelKisilikFaktor.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\PersonelMakine.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\PersonelPuantaj.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\PersonelUcretParametreleri.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\PisKenarRapor.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\PisKenarRaporDetay.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\PlanlamaKriterDeger.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\PlanlamaKriterTip.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\PlanlananSiparisler.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\ProformaDokuman.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\ProformaFatura.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\ProformaFaturaAna.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\ProformaFaturaOzelAlanDeger.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\ProgramSQLAlanlari.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\ProgramSQLAlanlariParametre.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\ProgramSQLleri.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\ProgramSQLleriWhere.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\Proje.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\ProjeAdimCalisanlar.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\ProjeAdimKaynaklar.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\ProjeAdimlari.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\ProjeAdimlariDurumu.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\ProjeAdimOncelik.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\ProjeDurus.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\ProjeDurusNedenleri.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\ProjeEkleri.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\ProjeEkTuru.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\ProjeIptalNedeni.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\ProjeOneri.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\ProjePlanlananToplanti.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\ProjePlanlananToplantiDavetEdilenler.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\ProjeTimi.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\ProjeToplanti.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\ProjeToplantiKatilanlar.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\ProjeTuru.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\ProjeTuruPersonel.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\PuantajHesapTanimlamalari.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\RaporFiltreTanim.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\RaporKosul.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\RaporSablonDeger.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\RaporSablonDeger1Rapor.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\RaporSablonTalimat.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\RaporSablonTekrar.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\RaporSablonTekrar1Rapor.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\RaporTanim.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\Recete.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\ReceteAna.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\ReceteAnaStok.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\ReceteGrup.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\ReceteOzelAlanDeger.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\ReceteSafha.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\ReceteSakla.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\ReceteStandartOranlari.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\ReceteTartim.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\ReceteTur.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\ReceteTurIslemTur.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\ReceteTurOzelAlanlari.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\RefakatIslemGorenToplar.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\RefakatKarti.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\RefakatKartiAna.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\RefakatKartiCalisan.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\RefakatKartiIslemOncelik.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\RefakatKartiMaliyet.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\RefakatKartiMaliyetGerceklesen.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\RefakatKartiOncelik.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\RefakatKartiOtoYedek.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\RefakatKartiOtoYukleme.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\RefakatKartiParametre.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\RefakatKartiParametreKumasTop.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\RefakatKartiPlanlamaKriter.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\RefakatKartiTermin.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\RefakatOncelik.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\RefakatSarjDetay.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\Renk.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\RenkElyafGrup.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\ResmiTatiller.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\RezervPlan.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\RezervPlanOnay.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\RezervPlanOnayTip.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\RezervPlanOnayTipYetki.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\RiskTanim.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\SabitAciklama.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\SabitKiymet.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\SabitKiymetAmortisman.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\SabitKiymetGrup.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\SabitKiymetParametre.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\SabitKiymetTur.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\SablonGosterge.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\SablonGostergeAyrinti.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\SablonMakine.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\SablonMakineAyrinti.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\SatinalmaFiyatListe.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\SatinalmaFiyatListeAna.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\SatinalmaFiyatListeMiktarFiyatIliskisi.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\SatinalmaIstek.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\SatinalmaIstekAna.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\SatinalmaIstekAnaOzelAlanDeger.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\SatinalmaIstekDokuman.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\SatinalmaIstekSatis.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\SatinalmaIstekTeklif.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\SatinalmaIstekTur.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\SatinalmaIstekTurOzelAlanlari.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\SatinalmaOnay.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\SatinalmaOnayTip.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\SatinalmaOnayTipYetki.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\SatinalmaProformaFatura.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\SatinalmaProformaFaturaAna.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\SatinalmaSevkiyatPlani.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\SatinalmaSiparis.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\SatinalmaSiparisAna.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\SatinalmaSiparisAnaOzelAlanDeger.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\SatinalmaSiparisDokuman.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\SatinalmaSiparisOnay.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\SatinalmaSiparisOnayTip.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\SatinalmaSiparisOnayTip01.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\SatinalmaSiparisOnayTipYetki.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\SatinalmaSiparisSatis.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\SatinalmaSiparisTur.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\SatinAlmaSiparisTurOzelAlanlari.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\SatinAlmaSozlesme.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\SatinAlmaSozlesmeAna.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\SatinAlmaSozlesmeKriter.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\SatinalmaTeklif.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\SatinalmaTeklifAna.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\SatisFiyatCarpan.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\SatisFiyatCarpanMaliyet.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\SatisFiyatCarpanTipi.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\SatisFiyatListeTur.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\SatisFiyatTalep.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\SatisFiyatTalepOnay.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\SatisFiyatTalepOnayTip.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\SatisFiyatTalepOnayTipYetki.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\SatisIslemGrup.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\SatisSiparisSatis.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\SayimTop.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\SecimAlanlari.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\SecimSQLAlanlari.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\SecimSQLleri.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\SecimSQLleriForm.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\Sendika.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\Senet.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\SenetKasasi.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\Sepetim.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\SeriNoBirlestirilmisParti.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\SevkEmri.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\SevkEmriAna.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\SevkIsEmri.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\SevkIsEmriAna.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\SevkiyatPlani.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\SevkiyatPlaniAna.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\SevkiyatTipi.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\SigortaDurum.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\Siparis.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\SiparisAna.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\SiparisAnaOzelAlanDeger.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\SiparisArttirimTalep.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\SiparisArttirimTalepNedeni.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\SiparisBirlestirmeParametre.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\SiparisBirlestirmeParametreDeger.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\SiparisBirlestirmeParametreSecimDeger.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\SiparisBirlestirmePlani.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\SiparisBirlestirmePlaniAna.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\SiparisDokuman.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\SiparisIptal.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\SiparisIptalNedenleri.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\SiparisIptalTip.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\SiparisIptalTipYetki.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\SiparisKapatma.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\SiparisKapatmaTip.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\SiparisKapatmaTipYetki.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\SiparisKMTasi.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\SiparisKomisyoncu.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\SiparisLotKisit.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\SiparisOdemePlani.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\SiparisOlcuCevrim.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\SiparisOnay.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\SiparisOnayTip.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\SiparisOnayTipYetki.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\SiparisOzelAlanDeger.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\SiparisParti.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\SiparisPartiRezervPlan.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\SiparisSevkiyatPlani.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\SiparisTahsilat.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\SiparisTalimat.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\SiparisTalimatTip.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\SiparisTalimatTipTalimat.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\SiparisTur.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\SiparisTurGrup.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\SiparisTurOzelAlanlari.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\Sistem.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\SpSiparisMiktarDegistir_Result.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\sp_helpdiagramdefinition_Result.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\sp_helpdiagrams_Result.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\sp_RefakatKartiIslemKontrol_Result.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\SqlAnaliz.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\SqlAnalizFiltreTanim.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\SQLAnalizIliskiliRaporlar.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\SqlAnalizKosul.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\SqlOnDegerliCalisma.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\SrcnDenemeDosya.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\SrcnDenemeDosyaItems.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\SrcnDosyaDurums.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\SrcnDosyaHarekets.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\SrcnDosyaIplikOznitelikItems.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\SrcnDosyaItemMakineParametres.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\SrcnDosyaKonusmas.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\SrcnDosyaTipis.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\SrcnFabrikaBirims.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\SrcnFabrikaBolums.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\SrcnGunlukImalatDosyas.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\SrcnIkCalismaPozisyons.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\SrcnIkEgitimFirmas.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\SrcnIkEgitimKatilimTanim.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\SrcnIkEgitimOturums.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\SrcnIkEgitimOturumSrcnKullanicis.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\SrcnIkEgitims.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\SrcnIkEgitimTipis.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\SrcnIkFirmas.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\SrcnIplikOznitelikKategoriTipi.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\SrcnIplikOznitelikTipis.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\SrcnIplikUretimTekniks.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\SrcnKullaniciGrupKullanicis.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\SrcnKullaniciGrups.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\SrcnKullanicis.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\SrcnLabAnalizCesits.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\SrcnLabAnalizDurumus.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\SrcnLabAnalizHarekets.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\SrcnLabAnalizItemAnalizCesitSonucs.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\SrcnLabAnalizItems.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\SrcnLabAnalizLogs.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\SrcnLabAnalizs.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\SrcnLabGrupAnalizCesits.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\SrcnLabGrups.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\SrcnMailBildirimGrupItems.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\SrcnMailBildirimGrups.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\SrcnMailGrupKullanicis.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\SrcnMailGrups.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\SrcnMakineHataBildirimHarekets.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\SrcnMakineHataBildirims.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\SrcnMusteriSikayetDosyas.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\SrcnMusteriSikayetDosyaSikayetGrups.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\SrcnMusteriSikayetGrups.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\SrcnMusteriSikayetNumuneAnalizs.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\SrcnNumuneDosyaTipis.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\SrcnNumuneYapilabilirlikDosyas.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\SrcnOntefrikGrups.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\SrcnOntefriks.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\SrcnPaketlemeGunlukTalimatItems.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\SrcnPaketlemeGunlukTalimats.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\SrcnPaketlemeGunlukTalimatTipis.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\SrcnPartiAltKlasorDosyaHarekets.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\SrcnPartiAltKlasorDosyaHareketTanims.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\SrcnPartiAltKlasorDosyaItems.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\SrcnPartiAltKlasorDosyas.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\SrcnPartiAltKlasors.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\SrcnPartiAltKlasorTipis.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\SrcnPartiAnaKlasors.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\SrcnPartiSonuEkIslems.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\SrcnPartiSonuEkIslemTanims.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\SrcnPartiSonuHarekets.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\SrcnPartiSonuTakipBilgiOnays.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\SrcnPartiSonuTakipHareketTakipTanims.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\SrcnPartiSonuTakips.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\SrcnResimKategoris.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\SrcnResims.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\SrcnToplantiBaseSaats.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\SrcnToplantiRadevus.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\SrcnToplantiRandevuDurums.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\SrcnToplantiRandevuSaats.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\SrcnToplantiSalons.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\SrcnYardimciTesisKontrolNoktas.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\SskBelgeTurleri.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\StnIstekStokTurOzelAlan.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\StnIstekStokTurOzelAlanDeger.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\StnSiparisOzelAlanDeger.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\StnSiparisStokTurOzelAlan.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\Stok.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\StokAktarimSablonu.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\StokAmbar.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\StokAmbarAdres.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\StokCariRota.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\StokCariTalimat.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\StokCariTalimatGrup.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\StokDokuman.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\StokDonemFiyat.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\StokFiyat.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\StokGrup.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\StokHareket.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\StokHareketAdres.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\StokHareketAktar.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\StokHareketAna.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\StokHareketAnaOzelAlanDeger.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\StokHareketDaraTip.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\StokHareketIslemTip.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\StokHareketMalzemeTalep.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\StokHareketOzelAlanDeger.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\StokHareketSevkiyat.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\StokHareketStokOmru.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\StokKapaliUlkeler.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\StokKodAktar.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\StokKodKriter.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\StokKodKriterSecim.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\StokKodTeknikOzellik.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\StokKodVergiOranlari.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\StokKoleksiyonKod.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\StokKriter.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\StokLotKalite.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\StokMakineKisit.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\StokMuhasebeGrup.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\StokMuhasebeKod.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\StokOzelAlan1.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\StokOzelAlan10.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\StokOzelAlan11.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\StokOzelAlan12.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\StokOzelAlan13.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\StokOzelAlan14.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\StokOzelAlan15.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\StokOzelAlan2.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\StokOzelAlan3.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\StokOzelAlan4.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\StokOzelAlan5.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\StokOzelAlan6.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\StokOzelAlan7.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\StokOzelAlan8.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\StokOzelAlan9.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\StokPlanlamaKriter.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\StokRezerv.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\StokRota.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\StokSabitKiymet.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\StokSayim.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\StokSayimAna.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\StokSinif.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\StokSiralamaYontemi.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\StokTur.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\StokTurKriter.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\StokTurKriterSecim.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\StokTurMuhasebeKod.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\StokTurTeknikOzellik.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\StokTurTestPeriyot.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\StokTurTip.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\StokTurVergiOran.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\StokTurVergiOranlari.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\StokUreticiKod.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\StokVergiOran.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\sysdiagrams.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\TabloGridListeDuzen.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\TaharAciklama.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\TanimForm.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\TanimFormDetay.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\TanimFormDetayDeger.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\TarakAciklama.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\TarakRapor.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\TarakRaporDetay.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\TarakRaporSablon.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\TarakRaporSablon1Rapor.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\TarakRaporSablonGrup.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\TebdilNedeni.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\TedarikciTakvim.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\TedarikciTakvimDetay.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\Teklif.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\TeklifAna.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\TeklifDokuman.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\TempKaliteTopNolari.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\Terazi.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\TeslimSekli.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\TeslimYeri.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\TestPeriyotKontrol.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\TestSonuc.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\TevkifatOrani.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\TezgahKumas.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\TezgahKumasBagliDesenRapor.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\TezgahKumasBrodeDesenParametre.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\TezgahKumasDesen.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\TezgahKumasDesenDetay.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\TezgahKumasDesenOzelAlanDeger.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\TezgahKumasDesenOzelAlanlari.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\TezgahKumasDokuman.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\TezgahKumasGrup.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\TezgahKumasHavBilgileri.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\TezgahKumasHavluBilgi.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\TezgahKumasKalite.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\TezgahKumasOrmeBilgileri.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\TezgahKumasOzelAlanDeger.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\TezgahKumasOzelAlanlari.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\TezgahKumasSablon.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\TezgahKumasTip.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\TKumasBrodeDesenParametreAltGrup.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\TKumasBrodeDesenParametreDeger.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\TKumasBrodeDesenParametreGrup.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\TKumasBrodeDesenParametreSecim.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\TopBolmeNedeni.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\TransferSQL.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\TransferVeritabani.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\TuftingSablon.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\Ulke.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\UlkeEvrakKategorisi.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\UlkeGumrukVergiOran.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\UretimHareket.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\UretimHareketDetay.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\UretimHata.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\UretimHataGrup.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\UretimHatalari.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\UretimRota.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\UretimRotaAna.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\UretimRotaBagliIslem.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\UretimRotaGrup.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\UretimTest.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\UretimTestAsama.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\UretimTestAsamaDegerSecim.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\UretimTestRapor.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\UretimTestRaporAna.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\UretimTestRaporAsama.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\UretimTestRaporAsamaDeger.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\UrunAgaci.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\UrunAgaciAlternatif.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\UrunGrubu.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\UrunMaliyet.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\UrunSablon.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\UstStokTestPeriyot.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\Uyari.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\Vardiya.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\VardiyaHareket.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\Vardiyalar.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\VardiyaUretim.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\VergiIade.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\VergiMuhasebeKodlari.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\VergiOran.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\VersiyonBilgi.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\VersiyonDegisiklikleri.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\View_Stok_Durum_PTKS.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\View_STOK_DURUM_PTKS_TASD.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\View_Stok_Durum_TASD.cs">
+      <DependentUpon>ModelTasd.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\vMRPSatinalma.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\vMRPStokAmbar.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\YalanciKenarRapor.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\YalanciKenarRaporDetay.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\YasalTanimlamalar.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\ZzzMrvStokDetayTakip.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\ZzzSrcnDenemeNumuneStoks.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\ZzzSrcnHataliTefrikMakineleri.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\ZzzSrcnIslemMakineParametre.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\ZzzSrcnKullaniciCalismaPozisyonOzet.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\ZzzSrcnLottanOzelAlanaGecisler.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\ZzzSrcnMakineIdli.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\ZzzSrcnMusteriSikayetOlusturmaTabloPTKS.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\ZzzSrcnMusteriSikayetTabloOlusturmaTabloTASD.cs">
+      <DependentUpon>ModelTasd.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\ZzzSrcnPartiSonuDurumOzet.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\ZzzSrcnPartiSonuPtksTasdCari.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\ZzzSrcnPartiSonuTakipIzlenebilirlik.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\ZzzSrcnRefakatKartNoStokAdlari.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\ZzzSrcnTefrikGenelOzet.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\ZzzSrcnTefrikRaporOzets.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\ZzzSrcnTefrikRefakatFisListe.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\ZzzSrcnYeniPartiKlasorListes.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\ZZZ_AYLAR.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EntityFramework\ZZZ_Coats_Etiket.cs">
+      <DependentUpon>ModelPoly.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.Config" />
+    <EntityDeploy Include="Concrete\EntityFramework\ModelPoly.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>ModelPoly.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="Concrete\EntityFramework\ModelPoly.edmx.diagram">
+      <DependentUpon>ModelPoly.edmx</DependentUpon>
+    </None>
+    <EntityDeploy Include="Concrete\EntityFramework\ModelTasd.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>ModelTasd.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <EntityDeploy Include="Concrete\EntityFramework\ModelPset.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>ModelPset.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="Concrete\EntityFramework\ModelPset.edmx.diagram">
+      <DependentUpon>ModelPset.edmx</DependentUpon>
+    </None>
+    <None Include="Concrete\EntityFramework\ModelTasd.edmx.diagram">
+      <DependentUpon>ModelTasd.edmx</DependentUpon>
+    </None>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Concrete\EntityFramework\ModelPoly.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>ModelPoly.edmx</DependentUpon>
+      <LastGenOutput>ModelPoly.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Concrete\EntityFramework\ModelPoly.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>ModelPoly.edmx</DependentUpon>
+      <LastGenOutput>ModelPoly.cs</LastGenOutput>
+    </Content>
+    <Content Include="Concrete\EntityFramework\ModelPset.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>ModelPset.edmx</DependentUpon>
+      <LastGenOutput>ModelPset.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Concrete\EntityFramework\ModelPset.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>ModelPset.edmx</DependentUpon>
+      <LastGenOutput>ModelPset.cs</LastGenOutput>
+    </Content>
+    <Content Include="Concrete\EntityFramework\ModelTasd.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>ModelTasd.edmx</DependentUpon>
+      <LastGenOutput>ModelTasd.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Concrete\EntityFramework\ModelTasd.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>ModelTasd.edmx</DependentUpon>
+      <LastGenOutput>ModelTasd.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

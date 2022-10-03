@@ -1,0 +1,190 @@
+﻿@model Polyteks.Katman.DAL.Concrete.EntityFramework.Mrv_POY_Ikaz
+
+@{
+    ViewBag.Title = "PoyIkazGuncelle";
+    Layout = "~/Views/Shared/Layout.cshtml";
+}
+
+@if (TempData["Msg"] != null)
+{
+    <div class="custom-alerts alert alert-@TempData["class"] fade in">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true"></button>
+        <h2>@TempData["Msg"]</h2>
+    </div>
+}
+<div class="portlet-title">
+    <div class="caption font-blue">
+        <i class="icon-settings font-blue"></i>
+
+
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="form-horizontal">
+                <div class="vertical-line">
+                    <hr />
+                    <center><h1><b>POY İKAZ BİLDİRİMİ GÜNCELLE</b></h1></center>
+                    <hr />
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    @Html.HiddenFor(model => model.ID)
+                    <center><h3><b>TEKSTÜRE ALANI</b></h3></center>
+                    <hr />
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Tarih, "İKAZ TARİHİ/SAATİ", htmlAttributes: new { @class = "control-label col-xs-2" })
+                        <div class="col-md-10">
+
+                            @Html.EditorFor(model => model.Tarih, new { htmlAttributes = new { @class = "form-control", @readonly = "true " } })
+                            @Html.ValidationMessageFor(model => model.Tarih, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.PartiNo, "PARTİ NUMARASI", htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.PartiNo, new { htmlAttributes = new { @class = "form-control", @readonly = "true " } })
+                            @Html.ValidationMessageFor(model => model.PartiNo, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Denye_Flaman, "DENYE/FLAMAN", htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.Denye_Flaman, new { htmlAttributes = new { @class = "form-control ", @readonly = "true " } })
+                            @Html.ValidationMessageFor(model => model.Denye_Flaman, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Uretim_Mak_Kan_Poz, "ÜRETİM MAKİNE / KANAL / POZİSYON NO", htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.Uretim_Mak_Kan_Poz, new { htmlAttributes = new { @class = "form-control", @readonly = "true " } })
+
+                            @Html.ValidationMessageFor(model => model.Uretim_Mak_Kan_Poz, "", new { @style = "color:black" })
+                        </div>
+                    </div>
+
+
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.ProblemTanimi, "PROBLEM TANIMI", htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.ProblemTanimi, new { htmlAttributes = new { @class = "form-control test", @readonly = "true " } })
+                            @Html.ValidationMessageFor(model => model.ProblemTanimi, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Teksture_Makine_No, "TEKSTÜRE MAKİNE NO", htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.Teksture_Makine_No, new { htmlAttributes = new { @class = "form-control", @readonly = "true " } })
+
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Teksture_Pozisyon_No, "TEKSTÜRE POZİSYON NO", htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.Teksture_Pozisyon_No, new { htmlAttributes = new { @class = "form-control", @readonly = "true " } })
+                            @Html.ValidationMessageFor(model => model.Teksture_Pozisyon_No, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <hr />
+                    <center> <h3><b>POY ALANI</b></h3></center>
+                    <hr />
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.YapilanMudahale, "YAPILAN MÜDAHALE", htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.DropDownListFor(model => model.YapilanMudahale, new List<SelectListItem>
+                       {     new  SelectListItem { Text = "Analiz İçin Laboratuvara Verildi", Value = "Analiz İçin Laboratuvara Verildi" },
+                        new  SelectListItem { Text = "Periyodik Düze Değişimi Yapıldı", Value = "Periyodik Düze Değişimi Yapıldı" },
+                           new  SelectListItem { Text = "Düze Değişti", Value = "Düze Değişti" },
+                         new  SelectListItem { Text = "Godet Domuz Kuyrukları Değişti", Value = "Godet Domuz Kuyrukları Değişti" },
+                         new  SelectListItem { Text = "Winder Domuz Kuyrukları Değişti", Value = "Winder Domuz Kuyrukları Değişti" },
+                               new  SelectListItem { Text = "Jet Değişti", Value = "Jet Değişti" },
+                       new  SelectListItem { Text = "Jet Temizlendi", Value = "Jet Temizlendi" },
+                        new  SelectListItem { Text = "İplik Gerginlik Kılavuzu Ayarlandı", Value = "İplik Gerginlik Kılavuzu Ayarlandı" },
+                         new  SelectListItem { Text = "İplik Gerginlik Kılavuzu Değiştirildi", Value = "İplik Gerginlik Kılavuzu Değiştirildi" },
+                        new  SelectListItem { Text = "İplik Gerginlik Kılavuzu Kontrol Edildi", Value = "İplik Gerginlik Kılavuzu Kontrol Edildi" },
+                          new  SelectListItem { Text = "İplik Gerginlik Kılavuzu Temizlendi", Value = "İplik Gerginlik Kılavuzu Temizlendi" },
+
+                            new  SelectListItem { Text = "Jet Altı Kılavuzu Ayarlandı", Value = "Jet Altı Kılavuzu Ayarlandı" },
+                              new  SelectListItem { Text = "Jet Altı Kılavuzu Değiştirildi", Value = "Jet Altı Kılavuzu Değiştirildi" },
+                                 new  SelectListItem { Text = "Jet Altı Kılavuzu Kontrol Edildi", Value = "Jet Altı Kılavuzu Kontrol Edildi" },
+                       new  SelectListItem { Text = "Jet Altı Kılavuzu Temizlendi", Value = "Jet Altı Kılavuzu Temizlendi" },
+                      
+                         new  SelectListItem { Text = "Yağlayıcı Alt Kılavuzu Ayarlandı", Value = "Yağlayıcı Alt Kılavuzu Ayarlandı" },
+                                      new  SelectListItem { Text = "Yağlayıcı Alt Kılavuzu Değiştirildi", Value = "Yağlayıcı Alt Kılavuzu Değiştirildi" },
+                                              new  SelectListItem { Text = "Yağlayıcı Alt Kılavuzu Kontrol Edildi", Value = "Yağlayıcı Alt Kılavuzu Kontrol Edildi" },
+                                                      new  SelectListItem { Text = "Yağlayıcı Alt Kılavuzu Temizlendi", Value = "Yağlayıcı Alt Kılavuzu Temizlendi" },
+      new  SelectListItem { Text = "Parti Sonu Yapıldı", Value = "Parti Sonu Yapıldı" },
+                                      new  SelectListItem { Text = "Yağ Kontrol Edildi", Value = "Yağ Kontrol Edildi" },
+                                      new  SelectListItem { Text = "Yağlayıcı Değişti", Value = "Yağlayıcı Değişti" },
+                                      new  SelectListItem { Text = "Yağ Pompa Devri Değiştirildi", Value = "Yağ Pompa Devri Değiştirildi" },
+                                      new  SelectListItem { Text = "Winder Sarım Hızı Değiştirildi", Value = "Winder Sarım Hızı Değiştirildi" },
+                                        new  SelectListItem { Text = "Winder Temizlendi", Value = "Winder Temizlendi" },
+                                      new  SelectListItem { Text = "Quench Hava Hızı Değiştirildi", Value = "Quench Hava Hızı Değiştirildi" },
+                                       new  SelectListItem { Text = "Quench Kabin Temizliği Yapıldı", Value = "Quench Kabin Temizliği Yapıldı" },
+                                      new  SelectListItem { Text = "Jet Basıncı Değiştirildi", Value = "Jet Basıncı Değiştirildi" },
+                                      new  SelectListItem { Text = "Godet Hızları Değiştirildi", Value = "Godet Hızları Değiştirildi" },
+                                      new  SelectListItem { Text = "Godet Sıcaklıkları Değiştirildi", Value = "Godet Sıcaklıkları Değiştirildi" },
+
+                                        }, "--YAPILAN MÜDAHALEYİ SEÇİNİZ--", new { @style = "color:black", @font = "bold", @class = "form-control", required = "required", title = "Lütfen Yapılan Müdahaleyi seçiniz!" })
+
+                            @Html.ValidationMessageFor(model => model.YapilanMudahale, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+
+
+                    <hr />
+
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-10">
+                            <input type="submit" value="KAYDET" class="btn btn-success" onclick="location.href='@Url.Action("PoyIkazTakibi", "Imalat")'" />
+
+                        </div>
+                    </div>
+                    <hr />
+
+                </div>
+            </div>
+
+        }
+
+        <div>
+            @Html.ActionLink("LİSTEYE GERİ DÖN", "PoyIkazTakibi", "Imalat", htmlAttributes: new { @class = "btn btn-danger" })
+        </div>
+
+
+        <script type="text/javascript">
+            function Validate(event) {
+                var regex = new RegExp("^[0-9/]");
+                var key = String.fromCharCode(event.charCode ? event.which : event.charCode);
+                if (!regex.test(key)) {
+                    event.preventDefault(); 167
+                    return false;
+                }
+            }
+        </script>
+        <style>
+            .test {
+                text-transform: uppercase;
+            }
+        </style>
+        <style>
+            hr {
+                border: 0;
+                clear: both;
+                display: block;
+                width: 100%;
+                background-color: #000000;
+                height: 1px;
+            }
+        </style>
+        <style>
+            .vertical-line {
+                border-left: thin solid #000000;
+                border-right: thin solid #000000;
+            }
+        </style>
+    </div>
+</div>

@@ -1,0 +1,199 @@
+﻿@model Polyteks.Katman.TefrikBildirim.Models.ImalatPartiSonuModel
+
+@{
+    ViewBag.Title = "ImalatPartiSonuBirimeGoreListe";
+    Layout = "~/Views/Shared/Layout.cshtml";
+}
+@*@section styles{
+        <style>
+            .table td.fit,
+            .table th.fit {
+                white-space: nowrap;
+                width: 1%;
+            }
+        </style>
+    }*@
+@section styles{
+
+    <style>
+        .mt-radio {
+            font-weight: bold;
+        }
+    </style>
+
+}
+
+@if (TempData["Msg"] != null)
+{
+    <div class="custom-alerts alert alert-@TempData["class"] fade in">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true"></button>
+        <h2>@Html.Raw(TempData["Msg"])</h2>
+    </div>
+}
+@{
+    string GrupAdi = "PARTİ SONU ÖZET LİSTE";
+    if (Model.Id != 0)
+    {
+        GrupAdi = Model.Birim.BirimAdi.ToUpper() + " SONLANDIRMA BEKLENEN PARTİLER";
+    }
+}
+<div class="row">
+    <div class="col-md-12 ">
+        <div class="portlet light bordered">
+            <div class="portlet-title">
+                <div class="caption font-red-sunglo">
+                    <i class="icon-settings font-red-sunglo"></i>
+                    <span class="caption-subject bold uppercase"> @GrupAdi</span>
+                </div>
+            </div>
+
+
+            <div class="row">
+
+                @Html.Partial("~/Views/Imalat/_ImalatPartiSonuButonlar.cshtml", Model)
+
+
+                <div class="col-md-12">
+                    <table class="dtTable table table-bordered">
+                        <thead>
+                            <tr>
+                                <th class="text-center">
+                                    KAYIT
+                                </th>
+                                <th class="text-center">
+                                    PARTİ
+                                </th>
+                                <th class="text-center">
+                                    İŞ EMRİ
+                                </th>
+
+                                <th class="text-center">
+                                    SİPARİŞ TÜRÜ
+                                </th>
+                                <th class="text-center">
+                                    SİPARİŞ NO
+                                </th>
+
+                                <th class="text-center">
+                                    STOK ADI
+                                </th>
+
+                                <th class="text-center">
+                                    CARİ
+                                </th>
+                                <th class="text-center">
+                                    PARTİ SONU DURUMU
+                                </th>
+                                <th class="text-center">
+                                    ONAY DURUMU
+                                </th>
+                                <th class="text-center">
+                                    #
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @{
+                                int i = -1;
+
+                                foreach (var item in Model.PartiSonuDurumOzetCheckItemlar)
+                                {
+                                    i++;
+
+                                    int OnaySay = item.PartiSonuTakipBilgiOnaylar.Count(a => a.OnayapanKulId != 0);
+                                    <tr>
+                                        @Html.HiddenFor(a => a.PartiSonuDurumOzetCheckItemlar[i].PartiSonuDurumOzet.RefakatNo)
+
+
+                                        <td class="text-center">
+                                            <b class="font-red-thunderbird bold">@item.PartiSonuTakip.KayitTarihi</b>
+                                            <br />
+                                            @item.PartiSonuTakip.KayitYapanKulAdi
+                                        </td>
+                                        <td class="text-center">@item.PartiSonuDurumOzet.PartiNo.Trim()</td>
+                                        <td class="text-center">@item.PartiSonuDurumOzet.RefakatNo</td>
+                                        <td class="text-center">@item.PartiSonuDurumOzet.SiparisTuru</td>
+                                        <td class="text-center">@Html.Raw(string.Format("{0}</br>  <b>Sıra : {1}</b>", item.PartiSonuDurumOzet.SiparisNo, item.PartiSonuDurumOzet.SiparisSiraNo)) </td>
+
+
+
+                                        <td class="text-center">
+                                            @item.PartiSonuDurumOzet.StokAdi
+                                            <br />
+                                            <b> @item.PartiSonuDurumOzet.StokKodu</b>
+                                        </td>
+
+
+                                        <td class="text-center">@item.PartiSonuDurumOzet.CariAdi.Trim()</td>
+                                        <td class="text-center font-blue-oleo bold">@item.PartiSonuTakip.PartiSonuTakipHareketAdi</td>
+
+                                        <td class="text-center">
+                                            @foreach (var aa in item.PartiSonuTakipBilgiOnaylar)
+                                            {
+
+                                                if (aa.OnayapanKulId == 0)
+                                                {
+                                                    <div class="font-red-sunglo">@aa.BirimAdi  :<b> <i class="fa fa-hourglass-o"></i> ONAY VERİLMEDİ</b></div>
+
+                                                }
+                                                else
+                                                {
+                                                    <div class="font-green-jungle">@aa.BirimAdi  <b> <i class="fa fa-check"></i> ONAY VERİLDİ</b></div>
+                                                }
+
+                                            }
+                                        </td>
+                                        @if (OnaySay > 0)
+                                        {
+                                            <td class="text-center">
+                                                <div class="font-red-sunglo"><b> <i class="fa fa-warning"></i> TALEP KALDIRILAMAZ</b></div>
+                                            </td>
+                                        }
+                                        else
+                                        {
+                                            <td class="text-center">
+                                                <a href="javascript:" onclick="Sil(@item.PartiSonuTakip.PartiSonuTakipId)" class=" btn red btn-block"> Talebi Kaldır</a>
+                                            </td>
+                                        }
+
+                                    </tr>
+                                }
+                            }
+
+                        </tbody>
+                    </table>
+                </div>
+
+
+
+
+            </div>
+        </div>
+    </div>
+</div>
+@section scripts{
+    <script src="~/Temalar/Scripts/sweetalert.js"></script>
+    <script>
+        function Sil(id) {
+            var url = "/Imalat/ImalatPartiSonuBekleyenListeKaldir/" + id;
+
+            swal({
+                title: "EMİN MİSİNİZ",
+                text: "Seçilen Kayıdı Listeden Kaldırmak İstiyor musunuz??",
+                icon: "warning",
+                buttons: {
+                    cancel: "Kapat",
+                    git: "Sil"
+                }
+            }).then((value) => {
+                switch (value) {
+                    case "git":
+                        window.location.href = url;
+                        break;
+                }
+            });
+
+
+        }
+    </script>
+}

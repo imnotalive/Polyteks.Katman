@@ -1,0 +1,158 @@
+﻿@model IEnumerable<Polyteks.Katman.TefrikBildirim.Models.DosyaMusteriLabAnalizTablo>
+
+@{
+    int i = -1;
+}
+
+@foreach (var Tablo in Model)
+{
+    i++;
+
+    if (Tablo.LabAnaliz.AnaliziYapilanBilesenSayisi != 2)
+    {
+
+        //"İPLİK BÖLÜMÜ";
+        // "İPLİK ANALİZİ";
+        <div class="col-md-6">
+            <div class="row">
+                <h3 class="text-center font-green-jungle"><b>BOBİN BÖLÜMÜ  </b></h3>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <h5><b>ANALİZ KODU </b><b class="font-red-thunderbird">@string.Format("#{0}", Tablo.LabAnaliz.LabAnalizId)</b></h5>
+                </div>
+                <div class="col-md-6">
+                    <h5><b>ANALİZ TİPİ </b><b class="font-red-thunderbird">@string.Format("BOBİN ANALİZİ")</b></h5>
+                </div>
+            </div>
+
+            <table class="dtTable table table-bordered">
+                <thead>
+                    <tr>
+                        <th class="text-center">
+                            ANALİZ
+                        </th>
+                        @foreach (var aa in Tablo.AtkiTablo.LabAnalizItemlar)
+                        {
+                            <th class="text-center">
+                                @aa.BobinAdi
+                            </th>
+                        }
+
+                    </tr>
+                </thead>
+                <tbody>
+                    @{
+
+                        int j = -1;
+                        foreach (var TabloSatir in Tablo.AtkiTablo.DosyaLabAnalizTabloSatirlar)
+                        {
+                            if (TabloSatir.LabAnalizItemAnalizCesitSonuclari.Count(a => a.AnalizDegeriString != null) > 0)
+                            {
+                                <tr>
+                                    <td class="text-center">@TabloSatir.LabAnalizCesit.LabAnalizCesitAdi</td>
+                                    @foreach (var sutun in TabloSatir.LabAnalizItemAnalizCesitSonuclari)
+                                    {
+
+                                        <td class="text-center">
+                                            <b>@sutun.AnalizDegeriString</b>
+
+
+
+
+                                        </td>
+                                    }
+                                </tr>
+                            }
+
+                        }
+                    }
+
+                </tbody>
+            </table>
+        </div>
+    }
+    else
+    {
+        // "KUMAŞ ANALİZİ";
+
+        <div class="col-md-6">
+            <div class="row">
+                <h3 class="text-center font-green-jungle"><b>KUMAŞ BÖLÜMÜ  </b></h3>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <h5><b>ANALİZ KODU </b><b class="font-red-thunderbird">@string.Format("#{0}", Tablo.LabAnaliz.LabAnalizId)</b></h5>
+                </div>
+                <div class="col-md-6">
+                    <h5><b>ANALİZ TİPİ </b><b class="font-red-thunderbird">@string.Format("KUMAŞ ANALİZİ")</b></h5>
+                </div>
+            </div>
+
+            <table class="dtTable table table-bordered">
+                <thead>
+                    <tr>
+                        <th class="text-center">
+                            ANALİZ
+                        </th>
+                        @foreach (var aa in Tablo.AtkiTablo.LabAnalizItemlar)
+                        {
+                            <th class="text-center">
+                                @aa.BobinAdi
+                            </th>
+                        }
+
+                    </tr>
+                </thead>
+                <tbody>
+                    @{
+
+                        int j = -1;
+                        foreach (var TabloSatir in Tablo.AtkiTablo.DosyaLabAnalizTabloSatirlar)
+                        {
+                            if (TabloSatir.LabAnalizItemAnalizCesitSonuclari.Count(a => a.AnalizDegeriString != null) > 0)
+                            {
+                                <tr>
+                                    <td class="text-center">@TabloSatir.LabAnalizCesit.LabAnalizCesitAdi</td>
+                                    @foreach (var sutun in TabloSatir.LabAnalizItemAnalizCesitSonuclari)
+                                    {
+
+                                        string degertipiClass = "form-control decSayi";
+                                        if (TabloSatir.LabAnalizCesit.DegerTipi == 1)
+                                        {
+                                            degertipiClass = "form-control";
+                                        }
+
+                                        <td class="text-center">
+                                            <b>@sutun.AnalizDegeriString</b>
+
+                                        </td>
+                                    }
+                                </tr>
+                            }
+                        }
+                    }
+
+                </tbody>
+            </table>
+        </div>
+    }
+
+
+
+
+
+    <div class="clearfix"></div>
+    <div class="row">
+        <div class="col-md-12">
+
+
+            <div class="progress-info">
+                <div class="progress">
+                    <span style="width: 100%;" class="progress-bar progress-bar-success green-sharp">
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+}

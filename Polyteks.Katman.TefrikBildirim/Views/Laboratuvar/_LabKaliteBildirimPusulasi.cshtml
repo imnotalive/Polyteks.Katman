@@ -1,0 +1,136 @@
+﻿@model IEnumerable<Polyteks.Katman.DAL.Concrete.EntityFramework.Mrv_KaliteBildirimDetay>
+
+@{
+    ViewBag.Title = "_LabKaliteBildirimPusulasi";
+    Layout = "~/Views/Shared/Layout.cshtml";
+}
+
+<div class="row">
+    <div class="col-md-20 ">
+        <div class="portlet light bordered">
+            <div class="portlet-title">
+                <center><h3><b> LABORATUVAR MÜDAHALESİ BEKLEYEN KALİTE BİLDİRİMLERİ</b></h3></center>
+                <div class="container">
+                    <div class="form-group">
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-search"></i></span>
+                            <input type="text" id="Search" placeholder="ARA" class="form-control" />
+
+                        </div>
+                    </div>
+                </div>
+                <table class="table table-bordered table-sm table-striped" >
+                    <tr>
+                        <th>
+                            MÜDAHALE TARİH/SAAT
+                        </th>
+                        <th>
+                            BÖLÜM
+                        </th>
+                        <th>
+                            PERSONEL
+                        </th>
+
+                        <th>
+                            HATA/1
+                        </th>
+                        <th>
+                            MÜDAHALE
+                        </th>
+                        <th>
+                            HATA/2
+                        </th>
+                        <th>
+                            MÜDAHALE
+                        </th>
+                        <th>
+                            HATA/3
+                        </th>
+                        <th>
+                            MÜDAHALE
+                        </th>
+                        <th>
+                            MAKİNE
+                        </th>
+                        <th>
+                            KANAL
+                        </th>
+                        <th>
+                            POZİSYON
+                        </th>
+                        <th>
+                            PARTİ
+                        </th>
+                        <th>
+                            İŞLETME AÇIKLAMA
+                        </th>
+                        <th>
+                            LAB AÇIKLAMA
+                        </th>
+
+
+                    </tr>
+
+                   @foreach (var item in Model) {
+                <tr>
+
+                    <td>
+                        @Html.DisplayFor(modelItem => item.MudahaleTarihSaat)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.MudahaleKullaniciBolum)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.MudahaleKullanici)
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Mrv_KaliteBildirimHata.HataTanimi)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Hata1YapilanMudahale)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Mrv_KaliteBildirimHata1.HataTanimi)
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Hata2YapilanMudahale)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Mrv_KaliteBildirimHata2.HataTanimi)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Hata3YapilanMudahale)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Mrv_KaliteBildirim_Makine.MakineAdi)
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(modelItem => item.KanalNo)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.PozisyonNo)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.PartiNo)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.IsletmeAciklama)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Aciklama)
+                    </td>
+              
+               
+
+
+                </tr>
+                        }
+
+                </table>
+                </div>
+</div>
+</div>
+</div>

@@ -1,0 +1,31 @@
+﻿@model IEnumerable<Polyteks.Katman.Entities.DropItem>
+
+<table class="dtTable table table-bordered">
+    <thead>
+        <tr>
+            <th class="text-center">
+                Tanım
+            </th>
+            <th class="text-center">
+                Kategori
+            </th>
+            <th class="text-center">
+                #
+            </th>
+
+
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+
+                <td class="text-center">@item.Tanim</td>
+                <td class="text-center">@item.DigerTanim</td>
+
+                <td class="text-center"><a href="javascrtipt:" onclick="HamMaddeSil(@item.Sira)" class="btn red-thunderbird btn-block">Sil</a></td>
+            </tr>
+        }
+    </tbody>
+</table>

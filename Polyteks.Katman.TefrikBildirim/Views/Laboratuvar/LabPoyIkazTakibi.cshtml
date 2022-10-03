@@ -1,0 +1,166 @@
+﻿@model IEnumerable<Polyteks.Katman.DAL.Concrete.EntityFramework.Mrv_POY_Ikaz>
+
+@{
+    ViewBag.Title = "LabPoyIkazTakibi";
+    Layout = "~/Views/Shared/Layout.cshtml";
+}
+
+@if (TempData["Msg"] != null)
+{
+    <div class="custom-alerts alert alert-@TempData["class"] fade in">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true"></button>
+        <h2>@TempData["Msg"]</h2>
+    </div>
+}
+<script src="~/scripts/jquery-1.10.2.js"></script>
+<script type="text/javascript"></script>
+<link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
+
+<div class="row">
+    <div class="col-md-20 ">
+        <div class="portlet light bordered">
+            <div class="portlet-title">
+                <div class="caption font-blue">
+                    <i class="icon-settings font-blue"></i>
+
+                    <center><h1><b>POY İKAZ TAKİBİ(İÇ HATA BİLDİRİMİ)</b></h1></center>
+                    <hr />
+
+
+                    <p>
+                        @using (Html.BeginForm())
+                        {
+                            @Html.TextBox("ara", null, new { @class = "control-label col-xs-3", @placeholder = "Aranacak parti numarasını giriniz" })
+                            @*@Html.DropDownList("Uretim_Makine_No", null,htmlAttributes :new { @class = "form-control" })*@
+                            <br /><br />
+                            <input type="submit" name="btn" value="ARA" class="btn btn-danger" />
+                        }
+                    </p>
+
+
+
+                    <hr />
+
+                    <table class="table table-bordered  table-hover  ">
+                        <thead>
+                            <tr>
+                                <th>
+                                    #
+                                </th>
+                                <th>
+                                    İKAZ TARİHİ/SAATİ
+                                </th>
+                                <th>
+                                    PARTİ NUMARASI
+                                </th>
+                                <th>
+                                    DENYE/FLAMAN
+                                </th>
+                                <th>
+                                    ÜRETİM MAKİNE / KANAL / POZİSYON NUMARASI
+                                </th>
+                                <th>
+                                    TEKSTÜRE MAKİNE NUMARASI
+                                </th>
+                                <th>
+                                    TEKSTÜRE POZİSYON NUMARASI
+                                </th>
+                                <th>
+                                    PROBLEM TANIMI
+                                </th>
+
+                                <th>
+                                    YAPILAN MÜDAHALE
+                                </th>
+
+                                <th>
+                                    LAB İNCELEME TARİHİ
+                                </th>
+                                <th>
+                                    LAB SONUÇ
+                                </th>
+
+                                <th><center><b>#</b></center></th>
+
+
+
+                            </tr>
+
+                        </thead>
+
+                        <tbody>
+
+                            @{
+                                int sayac = 0;
+                                foreach (var item in Model)
+                                {
+                                    sayac++;
+                                    <tr>
+                                        <td>
+                                            @sayac
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Tarih, "DateTime")
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.PartiNo)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Denye_Flaman)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Uretim_Mak_Kan_Poz)
+                                        </td>
+
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Teksture_Makine_No)
+                                        </td>
+
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Teksture_Pozisyon_No)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.ProblemTanimi)
+                                        </td>
+
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.YapilanMudahale)
+                                        </td>
+
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.LabIncelemeTarihi, "DateTime")
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.LabSonuc)
+                                        </td>
+                                        <td>
+                                            @Html.ActionLink("DÜZENLE", "LabPoyIkazGuncelle", new { id = item.ID }, htmlAttributes: new { @class = "btn btn-primary" })
+                                        </td>
+
+
+
+                                    </tr>
+                                }
+                            }
+                        </tbody>
+                    </table>
+                    <hr />
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+<style>
+    hr {
+        border: 0;
+        clear: both;
+        display: block;
+        width: 105%;
+        background-color: #000000;
+        height: 1px;
+    }
+</style>
+
+

@@ -1,0 +1,114 @@
+﻿@model Polyteks.Katman.DAL.Concrete.EntityFramework.SrcnKullanicis
+
+@{
+    ViewBag.Title = "Duzenle";
+    Layout = "~/Views/Shared/Layout.cshtml";
+}
+
+@if (TempData["Msg"] != null)
+{
+    <div class="custom-alerts alert alert-@TempData["class"] fade in">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true"></button>
+        <h2>@Html.Raw(TempData["Msg"])</h2>
+    </div>
+}
+
+<div class="row">
+    <div class="col-md-12 ">
+        <div class="portlet light bordered">
+            <div class="portlet-title">
+                <div class="caption font-red-sunglo">
+                    <i class="icon-settings font-red-sunglo"></i>
+                    <span class="caption-subject bold uppercase">KİŞİSEL BİLGİLERİM</span>
+                </div>
+            </div>
+            <div class="portlet-body form">
+                <div class="form-body">
+                    <div class="row">
+                        <div class="col-md-12">
+
+                            @using (Html.BeginForm())
+                            {
+                                <div class="form-body">
+                                    <div class="form-group">
+                                        <div class="row">
+                                            <div class="col-md-2">
+                                                @if (Model.Resim != null)
+                                                {
+                                                    string imageBase64 = Convert.ToBase64String(Model.Resim);
+                                                    string imageSrc = string.Format("data:image/gif;base64,{0}", imageBase64);
+
+                                                    <img src="@imageSrc" class="img-fluid" style="width: 100%" />
+                                                }
+                                                else
+                                                {
+                                                    <h5 class="text-center">Resim Yüklenmedi</h5>
+                                                }
+                                            </div>
+                                            <div class="col-md-10">
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <label class="control-label"><b class="font-red-sunglo">İSİM SOYİSİM</b></label>
+                                                        <div class="input-icon right">
+                                                            @Html.TextBoxFor(a => a.IsimSoyisim, new { @class = "form-control",@readonly = "true" } )
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-md-6">
+                                                        <label class="control-label"><b class="font-red-sunglo">E-MAİL ADRESİ</b></label>
+                                                        <div class="input-icon right">
+                                                            @Html.TextBoxFor(a => a.EmailAdres, new { @class = "form-control"})
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <label class="control-label"><b class="font-red-sunglo">BÖLÜM</b></label>
+                                                        <div class="input-icon right">
+                                                            @Html.TextBoxFor(a => a.Birim, new { @class = "form-control", @readonly = "true" })
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-actions">
+                                        <button type="submit" class="btn btn-primary btn-lg btn-block"><b>KAYDET</b></button>
+                                    </div>
+                             </div>
+                         
+                                @*<button type="button" class="btn btn-success btn-lg" data-toggle="modal" data-target="#Duzenle">
+                                    ŞİFRE DEĞİŞTİRMEK İÇİN TIKLAYINIZ
+                                </button>*@
+
+                                @*<div class="modal fade" id="Duzenle" tabindex="-1" role="dialog" aria-labelledby="">
+                                    <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                                                <h4 class="modal-title" id="myModalLabel"><b>ŞİFRE DEĞİŞTİR</b></h4>
+                                            </div>
+                                            <form method="post" action="/KisiselBilgiler/Duzenle">
+                                                <div class="modal-body">
+                                                    <div class="col-md-12">
+                                                        <div class="input-icon right">
+                                                            <label class="control-label">LÜTFEN YENİ ŞİFRENİZİ GİRİNİZ :</label>
+                                                            @Html.TextBoxFor(a => a.Sifre, new { @class = "form-control" })
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <br />         <br />      <br />
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-default" data-dismiss="modal">KAPAT</button>
+                                                    <button type="submit" class="btn btn-primary">ŞİFREYİ GÜNCELLE</button>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>*@
+                            }
+                        </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+    </div>

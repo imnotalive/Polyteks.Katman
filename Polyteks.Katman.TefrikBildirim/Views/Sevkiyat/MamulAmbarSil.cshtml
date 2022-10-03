@@ -1,0 +1,62 @@
+﻿@model Polyteks.Katman.DAL.Concrete.EntityFramework.Mrv_MalzemeDetay
+
+@{
+    ViewBag.Title = "MamulAmbarSil";
+    Layout = "~/Views/Shared/Layout.cshtml";
+}
+
+
+
+<h2><b>SİLMEK İSTEDİĞİNİZDEN EMİN MİSİNİZ ?</b></h2>
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+           TARİH
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Tarih)
+        </dd>
+        <dt>
+         STOK ADI
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.StokAdi)
+        </dd>
+      
+        <dt>
+            PARTİ NO
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Parti)
+        </dd>
+
+        <dt>
+    MİKTAR
+        </dt>
+         <dd>
+            @Html.DisplayFor(model => model.Miktar)
+        </dd>
+        <dt>
+            AÇIKLAMA
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Aciklama)
+        </dd>
+    </dl>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="SİL" class="btn btn-block btn-danger" />
+        </div>
+  
+
+
+    }
+</div>

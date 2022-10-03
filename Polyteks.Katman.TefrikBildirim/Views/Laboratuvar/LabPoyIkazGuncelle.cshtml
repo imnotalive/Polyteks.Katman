@@ -1,0 +1,220 @@
+﻿@model Polyteks.Katman.DAL.Concrete.EntityFramework.Mrv_POY_Ikaz
+
+@{
+    ViewBag.Title = "LabPoyIkazGuncelle";
+    Layout = "~/Views/Shared/Layout.cshtml";
+}
+
+@if (TempData["Msg"] != null)
+{
+    <div class="custom-alerts alert alert-@TempData["class"] fade in">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true"></button>
+        <h2>@TempData["Msg"]</h2>
+    </div>
+}
+
+
+<div class="portlet-title">
+    <div class="caption font-blue">
+        <i class="icon-settings font-blue"></i>
+
+
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="form-horizontal">
+                <div class="vertical-line">
+                    <hr />
+                    <center><h1><b>POY İKAZ BİLDİRİMİ GÜNCELLE</b></h1></center>
+                    <hr />
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    @Html.HiddenFor(model => model.ID)
+                    <center><h3><b>TEKSTÜRE ALANI</b></h3></center>
+                    <hr />
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Tarih, "İKAZ TARİHİ/SAATİ", htmlAttributes: new { @class = "control-label col-xs-2" })
+                        <div class="col-md-10">
+
+                            @Html.EditorFor(model => model.Tarih, new { htmlAttributes = new { @class = "form-control", @readonly = "true " } })
+
+                            @Html.ValidationMessageFor(model => model.Tarih, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.PartiNo, "PARTİ NUMARASI", htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.PartiNo, new { htmlAttributes = new { @class = "form-control", @readonly = "true " } })
+                            @Html.ValidationMessageFor(model => model.PartiNo, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Denye_Flaman, "DENYE/FLAMAN", htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.Denye_Flaman, new { htmlAttributes = new { @class = "form-control ", @readonly = "true " } })
+                            @Html.ValidationMessageFor(model => model.Denye_Flaman, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Uretim_Mak_Kan_Poz, "ÜRETİM MAKİNE / KANAL / POZİSYON NO", htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.Uretim_Mak_Kan_Poz, new { htmlAttributes = new { @class = "form-control", @readonly = "true " } })
+
+                            @Html.ValidationMessageFor(model => model.Uretim_Mak_Kan_Poz, "", new { @style = "color:black" })
+                        </div>
+                    </div>
+
+
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.ProblemTanimi, "PROBLEM TANIMI", htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.ProblemTanimi, new { htmlAttributes = new { @class = "form-control test", @readonly = "true " } })
+                            @Html.ValidationMessageFor(model => model.ProblemTanimi, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Teksture_Makine_No, "TEKSTÜRE MAKİNE NO", htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.Teksture_Makine_No, new { htmlAttributes = new { @class = "form-control", @readonly = "true " } })
+
+                            @Html.ValidationMessageFor(model => model.Teksture_Makine_No, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Teksture_Pozisyon_No, "TEKSTÜRE POZİSYON NO", htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.Teksture_Pozisyon_No, new { htmlAttributes = new { @class = "form-control", @readonly = "true " } })
+                            @Html.ValidationMessageFor(model => model.Teksture_Pozisyon_No, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <hr />
+                    <center> <h3><b>POY ALANI</b></h3></center>
+                    <hr />
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.YapilanMudahale, "YAPILAN MÜDAHALE", htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.YapilanMudahale, new { htmlAttributes = new { @class = "form-control test", @readonly = "true " } })
+                            @Html.ValidationMessageFor(model => model.YapilanMudahale, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+
+
+
+                    <hr />
+
+
+                    <center><h3><b>LABORATUVAR ALANI</b></h3></center>
+                    <hr />
+
+                    @*<div class="form-group">
+                            @Html.LabelFor(model => model.LabIncelemeTarihi, "LABORATUVAR İNCELEME TARİHİ", htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+
+                                @Html.EditorFor(model => model.LabIncelemeTarihi, new { htmlAttributes = new { @class = "form-control" } })
+                                <h4><b> Lütfen Tarihi"GG.AA.YYYY SS:DD" şeklinde giriniz!</b></h4>DD.MM.YYYY HH:MM
+                                @Html.ValidationMessageFor(model => model.LabIncelemeTarihi, "", new { @class = "text-danger" })
+                            </div>
+                        </div>*@
+                    <div class="form-group ">
+
+                        @Html.LabelFor(model => model.LabSonuc, "LABORATUVAR İNCELEME TARİHİ", htmlAttributes: new
+                 { @class = "control-label col-md-2" })
+
+                        <center><input type="datetime-local" required style="width: 81%;" name="LabIncelemeTarihi" class="form-control" /></center>
+
+                    </div>
+
+                    @*</div>*@
+
+                    <div class="form-group ">
+
+                        @Html.LabelFor(model => model.LabSonuc, "LABORATUVAR SONUÇ", htmlAttributes: new
+                   { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.DropDownListFor(model => model.LabSonuc, new List<SelectListItem>
+            {      new  SelectListItem { Text = "NORMAL", Value = "NORMAL" },
+             new  SelectListItem { Text = "HATALI KESİT", Value = "HATALI KESİT" },
+              new  SelectListItem { Text = "PUNTASIZ BOBİN", Value = "PUNTASIZ BOBIN" },
+                      new  SelectListItem { Text = "YÜKSEK ÜSTER", Value = "YUKSEK USTER" },
+            new  SelectListItem { Text = "DTEX YUKSEK", Value = "DTEX YUKSEK" },
+            new  SelectListItem { Text = "DTEX DUSUK", Value = "DTEX DUSUK" },
+                 new  SelectListItem { Text = "GENLEŞME YUKSEK", Value = "GENLESME YUKSEK" },
+            new  SelectListItem { Text = "GENLEŞME DUSUK", Value = "GENLESME DUSUK" },
+                 new  SelectListItem { Text = "YAĞ YUKSEK", Value = "YAG YUKSEK" },
+            new  SelectListItem { Text = "YAĞ DUSUK", Value = "YAG DUSUK" },
+                 new  SelectListItem { Text = "MUKAVEMENT YUKSEK", Value = "MUKAVEMENT YUKSEK" },
+            new  SelectListItem { Text = "MUKAVEMENT DUSUK", Value = "MUKAVEMENT DUSUK" },
+                 new  SelectListItem { Text = "PUNTA YUKSEK", Value = "PUNTA YUKSEK" },
+            new  SelectListItem { Text = "PUNTA DUSUK", Value = "PUNTA DUSUK" },
+                 new  SelectListItem { Text = "DTEX YUKSEK", Value = "DTEX YUKSEK" },
+            new  SelectListItem { Text = "KAYNAMA - CEKME DUSUK", Value = "KAYNAMA - CEKME  DUSUK" },
+                  new  SelectListItem { Text = "KAYNAMA - CEKME YUKSEK", Value = "KAYNAMA - CEKME YUKSEK" }
+
+                             }, "--Laboratuvar Sonucunu Seçiniz--", new { @style = "color:black", @class = "form-control", required = "required", title = "Lütfen Laboratuvar Sonucunu Seçiniz!" })
+                            @Html.ValidationMessageFor(model => model.LabSonuc, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <hr />
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-10">
+                            <input type="submit" value="KAYDET" class="btn btn-success" onclick="location.href='@Url.Action("PoyIkazTakibi", "Labovatuvar")'" />
+
+                        </div>
+                    </div>
+                    <hr />
+
+                </div>
+            </div>
+
+        }
+
+        <div>
+            @Html.ActionLink("LİSTEYE GERİ DÖN", "LabPoyIkazTakibi", "Imalat", htmlAttributes: new { @class = "btn btn-danger" })
+        </div>
+
+
+        <script type="text/javascript">
+            function Validate(event) {
+                var regex = new RegExp("^[0-9/]");
+                var key = String.fromCharCode(event.charCode ? event.which : event.charCode);
+                if (!regex.test(key)) {
+                    event.preventDefault(); 167
+                    return false;
+                }
+            }
+        </script>
+        <style>
+            .test {
+                text-transform: uppercase;
+            }
+        </style>
+        <style>
+            hr {
+                border: 0;
+                clear: both;
+                display: block;
+                width: 100%;
+                background-color: #000000;
+                height: 1px;
+            }
+        </style>
+        <style>
+            .vertical-line {
+                border-left: thin solid #000000;
+                border-right: thin solid #000000;
+            }
+        </style>
+
+    </div>
+</div>
+
+
+
+
+
+

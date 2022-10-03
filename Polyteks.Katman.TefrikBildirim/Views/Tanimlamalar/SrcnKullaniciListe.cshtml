@@ -1,0 +1,111 @@
+﻿@model Polyteks.Katman.TefrikBildirim.Models.SrcnKullaniciModel
+
+@{
+    ViewBag.Title = "SrcnKullaniciListe";
+    Layout = "~/Views/Shared/Layout.cshtml";
+}
+@if (TempData["Msg"] != null)
+{
+    <div class="custom-alerts alert alert-@TempData["class"] fade in">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true"></button>
+        <h2>@TempData["Msg"]</h2>
+    </div>
+}
+<div class="portlet box blue">
+<div class="portlet-title">
+    <div class="caption">
+        <i class="fa fa-money"></i>
+     
+        <span class="caption-subject bold uppercase">SRCNKULLANICI LİSTE</span>
+    </div>
+</div>
+<div class="portlet-body">
+    @using (Html.BeginForm())
+    {
+   
+        <div class="row">
+            <div class="col-md-12">
+                <table class="dtTable table table-bordered">
+                    <thead>
+                    <tr>
+                        <th class="text-center">
+                            #
+                        </th>
+                        <th class="text-center">
+                            İSİM SOYİSİM
+                        </th>
+                        <th class="text-center">
+                            ŞİFRE
+                        </th>
+
+                        <th class="text-center">
+                            KULLANICI KOD
+                        </th>
+                        <th class="text-center">
+                            BÖLÜM
+                        </th>
+                        <th class="text-center">
+                            BİRİM
+                        </th>
+                        <th class="text-center">GRUP</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    @{
+                        int say = -1;
+
+                        foreach (var item in Model.Kullanicilar)
+                        {
+                            say++;
+                            <tr>
+                                @Html.HiddenFor(a=>a.Kullanicilar[say].KullaniciId)
+                           
+                                <td class="text-center"><label>@Html.CheckBoxFor(a => a.Kullanicilar[say].SeciliMi) SEÇ</label></td>
+                                <td class="text-center">@item.IsimSoyisim</td>
+                                <td class="text-center">@item.Sifre</td>
+                                <td class="text-center">@item.KullaniciKodu</td>
+                                <td class="text-center">@item.Bolum</td>
+                                <td class="text-center">@item.Birim</td>
+                                <td class="text-center">@item.GrupAdi</td>
+
+                            </tr>
+                        }
+                    }
+
+                    </tbody>
+
+                </table>
+            </div>
+            <hr/>
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-md-4">
+                        <label class="control-label"><b class="font-red-sunglo">BİRİM</b></label>
+                        <div class="input-icon right">
+                            @Html.DropDownListFor(a => a.BirimId,Model.UretimHatlari, new { @class = "form-control " })
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <label class="control-label"><b class="font-red-sunglo">BÖLÜM</b></label>
+                        <div class="input-icon right">
+                            @Html.DropDownListFor(a => a.BolumId, Model.UretimHatBolumleri, new {@class = "form-control "})
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <label class="control-label"><b class="font-red-sunglo">GRUP</b></label>
+                        <div class="input-icon right">
+                            @Html.TextBoxFor(a => a.GrupId,  new {@class = "form-control "})
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-actions">
+                <button type="submit" class="btn blue btn-block">KAYDET</button>
+            </div>
+        </div>
+    }
+</div>
+</div>
+
+

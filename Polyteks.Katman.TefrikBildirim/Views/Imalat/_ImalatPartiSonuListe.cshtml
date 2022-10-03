@@ -1,0 +1,191 @@
+﻿@model Polyteks.Katman.TefrikBildirim.Models.ImalatPartiSonuModel
+
+@if(Model.PartiSonuDurumOzetCheckItemlar.Any())
+{ 
+using (Html.BeginForm("ImalatPartiSonuTalebi", "Imalat"))
+{
+    @Html.HiddenFor(a => a.Id)
+  
+
+    <div class="col-md-12">
+        <table class="dtTable table table-responsive table-hover table-striped table-bordered">
+            <thead>
+                <tr>
+                    <th class="text-center">
+                        #
+                    </th>
+                    <th class="text-center">
+                        PARTİ
+                    </th>
+                    <th class="text-center">
+                        İŞ EMRİ
+                    </th>
+
+                    <th class="text-center">
+                        SİPARİŞ TÜRÜ
+                    </th>
+                    <th class="text-center">
+                        SİPARİŞ NO
+                    </th>
+
+                    <th class="text-center">
+                        STOK ADI
+                    </th>
+                    <th class="text-center">
+                        TERMİN
+                    </th>
+                    <th class="text-center">
+                        Ürt. Başl. Tar
+                    </th>
+                    <th class="text-center">
+                        ÜRT. MİKTAR
+                    </th>
+                    <th class="text-center">
+                        SİP. MİKTAR
+                    </th>
+                    <th class="text-center">
+                        İŞLEM
+                    </th>
+
+                    <th class="text-center">
+                        CARİ
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @{
+                    int i = -1;
+
+                    foreach (var item in Model.PartiSonuDurumOzetCheckItemlar)
+                    {
+                        i++;
+                        <tr>
+                            @Html.HiddenFor(a => a.PartiSonuDurumOzetCheckItemlar[i].PartiSonuDurumOzet.RefakatNo)
+
+                            <td class="text-center">
+                                <div class="">
+                                    <label class="mt-checkbox text-center">
+                                        @Html.CheckBoxFor(a => a.PartiSonuDurumOzetCheckItemlar[i].SeciliMi)
+                                        <span></span>
+                                    </label>
+                                </div>
+
+
+                            </td>
+
+                            <td class="text-center">@item.PartiSonuDurumOzet.PartiNo.Trim()</td>
+                            <td class="text-center">@item.PartiSonuDurumOzet.RefakatNo</td>
+                            <td class="text-center">@item.PartiSonuDurumOzet.SiparisTuru</td>
+                            <td class="text-center">@Html.Raw(string.Format("{0}</br>  <b>Sıra : {1}</b>", item.PartiSonuDurumOzet.SiparisNo, item.PartiSonuDurumOzet.SiparisSiraNo)) </td>
+
+
+
+                            <td class="text-center">
+                                @item.PartiSonuDurumOzet.StokAdi
+                                <br />
+                                <b> @item.PartiSonuDurumOzet.StokKodu</b>
+                            </td>
+
+
+                            <td class="text-center">@item.PartiSonuDurumOzet.PlanlamaTermini</td>
+                            <td class="text-center">@item.PartiSonuDurumOzet.IslemBaslamaTarihi</td>
+
+
+
+
+
+                            <td class="text-center">@item.PartiSonuDurumOzet.NetKG</td>
+                            @if (item.PartiSonuDurumOzet.Miktar == null)
+                            {
+                                <td class="text-center">0</td>
+                            }
+                            else
+                            {
+                                <td class="text-center">
+                                    @Convert.ToDecimal(item.PartiSonuDurumOzet.Miktar).ToString("F")
+                                </td>
+                            }
+
+                            <td class="text-center">
+                                @item.PartiSonuDurumOzet.IslemAdi
+
+                                <br />
+                                <b> @item.PartiSonuDurumOzet.MakineNo</b>
+                            </td>
+
+                            <td class="text-center">@item.PartiSonuDurumOzet.CariAdi.Trim()</td>
+
+                        </tr>
+                    }
+                }
+
+            </tbody>
+        </table>
+    </div>
+    <div class="col-md-12">
+        <div class="form-group">
+            <div class="row">
+                <div class="col-md-12">
+                    <label class="control-label"><b>PARTİ SONU YAPILACAK İŞLEM TİPİ</b></label>
+                    <div class="input-icon right">
+                        <div class="input-icon right">
+                            <div class="mt-radio-inline">
+                                <label class="mt-radio font-red-sunglo uppercase">
+                                    @Html.RadioButtonFor(a => a.YapilacakPartiSonuIslemTipi, 1) Partiyi Paketlemeye Göndermeden ve Bilgi Onayı Almadan Sonlandır !!!
+                                    <span></span>
+                                </label>
+                                <br />
+                                <label class="mt-radio font-blue uppercase">
+                                    @Html.RadioButtonFor(a => a.YapilacakPartiSonuIslemTipi, 2) Paketlemeye Parti Sonu Yapması için ve/veya İlgili Birimlere Bilgi vererek Sonlandırma talebi oluştur
+                                    <span></span>
+                                </label>
+                                @if (Model.PartiSonuDurumOzetCheckItemlar.Count() != 1)
+                                {
+                                    <label class="mt-radio font-yellow uppercase">
+                                        @Html.RadioButtonFor(a => a.YapilacakPartiSonuIslemTipi, 3) Sadece Seçili İş Emirlerinin Otomatik Kapatılması için Talep Oluştur
+                                        <span></span>
+                                    </label>
+                                }
+                               
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-12">
+        <div class="form-group">
+            <h4 class="control-label font-red-thunderbird text-center"><b>!! PAKETLEMEYE GÖNDERİLMEDEN ÖNCE BİLGİ VERİLECEK BİRİMLER !! </b></h4>
+            <br />
+            @{
+                i = -1;
+                foreach (var item in Model.OnayAlinacakBirimler)
+                {
+                    i++;
+                    <div class=" col-md-2 text">
+                        @Html.HiddenFor(a => a.OnayAlinacakBirimler[i].BirimId)
+                        <div class="mt-checkbox">
+                            <label class="mt-checkbox">
+                                @Html.CheckBoxFor(a => a.OnayAlinacakBirimler[i].SeciliMi) <b>@Model.OnayAlinacakBirimler[i].BirimAdi</b>
+                                <span></span>
+                            </label>
+                        </div>
+                    </div>
+                }
+            }
+
+        </div>
+    </div>
+
+    <div class="form-actions">
+        <button type="submit" class="btn blue btn-block">KAYDET</button>
+    </div>
+
+}
+}
+else
+{
+    <h2 class="text-center"><b>PARTİ SEÇİMİ YAPMADINIZ  YA DA SEÇTİĞİNİZ PARTİYE AİT KAPATILMAMIŞ İŞ EMRİ BULUNMAMAKTADIR</b></h2>
+}

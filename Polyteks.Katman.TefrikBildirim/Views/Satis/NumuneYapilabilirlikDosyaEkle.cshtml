@@ -1,0 +1,288 @@
+﻿@model Polyteks.Katman.TefrikBildirim.Models.SatisModel
+
+@{
+    ViewBag.Title = "NumuneYapilabilirlikEkle";
+    Layout = "~/Views/Shared/Layout.cshtml";
+}
+
+@section styles{
+
+    <link href="~/Temalar/TarihSaat/bootstrap-datepicker/css/bootstrap-datetimepicker.css" rel="stylesheet" />
+
+    <style>
+        .mt-radio {
+            font-weight: bold;
+        }
+    </style>
+
+}
+
+@if (TempData["Msg"] != null)
+{
+    <div class="custom-alerts alert alert-@TempData["class"] fade in">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true"></button>
+        <h2>@Html.Raw(TempData["Msg"])</h2>
+    </div>
+}
+
+<div class="row">
+    <div class="col-md-12 ">
+        <div class="portlet light bordered">
+            <div class="portlet-title">
+                <div class="caption font-red-sunglo">
+                    <i class="icon-settings font-red-sunglo"></i>
+                    <span class="caption-subject bold uppercase"> @Model.NumuneDosyaTipi.NumuneDosyaTipiAdi.ToUpper() DOSYA OLUŞTUR </span>
+                </div>
+            </div>
+            <div class="portlet-body form">
+                <div class="form-body">
+                    <div class="row">
+                        @{
+                            string Sira = "";
+                            foreach (var item in Model.SrcnLabGruplari)
+                            {
+                                if (item != Model.SrcnLabGruplari.Last())
+                                {
+                                    Sira += item.LabGrupAdi + " >> ";
+
+                                }
+                                else
+                                {
+                                    Sira += item.LabGrupAdi;
+                                }
+
+                            }
+                            <h4 class="text-center"><b>@Sira </b></h4>
+                         
+                        }
+
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            @*<h3 class="text-center"><b>ANALİZ İSTEĞİ DETAYLARI</b></h3>*@
+                            <hr />
+                            @using (Html.BeginForm())
+                            {
+                                string CariPoly = null;
+                                string CariTasd = null;
+                                string CariPset = null;
+                          
+                                if (Model.CariKoduPoly==null)
+                                {
+                                    CariPoly = "display:none";
+                                }
+                                if (Model.CariKoduTasd==null)
+                                {
+                                    CariTasd = "display:none";
+                                }
+                                if (Model.CariKoduPset==null)
+                                {
+                                    CariPset = "display:none";
+                                }
+                               
+                                @Html.HiddenFor(a => a.LabGrup.LabGrupId)
+                                @Html.HiddenFor(a => a.LabGrup.AnalizTipi)
+                                @Html.HiddenFor(a => a.NumuneDosyaTipi.NumuneDosyaTipi)
+                        <div class="form-body">
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <label class="control-label"><b class="font-red-sunglo">ANALİZ SONUCU İSTENİLEN TERMİN</b></label>
+                                        <div class="input-icon right">
+                                            @Html.TextBoxFor(a => a.IstekTarihi, new { @class = "form-control tarih", @onkeydown = "return false" })
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label class="control-label"><b>İSTEK YAPAN</b></label>
+                                        <div class="input-icon right">
+                                            @Html.TextBoxFor(a => a.Kullanici.IsimSoyisim, new { @class = "form-control", @onkeydown = "return false", @readonly = true })
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <label class="control-label"><b>FİRMA SEÇİMİ</b></label>
+                                        <div class="input-icon right">
+                                            <div class="mt-radio-inline">
+                                                <label class="mt-radio font-red-sunglo">
+                                                    @Html.RadioButtonFor(a => a.NumuneYapilabilirlikDosya.FirmaTipi, 0, new { onclick = "radioDurumCari(0)" }) SEÇİM YAPILMADI
+                                                    <span></span>
+                                                </label>
+                                                <label class="mt-radio font-blue">
+                                                    @Html.RadioButtonFor(a => a.NumuneYapilabilirlikDosya.FirmaTipi, 1, new { onclick = "radioDurumCari(1)" }) POLYTEKS
+                                                    <span></span>
+                                                </label>
+                                                <label class="mt-radio font-green-jungle">
+                                                    @Html.RadioButtonFor(a => a.NumuneYapilabilirlikDosya.FirmaTipi, 2, new { onclick = "radioDurumCari(2)" }) TAŞDELEN
+                                                    <span></span>
+                                                </label>
+
+                                                <label class="mt-radio font-green">
+                                                    @Html.RadioButtonFor(a => a.NumuneYapilabilirlikDosya.FirmaTipi, 3, new { onclick = "radioDurumCari(3)" }) POLYSET
+                                                    <span></span>
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="col-md-4" id="rdpoly" style="@CariPoly">
+                                        <label class="control-label"><b class="font-blue">POLYTEKS CARİ SEÇİMİ</b></label>
+                                        <div class="input-icon right">
+                                            @Html.DropDownListFor(a => a.CariKoduPoly, Model.CarilerPoly, "Seçiniz", new { @class = "form-control " })
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4" id="rdTasd" style="@CariTasd">
+                                        <label class="control-label"><b class="font-green-jungle">TAŞDELEN CARİ SEÇİMİ</b></label>
+                                        <div class="input-icon right">
+                                            @Html.DropDownListFor(a => a.CariKoduTasd, Model.CarilerTasd, "Seçiniz", new { @class = "form-control " })
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-4" id="rdPset" style="@CariPset">
+                                        <label class="control-label"><b class="font-green">POLYSET CARİ SEÇİMİ</b></label>
+                                        <div class="input-icon right">
+                                            @Html.DropDownListFor(a => a.CariKoduPset, Model.CarilerPset, "Seçiniz", new { @class = "form-control " })
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            @if (Model.NumuneDosyaTipi.NumuneDosyaTipi == 1)
+                            {
+                                // analiz müşteri referans numuneli
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <label class="control-label"><b>LABORATUVAR ANALİZİ</b></label>
+                                            <div class="input-icon right">
+                                                <div class="mt-radio-inline">
+                                                    <label class="mt-radio font-red-sunglo">
+                                                        @Html.RadioButtonFor(a => a.LabAnalizeGondermeDurumu, 0) SEÇİM YAPILMADI
+                                                        <span></span>
+                                                    </label>
+                                                    <label class="mt-radio font-blue">
+                                                        @Html.RadioButtonFor(a => a.LabAnalizeGondermeDurumu, 1) YAPILSIN
+                                                        <span></span>
+                                                    </label>
+                                                    <label class="mt-radio font-green-jungle">
+                                                        @Html.RadioButtonFor(a => a.LabAnalizeGondermeDurumu, 0) YAPILMASIN
+                                                        <span></span>
+                                                    </label>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <label class="control-label"><b>ANALİZ YAPILACAK İPLİK SAYISI</b></label>
+                                            <div class="input-icon right">
+                                                @Html.TextBoxFor(a => a.NumuneYapilabilirlikDosya.AnalizYapilacakBobinSayisi, new { @class = "form-control", @onkeypress = "return isNumberKey(event)" })
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <label class="control-label"><b>ANALİZ YAPILACAK KUMAŞ SAYISI</b></label>
+                                            <div class="input-icon right">
+                                                @Html.TextBoxFor(a => a.NumuneYapilabilirlikDosya.AnalizYapilacakKumasSayisi, new { @class = "form-control", @onkeypress = "return isNumberKey(event)" })
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <label class="control-label"><b>ANALİZ YAPILACAK RENK ÇALIŞMASI</b></label>
+                                            <div class="input-icon right">
+                                                @Html.TextBoxFor(a => a.NumuneYapilabilirlikDosya.AnalizYapilacakRenkCalismasi, new { @class = "form-control", @onkeypress = "return isNumberKey(event)" })
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+
+
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <label class="control-label"><b>DOSYA AÇIKLAMA</b></label>
+                                    <div class="input-icon right">
+                                        @Html.TextAreaFor(a => a.NumuneYapilabilirlikDosya.Aciklama, new { @class = "form-control", @rows = 5 })
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-actions">
+                                <button type="submit" class="btn blue btn-block">NUMUNE YAPILABİLİRLİK DOSYASINI OLUŞTUR</button>
+                            </div>
+                        </div>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts
+{
+    <script src="~/Temalar/TarihSaat/bootstrap-datepicker/js/bootstrap-datetimepicker.js"></script>
+    <script src="~/Temalar/TarihSaat/bootstrap-datepicker/js/bootstrap-datetimepicker.tr.js"></script>
+    <script>
+        $('.tarih').datetimepicker({
+            language: 'tr',
+            weekStart: 1,
+            todayBtn: 1,
+            autoclose: 1,
+            todayHighlight: 1,
+            startView: 2,
+            minView: 2,
+            forceParse: 0,
+            format: "dd MM yyyy",
+            inline: true
+        });
+
+    </script>
+    <script>
+
+        function isNumberKey(evt) {
+            var charCode = (evt.which) ? evt.which : event.keyCode;
+            if (charCode > 31 && (charCode < 48 || charCode > 57)) return false;
+
+            return true;
+        }
+
+
+    </script>
+    
+    <script>
+        function radioDurumCari(id) {
+
+            var polyGrup = document.getElementById("rdpoly");
+            var tasdGrup = document.getElementById("rdTasd");
+            var psetGrup = document.getElementById("rdPset");
+
+            polyGrup.style.visibility = "hidden";
+            polyGrup.style.display = "none";
+            tasdGrup.style.visibility = "hidden";
+            tasdGrup.style.display = "none";
+            psetGrup.style.visibility = "hidden";
+            psetGrup.style.display = "none";
+            if (id == 1) {
+
+                polyGrup.style.display = "block";
+                polyGrup.style.visibility = "visible";
+              
+            }
+
+            if (id == 2) {
+          
+                tasdGrup.style.display = "block";
+                tasdGrup.style.visibility = "visible";
+            }
+            if (id == 3) {
+          
+                psetGrup.style.display = "block";
+                psetGrup.style.visibility = "visible";
+            }
+
+
+        }
+    </script>
+}

@@ -1,0 +1,1751 @@
+﻿@model Polyteks.Katman.DAL.Concrete.EntityFramework.Mrv_KaliteBildirimDetay
+
+@{
+    ViewBag.Title = "KaliteBildirimPusulasiMudahale";
+    Layout = "~/Views/Shared/Layout.cshtml";
+    var data = ViewBag.data as Polyteks.Katman.DAL.Concrete.EntityFramework.Mrv_KaliteBildirimDetay;
+}
+
+
+
+<div class="row">
+    <div class="col-md-6">
+        <div class="portlet light bordered">
+            <div class="portlet-title">
+                <div class="caption font-red-sunglo">
+                    <CENTER><h3><b>  <i class="icon-settings font-red-sunglo"></i> KALİTE BİLDİRİM PUSULASI MÜDAHALE  <i class="icon-settings font-red-sunglo"></i></b></h3></CENTER>
+                    @using (Html.BeginForm())
+                    {
+                        @Html.AntiForgeryToken()
+
+
+                        <hr />
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                        @Html.HiddenFor(model => model.ID)
+
+
+
+                        @*<div class="form-group">
+                                @Html.LabelFor(model => model.MudahaleTarihSaat, htmlAttributes: new { @class = "control-label col-md-2" })
+                                <div class="col-md-10">
+                                    @Html.EditorFor(model => model.MudahaleTarihSaat, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.MudahaleTarihSaat, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.MudahaleKullanici, htmlAttributes: new { @class = "control-label col-md-2" })
+                                <div class="col-md-10">
+                                    @Html.EditorFor(model => model.MudahaleKullanici, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.MudahaleKullanici, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.MudahaleKullaniciBolum, htmlAttributes: new { @class = "control-label col-md-2" })
+                                <div class="col-md-10">
+                                    @Html.EditorFor(model => model.MudahaleKullaniciBolum, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.MudahaleKullaniciBolum, "", new { @class = "text-danger" })
+                                </div>
+                            </div>*@
+
+                        <div class="row">
+                            <div class="col-md-4">
+                                <b> @Html.Label("MAKİNE ADI", htmlAttributes: new { @class = "control-label col-md-12" })</b>
+                                <div class="col-md-12">
+                                    @Html.EditorFor(model => model.Mrv_KaliteBildirim_Makine.MakineAdi, new { htmlAttributes = new { @class = "form-control", @readonly = true } })
+                                    @Html.ValidationMessageFor(model => model.MakineAdi, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            @*@if (Model.Mrv_KaliteBildirimBolumleri.IsletmeBolumleri =="Uretim")
+                                {*@
+                            <div class="col-md-4">
+                                <b></b>  @Html.Label("KANAL NO", htmlAttributes: new { @class = "control-label col-md-12" })
+                                <div class="col-md-12">
+                                    @Html.EditorFor(model => model.KanalNo, new { htmlAttributes = new { @class = "form-control", @readonly = true } })
+                                    @Html.ValidationMessageFor(model => model.KanalNo, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            @*}*@     @*}*@
+                            <div class="col-md-4">
+                                <b> @Html.Label("POZİSYON NO", htmlAttributes: new { @class = "control-label col-md-12" })</b>
+                                <div class="col-md-12">
+                                    @Html.EditorFor(model => model.PozisyonNo, new { htmlAttributes = new { @class = "form-control", @readonly = true } })
+                                    @Html.ValidationMessageFor(model => model.PozisyonNo, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                        </div>
+                        <br />
+                        <div class="row">
+                            <div class="col-md-6">
+                                <b>@Html.Label("PARTİ NO", htmlAttributes: new { @class = "control-label col-md-12" })</b>
+                                <div class="col-md-12">
+                                    @Html.EditorFor(model => model.PartiNo, new { htmlAttributes = new { @class = "form-control", @readonly = true } })
+                                    @Html.ValidationMessageFor(model => model.PartiNo, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <b>@Html.Label("İŞLETME", htmlAttributes: new { @class = "control-label col-md-12" })</b>
+                                <div class="col-md-12">
+                                    @Html.EditorFor(model => model.Mrv_KaliteBildirimBolumleri.IsletmeBolumleri, new { htmlAttributes = new { @class = "form-control", @readonly = true } })
+                                    @Html.ValidationMessageFor(model => model.Mrv_KaliteBildirimBolumleri.IsletmeBolumleri, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                        </div>
+                        <br />
+                        <div class="row">
+                            <div class="col-md-6">
+                                <b>@Html.Label("HATA/1", htmlAttributes: new { @class = "control-label col-md-12" })</b>
+                                <div class="col-md-12">
+                                    @Html.EditorFor(model => model.Mrv_KaliteBildirimHata.HataTanimi, new { htmlAttributes = new { @class = "form-control", @readonly = true } })
+                                    @Html.ValidationMessageFor(model => model.Mrv_KaliteBildirimHata.HataTanimi, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                               <b> @Html.Label("HATA/1 YAPILAN MÜDAHALE", htmlAttributes: new { @class = "control-label col-md-12" })</b>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        @*@Html.DropDownList("Hata1YapilanMudahale", null, "MÜDAHALE SEÇİNİZ", htmlAttributes: new { @class = "form-control", required = "required", style = "color:black" })*@
+                                        @if (Model.Mrv_KaliteBildirimBolumleri.ID == 1)
+                                        {
+                                            if (Model.Mrv_KaliteBildirimHata.HataTanimi.Trim() == "Dtex Düşük")
+                                            {
+
+
+                                                <div class="col-md-12">
+
+                                                    @Html.DropDownListFor(model => model.Hata1YapilanMudahale, new List<SelectListItem>
+                                                   {
+                                                             new  SelectListItem { Text = "Melt Pompa Değeri Artırıldı.", Value = "Melt Pompa Değeri Artırıldı" },
+
+                                                   }, "--MÜDAHALE SEÇİNİZ--", new { @style = "color:black", @class = "form-control", title = "Lütfen Müdahale Seçiniz!" })
+
+                                                </div>
+
+                                            }
+                                            if (Model.Mrv_KaliteBildirimHata.HataTanimi.Trim() == "Dtex Yüksek")
+                                            {<div class="col-md-12">
+
+                                                    @Html.DropDownListFor(model => model.Hata1YapilanMudahale, new List<SelectListItem>
+                                               {
+                                                             new  SelectListItem { Text = "Melt Pompa Değeri Azaltıldı.", Value = "Melt Pompa Değeri Azaltıldı" },
+
+                                                   }, "--MÜDAHALE SEÇİNİZ--", new { @style = "color:black", @class = "form-control", title = "Lütfen Müdahale Seçiniz!" })
+
+                                                </div>
+                                                @Html.ValidationMessageFor(model => model.Hata1YapilanMudahale, "", new { @class = "text-danger" })
+                                            }
+                                            if (Model.Mrv_KaliteBildirimHata.HataTanimi.Trim() == "Genleşme Düşük")
+                                            {<div class="col-md-12">
+
+                                                    @Html.DropDownListFor(model => model.Hata1YapilanMudahale, new List<SelectListItem>
+                                               {
+                                                             new  SelectListItem { Text = "Quench Hava Hızı Azaltıldı.", Value = "Quench Hava Hızı Azaltıldı." },
+                                                             new  SelectListItem { Text = "Winder Hızı Azaltıldı.", Value = "Winder Hızı Azaltıldı" },
+                                                             new  SelectListItem { Text = "Godet Hızları Değiştirildi.", Value = "Godet Hızları Değiştirildi." },
+
+                                                   }, "--MÜDAHALE SEÇİNİZ--", new { @style = "color:black", @class = "form-control", title = "Lütfen Müdahale Seçiniz!" })
+
+                                                </div>
+                                                @Html.ValidationMessageFor(model => model.Hata1YapilanMudahale, "", new { @class = "text-danger" })
+                                            }
+                                            if (Model.Mrv_KaliteBildirimHata.HataTanimi.Trim() == "Genleşme Yüksek")
+                                            {<div class="col-md-12">
+
+                                                    @Html.DropDownListFor(model => model.Hata1YapilanMudahale, new List<SelectListItem>
+                                               {
+                                                             new  SelectListItem { Text = "Quench Hava Hızı Arttırıldı.", Value = "Quench Hava Hızı Arttırıldı." },
+                                                             new  SelectListItem { Text = "Winder Hızı Arttırıldı.", Value = "Winder Hızı Arttırıldı" },
+                                                             new  SelectListItem { Text = "Godet Hızları Değiştirildi.", Value = "Godet Hızları Değiştirildi." },
+
+                                                   }, "--MÜDAHALE SEÇİNİZ--", new { @style = "color:black", @class = "form-control", title = "Lütfen Müdahale Seçiniz!" })
+
+                                                </div>
+                                                @Html.ValidationMessageFor(model => model.Hata1YapilanMudahale, "", new { @class = "text-danger" })
+                                            }
+                                            if (Model.Mrv_KaliteBildirimHata.HataTanimi.Trim() == "Kaynama Çekme Düşük" || Model.Mrv_KaliteBildirimHata.HataTanimi.Trim() == "Kaynama Çekme Yüksek")
+                                            {<div class="col-md-12">
+
+                                                    @Html.DropDownListFor(model => model.Hata1YapilanMudahale, new List<SelectListItem>
+                                               {
+                                                             new  SelectListItem { Text = "Godet 1/2 Sıcaklığı Arttırıldı.", Value = "Godet 1/2 Sıcaklığı Arttırıldı." },
+                                                             new  SelectListItem { Text = "Godet 3/4 Sıcaklığı Arttırıldı.", Value = "Godet 3/4 Sıcaklığı Arttırıldı." },
+
+
+                                                   }, "--MÜDAHALE SEÇİNİZ--", new { @style = "color:black", @class = "form-control", title = "Lütfen Müdahale Seçiniz!" })
+
+                                                </div>
+                                                @Html.ValidationMessageFor(model => model.Hata1YapilanMudahale, "", new { @class = "text-danger" })
+                                            }
+                                            if (Model.Mrv_KaliteBildirimHata.HataTanimi.Trim() == "Kesit Büyük" || Model.Mrv_KaliteBildirimHata.HataTanimi.Trim() == "Kesit Düzensiz" || Model.Mrv_KaliteBildirimHata.HataTanimi.Trim() == "Kesit Büyük")
+                                            {<div class="col-md-12">
+
+                                                    @Html.DropDownListFor(model => model.Hata1YapilanMudahale, new List<SelectListItem>
+                                               {
+                                                             new  SelectListItem { Text = "Düze Değiştirildi.", Value = "Düze Değiştirildi." },
+
+
+
+                                                   }, "--MÜDAHALE SEÇİNİZ--", new { @style = "color:black", @class = "form-control", title = "Lütfen Müdahale Seçiniz!" })
+
+                                                </div>
+                                                @Html.ValidationMessageFor(model => model.Hata1YapilanMudahale, "", new { @class = "text-danger" })
+                                            }
+                                            if (Model.Mrv_KaliteBildirimHata.HataTanimi.Trim() == "Mukavemet Düşük" || Model.Mrv_KaliteBildirimHata.HataTanimi.Trim() == "Mukavemet Yüksek" || Model.Mrv_KaliteBildirimHata.HataTanimi.Trim() == "Uster Düşük")
+                                            {<div class="col-md-12">
+
+                                                    @Html.DropDownListFor(model => model.Hata1YapilanMudahale, new List<SelectListItem>
+                                               {
+                                                             new  SelectListItem { Text = "YOK", Value = "YOK" },
+
+
+
+                                                   }, "--MÜDAHALE SEÇİNİZ--", new { @style = "color:black", @class = "form-control", title = "Lütfen Müdahale Seçiniz!" })
+
+                                                </div>
+                                                @Html.ValidationMessageFor(model => model.Hata1YapilanMudahale, "", new { @class = "text-danger" })
+                                            }
+                                            if (Model.Mrv_KaliteBildirimHata.HataTanimi.Trim() == "Punta Düşük" && Model.Mrv_KaliteBildirimBolumleri.IsletmeBolumleri.Trim() == "Uretim")
+                                            {<div class="col-md-12">
+
+                                                    @Html.DropDownListFor(model => model.Hata1YapilanMudahale, new List<SelectListItem>
+                                               {
+                                                             new  SelectListItem { Text = "Godet 1/2 Hızı Değiştirildi.", Value = "Godet 1/2 Hızı Değiştirildi." },
+                                                             new  SelectListItem { Text = "Godet 3/4 Hızı Değiştirildi.", Value = "Godet 3/4 Hızı Değiştirildi." },
+                                                             new  SelectListItem { Text = "Jet Basıncı Arttırıldı.", Value = "Jet Basıncı Arttırıldı." },
+
+
+                                                   }, "--MÜDAHALE SEÇİNİZ--", new { @style = "color:black", @class = "form-control", title = "Lütfen Müdahale Seçiniz!" })
+
+                                                </div>
+                                                @Html.ValidationMessageFor(model => model.Hata1YapilanMudahale, "", new { @class = "text-danger" })
+                                            }
+
+                                            if (Model.Mrv_KaliteBildirimHata.HataTanimi.Trim() == "Punta Yüksek")
+                                            {<div class="col-md-12">
+
+                                                    @Html.DropDownListFor(model => model.Hata1YapilanMudahale, new List<SelectListItem>
+                                               {
+                                                             new  SelectListItem { Text = "Godet 1/2 Hızı Değiştirildi.", Value = "Godet 1/2 Hızı Değiştirildi." },
+                                                             new  SelectListItem { Text = "Godet 3/4 Hızı Değiştirildi.", Value = "Godet 3/4 Hızı Değiştirildi." },
+                                                             new  SelectListItem { Text = "Jet Basıncı Azaltıldı.", Value = "Jet Basıncı Azaltıldı." },
+
+
+                                                   }, "--MÜDAHALE SEÇİNİZ--", new { @style = "color:black", @class = "form-control", title = "Lütfen Müdahale Seçiniz!" })
+
+                                                </div>
+                                                @Html.ValidationMessageFor(model => model.Hata1YapilanMudahale, "", new { @class = "text-danger" })
+                                            }
+                                            if (Model.Mrv_KaliteBildirimHata.HataTanimi.Trim() == "Puntasız")
+                                            {<div class="col-md-12">
+
+                                                    @Html.DropDownListFor(model => model.Hata1YapilanMudahale, new List<SelectListItem>
+                                               {
+
+                                                             new  SelectListItem { Text = "Jet Hava Hortumu Değiştirildi.", Value = "Jet Hava Hortumu Değiştirildi." },
+                                                             new  SelectListItem { Text = "Jet Temizliği Yapıldı.", Value = "Jet Temizliği Yapıldı." },
+
+
+                                                   }, "--MÜDAHALE SEÇİNİZ--", new { @style = "color:black", @class = "form-control", title = "Lütfen Müdahale Seçiniz!" })
+
+                                                </div>
+                                                @Html.ValidationMessageFor(model => model.Hata1YapilanMudahale, "", new { @class = "text-danger" })
+                                            }
+
+
+                                            if (Model.Mrv_KaliteBildirimHata.HataTanimi.Trim() == "Uster Yüksek")
+                                            {
+
+
+                                                <div class="col-md-12">
+
+                                                    @Html.DropDownListFor(model => model.Hata1YapilanMudahale, new List<SelectListItem>
+                                                   {
+                                                             new  SelectListItem { Text = "Quench Hava Hızı Artırıldı.", Value ="Quench Hava Hızı Artırıldı." },
+
+                                                   }, "--MÜDAHALE SEÇİNİZ--", new { @style = "color:black", @class = "form-control", title = "Lütfen Müdahale Seçiniz!" })
+
+                                                </div>
+
+                                            }
+
+                                            if (Model.Mrv_KaliteBildirimHata.HataTanimi.Trim() == "Yağ Oranı Düşük")
+                                            {
+
+
+                                                <div class="col-md-12">
+
+                                                    @Html.DropDownListFor(model => model.Hata1YapilanMudahale, new List<SelectListItem>
+                                                   {
+                                                             new  SelectListItem { Text = "Yağ Devri Artırıldı.", Value ="Yağ Devri Artırıldı." },
+
+                                                   }, "--MÜDAHALE SEÇİNİZ--", new { @style = "color:black", @class = "form-control", title = "Lütfen Müdahale Seçiniz!" })
+
+                                                </div>
+
+                                            }
+                                            if (Model.Mrv_KaliteBildirimHata.HataTanimi.Trim() == "Yağ Oranı Yüksek")
+                                            {
+
+
+                                                <div class="col-md-12">
+
+                                                    @Html.DropDownListFor(model => model.Hata1YapilanMudahale, new List<SelectListItem>
+                                                   {
+                                                             new  SelectListItem { Text = "Yağ Devri Azaltıldı", Value ="Yağ Devri Azaltıldı" },
+
+                                                   }, "--MÜDAHALE SEÇİNİZ--", new { @style = "color:black", @class = "form-control", title = "Lütfen Müdahale Seçiniz!" })
+
+                                                </div>
+
+                                            }
+                                            if (Model.Mrv_KaliteBildirimHata.HataTanimi.Trim() == "Yağsız")
+                                            {
+
+
+                                                <div class="col-md-12">
+
+                                                    @Html.DropDownListFor(model => model.Hata1YapilanMudahale, new List<SelectListItem>
+                                                   {
+                                                             new  SelectListItem { Text = "Yağ Kılavuzu Değişti.", Value ="Yağ Kılavuzu Değişti." },
+                                                                new  SelectListItem { Text = "Yağ Hortumu Değişti.", Value ="Yağ Hortumu Değişti." },
+
+                                                   }, "--MÜDAHALE SEÇİNİZ--", new { @style = "color:black", @class = "form-control", title = "Lütfen Müdahale Seçiniz!" })
+
+                                                </div>
+
+                                            }
+                                        }
+
+                                        @if (Model.Mrv_KaliteBildirimBolumleri.ID == 4)
+                                        {
+                                            if (Model.Mrv_KaliteBildirimHata.HataTanimi.Trim() == "Dtex Düşük" || Model.Mrv_KaliteBildirimHata.HataTanimi.Trim() == "Dtex Yüksek")
+                                            {
+
+
+                                                <div class="col-md-12">
+
+                                                    @Html.DropDownListFor(model => model.Hata1YapilanMudahale, new List<SelectListItem>
+                                                   {
+                                                             new  SelectListItem { Text = "Hammadde Kontrol-Pozisyon Tekrarı", Value ="Hammadde Kontrol-Pozisyon Tekrarı" },
+
+
+                                                   }, "--MÜDAHALE SEÇİNİZ--", new { @style = "color:black", @class = "form-control", title = "Lütfen Müdahale Seçiniz!" })
+
+                                                </div>
+
+                                            }
+                                            else if (Model.Mrv_KaliteBildirimHata.HataTanimi.Trim() == "EK Düşük" || Model.Mrv_KaliteBildirimHata.HataTanimi.Trim() == "EK Yüksek" || Model.Mrv_KaliteBildirimHata.HataTanimi.Trim() == "KB Yüksek" || Model.Mrv_KaliteBildirimHata.HataTanimi.Trim() == "KB Düşük" || Model.Mrv_KaliteBildirimHata.HataTanimi.Trim() == "KK Yüksek" || Model.Mrv_KaliteBildirimHata.HataTanimi.Trim() == "KK Düşük")
+                                            {
+
+
+                                                <div class="col-md-12">
+
+                                                    @Html.DropDownListFor(model => model.Hata1YapilanMudahale, new List<SelectListItem>
+                                                   {
+                                                             new  SelectListItem { Text = "YOK", Value ="YOK" },
+
+
+                                                   }, "--MÜDAHALE SEÇİNİZ--", new { @style = "color:black", @class = "form-control", title = "Lütfen Müdahale Seçiniz!" })
+
+                                                </div>
+
+                                            }
+                                            else if (Model.Mrv_KaliteBildirimHata.HataTanimi.Trim() == "Elastan Oranı Yüksek" || Model.Mrv_KaliteBildirimHata.HataTanimi.Trim() == "Elastan Oranı Düşük" && Model.Mrv_KaliteBildirimBolumleri.ID == 4)
+                                            {
+
+
+                                                <div class="col-md-12">
+
+                                                    @Html.DropDownListFor(model => model.Hata1YapilanMudahale, new List<SelectListItem>
+                                                   {
+                                                             new  SelectListItem { Text = "Pozisyon Kontrol-Çekim Kontrol-Pozisyon Tekrarı", Value ="Pozisyon Kontrol-Çekim Kontrol-Pozisyon Tekrarı" },
+
+
+                                                   }, "--MÜDAHALE SEÇİNİZ--", new { @style = "color:black", @class = "form-control", title = "Lütfen Müdahale Seçiniz!" })
+
+                                                </div>
+
+                                            }
+
+                                            else if (Model.Mrv_KaliteBildirimHata.HataTanimi.Trim() == "Genleşme Düşük" || Model.Mrv_KaliteBildirimHata.HataTanimi.Trim() == "Genleşme Yüksek" || Model.Mrv_KaliteBildirimHata.HataTanimi.Trim() == "Kaynama Çekme Düşük" || Model.Mrv_KaliteBildirimHata.HataTanimi.Trim() == "Kaynama Çekme Yüksek" || Model.Mrv_KaliteBildirimHata.HataTanimi.Trim() == "Mukavemet Düşük" || Model.Mrv_KaliteBildirimHata.HataTanimi.Trim() == "Mukavemet Yüksek" && Model.Mrv_KaliteBildirimBolumleri.ID == 4)
+                                            {<div class="col-md-12">
+
+                                                    @Html.DropDownListFor(model => model.Hata1YapilanMudahale, new List<SelectListItem>
+                                               {
+                                                             new  SelectListItem { Text = "Hammadde Kontrol-Pozisyon Tekrar", Value = "Hammadde Kontrol-Pozisyon Tekrar" },
+
+
+                                                   }, "--MÜDAHALE SEÇİNİZ--", new { @style = "color:black", @class = "form-control", title = "Lütfen Müdahale Seçiniz!" })
+
+                                                </div>
+                                                @Html.ValidationMessageFor(model => model.Hata1YapilanMudahale, "", new { @class = "text-danger" })
+                                            }
+
+
+                                            else if (Model.Mrv_KaliteBildirimHata.HataTanimi.Trim() == "Punta Yüksek" || Model.Mrv_KaliteBildirimHata.HataTanimi.Trim() == "Punta Düşük" || Model.Mrv_KaliteBildirimHata.HataTanimi.Trim() == "Puntasız" && Model.Mrv_KaliteBildirimBolumleri.ID == 4)
+                                            {
+
+
+                                                <div class="col-md-12">
+
+                                                    @Html.DropDownListFor(model => model.Hata1YapilanMudahale, new List<SelectListItem>
+                                                   {
+                                                             new  SelectListItem { Text = "Jet Kontrol-Hava Basıncı Kontrol-Pozisyon Tekrarı", Value ="Jet Kontrol-Hava Basıncı Kontrol-Pozisyon Tekrarı" },
+
+
+                                                   }, "--MÜDAHALE SEÇİNİZ--", new { @style = "color:black", @class = "form-control", title = "Lütfen Müdahale Seçiniz!" })
+
+                                                </div>
+
+                                            }
+                                            else if (Model.Mrv_KaliteBildirimHata.HataTanimi.Trim() == "Tur Sayısı Düşük" || Model.Mrv_KaliteBildirimHata.HataTanimi.Trim() == "Tur Sayısı Yüksek" && Model.Mrv_KaliteBildirimBolumleri.ID == 4)
+
+                                            {
+
+
+                                                <div class="col-md-12">
+
+                                                    @Html.DropDownListFor(model => model.Hata1YapilanMudahale, new List<SelectListItem>
+                                                   {
+                                                             new  SelectListItem { Text = "Dişli Kontrol-Pozisyon Tekrarı", Value ="Dişli Kontrol-Pozisyon Tekrarı" },
+
+
+                                                   }, "--MÜDAHALE SEÇİNİZ--", new { @style = "color:black", @class = "form-control", title = "Lütfen Müdahale Seçiniz!" })
+
+                                                </div>
+
+                                            }
+
+                                            else if (Model.Mrv_KaliteBildirimHata.HataTanimi.Trim() == "Yağ Oranı Düşük" || Model.Mrv_KaliteBildirimHata.HataTanimi.Trim() == "Yağ Oranı Yüksek" || Model.Mrv_KaliteBildirimHata.HataTanimi.Trim() == "Yağsız" && Model.Mrv_KaliteBildirimBolumleri.ID == 4)
+
+                                            {
+
+
+                                                <div class="col-md-12">
+
+                                                    @Html.DropDownListFor(model => model.Hata1YapilanMudahale, new List<SelectListItem>
+                                                   {
+                                                             new  SelectListItem { Text = "Yağ Kanalı Kontrol-Yağ Mili Kontrol-Hammadde Kontrol-Pozisyon Tekrarı", Value ="Yağ Kanalı Kontrol-Yağ Mili Kontrol-Hammadde Kontrol-Pozisyon Tekrarı" },
+
+
+                                                   }, "--MÜDAHALE SEÇİNİZ--", new { @style = "color:black", @class = "form-control", title = "Lütfen Müdahale Seçiniz!" })
+
+                                                </div>
+
+                                            }
+                                        }
+
+                                        @if (Model.Mrv_KaliteBildirimBolumleri.ID == 2)
+                                        {
+                                            if (Model.Mrv_KaliteBildirimHata.HataTanimi.Trim() == "Dtex Düşük" || Model.Mrv_KaliteBildirimHata.HataTanimi.Trim() == "Dtex Yüksek" || Model.Mrv_KaliteBildirimHata.HataTanimi.Trim() == "Elastan Oranı Yüksek" || Model.Mrv_KaliteBildirimHata.HataTanimi.Trim() == "Elastan Oranı Düşük" || Model.Mrv_KaliteBildirimHata.HataTanimi.Trim() == "Genleşme Yüksek" || Model.Mrv_KaliteBildirimHata.HataTanimi.Trim() == "Genleşme Düşük" || Model.Mrv_KaliteBildirimHata.HataTanimi.Trim() == "Mukavemet Yüksek" || Model.Mrv_KaliteBildirimHata.HataTanimi.Trim() == "Mukavemet Düşük")
+                                            {
+                                                <div class="col-md-12">
+
+                                                    @Html.DropDownListFor(model => model.Hata1YapilanMudahale, new List<SelectListItem>
+                                                    {
+                                                              new SelectListItem { Text = "ÇEKİM KONTROL/HAMMADDE KONTROL/TEKRARINI GÖNDERME", Value ="ÇEKİM KONTROL/HAMMADDE KONTROL/TEKRARINI GÖNDERME" },
+
+
+                                                     }, "--MÜDAHALE SEÇİNİZ--", new { @style = "color:black", @class = "form-control", title = "Lütfen Müdahale Seçiniz!" })
+
+                                                </div>
+
+                                            }
+                                            else if (Model.Mrv_KaliteBildirimHata.HataTanimi.Trim() == "EK Düşük" || Model.Mrv_KaliteBildirimHata.HataTanimi.Trim() == "EK Yüksek" || Model.Mrv_KaliteBildirimHata.HataTanimi.Trim() == "Kaynama Çekme Düşük" || Model.Mrv_KaliteBildirimHata.HataTanimi.Trim() == "Kaynama Çekme Yüksek" || Model.Mrv_KaliteBildirimHata.HataTanimi.Trim() == "KK Düşük" || Model.Mrv_KaliteBildirimHata.HataTanimi.Trim() == "KK Yüksek" || Model.Mrv_KaliteBildirimHata.HataTanimi.Trim() == "KB Düşük" || Model.Mrv_KaliteBildirimHata.HataTanimi.Trim() == "KB Yüksek")
+                                            { <div class="col-md-12">
+
+                                                    @Html.DropDownListFor(model => model.Hata1YapilanMudahale, new List<SelectListItem>
+                                                    {
+                                                              new SelectListItem { Text = "ISI KONTROL/ISI DEĞİŞİMİ/TEKRARINI GÖNDERME", Value ="ISI KONTROL/ISI DEĞİŞİMİ/TEKRARINI GÖNDERME" },
+
+
+                                                     }, "--MÜDAHALE SEÇİNİZ--", new { @style = "color:black", @class = "form-control", title = "Lütfen Müdahale Seçiniz!" })
+
+                                                </div>
+                                            }
+                                            else if (Model.Mrv_KaliteBildirimHata.HataTanimi.Trim() == "Kaynama Çekme Düşük" || Model.Mrv_KaliteBildirimHata.HataTanimi.Trim() == "Kaynama Çekme Yüksek")
+                                            { <div class="col-md-12">
+
+                                                    @Html.DropDownListFor(model => model.Hata1YapilanMudahale, new List<SelectListItem>
+                                                    {
+                                                              new SelectListItem { Text = "JETLERİ KONTROL ETME/HAVA BASINCINI KONTROL ETME/BASKILARI KONTROL ETME/POZİSYONU TEKRAR GÖNDERME", Value ="JETLERİ KONTROL ETME/HAVA BASINCINI KONTROL ETME/BASKILARI KONTROL ETME/POZİSYONU TEKRAR GÖNDERME" },
+
+
+                                                     }, "--MÜDAHALE SEÇİNİZ--", new { @style = "color:black", @class = "form-control", title = "Lütfen Müdahale Seçiniz!" })
+
+                                                </div>}
+                                            else if (Model.Mrv_KaliteBildirimHata.HataTanimi.Trim() == "Punta Düşük" || Model.Mrv_KaliteBildirimHata.HataTanimi.Trim() == "Punta Yüksek" || Model.Mrv_KaliteBildirimHata.HataTanimi.Trim() == "Kalıcı Punta Düşük" || Model.Mrv_KaliteBildirimHata.HataTanimi.Trim() == "Kalıcı Punta Yüksek" || Model.Mrv_KaliteBildirimHata.HataTanimi.Trim() == "Puntasız" || Model.Mrv_KaliteBildirimHata.HataTanimi.Trim() == "Snarling Düşük" || Model.Mrv_KaliteBildirimHata.HataTanimi.Trim() == "Snarling Yüksek")
+                                            { <div class="col-md-12">
+
+                                                    @Html.DropDownListFor(model => model.Hata1YapilanMudahale, new List<SelectListItem>
+                                                    {
+                                                              new SelectListItem { Text = "JETLERİ KONTROL ETME/HAVA BASINCINI KONTROL ETME/POZİSYONU TEKRAR GÖNDERME", Value ="JETLERİ KONTROL ETME/HAVA BASINCINI KONTROL ETME/POZİSYONU TEKRAR GÖNDERME" },
+
+
+                                                     }, "--MÜDAHALE SEÇİNİZ--", new { @style = "color:black", @class = "form-control", title = "Lütfen Müdahale Seçiniz!" })
+
+                                                </div>}
+                                            else if (Model.Mrv_KaliteBildirimHata.HataTanimi.Trim() == "Yağ Oranı Düşük" || Model.Mrv_KaliteBildirimHata.HataTanimi.Trim() == "Yağ Oranı Yüksek" || Model.Mrv_KaliteBildirimHata.HataTanimi.Trim() == "Yağsız")
+                                            { <div class="col-md-12">
+
+                                                    @Html.DropDownListFor(model => model.Hata1YapilanMudahale, new List<SelectListItem>
+                                                    {
+                                                              new SelectListItem { Text = "YAĞ MİLİ KONTROLÜ/YAĞ DEVRİ KONTROLÜ/YAĞ KANALLARI KONTROLÜ/HAMMADDE KONTROLÜ/TEKRAR GÖNDERİM", Value ="YAĞ MİLİ KONTROLÜ/YAĞ DEVRİ KONTROLÜ/YAĞ KANALLARI KONTROLÜ/HAMMADDE KONTROLÜ/TEKRAR GÖNDERİM" },
+
+
+                                                     }, "--MÜDAHALE SEÇİNİZ--", new { @style = "color:black", @class = "form-control", title = "Lütfen Müdahale Seçiniz!" })
+
+                                                </div>}
+                                        }
+
+                                        @if (Model.Mrv_KaliteBildirimBolumleri.ID == 3)
+                                        {
+                                            if (Model.Mrv_KaliteBildirimHata.HataTanimi.Trim() == "Dtex Düşük" || Model.Mrv_KaliteBildirimHata.HataTanimi.Trim() == "Dtex Yüksek" || Model.Mrv_KaliteBildirimHata.HataTanimi.Trim() == "Genleşme Yüksek" || Model.Mrv_KaliteBildirimHata.HataTanimi.Trim() == "Genleşme Düşük" || Model.Mrv_KaliteBildirimHata.HataTanimi.Trim() == "Mukavemet Yüksek" || Model.Mrv_KaliteBildirimHata.HataTanimi.Trim() == "Mukavemet Düşük")
+                                            {
+                                                <div class="col-md-12">
+
+                                                    @Html.DropDownListFor(model => model.Hata1YapilanMudahale, new List<SelectListItem>
+                                                    {
+                                                              new SelectListItem { Text = "ÇEKİM KONTROL/HAMMADDE KONTROL/TEKRARINI GÖNDERME", Value ="ÇEKİM KONTROL/HAMMADDE KONTROL/TEKRARINI GÖNDERME" },
+
+
+                                                     }, "--MÜDAHALE SEÇİNİZ--", new { @style = "color:black", @class = "form-control", title = "Lütfen Müdahale Seçiniz!" })
+
+                                                </div>
+
+                                            }
+                                            else if (Model.Mrv_KaliteBildirimHata.HataTanimi.Trim() == "EK Düşük" || Model.Mrv_KaliteBildirimHata.HataTanimi.Trim() == "EK Yüksek" || Model.Mrv_KaliteBildirimHata.HataTanimi.Trim() == "Elastan Oranı Yüksek" || Model.Mrv_KaliteBildirimHata.HataTanimi.Trim() == "Elastan Oranı Düşük" || Model.Mrv_KaliteBildirimHata.HataTanimi.Trim() == "KK Yüksek" || Model.Mrv_KaliteBildirimHata.HataTanimi.Trim() == "KK Düşük" || Model.Mrv_KaliteBildirimHata.HataTanimi.Trim() == "KB Yüksek" || Model.Mrv_KaliteBildirimHata.HataTanimi.Trim() == "KB Düşük")
+                                            {
+                                                <div class="col-md-12">
+
+                                                    @Html.DropDownListFor(model => model.Hata1YapilanMudahale, new List<SelectListItem>
+                                                    {
+                                                              new SelectListItem { Text = "YOK", Value ="YOK" },
+
+
+                                                     }, "--MÜDAHALE SEÇİNİZ--", new { @style = "color:black", @class = "form-control", title = "Lütfen Müdahale Seçiniz!" })
+
+                                                </div>
+
+                                            }
+                                            else if (Model.Mrv_KaliteBildirimHata.HataTanimi.Trim() == "Kaynama Çekme Düşük" || Model.Mrv_KaliteBildirimHata.HataTanimi.Trim() == "Kaynama Çekme Yüksek")
+                                            {
+                                                <div class="col-md-12">
+
+                                                    @Html.DropDownListFor(model => model.Hata1YapilanMudahale, new List<SelectListItem>
+                                                    {
+                                                              new SelectListItem { Text = "GODET SICAKLIKLARINI KONTROL ETME/TEKRARINI GÖNDERME", Value ="GODET SICAKLIKLARINI KONTROL ETME/TEKRARINI GÖNDERME" },
+
+
+                                                     }, "--MÜDAHALE SEÇİNİZ--", new { @style = "color:black", @class = "form-control", title = "Lütfen Müdahale Seçiniz!" })
+
+                                                </div>
+
+                                            }
+                                            else if (Model.Mrv_KaliteBildirimHata.HataTanimi.Trim() == "Loop Oranı Düşük" || Model.Mrv_KaliteBildirimHata.HataTanimi.Trim() == "Loop Oranı Yüksek")
+                                            {
+                                                <div class="col-md-12">
+
+                                                    @Html.DropDownListFor(model => model.Hata1YapilanMudahale, new List<SelectListItem>
+                                                    {
+                                                              new SelectListItem { Text = "İĞNELERİ KONTROL ETME/SÖKME PROSESİNİ KONTROL ETME", Value ="İĞNELERİ KONTROL ETME/SÖKME PROSESİNİ KONTROL ETME" },
+
+
+                                                     }, "--MÜDAHALE SEÇİNİZ--", new { @style = "color:black", @class = "form-control", title = "Lütfen Müdahale Seçiniz!" })
+
+                                                </div>
+
+                                            }
+                                            else if (Model.Mrv_KaliteBildirimHata.HataTanimi.Trim() == "Uster Düşük" || Model.Mrv_KaliteBildirimHata.HataTanimi.Trim() == "Uster Yüksek")
+                                            {
+                                                <div class="col-md-12">
+
+                                                    @Html.DropDownListFor(model => model.Hata1YapilanMudahale, new List<SelectListItem>
+                                                    {
+                                                              new SelectListItem { Text = "POZİSYON KONTROLÜ/HAMMADDE KONTROLÜ/TEKRAR GÖNDERİM", Value ="POZİSYON KONTROLÜ/HAMMADDE KONTROLÜ/TEKRAR GÖNDERİM" },
+
+
+                                                     }, "--MÜDAHALE SEÇİNİZ--", new { @style = "color:black", @class = "form-control", title = "Lütfen Müdahale Seçiniz!" })
+
+                                                </div>
+
+                                            }
+                                            else if (Model.Mrv_KaliteBildirimHata.HataTanimi.Trim() == "Punta Düşük" || Model.Mrv_KaliteBildirimHata.HataTanimi.Trim() == "Punta Yüksek" || Model.Mrv_KaliteBildirimHata.HataTanimi.Trim() == "Puntasız")
+                                            {
+                                                <div class="col-md-12">
+
+                                                    @Html.DropDownListFor(model => model.Hata1YapilanMudahale, new List<SelectListItem>
+                                                    {
+                                                              new SelectListItem { Text = "JETLERİ KONTROL ETME/HAVA BASINCINI KONTROL ETME/POZİSYONU TEKRAR GÖNDERME", Value ="JETLERİ KONTROL ETME/HAVA BASINCINI KONTROL ETME/POZİSYONU TEKRAR GÖNDERME" },
+
+
+                                                     }, "--MÜDAHALE SEÇİNİZ--", new { @style = "color:black", @class = "form-control", title = "Lütfen Müdahale Seçiniz!" })
+
+                                                </div>
+
+                                            }
+                                            else if (Model.Mrv_KaliteBildirimHata.HataTanimi.Trim() == "Yağ Oranı Düşük" || Model.Mrv_KaliteBildirimHata.HataTanimi.Trim() == "Yağ Oranı Yüksek" || Model.Mrv_KaliteBildirimHata.HataTanimi.Trim() == "Yağsız")
+                                            {
+                                                <div class="col-md-12">
+
+                                                    @Html.DropDownListFor(model => model.Hata1YapilanMudahale, new List<SelectListItem>
+                                                    {
+                                                              new SelectListItem { Text = "YAĞ MİLİ KONTROLÜ/YAĞ DEVRİ KONTROLÜ/YAĞ KANALLARI KONTROLÜ/HAMMADDE KONTROLÜ/TEKRAR GÖNDERİM", Value ="YAĞ MİLİ KONTROLÜ/YAĞ DEVRİ KONTROLÜ/YAĞ KANALLARI KONTROLÜ/HAMMADDE KONTROLÜ/TEKRAR GÖNDERİM" },
+
+
+                                                     }, "--MÜDAHALE SEÇİNİZ--", new { @style = "color:black", @class = "form-control", title = "Lütfen Müdahale Seçiniz!" })
+
+                                                </div>
+
+                                            }
+                                        }
+                                    </div>
+                                </div>
+                                </div>
+                            </div>
+                        <br />
+                        <div class="row">
+                            <div class="col-md-6">
+                                <b>@Html.Label("HATA/2", htmlAttributes: new { @class = "control-label col-md-12" })</b>
+                                <div class="col-md-12">
+                                    @Html.EditorFor(model => model.Mrv_KaliteBildirimHata1.HataTanimi, new { htmlAttributes = new { @class = "form-control", @readonly = true } })
+                                    @Html.ValidationMessageFor(model => model.Mrv_KaliteBildirimHata1.HataTanimi, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <b>@Html.Label("HATA/2 YAPILAN MÜDAHALE", htmlAttributes: new { @class = "control-label col-md-12" })</b>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        @*@Html.DropDownList("Hata2YapilanMudahale", null, "MÜDAHALE SEÇİNİZ", htmlAttributes: new { @class = "form-control", required = "required", style = "color:black" })
+                    @Html.EditorFor(model => model.Hata2YapilanMudahale, new { htmlAttributes = new { @class = "form-control" } })
+                                                @if (Model.Mrv_KaliteBildirimHata1.HataTanimi.Trim() =="Kaynama Çekme Düşük" || Model.Mrv_KaliteBildirimHata1.HataTanimi.Trim() =="Kaynama Çekme Yüksek" && Model.Mrv_KaliteBildirimBolumleri.IsletmeBolumleri.Trim() == "Uretim")
+                                                {<div class="col-md-12">
+
+                                                        @Html.DropDownListFor(model => model.Hata1YapilanMudahale, new List<SelectListItem>
+                                                   {
+                                                                 new  SelectListItem { Text = "Godet 1/2 Sıcaklığı Arttırıldı.", Value = "Godet 1/2 Sıcaklığı Arttırıldı." },
+                                                                 new  SelectListItem { Text = "Godet 3/4 Sıcaklığı Arttırıldı.", Value = "Godet 3/4 Sıcaklığı Arttırıldı." },
+
+
+                                                       }, "--MÜDAHALE SEÇİNİZ--", new { @style = "color:black", @class = "form-control", title = "Lütfen Müdahale Seçiniz!" })
+
+                                                    </div>
+                                                    @Html.ValidationMessageFor(model => model.Hata1YapilanMudahale, "", new { @class = "text-danger" })
+                                                }
+                                                @Html.ValidationMessageFor(model => model.Hata2YapilanMudahale, "", new { @class = "text-danger" })*@
+
+                                        @if (Model.Mrv_KaliteBildirimBolumleri.ID == 1)
+                                        {
+                                            if (Model.Mrv_KaliteBildirimHata1.HataTanimi.Trim() == "Dtex Düşük")
+                                            {
+
+
+                                                <div class="col-md-12">
+
+                                                    @Html.DropDownListFor(model => model.Hata2YapilanMudahale, new List<SelectListItem>
+                                                   {
+                                                             new  SelectListItem { Text = "Melt Pompa Değeri Artırıldı.", Value = "Melt Pompa Değeri Artırıldı" },
+
+                                                   }, "--MÜDAHALE SEÇİNİZ--", new { @style = "color:black", @class = "form-control", title = "Lütfen Müdahale Seçiniz!" })
+
+                                                </div>
+                                                @Html.ValidationMessageFor(model => model.Hata2YapilanMudahale, "", new { @class = "text-danger" })
+                                            }
+                                            if (Model.Mrv_KaliteBildirimHata1.HataTanimi.Trim() == "Dtex Yüksek")
+                                            {<div class="col-md-12">
+
+                                                    @Html.DropDownListFor(model => model.Hata2YapilanMudahale, new List<SelectListItem>
+                                               {
+                                                             new  SelectListItem { Text = "Melt Pompa Değeri Azaltıldı.", Value = "Melt Pompa Değeri Azaltıldı" },
+
+                                                   }, "--MÜDAHALE SEÇİNİZ--", new { @style = "color:black", @class = "form-control", title = "Lütfen Müdahale Seçiniz!" })
+
+                                                </div>
+                                                @Html.ValidationMessageFor(model => model.Hata2YapilanMudahale, "", new { @class = "text-danger" })
+                                            }
+                                            if (Model.Mrv_KaliteBildirimHata1.HataTanimi.Trim() == "Genleşme Düşük")
+                                            {<div class="col-md-12">
+
+                                                    @Html.DropDownListFor(model => model.Hata2YapilanMudahale, new List<SelectListItem>
+                                               {
+                                                             new  SelectListItem { Text = "Quench Hava Hızı Azaltıldı.", Value = "Quench Hava Hızı Azaltıldı." },
+                                                             new  SelectListItem { Text = "Winder Hızı Azaltıldı.", Value = "Winder Hızı Azaltıldı" },
+                                                             new  SelectListItem { Text = "Godet Hızları Değiştirildi.", Value = "Godet Hızları Değiştirildi." },
+
+                                                   }, "--MÜDAHALE SEÇİNİZ--", new { @style = "color:black", @class = "form-control", title = "Lütfen Müdahale Seçiniz!" })
+
+                                                </div>
+                                                @Html.ValidationMessageFor(model => model.Hata2YapilanMudahale, "", new { @class = "text-danger" })
+                                            }
+                                            if (Model.Mrv_KaliteBildirimHata1.HataTanimi.Trim() == "Genleşme Yüksek")
+                                            {<div class="col-md-12">
+
+                                                    @Html.DropDownListFor(model => model.Hata2YapilanMudahale, new List<SelectListItem>
+                                               {
+                                                             new  SelectListItem { Text = "Quench Hava Hızı Arttırıldı.", Value = "Quench Hava Hızı Arttırıldı." },
+                                                             new  SelectListItem { Text = "Winder Hızı Arttırıldı.", Value = "Winder Hızı Arttırıldı" },
+                                                             new  SelectListItem { Text = "Godet Hızları Değiştirildi.", Value = "Godet Hızları Değiştirildi." },
+
+                                                   }, "--MÜDAHALE SEÇİNİZ--", new { @style = "color:black", @class = "form-control", title = "Lütfen Müdahale Seçiniz!" })
+
+                                                </div>
+                                                @Html.ValidationMessageFor(model => model.Hata2YapilanMudahale, "", new { @class = "text-danger" })
+                                            }
+                                            if (Model.Mrv_KaliteBildirimHata1.HataTanimi.Trim() == "Kaynama Çekme Düşük" || Model.Mrv_KaliteBildirimHata.HataTanimi.Trim() == "Kaynama Çekme Yüksek")
+                                            {<div class="col-md-12">
+
+                                                    @Html.DropDownListFor(model => model.Hata2YapilanMudahale, new List<SelectListItem>
+                                               {
+                                                             new  SelectListItem { Text = "Godet 1/2 Sıcaklığı Arttırıldı.", Value = "Godet 1/2 Sıcaklığı Arttırıldı." },
+                                                             new  SelectListItem { Text = "Godet 3/4 Sıcaklığı Arttırıldı.", Value = "Godet 3/4 Sıcaklığı Arttırıldı." },
+
+
+                                                   }, "--MÜDAHALE SEÇİNİZ--", new { @style = "color:black", @class = "form-control", title = "Lütfen Müdahale Seçiniz!" })
+
+                                                </div>
+                                                @Html.ValidationMessageFor(model => model.Hata2YapilanMudahale, "", new { @class = "text-danger" })
+                                            }
+                                            if (Model.Mrv_KaliteBildirimHata1.HataTanimi.Trim() == "Kesit Büyük" || Model.Mrv_KaliteBildirimHata.HataTanimi.Trim() == "Kesit Düzensiz" || Model.Mrv_KaliteBildirimHata.HataTanimi.Trim() == "Kesit Büyük")
+                                            {<div class="col-md-12">
+
+                                                    @Html.DropDownListFor(model => model.Hata2YapilanMudahale, new List<SelectListItem>
+                                               {
+                                                             new  SelectListItem { Text = "Düze Değiştirildi.", Value = "Düze Değiştirildi." },
+
+
+
+                                                   }, "--MÜDAHALE SEÇİNİZ--", new { @style = "color:black", @class = "form-control", title = "Lütfen Müdahale Seçiniz!" })
+
+                                                </div>
+                                                @Html.ValidationMessageFor(model => model.Hata2YapilanMudahale, "", new { @class = "text-danger" })
+                                            }
+                                            if (Model.Mrv_KaliteBildirimHata1.HataTanimi.Trim() == "Mukavemet Düşük" || Model.Mrv_KaliteBildirimHata.HataTanimi.Trim() == "Mukavemet Yüksek" || Model.Mrv_KaliteBildirimHata.HataTanimi.Trim() == "Uster Düşük")
+                                            {<div class="col-md-12">
+
+                                                    @Html.DropDownListFor(model => model.Hata2YapilanMudahale, new List<SelectListItem>
+                                               {
+                                                             new  SelectListItem { Text = "YOK", Value = "YOK" },
+
+
+
+                                                   }, "--MÜDAHALE SEÇİNİZ--", new { @style = "color:black", @class = "form-control", title = "Lütfen Müdahale Seçiniz!" })
+
+                                                </div>
+                                                @Html.ValidationMessageFor(model => model.Hata2YapilanMudahale, "", new { @class = "text-danger" })
+                                            }
+                                            if (Model.Mrv_KaliteBildirimHata1.HataTanimi.Trim() == "Punta Düşük")
+                                            {<div class="col-md-12">
+
+                                                    @Html.DropDownListFor(model => model.Hata2YapilanMudahale, new List<SelectListItem>
+                                               {
+                                                             new  SelectListItem { Text = "Godet 1/2 Hızı Değiştirildi.", Value = "Godet 1/2 Hızı Değiştirildi." },
+                                                             new  SelectListItem { Text = "Godet 3/4 Hızı Değiştirildi.", Value = "Godet 3/4 Hızı Değiştirildi." },
+                                                             new  SelectListItem { Text = "Jet Basıncı Arttırıldı.", Value = "Jet Basıncı Arttırıldı." },
+
+
+                                                   }, "--MÜDAHALE SEÇİNİZ--", new { @style = "color:black", @class = "form-control", title = "Lütfen Müdahale Seçiniz!" })
+
+                                                </div>
+                                                @Html.ValidationMessageFor(model => model.Hata2YapilanMudahale, "", new { @class = "text-danger" })
+                                            }
+
+                                            if (Model.Mrv_KaliteBildirimHata1.HataTanimi.Trim() == "Punta Yüksek")
+                                            {<div class="col-md-12">
+
+                                                    @Html.DropDownListFor(model => model.Hata2YapilanMudahale, new List<SelectListItem>
+                                               {
+                                                             new  SelectListItem { Text = "Godet 1/2 Hızı Değiştirildi.", Value = "Godet 1/2 Hızı Değiştirildi." },
+                                                             new  SelectListItem { Text = "Godet 3/4 Hızı Değiştirildi.", Value = "Godet 3/4 Hızı Değiştirildi." },
+                                                             new  SelectListItem { Text = "Jet Basıncı Azaltıldı.", Value = "Jet Basıncı Azaltıldı." },
+
+
+                                                   }, "--MÜDAHALE SEÇİNİZ--", new { @style = "color:black", @class = "form-control", title = "Lütfen Müdahale Seçiniz!" })
+
+                                                </div>
+                                                @Html.ValidationMessageFor(model => model.Hata2YapilanMudahale, "", new { @class = "text-danger" })
+                                            }
+                                            if (Model.Mrv_KaliteBildirimHata1.HataTanimi.Trim() == "Puntasız")
+                                            {<div class="col-md-12">
+
+                                                    @Html.DropDownListFor(model => model.Hata2YapilanMudahale, new List<SelectListItem>
+                                               {
+
+                                                             new  SelectListItem { Text = "Jet Hava Hortumu Değiştirildi.", Value = "Jet Hava Hortumu Değiştirildi." },
+                                                             new  SelectListItem { Text = "Jet Temizliği Yapıldı.", Value = "Jet Temizliği Yapıldı." },
+
+
+                                                   }, "--MÜDAHALE SEÇİNİZ--", new { @style = "color:black", @class = "form-control", title = "Lütfen Müdahale Seçiniz!" })
+
+                                                </div>
+                                                @Html.ValidationMessageFor(model => model.Hata2YapilanMudahale, "", new { @class = "text-danger" })
+                                            }
+
+
+                                            if (Model.Mrv_KaliteBildirimHata1.HataTanimi.Trim() == "Uster Yüksek")
+                                            {
+
+
+                                                <div class="col-md-12">
+
+                                                    @Html.DropDownListFor(model => model.Hata2YapilanMudahale, new List<SelectListItem>
+                                                   {
+                                                             new  SelectListItem { Text = "Quench Hava Hızı Artırıldı.", Value ="Quench Hava Hızı Artırıldı." },
+
+                                                   }, "--MÜDAHALE SEÇİNİZ--", new { @style = "color:black", @class = "form-control", title = "Lütfen Müdahale Seçiniz!" })
+
+                                                </div>
+                                                @Html.ValidationMessageFor(model => model.Hata2YapilanMudahale, "", new { @class = "text-danger" })
+                                            }
+
+                                            if (Model.Mrv_KaliteBildirimHata1.HataTanimi.Trim() == "Yağ Oranı Düşük")
+                                            {
+
+
+                                                <div class="col-md-12">
+
+                                                    @Html.DropDownListFor(model => model.Hata2YapilanMudahale, new List<SelectListItem>
+                                                   {
+                                                             new  SelectListItem { Text = "Yağ Devri Artırıldı.", Value ="Yağ Devri Artırıldı." },
+
+                                                   }, "--MÜDAHALE SEÇİNİZ--", new { @style = "color:black", @class = "form-control", title = "Lütfen Müdahale Seçiniz!" })
+
+                                                </div>
+                                                @Html.ValidationMessageFor(model => model.Hata2YapilanMudahale, "", new { @class = "text-danger" })
+                                            }
+                                            if (Model.Mrv_KaliteBildirimHata1.HataTanimi.Trim() == "Yağ Oranı Yüksek")
+                                            {
+
+
+                                                <div class="col-md-12">
+
+                                                    @Html.DropDownListFor(model => model.Hata2YapilanMudahale, new List<SelectListItem>
+                                                   {
+                                                             new  SelectListItem { Text = "Yağ Devri Azaltıldı", Value ="Yağ Devri Azaltıldı" },
+
+                                                   }, "--MÜDAHALE SEÇİNİZ--", new { @style = "color:black", @class = "form-control", title = "Lütfen Müdahale Seçiniz!" })
+
+                                                </div>
+                                                @Html.ValidationMessageFor(model => model.Hata2YapilanMudahale, "", new { @class = "text-danger" })
+                                            }
+                                            if (Model.Mrv_KaliteBildirimHata1.HataTanimi.Trim() == "Yağsız")
+                                            {
+
+
+                                                <div class="col-md-12">
+
+                                                    @Html.DropDownListFor(model => model.Hata2YapilanMudahale, new List<SelectListItem>
+                                                   {
+                                                             new  SelectListItem { Text = "Yağ Kılavuzu Değişti.", Value ="Yağ Kılavuzu Değişti." },
+                                                                new  SelectListItem { Text = "Yağ Hortumu Değişti.", Value ="Yağ Hortumu Değişti." },
+
+                                                   }, "--MÜDAHALE SEÇİNİZ--", new { @style = "color:black", @class = "form-control", title = "Lütfen Müdahale Seçiniz!" })
+
+                                                </div>
+                                                @Html.ValidationMessageFor(model => model.Hata2YapilanMudahale, "", new { @class = "text-danger" })
+                                            }
+                                        }
+
+                                        @if (Model.Mrv_KaliteBildirimBolumleri.ID == 4)
+                                        {
+                                            if (Model.Mrv_KaliteBildirimHata1.HataTanimi.Trim() == "Dtex Düşük" || Model.Mrv_KaliteBildirimHata.HataTanimi.Trim() == "Dtex Yüksek")
+                                            {
+
+
+                                                <div class="col-md-12">
+
+                                                    @Html.DropDownListFor(model => model.Hata2YapilanMudahale, new List<SelectListItem>
+                                                   {
+                                                             new  SelectListItem { Text = "Hammadde Kontrol-Pozisyon Tekrarı", Value ="Hammadde Kontrol-Pozisyon Tekrarı" },
+
+
+                                                   }, "--MÜDAHALE SEÇİNİZ--", new { @style = "color:black", @class = "form-control", title = "Lütfen Müdahale Seçiniz!" })
+
+                                                </div>
+                                                @Html.ValidationMessageFor(model => model.Hata2YapilanMudahale, "", new { @class = "text-danger" })
+                                            }
+                                            else if (Model.Mrv_KaliteBildirimHata1.HataTanimi.Trim() == "EK Düşük" || Model.Mrv_KaliteBildirimHata1.HataTanimi.Trim() == "EK Yüksek" || Model.Mrv_KaliteBildirimHata1.HataTanimi.Trim() == "KB Yüksek" || Model.Mrv_KaliteBildirimHata1.HataTanimi.Trim() == "KB Düşük" || Model.Mrv_KaliteBildirimHata1.HataTanimi.Trim() == "KK Yüksek" || Model.Mrv_KaliteBildirimHata1.HataTanimi.Trim() == "KK Düşük")
+                                            {
+
+
+                                                <div class="col-md-12">
+
+                                                    @Html.DropDownListFor(model => model.Hata2YapilanMudahale, new List<SelectListItem>
+                                                   {
+                                                             new  SelectListItem { Text = "YOK", Value ="YOK" },
+
+
+                                                   }, "--MÜDAHALE SEÇİNİZ--", new { @style = "color:black", @class = "form-control", title = "Lütfen Müdahale Seçiniz!" })
+
+                                                </div>
+                                                @Html.ValidationMessageFor(model => model.Hata2YapilanMudahale, "", new { @class = "text-danger" })
+                                            }
+                                            else if (Model.Mrv_KaliteBildirimHata1.HataTanimi.Trim() == "Elastan Oranı Yüksek" || Model.Mrv_KaliteBildirimHata.HataTanimi.Trim() == "Elastan Oranı Düşük" && Model.Mrv_KaliteBildirimBolumleri.ID == 4)
+                                            {
+
+
+                                                <div class="col-md-12">
+
+                                                    @Html.DropDownListFor(model => model.Hata2YapilanMudahale, new List<SelectListItem>
+                                                   {
+                                                             new  SelectListItem { Text = "Pozisyon Kontrol-Çekim Kontrol-Pozisyon Tekrarı", Value ="Pozisyon Kontrol-Çekim Kontrol-Pozisyon Tekrarı" },
+
+
+                                                   }, "--MÜDAHALE SEÇİNİZ--", new { @style = "color:black", @class = "form-control", title = "Lütfen Müdahale Seçiniz!" })
+
+                                                </div>
+                                                @Html.ValidationMessageFor(model => model.Hata2YapilanMudahale, "", new { @class = "text-danger" })
+                                            }
+
+                                            else if (Model.Mrv_KaliteBildirimHata1.HataTanimi.Trim() == "Genleşme Düşük" || Model.Mrv_KaliteBildirimHata.HataTanimi.Trim() == "Genleşme Yüksek" || Model.Mrv_KaliteBildirimHata.HataTanimi.Trim() == "Kaynama Çekme Düşük" || Model.Mrv_KaliteBildirimHata.HataTanimi.Trim() == "Kaynama Çekme Yüksek" || Model.Mrv_KaliteBildirimHata.HataTanimi.Trim() == "Mukavemet Düşük" || Model.Mrv_KaliteBildirimHata.HataTanimi.Trim() == "Mukavemet Yüksek" && Model.Mrv_KaliteBildirimBolumleri.ID == 4)
+                                            {<div class="col-md-12">
+
+                                                    @Html.DropDownListFor(model => model.Hata2YapilanMudahale, new List<SelectListItem>
+                                               {
+                                                             new  SelectListItem { Text = "Hammadde Kontrol-Pozisyon Tekrar", Value = "Hammadde Kontrol-Pozisyon Tekrar" },
+
+
+                                                   }, "--MÜDAHALE SEÇİNİZ--", new { @style = "color:black", @class = "form-control", title = "Lütfen Müdahale Seçiniz!" })
+
+                                                </div>
+                                                @Html.ValidationMessageFor(model => model.Hata2YapilanMudahale, "", new { @class = "text-danger" })
+                                            }
+
+
+                                            else if (Model.Mrv_KaliteBildirimHata1.HataTanimi.Trim() == "Punta Yüksek" || Model.Mrv_KaliteBildirimHata.HataTanimi.Trim() == "Punta Düşük" || Model.Mrv_KaliteBildirimHata.HataTanimi.Trim() == "Puntasız" && Model.Mrv_KaliteBildirimBolumleri.ID == 4)
+                                            {
+
+
+                                                <div class="col-md-12">
+
+                                                    @Html.DropDownListFor(model => model.Hata2YapilanMudahale, new List<SelectListItem>
+                                                   {
+                                                             new  SelectListItem { Text = "Jet Kontrol-Hava Basıncı Kontrol-Pozisyon Tekrarı", Value ="Jet Kontrol-Hava Basıncı Kontrol-Pozisyon Tekrarı" },
+
+
+                                                   }, "--MÜDAHALE SEÇİNİZ--", new { @style = "color:black", @class = "form-control", title = "Lütfen Müdahale Seçiniz!" })
+
+                                                </div>
+                                                @Html.ValidationMessageFor(model => model.Hata2YapilanMudahale, "", new { @class = "text-danger" })
+                                            }
+                                            else if (Model.Mrv_KaliteBildirimHata1.HataTanimi.Trim() == "Tur Sayısı Düşük" || Model.Mrv_KaliteBildirimHata.HataTanimi.Trim() == "Tur Sayısı Yüksek" && Model.Mrv_KaliteBildirimBolumleri.ID == 4)
+
+                                            {
+
+
+                                                <div class="col-md-12">
+
+                                                    @Html.DropDownListFor(model => model.Hata2YapilanMudahale, new List<SelectListItem>
+                                                   {
+                                                             new  SelectListItem { Text = "Dişli Kontrol-Pozisyon Tekrarı", Value ="Dişli Kontrol-Pozisyon Tekrarı" },
+
+
+                                                   }, "--MÜDAHALE SEÇİNİZ--", new { @style = "color:black", @class = "form-control", title = "Lütfen Müdahale Seçiniz!" })
+
+                                                </div>
+                                                @Html.ValidationMessageFor(model => model.Hata2YapilanMudahale, "", new { @class = "text-danger" })
+                                            }
+
+                                            else if (Model.Mrv_KaliteBildirimHata1.HataTanimi.Trim() == "Yağ Oranı Düşük" || Model.Mrv_KaliteBildirimHata.HataTanimi.Trim() == "Yağ Oranı Yüksek" || Model.Mrv_KaliteBildirimHata.HataTanimi.Trim() == "Yağsız" && Model.Mrv_KaliteBildirimBolumleri.ID == 4)
+
+                                            {
+
+
+                                                <div class="col-md-12">
+
+                                                    @Html.DropDownListFor(model => model.Hata2YapilanMudahale, new List<SelectListItem>
+                                                   {
+                                                             new  SelectListItem { Text = "Yağ Kanalı Kontrol-Yağ Mili Kontrol-Hammadde Kontrol-Pozisyon Tekrarı", Value ="Yağ Kanalı Kontrol-Yağ Mili Kontrol-Hammadde Kontrol-Pozisyon Tekrarı" },
+
+
+                                                   }, "--MÜDAHALE SEÇİNİZ--", new { @style = "color:black", @class = "form-control", title = "Lütfen Müdahale Seçiniz!" })
+
+                                                </div>
+                                                @Html.ValidationMessageFor(model => model.Hata2YapilanMudahale, "", new { @class = "text-danger" })
+                                            }
+                                        }
+
+                                        @if (Model.Mrv_KaliteBildirimBolumleri.ID == 2)
+                                        {
+                                            if (Model.Mrv_KaliteBildirimHata1.HataTanimi.Trim() == "Dtex Düşük" || Model.Mrv_KaliteBildirimHata1.HataTanimi.Trim() == "Dtex Yüksek" || Model.Mrv_KaliteBildirimHata1.HataTanimi.Trim() == "Elastan Oranı Yüksek" || Model.Mrv_KaliteBildirimHata1.HataTanimi.Trim() == "Elastan Oranı Düşük" || Model.Mrv_KaliteBildirimHata1.HataTanimi.Trim() == "Genleşme Yüksek" || Model.Mrv_KaliteBildirimHata1.HataTanimi.Trim() == "Genleşme Düşük" || Model.Mrv_KaliteBildirimHata1.HataTanimi.Trim() == "Mukavemet Yüksek" || Model.Mrv_KaliteBildirimHata1.HataTanimi.Trim() == "Mukavemet Düşük")
+                                            {
+                                                <div class="col-md-12">
+
+                                                    @Html.DropDownListFor(model => model.Hata2YapilanMudahale, new List<SelectListItem>
+                                                    {
+                                                              new SelectListItem { Text = "ÇEKİM KONTROL/HAMMADDE KONTROL/TEKRARINI GÖNDERME", Value ="ÇEKİM KONTROL/HAMMADDE KONTROL/TEKRARINI GÖNDERME" },
+
+
+                                                     }, "--MÜDAHALE SEÇİNİZ--", new { @style = "color:black", @class = "form-control", title = "Lütfen Müdahale Seçiniz!" })
+
+                                                </div>
+                                                @Html.ValidationMessageFor(model => model.Hata2YapilanMudahale, "", new { @class = "text-danger" })
+                                            }
+                                            else if (Model.Mrv_KaliteBildirimHata1.HataTanimi.Trim() == "EK Düşük" || Model.Mrv_KaliteBildirimHata1.HataTanimi.Trim() == "EK Yüksek" || Model.Mrv_KaliteBildirimHata1.HataTanimi.Trim() == "Kaynama Çekme Düşük" || Model.Mrv_KaliteBildirimHata1.HataTanimi.Trim() == "Kaynama Çekme Yüksek" || Model.Mrv_KaliteBildirimHata1.HataTanimi.Trim() == "KK Düşük" || Model.Mrv_KaliteBildirimHata1.HataTanimi.Trim() == "KK Yüksek" || Model.Mrv_KaliteBildirimHata1.HataTanimi.Trim() == "KB Düşük" || Model.Mrv_KaliteBildirimHata1.HataTanimi.Trim() == "KB Yüksek")
+                                            { <div class="col-md-12">
+
+                                                    @Html.DropDownListFor(model => model.Hata2YapilanMudahale, new List<SelectListItem>
+                                                    {
+                                                              new SelectListItem { Text = "ISI KONTROL/ISI DEĞİŞİMİ/TEKRARINI GÖNDERME", Value ="ISI KONTROL/ISI DEĞİŞİMİ/TEKRARINI GÖNDERME" },
+
+
+                                                     }, "--MÜDAHALE SEÇİNİZ--", new { @style = "color:black", @class = "form-control", title = "Lütfen Müdahale Seçiniz!" })
+
+                                                </div>
+                                            }
+                                            else if (Model.Mrv_KaliteBildirimHata1.HataTanimi.Trim() == "Kaynama Çekme Düşük" || Model.Mrv_KaliteBildirimHata1.HataTanimi.Trim() == "Kaynama Çekme Yüksek")
+                                            { <div class="col-md-12">
+
+                                                    @Html.DropDownListFor(model => model.Hata2YapilanMudahale, new List<SelectListItem>
+                                                    {
+                                                              new SelectListItem { Text = "JETLERİ KONTROL ETME/HAVA BASINCINI KONTROL ETME/BASKILARI KONTROL ETME/POZİSYONU TEKRAR GÖNDERME", Value ="JETLERİ KONTROL ETME/HAVA BASINCINI KONTROL ETME/BASKILARI KONTROL ETME/POZİSYONU TEKRAR GÖNDERME" },
+
+
+                                                     }, "--MÜDAHALE SEÇİNİZ--", new { @style = "color:black", @class = "form-control", title = "Lütfen Müdahale Seçiniz!" })
+
+                                                </div>
+                                                @Html.ValidationMessageFor(model => model.Hata2YapilanMudahale, "", new { @class = "text-danger" })
+                                            }
+                                            else if (Model.Mrv_KaliteBildirimHata1.HataTanimi.Trim() == "Punta Düşük" || Model.Mrv_KaliteBildirimHata1.HataTanimi.Trim() == "Punta Yüksek" || Model.Mrv_KaliteBildirimHata1.HataTanimi.Trim() == "Kalıcı Punta Düşük" || Model.Mrv_KaliteBildirimHata1.HataTanimi.Trim() == "Kalıcı Punta Yüksek" || Model.Mrv_KaliteBildirimHata1.HataTanimi.Trim() == "Puntasız" || Model.Mrv_KaliteBildirimHata1.HataTanimi.Trim() == "Snarling Düşük" || Model.Mrv_KaliteBildirimHata1.HataTanimi.Trim() == "Snarling Yüksek")
+                                            { <div class="col-md-12">
+
+                                                    @Html.DropDownListFor(model => model.Hata2YapilanMudahale, new List<SelectListItem>
+                                                    {
+                                                              new SelectListItem { Text = "JETLERİ KONTROL ETME/HAVA BASINCINI KONTROL ETME/POZİSYONU TEKRAR GÖNDERME", Value ="JETLERİ KONTROL ETME/HAVA BASINCINI KONTROL ETME/POZİSYONU TEKRAR GÖNDERME" },
+
+
+                                                     }, "--MÜDAHALE SEÇİNİZ--", new { @style = "color:black", @class = "form-control", title = "Lütfen Müdahale Seçiniz!" })
+
+                                                </div>}
+                                            else if (Model.Mrv_KaliteBildirimHata1.HataTanimi.Trim() == "Yağ Oranı Düşük" || Model.Mrv_KaliteBildirimHata1.HataTanimi.Trim() == "Yağ Oranı Yüksek" || Model.Mrv_KaliteBildirimHata1.HataTanimi.Trim() == "Yağsız")
+                                            { <div class="col-md-12">
+
+                                                    @Html.DropDownListFor(model => model.Hata2YapilanMudahale, new List<SelectListItem>
+                                                    {
+                                                              new SelectListItem { Text = "YAĞ MİLİ KONTROLÜ/YAĞ DEVRİ KONTROLÜ/YAĞ KANALLARI KONTROLÜ/HAMMADDE KONTROLÜ/TEKRAR GÖNDERİM", Value ="YAĞ MİLİ KONTROLÜ/YAĞ DEVRİ KONTROLÜ/YAĞ KANALLARI KONTROLÜ/HAMMADDE KONTROLÜ/TEKRAR GÖNDERİM" },
+
+
+                                                     }, "--MÜDAHALE SEÇİNİZ--", new { @style = "color:black", @class = "form-control", title = "Lütfen Müdahale Seçiniz!" })
+
+                                                </div>
+
+                                                @Html.ValidationMessageFor(model => model.Hata2YapilanMudahale, "", new { @class = "text-danger" })
+                                            }
+                                        }
+
+                                        @if (Model.Mrv_KaliteBildirimBolumleri.ID == 3)
+                                        {
+                                            if (Model.Mrv_KaliteBildirimHata.HataTanimi.Trim() == "Dtex Düşük" || Model.Mrv_KaliteBildirimHata.HataTanimi.Trim() == "Dtex Yüksek" || Model.Mrv_KaliteBildirimHata.HataTanimi.Trim() == "Genleşme Yüksek" || Model.Mrv_KaliteBildirimHata.HataTanimi.Trim() == "Genleşme Düşük" || Model.Mrv_KaliteBildirimHata.HataTanimi.Trim() == "Mukavemet Yüksek" || Model.Mrv_KaliteBildirimHata.HataTanimi.Trim() == "Mukavemet Düşük")
+                                            {
+                                                <div class="col-md-12">
+
+                                                    @Html.DropDownListFor(model => model.Hata2YapilanMudahale, new List<SelectListItem>
+                                                    {
+                                                              new SelectListItem { Text = "ÇEKİM KONTROL/HAMMADDE KONTROL/TEKRARINI GÖNDERME", Value ="ÇEKİM KONTROL/HAMMADDE KONTROL/TEKRARINI GÖNDERME" },
+
+
+                                                     }, "--MÜDAHALE SEÇİNİZ--", new { @style = "color:black", @class = "form-control", title = "Lütfen Müdahale Seçiniz!" })
+
+                                                </div>
+                                                @Html.ValidationMessageFor(model => model.Hata2YapilanMudahale, "", new { @class = "text-danger" })
+                                            }
+                                            else if (Model.Mrv_KaliteBildirimHata.HataTanimi.Trim() == "EK Düşük" || Model.Mrv_KaliteBildirimHata.HataTanimi.Trim() == "EK Yüksek" || Model.Mrv_KaliteBildirimHata.HataTanimi.Trim() == "Elastan Oranı Yüksek" || Model.Mrv_KaliteBildirimHata.HataTanimi.Trim() == "Elastan Oranı Düşük" || Model.Mrv_KaliteBildirimHata.HataTanimi.Trim() == "KK Yüksek" || Model.Mrv_KaliteBildirimHata.HataTanimi.Trim() == "KK Düşük" || Model.Mrv_KaliteBildirimHata.HataTanimi.Trim() == "KB Yüksek" || Model.Mrv_KaliteBildirimHata.HataTanimi.Trim() == "KB Düşük")
+                                            {
+                                                <div class="col-md-12">
+
+                                                    @Html.DropDownListFor(model => model.Hata2YapilanMudahale, new List<SelectListItem>
+                                                    {
+                                                              new SelectListItem { Text = "YOK", Value ="YOK" },
+
+
+                                                     }, "--MÜDAHALE SEÇİNİZ--", new { @style = "color:black", @class = "form-control", title = "Lütfen Müdahale Seçiniz!" })
+
+                                                </div>
+                                                @Html.ValidationMessageFor(model => model.Hata2YapilanMudahale, "", new { @class = "text-danger" })
+                                            }
+                                            else if (Model.Mrv_KaliteBildirimHata.HataTanimi.Trim() == "Kaynama Çekme Düşük" || Model.Mrv_KaliteBildirimHata.HataTanimi.Trim() == "Kaynama Çekme Yüksek")
+                                            {
+                                                <div class="col-md-12">
+
+                                                    @Html.DropDownListFor(model => model.Hata2YapilanMudahale, new List<SelectListItem>
+                                                    {
+                                                              new SelectListItem { Text = "GODET SICAKLIKLARINI KONTROL ETME/TEKRARINI GÖNDERME", Value ="GODET SICAKLIKLARINI KONTROL ETME/TEKRARINI GÖNDERME" },
+
+
+                                                     }, "--MÜDAHALE SEÇİNİZ--", new { @style = "color:black", @class = "form-control", title = "Lütfen Müdahale Seçiniz!" })
+
+                                                </div>
+                                                @Html.ValidationMessageFor(model => model.Hata2YapilanMudahale, "", new { @class = "text-danger" })
+
+                                            }
+                                            else if (Model.Mrv_KaliteBildirimHata.HataTanimi.Trim() == "Loop Oranı Düşük" || Model.Mrv_KaliteBildirimHata.HataTanimi.Trim() == "Loop Oranı Yüksek")
+                                            {
+                                                <div class="col-md-12">
+
+                                                    @Html.DropDownListFor(model => model.Hata2YapilanMudahale, new List<SelectListItem>
+                                                    {
+                                                              new SelectListItem { Text = "İĞNELERİ KONTROL ETME/SÖKME PROSESİNİ KONTROL ETME", Value ="İĞNELERİ KONTROL ETME/SÖKME PROSESİNİ KONTROL ETME" },
+
+
+                                                     }, "--MÜDAHALE SEÇİNİZ--", new { @style = "color:black", @class = "form-control", title = "Lütfen Müdahale Seçiniz!" })
+
+                                                </div>
+                                                @Html.ValidationMessageFor(model => model.Hata2YapilanMudahale, "", new { @class = "text-danger" })
+                                            }
+                                            else if (Model.Mrv_KaliteBildirimHata.HataTanimi.Trim() == "Uster Düşük" || Model.Mrv_KaliteBildirimHata.HataTanimi.Trim() == "Uster Yüksek")
+                                            {
+                                                <div class="col-md-12">
+
+                                                    @Html.DropDownListFor(model => model.Hata2YapilanMudahale, new List<SelectListItem>
+                                                    {
+                                                              new SelectListItem { Text = "POZİSYON KONTROLÜ/HAMMADDE KONTROLÜ/TEKRAR GÖNDERİM", Value ="POZİSYON KONTROLÜ/HAMMADDE KONTROLÜ/TEKRAR GÖNDERİM" },
+
+
+                                                     }, "--MÜDAHALE SEÇİNİZ--", new { @style = "color:black", @class = "form-control", title = "Lütfen Müdahale Seçiniz!" })
+
+                                                </div>
+                                                @Html.ValidationMessageFor(model => model.Hata2YapilanMudahale, "", new { @class = "text-danger" })
+                                            }
+                                            else if (Model.Mrv_KaliteBildirimHata.HataTanimi.Trim() == "Punta Düşük" || Model.Mrv_KaliteBildirimHata.HataTanimi.Trim() == "Punta Yüksek" || Model.Mrv_KaliteBildirimHata.HataTanimi.Trim() == "Puntasız")
+                                            {
+                                                <div class="col-md-12">
+
+                                                    @Html.DropDownListFor(model => model.Hata2YapilanMudahale, new List<SelectListItem>
+                                                    {
+                                                              new SelectListItem { Text = "JETLERİ KONTROL ETME/HAVA BASINCINI KONTROL ETME/POZİSYONU TEKRAR GÖNDERME", Value ="JETLERİ KONTROL ETME/HAVA BASINCINI KONTROL ETME/POZİSYONU TEKRAR GÖNDERME" },
+
+
+                                                     }, "--MÜDAHALE SEÇİNİZ--", new { @style = "color:black", @class = "form-control", title = "Lütfen Müdahale Seçiniz!" })
+
+                                                </div>
+                                                @Html.ValidationMessageFor(model => model.Hata2YapilanMudahale, "", new { @class = "text-danger" })
+                                            }
+                                            else if (Model.Mrv_KaliteBildirimHata.HataTanimi.Trim() == "Yağ Oranı Düşük" || Model.Mrv_KaliteBildirimHata.HataTanimi.Trim() == "Yağ Oranı Yüksek" || Model.Mrv_KaliteBildirimHata.HataTanimi.Trim() == "Yağsız")
+                                            {
+                                                <div class="col-md-12">
+
+                                                    @Html.DropDownListFor(model => model.Hata2YapilanMudahale, new List<SelectListItem>
+                                                    {
+                                                              new SelectListItem { Text = "YAĞ MİLİ KONTROLÜ/YAĞ DEVRİ KONTROLÜ/YAĞ KANALLARI KONTROLÜ/HAMMADDE KONTROLÜ/TEKRAR GÖNDERİM", Value ="YAĞ MİLİ KONTROLÜ/YAĞ DEVRİ KONTROLÜ/YAĞ KANALLARI KONTROLÜ/HAMMADDE KONTROLÜ/TEKRAR GÖNDERİM" },
+
+
+                                                     }, "--MÜDAHALE SEÇİNİZ--", new { @style = "color:black", @class = "form-control", title = "Lütfen Müdahale Seçiniz!" })
+
+                                                </div>
+                                                @Html.ValidationMessageFor(model => model.Hata2YapilanMudahale, "", new { @class = "text-danger" })
+                                            }
+                                        }
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <br />
+                        <div class="row">
+                            <div class="col-md-6">
+                                <b>@Html.Label("HATA/3", htmlAttributes: new { @class = "control-label col-md-12" })</b>
+                                <div class="col-md-12">
+                                    @Html.EditorFor(model => model.Mrv_KaliteBildirimHata2.HataTanimi, new { htmlAttributes = new { @class = "form-control", @readonly = true } })
+                                    @Html.ValidationMessageFor(model => model.Mrv_KaliteBildirimHata2.HataTanimi, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <b> @Html.Label("HATA/3 YAPILAN MÜDAHALE", htmlAttributes: new { @class = "control-label col-md-12" })</b>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        @if (Model.Mrv_KaliteBildirimBolumleri.ID == 1)
+                                        {
+                                            if (Model.Mrv_KaliteBildirimHata2.HataTanimi.Trim() == "Dtex Düşük")
+                                            {
+
+
+                                                <div class="col-md-12">
+
+                                                    @Html.DropDownListFor(model => model.Hata3YapilanMudahale, new List<SelectListItem>
+                                                   {
+                                                             new  SelectListItem { Text = "Melt Pompa Değeri Artırıldı.", Value = "Melt Pompa Değeri Artırıldı" },
+
+                                                   }, "--MÜDAHALE SEÇİNİZ--", new { @style = "color:black", @class = "form-control", title = "Lütfen Müdahale Seçiniz!" })
+
+                                                </div>
+                                                @Html.ValidationMessageFor(model => model.Hata3YapilanMudahale, "", new { @class = "text-danger" })
+                                            }
+                                            if (Model.Mrv_KaliteBildirimHata2.HataTanimi.Trim() == "Dtex Yüksek")
+                                            {<div class="col-md-12">
+
+                                                    @Html.DropDownListFor(model => model.Hata3YapilanMudahale, new List<SelectListItem>
+                                               {
+                                                             new  SelectListItem { Text = "Melt Pompa Değeri Azaltıldı.", Value = "Melt Pompa Değeri Azaltıldı" },
+
+                                                   }, "--MÜDAHALE SEÇİNİZ--", new { @style = "color:black", @class = "form-control", title = "Lütfen Müdahale Seçiniz!" })
+
+                                                </div>
+                                                @Html.ValidationMessageFor(model => model.Hata3YapilanMudahale, "", new { @class = "text-danger" })
+                                            }
+                                            if (Model.Mrv_KaliteBildirimHata2.HataTanimi.Trim() == "Genleşme Düşük")
+                                            {<div class="col-md-12">
+
+                                                    @Html.DropDownListFor(model => model.Hata3YapilanMudahale, new List<SelectListItem>
+                                               {
+                                                             new  SelectListItem { Text = "Quench Hava Hızı Azaltıldı.", Value = "Quench Hava Hızı Azaltıldı." },
+                                                             new  SelectListItem { Text = "Winder Hızı Azaltıldı.", Value = "Winder Hızı Azaltıldı" },
+                                                             new  SelectListItem { Text = "Godet Hızları Değiştirildi.", Value = "Godet Hızları Değiştirildi." },
+
+                                                   }, "--MÜDAHALE SEÇİNİZ--", new { @style = "color:black", @class = "form-control", title = "Lütfen Müdahale Seçiniz!" })
+
+                                                </div>
+                                                @Html.ValidationMessageFor(model => model.Hata3YapilanMudahale, "", new { @class = "text-danger" })
+                                            }
+                                            if (Model.Mrv_KaliteBildirimHata2.HataTanimi.Trim() == "Genleşme Yüksek")
+                                            {<div class="col-md-12">
+
+                                                    @Html.DropDownListFor(model => model.Hata3YapilanMudahale, new List<SelectListItem>
+                                               {
+                                                             new  SelectListItem { Text = "Quench Hava Hızı Arttırıldı.", Value = "Quench Hava Hızı Arttırıldı." },
+                                                             new  SelectListItem { Text = "Winder Hızı Arttırıldı.", Value = "Winder Hızı Arttırıldı" },
+                                                             new  SelectListItem { Text = "Godet Hızları Değiştirildi.", Value = "Godet Hızları Değiştirildi." },
+
+                                                   }, "--MÜDAHALE SEÇİNİZ--", new { @style = "color:black", @class = "form-control", title = "Lütfen Müdahale Seçiniz!" })
+
+                                                </div>
+                                                @Html.ValidationMessageFor(model => model.Hata3YapilanMudahale, "", new { @class = "text-danger" })
+                                            }
+                                            if (Model.Mrv_KaliteBildirimHata2.HataTanimi.Trim() == "Kaynama Çekme Düşük" || Model.Mrv_KaliteBildirimHata2.HataTanimi.Trim() == "Kaynama Çekme Yüksek")
+                                            {<div class="col-md-12">
+
+                                                    @Html.DropDownListFor(model => model.Hata3YapilanMudahale, new List<SelectListItem>
+                                               {
+                                                             new  SelectListItem { Text = "Godet 1/2 Sıcaklığı Arttırıldı.", Value = "Godet 1/2 Sıcaklığı Arttırıldı." },
+                                                             new  SelectListItem { Text = "Godet 3/4 Sıcaklığı Arttırıldı.", Value = "Godet 3/4 Sıcaklığı Arttırıldı." },
+
+
+                                                   }, "--MÜDAHALE SEÇİNİZ--", new { @style = "color:black", @class = "form-control", title = "Lütfen Müdahale Seçiniz!" })
+
+                                                </div>
+                                                @Html.ValidationMessageFor(model => model.Hata3YapilanMudahale, "", new { @class = "text-danger" })
+                                            }
+                                            if (Model.Mrv_KaliteBildirimHata2.HataTanimi.Trim() == "Kesit Büyük" || Model.Mrv_KaliteBildirimHata2.HataTanimi.Trim() == "Kesit Düzensiz" || Model.Mrv_KaliteBildirimHata2.HataTanimi.Trim() == "Kesit Büyük")
+                                            {<div class="col-md-12">
+
+                                                    @Html.DropDownListFor(model => model.Hata3YapilanMudahale, new List<SelectListItem>
+                                               {
+                                                             new  SelectListItem { Text = "Düze Değiştirildi.", Value = "Düze Değiştirildi." },
+
+
+
+                                                   }, "--MÜDAHALE SEÇİNİZ--", new { @style = "color:black", @class = "form-control", title = "Lütfen Müdahale Seçiniz!" })
+
+                                                </div>
+                                                @Html.ValidationMessageFor(model => model.Hata3YapilanMudahale, "", new { @class = "text-danger" })
+                                            }
+                                            if (Model.Mrv_KaliteBildirimHata2.HataTanimi.Trim() == "Mukavemet Düşük" || Model.Mrv_KaliteBildirimHata2.HataTanimi.Trim() == "Mukavemet Yüksek" || Model.Mrv_KaliteBildirimHata2.HataTanimi.Trim() == "Uster Düşük")
+                                            {<div class="col-md-12">
+
+                                                    @Html.DropDownListFor(model => model.Hata3YapilanMudahale, new List<SelectListItem>
+                                               {
+                                                             new  SelectListItem { Text = "YOK", Value = "YOK" },
+
+
+
+                                                   }, "--MÜDAHALE SEÇİNİZ--", new { @style = "color:black", @class = "form-control", title = "Lütfen Müdahale Seçiniz!" })
+
+                                                </div>
+                                                @Html.ValidationMessageFor(model => model.Hata3YapilanMudahale, "", new { @class = "text-danger" })
+                                            }
+                                            if (Model.Mrv_KaliteBildirimHata2.HataTanimi.Trim() == "Punta Düşük")
+                                            {<div class="col-md-12">
+
+                                                    @Html.DropDownListFor(model => model.Hata3YapilanMudahale, new List<SelectListItem>
+                                               {
+                                                             new  SelectListItem { Text = "Godet 1/2 Hızı Değiştirildi.", Value = "Godet 1/2 Hızı Değiştirildi." },
+                                                             new  SelectListItem { Text = "Godet 3/4 Hızı Değiştirildi.", Value = "Godet 3/4 Hızı Değiştirildi." },
+                                                             new  SelectListItem { Text = "Jet Basıncı Arttırıldı.", Value = "Jet Basıncı Arttırıldı." },
+
+
+                                                   }, "--MÜDAHALE SEÇİNİZ--", new { @style = "color:black", @class = "form-control", title = "Lütfen Müdahale Seçiniz!" })
+
+                                                </div>
+                                                @Html.ValidationMessageFor(model => model.Hata3YapilanMudahale, "", new { @class = "text-danger" })
+                                            }
+
+                                            if (Model.Mrv_KaliteBildirimHata2.HataTanimi.Trim() == "Punta Yüksek")
+                                            {<div class="col-md-12">
+
+                                                    @Html.DropDownListFor(model => model.Hata3YapilanMudahale, new List<SelectListItem>
+                                               {
+                                                             new  SelectListItem { Text = "Godet 1/2 Hızı Değiştirildi.", Value = "Godet 1/2 Hızı Değiştirildi." },
+                                                             new  SelectListItem { Text = "Godet 3/4 Hızı Değiştirildi.", Value = "Godet 3/4 Hızı Değiştirildi." },
+                                                             new  SelectListItem { Text = "Jet Basıncı Azaltıldı.", Value = "Jet Basıncı Azaltıldı." },
+
+
+                                                   }, "--MÜDAHALE SEÇİNİZ--", new { @style = "color:black", @class = "form-control", title = "Lütfen Müdahale Seçiniz!" })
+
+                                                </div>
+                                                @Html.ValidationMessageFor(model => model.Hata3YapilanMudahale, "", new { @class = "text-danger" })
+                                            }
+                                            if (Model.Mrv_KaliteBildirimHata2.HataTanimi.Trim() == "Puntasız")
+                                            {<div class="col-md-12">
+
+                                                    @Html.DropDownListFor(model => model.Hata3YapilanMudahale, new List<SelectListItem>
+                                               {
+
+                                                             new  SelectListItem { Text = "Jet Hava Hortumu Değiştirildi.", Value = "Jet Hava Hortumu Değiştirildi." },
+                                                             new  SelectListItem { Text = "Jet Temizliği Yapıldı.", Value = "Jet Temizliği Yapıldı." },
+
+
+                                                   }, "--MÜDAHALE SEÇİNİZ--", new { @style = "color:black", @class = "form-control", title = "Lütfen Müdahale Seçiniz!" })
+
+                                                </div>
+                                                @Html.ValidationMessageFor(model => model.Hata3YapilanMudahale, "", new { @class = "text-danger" })
+                                            }
+
+
+                                            if (Model.Mrv_KaliteBildirimHata2.HataTanimi.Trim() == "Uster Yüksek")
+                                            {
+
+
+                                                <div class="col-md-12">
+
+                                                    @Html.DropDownListFor(model => model.Hata3YapilanMudahale, new List<SelectListItem>
+                                                   {
+                                                             new  SelectListItem { Text = "Quench Hava Hızı Artırıldı.", Value ="Quench Hava Hızı Artırıldı." },
+
+                                                   }, "--MÜDAHALE SEÇİNİZ--", new { @style = "color:black", @class = "form-control", title = "Lütfen Müdahale Seçiniz!" })
+
+                                                </div>
+                                                @Html.ValidationMessageFor(model => model.Hata3YapilanMudahale, "", new { @class = "text-danger" })
+                                            }
+
+                                            if (Model.Mrv_KaliteBildirimHata2.HataTanimi.Trim() == "Yağ Oranı Düşük")
+                                            {
+
+
+                                                <div class="col-md-12">
+
+                                                    @Html.DropDownListFor(model => model.Hata3YapilanMudahale, new List<SelectListItem>
+                                                   {
+                                                             new  SelectListItem { Text = "Yağ Devri Artırıldı.", Value ="Yağ Devri Artırıldı." },
+
+                                                   }, "--MÜDAHALE SEÇİNİZ--", new { @style = "color:black", @class = "form-control", title = "Lütfen Müdahale Seçiniz!" })
+
+                                                </div>
+                                                @Html.ValidationMessageFor(model => model.Hata3YapilanMudahale, "", new { @class = "text-danger" })
+                                            }
+                                            if (Model.Mrv_KaliteBildirimHata2.HataTanimi.Trim() == "Yağ Oranı Yüksek")
+                                            {
+
+
+                                                <div class="col-md-12">
+
+                                                    @Html.DropDownListFor(model => model.Hata3YapilanMudahale, new List<SelectListItem>
+                                                   {
+                                                             new  SelectListItem { Text = "Yağ Devri Azaltıldı", Value ="Yağ Devri Azaltıldı" },
+
+                                                   }, "--MÜDAHALE SEÇİNİZ--", new { @style = "color:black", @class = "form-control", title = "Lütfen Müdahale Seçiniz!" })
+
+                                                </div>
+                                                @Html.ValidationMessageFor(model => model.Hata3YapilanMudahale, "", new { @class = "text-danger" })
+                                            }
+                                            if (Model.Mrv_KaliteBildirimHata2.HataTanimi.Trim() == "Yağsız")
+                                            {
+
+
+                                                <div class="col-md-12">
+
+                                                    @Html.DropDownListFor(model => model.Hata3YapilanMudahale, new List<SelectListItem>
+                                                   {
+                                                             new  SelectListItem { Text = "Yağ Kılavuzu Değişti.", Value ="Yağ Kılavuzu Değişti." },
+                                                                new  SelectListItem { Text = "Yağ Hortumu Değişti.", Value ="Yağ Hortumu Değişti." },
+
+                                                   }, "--MÜDAHALE SEÇİNİZ--", new { @style = "color:black", @class = "form-control", title = "Lütfen Müdahale Seçiniz!" })
+
+                                                </div>
+                                                @Html.ValidationMessageFor(model => model.Hata3YapilanMudahale, "", new { @class = "text-danger" })
+                                            }
+                                        }
+
+                                        @if (Model.Mrv_KaliteBildirimBolumleri.ID == 4)
+                                        {
+                                            if (Model.Mrv_KaliteBildirimHata2.HataTanimi.Trim() == "Dtex Düşük" || Model.Mrv_KaliteBildirimHata2.HataTanimi.Trim() == "Dtex Yüksek")
+                                            {
+
+
+                                                <div class="col-md-12">
+
+                                                    @Html.DropDownListFor(model => model.Hata3YapilanMudahale, new List<SelectListItem>
+                                                   {
+                                                             new  SelectListItem { Text = "Hammadde Kontrol-Pozisyon Tekrarı", Value ="Hammadde Kontrol-Pozisyon Tekrarı" },
+
+
+                                                   }, "--MÜDAHALE SEÇİNİZ--", new { @style = "color:black", @class = "form-control", title = "Lütfen Müdahale Seçiniz!" })
+
+                                                </div>
+                                                @Html.ValidationMessageFor(model => model.Hata3YapilanMudahale, "", new { @class = "text-danger" })
+                                            }
+                                            else if (Model.Mrv_KaliteBildirimHata2.HataTanimi.Trim() == "EK Düşük" || Model.Mrv_KaliteBildirimHata2.HataTanimi.Trim() == "EK Yüksek" || Model.Mrv_KaliteBildirimHata2.HataTanimi.Trim() == "KB Yüksek" || Model.Mrv_KaliteBildirimHata2.HataTanimi.Trim() == "KB Düşük" || Model.Mrv_KaliteBildirimHata2.HataTanimi.Trim() == "KK Yüksek" || Model.Mrv_KaliteBildirimHata2.HataTanimi.Trim() == "KK Düşük")
+                                            {
+
+
+                                                <div class="col-md-12">
+
+                                                    @Html.DropDownListFor(model => model.Hata3YapilanMudahale, new List<SelectListItem>
+                                                   {
+                                                             new  SelectListItem { Text = "YOK", Value ="YOK" },
+
+
+                                                   }, "--MÜDAHALE SEÇİNİZ--", new { @style = "color:black", @class = "form-control", title = "Lütfen Müdahale Seçiniz!" })
+
+                                                </div>
+                                                @Html.ValidationMessageFor(model => model.Hata3YapilanMudahale, "", new { @class = "text-danger" })
+                                            }
+                                            else if (Model.Mrv_KaliteBildirimHata2.HataTanimi.Trim() == "Elastan Oranı Yüksek" || Model.Mrv_KaliteBildirimHata2.HataTanimi.Trim() == "Elastan Oranı Düşük")
+                                            {
+
+
+                                                <div class="col-md-12">
+
+                                                    @Html.DropDownListFor(model => model.Hata3YapilanMudahale, new List<SelectListItem>
+                                                   {
+                                                             new  SelectListItem { Text = "Pozisyon Kontrol-Çekim Kontrol-Pozisyon Tekrarı", Value ="Pozisyon Kontrol-Çekim Kontrol-Pozisyon Tekrarı" },
+
+
+                                                   }, "--MÜDAHALE SEÇİNİZ--", new { @style = "color:black", @class = "form-control", title = "Lütfen Müdahale Seçiniz!" })
+
+                                                </div>
+                                                @Html.ValidationMessageFor(model => model.Hata3YapilanMudahale, "", new { @class = "text-danger" })
+                                            }
+
+                                            else if (Model.Mrv_KaliteBildirimHata2.HataTanimi.Trim() == "Genleşme Düşük" || Model.Mrv_KaliteBildirimHata2.HataTanimi.Trim() == "Genleşme Yüksek" || Model.Mrv_KaliteBildirimHata2.HataTanimi.Trim() == "Kaynama Çekme Düşük" || Model.Mrv_KaliteBildirimHata2.HataTanimi.Trim() == "Kaynama Çekme Yüksek" || Model.Mrv_KaliteBildirimHata2.HataTanimi.Trim() == "Mukavemet Düşük" || Model.Mrv_KaliteBildirimHata2.HataTanimi.Trim() == "Mukavemet Yüksek")
+                                            {<div class="col-md-12">
+
+                                                    @Html.DropDownListFor(model => model.Hata3YapilanMudahale, new List<SelectListItem>
+                                               {
+                                                             new  SelectListItem { Text = "Hammadde Kontrol-Pozisyon Tekrar", Value = "Hammadde Kontrol-Pozisyon Tekrar" },
+
+
+                                                   }, "--MÜDAHALE SEÇİNİZ--", new { @style = "color:black", @class = "form-control", title = "Lütfen Müdahale Seçiniz!" })
+
+                                                </div>
+                                                @Html.ValidationMessageFor(model => model.Hata3YapilanMudahale, "", new { @class = "text-danger" })
+                                            }
+
+
+                                            else if (Model.Mrv_KaliteBildirimHata2.HataTanimi.Trim() == "Punta Yüksek" || Model.Mrv_KaliteBildirimHata2.HataTanimi.Trim() == "Punta Düşük" || Model.Mrv_KaliteBildirimHata2.HataTanimi.Trim() == "Puntasız")
+                                            {
+
+
+                                                <div class="col-md-12">
+
+                                                    @Html.DropDownListFor(model => model.Hata3YapilanMudahale, new List<SelectListItem>
+                                                   {
+                                                             new  SelectListItem { Text = "Jet Kontrol-Hava Basıncı Kontrol-Pozisyon Tekrarı", Value ="Jet Kontrol-Hava Basıncı Kontrol-Pozisyon Tekrarı" },
+
+
+                                                   }, "--MÜDAHALE SEÇİNİZ--", new { @style = "color:black", @class = "form-control", title = "Lütfen Müdahale Seçiniz!" })
+
+                                                </div>
+                                                @Html.ValidationMessageFor(model => model.Hata3YapilanMudahale, "", new { @class = "text-danger" })
+                                            }
+                                            else if (Model.Mrv_KaliteBildirimHata2.HataTanimi.Trim() == "Tur Sayısı Düşük" || Model.Mrv_KaliteBildirimHata2.HataTanimi.Trim() == "Tur Sayısı Yüksek")
+
+                                            {
+
+
+                                                <div class="col-md-12">
+
+                                                    @Html.DropDownListFor(model => model.Hata3YapilanMudahale, new List<SelectListItem>
+                                                   {
+                                                             new  SelectListItem { Text = "Dişli Kontrol-Pozisyon Tekrarı", Value ="Dişli Kontrol-Pozisyon Tekrarı" },
+
+
+                                                   }, "--MÜDAHALE SEÇİNİZ--", new { @style = "color:black", @class = "form-control", title = "Lütfen Müdahale Seçiniz!" })
+
+                                                </div>
+                                                @Html.ValidationMessageFor(model => model.Hata3YapilanMudahale, "", new { @class = "text-danger" })
+                                            }
+
+                                            else if (Model.Mrv_KaliteBildirimHata2.HataTanimi.Trim() == "Yağ Oranı Düşük" || Model.Mrv_KaliteBildirimHata2.HataTanimi.Trim() == "Yağ Oranı Yüksek" || Model.Mrv_KaliteBildirimHata2.HataTanimi.Trim() == "Yağsız")
+
+                                            {
+
+
+                                                <div class="col-md-12">
+
+                                                    @Html.DropDownListFor(model => model.Hata3YapilanMudahale, new List<SelectListItem>
+                                                   {
+                                                             new  SelectListItem { Text = "Yağ Kanalı Kontrol-Yağ Mili Kontrol-Hammadde Kontrol-Pozisyon Tekrarı", Value ="Yağ Kanalı Kontrol-Yağ Mili Kontrol-Hammadde Kontrol-Pozisyon Tekrarı" },
+
+
+                                                   }, "--MÜDAHALE SEÇİNİZ--", new { @style = "color:black", @class = "form-control", title = "Lütfen Müdahale Seçiniz!" })
+
+                                                </div>
+                                                @Html.ValidationMessageFor(model => model.Hata3YapilanMudahale, "", new { @class = "text-danger" })
+                                            }
+                                        }
+
+                                        @if (Model.Mrv_KaliteBildirimBolumleri.ID == 2)
+                                        {
+                                            if (Model.Mrv_KaliteBildirimHata2.HataTanimi.Trim() == "Dtex Düşük" || Model.Mrv_KaliteBildirimHata2.HataTanimi.Trim() == "Dtex Yüksek" || Model.Mrv_KaliteBildirimHata2.HataTanimi.Trim() == "Elastan Oranı Yüksek" || Model.Mrv_KaliteBildirimHata2.HataTanimi.Trim() == "Elastan Oranı Düşük" || Model.Mrv_KaliteBildirimHata2.HataTanimi.Trim() == "Genleşme Yüksek" || Model.Mrv_KaliteBildirimHata2.HataTanimi.Trim() == "Genleşme Düşük" || Model.Mrv_KaliteBildirimHata2.HataTanimi.Trim() == "Mukavemet Yüksek" || Model.Mrv_KaliteBildirimHata2.HataTanimi.Trim() == "Mukavemet Düşük")
+                                            {
+                                                <div class="col-md-12">
+
+                                                    @Html.DropDownListFor(model => model.Hata3YapilanMudahale, new List<SelectListItem>
+                                                    {
+                                                              new SelectListItem { Text = "ÇEKİM KONTROL/HAMMADDE KONTROL/TEKRARINI GÖNDERME", Value ="ÇEKİM KONTROL/HAMMADDE KONTROL/TEKRARINI GÖNDERME" },
+
+
+                                                     }, "--MÜDAHALE SEÇİNİZ--", new { @style = "color:black", @class = "form-control", title = "Lütfen Müdahale Seçiniz!" })
+
+                                                </div>
+                                                @Html.ValidationMessageFor(model => model.Hata3YapilanMudahale, "", new { @class = "text-danger" })
+                                            }
+                                            else if (Model.Mrv_KaliteBildirimHata2.HataTanimi.Trim() == "EK Düşük" || Model.Mrv_KaliteBildirimHata2.HataTanimi.Trim() == "EK Yüksek" || Model.Mrv_KaliteBildirimHata2.HataTanimi.Trim() == "Kaynama Çekme Düşük" || Model.Mrv_KaliteBildirimHata2.HataTanimi.Trim() == "Kaynama Çekme Yüksek" || Model.Mrv_KaliteBildirimHata2.HataTanimi.Trim() == "KK Düşük" || Model.Mrv_KaliteBildirimHata2.HataTanimi.Trim() == "KK Yüksek" || Model.Mrv_KaliteBildirimHata2.HataTanimi.Trim() == "KB Düşük" || Model.Mrv_KaliteBildirimHata2.HataTanimi.Trim() == "KB Yüksek")
+                                            { <div class="col-md-12">
+
+                                                    @Html.DropDownListFor(model => model.Hata3YapilanMudahale, new List<SelectListItem>
+                                                    {
+                                                              new SelectListItem { Text = "ISI KONTROL/ISI DEĞİŞİMİ/TEKRARINI GÖNDERME", Value ="ISI KONTROL/ISI DEĞİŞİMİ/TEKRARINI GÖNDERME" },
+
+
+                                                     }, "--MÜDAHALE SEÇİNİZ--", new { @style = "color:black", @class = "form-control", title = "Lütfen Müdahale Seçiniz!" })
+
+                                                </div>
+                                            }
+                                            else if (Model.Mrv_KaliteBildirimHata2.HataTanimi.Trim() == "Kaynama Çekme Düşük" || Model.Mrv_KaliteBildirimHata2.HataTanimi.Trim() == "Kaynama Çekme Yüksek")
+                                            { <div class="col-md-12">
+
+                                                    @Html.DropDownListFor(model => model.Hata3YapilanMudahale, new List<SelectListItem>
+                                                    {
+                                                              new SelectListItem { Text = "JETLERİ KONTROL ETME/HAVA BASINCINI KONTROL ETME/BASKILARI KONTROL ETME/POZİSYONU TEKRAR GÖNDERME", Value ="JETLERİ KONTROL ETME/HAVA BASINCINI KONTROL ETME/BASKILARI KONTROL ETME/POZİSYONU TEKRAR GÖNDERME" },
+
+
+                                                     }, "--MÜDAHALE SEÇİNİZ--", new { @style = "color:black", @class = "form-control", title = "Lütfen Müdahale Seçiniz!" })
+
+                                                </div>
+                                                @Html.ValidationMessageFor(model => model.Hata3YapilanMudahale, "", new { @class = "text-danger" })
+                                            }
+                                            else if (Model.Mrv_KaliteBildirimHata2.HataTanimi.Trim() == "Punta Düşük" || Model.Mrv_KaliteBildirimHata2.HataTanimi.Trim() == "Punta Yüksek" || Model.Mrv_KaliteBildirimHata2.HataTanimi.Trim() == "Kalıcı Punta Düşük" || Model.Mrv_KaliteBildirimHata2.HataTanimi.Trim() == "Kalıcı Punta Yüksek" || Model.Mrv_KaliteBildirimHata2.HataTanimi.Trim() == "Puntasız" || Model.Mrv_KaliteBildirimHata2.HataTanimi.Trim() == "Snarling Düşük" || Model.Mrv_KaliteBildirimHata2.HataTanimi.Trim() == "Snarling Yüksek")
+                                            { <div class="col-md-12">
+
+                                                    @Html.DropDownListFor(model => model.Hata3YapilanMudahale, new List<SelectListItem>
+                                                    {
+                                                              new SelectListItem { Text = "JETLERİ KONTROL ETME/HAVA BASINCINI KONTROL ETME/POZİSYONU TEKRAR GÖNDERME", Value ="JETLERİ KONTROL ETME/HAVA BASINCINI KONTROL ETME/POZİSYONU TEKRAR GÖNDERME" },
+
+
+                                                     }, "--MÜDAHALE SEÇİNİZ--", new { @style = "color:black", @class = "form-control", title = "Lütfen Müdahale Seçiniz!" })
+
+                                                </div>}
+                                            else if (Model.Mrv_KaliteBildirimHata2.HataTanimi.Trim() == "Yağ Oranı Düşük" || Model.Mrv_KaliteBildirimHata2.HataTanimi.Trim() == "Yağ Oranı Yüksek" || Model.Mrv_KaliteBildirimHata2.HataTanimi.Trim() == "Yağsız")
+                                            { <div class="col-md-12">
+
+                                                    @Html.DropDownListFor(model => model.Hata3YapilanMudahale, new List<SelectListItem>
+                                                    {
+                                                              new SelectListItem { Text = "YAĞ MİLİ KONTROLÜ/YAĞ DEVRİ KONTROLÜ/YAĞ KANALLARI KONTROLÜ/HAMMADDE KONTROLÜ/TEKRAR GÖNDERİM", Value ="YAĞ MİLİ KONTROLÜ/YAĞ DEVRİ KONTROLÜ/YAĞ KANALLARI KONTROLÜ/HAMMADDE KONTROLÜ/TEKRAR GÖNDERİM" },
+
+
+                                                     }, "--MÜDAHALE SEÇİNİZ--", new { @style = "color:black", @class = "form-control", title = "Lütfen Müdahale Seçiniz!" })
+
+                                                </div>
+
+                                                @Html.ValidationMessageFor(model => model.Hata3YapilanMudahale, "", new { @class = "text-danger" })
+                                            }
+                                        }
+
+                                        @if (Model.Mrv_KaliteBildirimBolumleri.ID == 3)
+                                        {
+                                            if (Model.Mrv_KaliteBildirimHata2.HataTanimi.Trim() == "Dtex Düşük" || Model.Mrv_KaliteBildirimHata2.HataTanimi.Trim() == "Dtex Yüksek" || Model.Mrv_KaliteBildirimHata2.HataTanimi.Trim() == "Genleşme Yüksek" || Model.Mrv_KaliteBildirimHata2.HataTanimi.Trim() == "Genleşme Düşük" || Model.Mrv_KaliteBildirimHata2.HataTanimi.Trim() == "Mukavemet Yüksek" || Model.Mrv_KaliteBildirimHata2.HataTanimi.Trim() == "Mukavemet Düşük")
+                                            {
+                                                <div class="col-md-12">
+
+                                                    @Html.DropDownListFor(model => model.Hata3YapilanMudahale, new List<SelectListItem>
+                                                    {
+                                                              new SelectListItem { Text = "ÇEKİM KONTROL/HAMMADDE KONTROL/TEKRARINI GÖNDERME", Value ="ÇEKİM KONTROL/HAMMADDE KONTROL/TEKRARINI GÖNDERME" },
+
+
+                                                     }, "--MÜDAHALE SEÇİNİZ--", new { @style = "color:black", @class = "form-control", title = "Lütfen Müdahale Seçiniz!" })
+
+                                                </div>
+                                                @Html.ValidationMessageFor(model => model.Hata3YapilanMudahale, "", new { @class = "text-danger" })
+                                            }
+                                            else if (Model.Mrv_KaliteBildirimHata2.HataTanimi.Trim() == "EK Düşük" || Model.Mrv_KaliteBildirimHata2.HataTanimi.Trim() == "EK Yüksek" || Model.Mrv_KaliteBildirimHata2.HataTanimi.Trim() == "Elastan Oranı Yüksek" || Model.Mrv_KaliteBildirimHata2.HataTanimi.Trim() == "Elastan Oranı Düşük" || Model.Mrv_KaliteBildirimHata2.HataTanimi.Trim() == "KK Yüksek" || Model.Mrv_KaliteBildirimHata2.HataTanimi.Trim() == "KK Düşük" || Model.Mrv_KaliteBildirimHata2.HataTanimi.Trim() == "KB Yüksek" || Model.Mrv_KaliteBildirimHata2.HataTanimi.Trim() == "KB Düşük")
+                                            {
+                                                <div class="col-md-12">
+
+                                                    @Html.DropDownListFor(model => model.Hata3YapilanMudahale, new List<SelectListItem>
+                                                    {
+                                                              new SelectListItem { Text = "YOK", Value ="YOK" },
+
+
+                                                     }, "--MÜDAHALE SEÇİNİZ--", new { @style = "color:black", @class = "form-control", title = "Lütfen Müdahale Seçiniz!" })
+
+                                                </div>
+                                                @Html.ValidationMessageFor(model => model.Hata3YapilanMudahale, "", new { @class = "text-danger" })
+                                            }
+                                            else if (Model.Mrv_KaliteBildirimHata2.HataTanimi.Trim() == "Kaynama Çekme Düşük" || Model.Mrv_KaliteBildirimHata2.HataTanimi.Trim() == "Kaynama Çekme Yüksek")
+                                            {
+                                                <div class="col-md-12">
+
+                                                    @Html.DropDownListFor(model => model.Hata3YapilanMudahale, new List<SelectListItem>
+                                                    {
+                                                              new SelectListItem { Text = "GODET SICAKLIKLARINI KONTROL ETME/TEKRARINI GÖNDERME", Value ="GODET SICAKLIKLARINI KONTROL ETME/TEKRARINI GÖNDERME" },
+
+
+                                                     }, "--MÜDAHALE SEÇİNİZ--", new { @style = "color:black", @class = "form-control", title = "Lütfen Müdahale Seçiniz!" })
+
+                                                </div>
+                                                @Html.ValidationMessageFor(model => model.Hata3YapilanMudahale, "", new { @class = "text-danger" })
+
+                                            }
+                                            else if (Model.Mrv_KaliteBildirimHata2.HataTanimi.Trim() == "Loop Oranı Düşük" || Model.Mrv_KaliteBildirimHata2.HataTanimi.Trim() == "Loop Oranı Yüksek")
+                                            {
+                                                <div class="col-md-12">
+
+                                                    @Html.DropDownListFor(model => model.Hata3YapilanMudahale, new List<SelectListItem>
+                                                    {
+                                                              new SelectListItem { Text = "İĞNELERİ KONTROL ETME/SÖKME PROSESİNİ KONTROL ETME", Value ="İĞNELERİ KONTROL ETME/SÖKME PROSESİNİ KONTROL ETME" },
+
+
+                                                     }, "--MÜDAHALE SEÇİNİZ--", new { @style = "color:black", @class = "form-control", title = "Lütfen Müdahale Seçiniz!" })
+
+                                                </div>
+                                                @Html.ValidationMessageFor(model => model.Hata3YapilanMudahale, "", new { @class = "text-danger" })
+                                            }
+                                            else if (Model.Mrv_KaliteBildirimHata2.HataTanimi.Trim() == "Uster Düşük" || Model.Mrv_KaliteBildirimHata2.HataTanimi.Trim() == "Uster Yüksek")
+                                            {
+                                                <div class="col-md-12">
+
+                                                    @Html.DropDownListFor(model => model.Hata3YapilanMudahale, new List<SelectListItem>
+                                                    {
+                                                              new SelectListItem { Text = "POZİSYON KONTROLÜ/HAMMADDE KONTROLÜ/TEKRAR GÖNDERİM", Value ="POZİSYON KONTROLÜ/HAMMADDE KONTROLÜ/TEKRAR GÖNDERİM" },
+
+
+                                                     }, "--MÜDAHALE SEÇİNİZ--", new { @style = "color:black", @class = "form-control", title = "Lütfen Müdahale Seçiniz!" })
+
+                                                </div>
+                                                @Html.ValidationMessageFor(model => model.Hata3YapilanMudahale, "", new { @class = "text-danger" })
+                                            }
+                                            else if (Model.Mrv_KaliteBildirimHata2.HataTanimi.Trim() == "Punta Düşük" || Model.Mrv_KaliteBildirimHata2.HataTanimi.Trim() == "Punta Yüksek" || Model.Mrv_KaliteBildirimHata.HataTanimi.Trim() == "Puntasız")
+                                            {
+                                                <div class="col-md-12">
+
+                                                    @Html.DropDownListFor(model => model.Hata3YapilanMudahale, new List<SelectListItem>
+                                                    {
+                                                              new SelectListItem { Text = "JETLERİ KONTROL ETME/HAVA BASINCINI KONTROL ETME/POZİSYONU TEKRAR GÖNDERME", Value ="JETLERİ KONTROL ETME/HAVA BASINCINI KONTROL ETME/POZİSYONU TEKRAR GÖNDERME" },
+
+
+                                                     }, "--MÜDAHALE SEÇİNİZ--", new { @style = "color:black", @class = "form-control", title = "Lütfen Müdahale Seçiniz!" })
+
+                                                </div>
+                                                @Html.ValidationMessageFor(model => model.Hata3YapilanMudahale, "", new { @class = "text-danger" })
+                                            }
+                                            else if (Model.Mrv_KaliteBildirimHata2.HataTanimi.Trim() == "Yağ Oranı Düşük" || Model.Mrv_KaliteBildirimHata2.HataTanimi.Trim() == "Yağ Oranı Yüksek" || Model.Mrv_KaliteBildirimHata2.HataTanimi.Trim() == "Yağsız")
+                                            {
+                                                <div class="col-md-12">
+
+                                                    @Html.DropDownListFor(model => model.Hata3YapilanMudahale, new List<SelectListItem>
+                                                    {
+                                                              new SelectListItem { Text = "YAĞ MİLİ KONTROLÜ/YAĞ DEVRİ KONTROLÜ/YAĞ KANALLARI KONTROLÜ/HAMMADDE KONTROLÜ/TEKRAR GÖNDERİM", Value ="YAĞ MİLİ KONTROLÜ/YAĞ DEVRİ KONTROLÜ/YAĞ KANALLARI KONTROLÜ/HAMMADDE KONTROLÜ/TEKRAR GÖNDERİM" },
+
+
+                                                     }, "--MÜDAHALE SEÇİNİZ--", new { @style = "color:black", @class = "form-control", title = "Lütfen Müdahale Seçiniz!" })
+
+                                                </div>
+                                                @Html.ValidationMessageFor(model => model.Hata3YapilanMudahale, "", new { @class = "text-danger" })
+                                            }
+                                        }
+                                        @*@Html.DropDownList("Hata3YapilanMudahale", null, "MÜDAHALE SEÇİNİZ", htmlAttributes: new { @class = "form-control", required = "required", style = "color:black" })
+            @Html.ValidationMessageFor(model => model.Hata3YapilanMudahale, "", new { @class = "text-danger" })*@
+                                    </div>
+                                </div>
+                                </div>
+                            </div>
+                        <br />
+                        <div class="row">
+                            <div class="col-md-12">
+                                <b>@Html.Label("AÇIKLAMA", htmlAttributes: new { @class = "control-label col-md-12" })</b>
+                                <div class="col-md-12">
+                                    @Html.TextAreaFor(model => model.IsletmeAciklama, new { @class = "form-control", @rows = 5 })
+                                    @Html.ValidationMessageFor(model => model.IsletmeAciklama, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                        </div>
+                        <br />
+                        <div class="row">
+                            <div class="col-md-12">
+                                <b>@Html.Label("LABORATUVAR AÇIKLAMA", htmlAttributes: new { @class = "control-label col-md-12" })</b>
+                                <div class="col-md-12">
+                                    @Html.TextAreaFor(model => model.Aciklama, new { @class = "form-control", @rows = 5, @readonly = true })
+                                    @Html.ValidationMessageFor(model => model.Aciklama, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                        </div>
+                        <br />
+
+                        <div class="form-group">
+                            <div class="col-md-offset-2 col-md-12">
+                                <input type="submit" value="KALİTE BİLDİRİM PUSULASI MÜDAHALESİ KAYDET" class="btn btn-primary" />
+                            </div>
+                        </div>
+
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@*<div>
+        @Html.ActionLink("Back to List", "Index")
+    </div>*@
+
+<script>
+$(function () {
+    $('#Isletme').change(function () {
+        var id = $('#Isletme').val();
+        $.ajax({
+            url: '/Imalat/cozumGetir',
+            data: { p: id },
+            type: "POST",
+            dataType: "Json",
+            success: function (data) {
+                console.log(data);
+                $('#Hata2YapilanMudahale').empty();
+                for (var i = 0; i < data.length; i++) {
+                    $('#Hata2YapilanMudahale').append("<option value='" + data[i].Value + "'>" + data[i].Text + "</Option>");
+                }
+                $('#Hata1YapilanMudahale').empty();
+                for (var i = 0; i < data.length; i++) {
+                    $('#Hata1YapilanMudahale').append("<option value='" + data[i].Value + "'>" + data[i].Text + "</Option>");
+                }
+                $('#Hata3YapilanMudahale').empty();
+                for (var i = 0; i < data.length; i++) {
+                    $('#Hata3YapilanMudahale').append("<option value='" + data[i].Value + "'>" + data[i].Text + "</Option>");
+                }
+            }
+        });
+    });
+});
+    </script>
+@*<select id="Mrv_KaliteBildirimHata1.HataTanimi" onChange="update()">
+    <option value="en">English</option>
+    <option value="es">Español</option>
+    <option value="pt">Português</option>
+</select>
+<input type="text" id="value">
+<input type="text" id="text">
+
+<script type="text/javascript">
+    function update() {
+        var select = document.getElementById('language');
+        var option = select.options[select.selectedIndex];
+
+        document.getElementById('value').value = option.value;
+        document.getElementById('text').value = option.text;
+    }
+
+    update();
+</script>*@
+

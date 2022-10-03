@@ -1,0 +1,57 @@
+﻿@model Polyteks.Katman.DAL.Concrete.EntityFramework.SrcnKullanicis
+
+    <div id="kulgetir" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    @*<h4 class="modal-title">DEPO TANIMLAMA</h4>*@
+                </div>
+                @using (Html.BeginForm("Giris", "Kullanici"))
+                {
+                    @Html.HiddenFor(a => a.KullaniciId)
+
+                    <div class="modal-body">
+                        <div class="form-body">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    @if (Model.Resim != null)
+                                    {
+                                        string imageBase64 = Convert.ToBase64String(Model.Resim);
+                                        string imageSrc = string.Format("data:image/gif;base64,{0}", imageBase64);
+
+                                        <img src="@imageSrc" class="img-fluid" style="width: 100%" />
+                                    }
+                                    else
+                                    {
+                                        <h5 class="text-center">Resim Yüklenmedi</h5>
+                                    }
+                                </div>
+                                <div class="col-md-8">
+                                    <h4><b>@Model.IsimSoyisim</b></h4>
+                                </div>
+                                <div class="col-md-8">
+                                    <h5><b>@Model.Birim</b></h5>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label><b>ŞİFRENİZ </b></label>
+                                        @Html.TextBoxFor(a => a.GirisSifre, new { @class = "form-control", @type = "password" })
+                                    </div>
+                                </div>
+                            </div>
+                         
+
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn green">GİRİŞ YAP</button>
+                        <button type="button" class="btn dark btn-outline" data-dismiss="modal">KAPAT</button>
+                    </div>
+                }
+            </div>
+
+        </div>
+    </div>

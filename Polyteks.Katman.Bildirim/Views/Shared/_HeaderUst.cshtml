@@ -1,0 +1,104 @@
+﻿@model Polyteks.Katman.Bildirim.Models.LayoutModelBildirim
+
+<div class="page-header navbar navbar-fixed-top">
+    <!-- BEGIN HEADER INNER -->
+    <div class="page-header-inner ">
+        <!-- BEGIN LOGO -->
+        <div class="page-logo">
+            <a href="@Url.Action("Index","Home")">
+
+                <img src="@Url.Content("~/Temalar/Resimler/logo.png")" alt="logo" class="logo-default" style="max-height: 70px; margin: 0px; max-width:200px; padding-top:5px;" />
+            </a>
+            <div class="menu-toggler sidebar-toggler">
+                <!-- DOC: Remove the above "hide" to enable the sidebar toggler button on header -->
+            </div>
+        </div>
+        <!-- END LOGO -->
+        <!-- BEGIN RESPONSIVE MENU TOGGLER -->
+        <a href="javascript:;" class="menu-toggler responsive-toggler" data-toggle="collapse" data-target=".navbar-collapse"> </a>
+
+        <div class="page-top">
+
+            <div class="top-menu">
+                <ul class="nav navbar-nav pull-right">
+                    <li class="separator hide"> </li>
+                    @{
+                        string badgeDurum = "";
+                        int saa = -1;
+                        foreach (var item in Model.HeaderUstBildirimItemlar)
+                        {
+                            if (item.Sayi > 0)
+                            {
+                                saa++;
+
+                                if (saa%3==0)
+                                {
+                                    badgeDurum = "badge-danger";
+                                }
+                                if (saa % 3 == 1)
+                                {
+                                    badgeDurum = "badge-warning";
+                                }
+                                if (saa % 3 == 2)
+                                {
+                                    badgeDurum = "badge-success";
+                                }
+
+                                <li class="dropdown dropdown-extended dropdown-notification dropdown-dark" id="header_notification_bar">
+                                    <a href="@Url.Action(item.ActionAdi,item.ControllerAdi, new {id=item.Id })" class="dropdown-toggle">
+                                        <i class="@item.IConFa"></i>
+                                        <span class="badge @badgeDurum"> @item.Sayi </span>
+                                    </a>
+                                </li>
+                            }
+                        }
+                    }
+
+
+
+
+
+                    <li class="separator hide"> </li>
+
+
+                    <li class="dropdown dropdown-user dropdown-dark">
+                        <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
+                           @* <span class="username username-hide-on-mobile"> @Model.Kullanici.KullaniciAdi </span>*@
+
+
+                            <img alt="" class="img-circle" src="@Url.Content("~/Temalar/Resimler/hatirlatma.jpg")" />
+
+
+
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-default">
+                            @*<li>
+                                    <a href="@Url.Action("ProfilBilgi","Kisisel")">
+                                        <i class="icon-user"></i> Kişisel Bilgileriniz
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="@Url.Action("Notlar","Kisisel")">
+                                        <i class="icon-calendar"></i> Notlarınız
+                                    </a>
+                                </li>
+
+                                <li class="divider"> </li>*@
+
+                            <li>
+                                <a href="@Url.Action("Cikis","Kullanici")">
+                                    <i class="icon-key"></i> ÇIKIŞ YAP
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <!-- END USER LOGIN DROPDOWN -->
+
+                </ul>
+            </div>
+            <!-- END TOP NAVIGATION MENU -->
+        </div>
+        <!-- END PAGE TOP -->
+    </div>
+    <!-- END HEADER INNER -->
+</div>

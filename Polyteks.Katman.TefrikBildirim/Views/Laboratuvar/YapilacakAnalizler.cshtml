@@ -1,0 +1,91 @@
+﻿@model Polyteks.Katman.TefrikBildirim.Models.LaboratuvarModel
+
+@{
+    ViewBag.Title = "YapilacakAnalizler";
+    Layout = "~/Views/Shared/Layout.cshtml";
+}
+@section styles{
+    <link href="~/Temalar/treeflex.css" rel="stylesheet">
+    <link href="~/Temalar/responsiveHier.css" rel="stylesheet">
+}
+
+<div class="row">
+    <div class="col-md-12 ">
+        <div class="portlet light bordered">
+            <div class="portlet-title">
+                <div class="caption font-red-sunglo">
+                    <i class="icon-settings font-red-sunglo"></i>
+                    <span class="caption-subject bold uppercase">YAPILACAK ANALİZLER</span>
+                </div>
+            </div>
+            <div class="portlet-body form">
+                <div class="form-body">
+                    <div class="row">
+                        <div class="">
+
+                         
+                                <ol class="organizational-chart">
+                                    <li>
+                                        <div class="col-md-12">
+                                            <h1> YAPILACAK ANALİZLER </h1>
+                                        </div>
+                                        <ol>
+                                            @foreach (var item in Model.LaboratuvarIsModeller.Where(a=>a.ToplamAdet>0).ToList())
+                                            {
+
+                                                string ozet = item.LabGrup.LabGrupAdi;
+
+                                                <li>
+
+                                                    <div>
+                                                            <h4><b>@ozet</b></h4>
+                                                    </div>
+
+                                                   <ol>
+                                                        @foreach (var labDurum in item.LaboratuvarIsModelItemlar.Where(a=>a.Adet>0).ToList())
+                                                        {
+                                                            <li>
+                                                                <div>
+                                                                    <a href="javascript:" onclick="Duzenle(@item.LabGrup.LabGrupId,@labDurum.LabAnalizDurum.LabAnalizDurumu)" >
+                                                                        <b> @labDurum.LabAnalizDurum.LabAnalizDurumuAdi </b> <br /> @string.Format("({0}) Adet",labDurum.Adet)
+                                                                    </a>
+                                                                </div>
+
+                                                            </li>
+                                                        }
+                                                     
+
+                                                    </ol>
+
+                                                </li>
+                                            }
+
+                                        </ol>
+                                     
+                                    </li>
+                                </ol>
+                          
+                         
+                        </div>
+
+                      
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts{
+    <script>
+        function Duzenle(id,id2) {
+            var url = "/Laboratuvar/YapilacakAnalizGrupTipi/" + id +"/"+id2;
+
+            window.location.href = url;
+
+
+        }
+    </script>
+}

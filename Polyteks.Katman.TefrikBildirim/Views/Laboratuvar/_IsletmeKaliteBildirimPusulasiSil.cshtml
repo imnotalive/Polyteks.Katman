@@ -1,0 +1,118 @@
+﻿@model Polyteks.Katman.DAL.Concrete.EntityFramework.Mrv_KaliteBildirimDetay
+
+@{
+    ViewBag.Title = "_IsletmeKaliteBildirimPusulasiSil";
+    Layout = "~/Views/Shared/Layout.cshtml";
+}
+
+
+
+<h3>SİLMEK İSTEDİĞİNİZDEN EMİN MİSİNİZ?</h3>
+<div>
+  
+    <hr />
+    <dl class="dl-horizontal">
+     
+
+
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Aciklama)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Aciklama)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.KanalNo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.KanalNo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PozisyonNo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PozisyonNo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PartiNo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PartiNo)
+        </dd>
+
+       
+        <dt>
+            @Html.DisplayNameFor(model => model.Durum)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Durum)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Mrv_KaliteBildirim_Makine.MakineAdi)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Mrv_KaliteBildirim_Makine.MakineAdi)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Mrv_KaliteBildirimAna.Personel)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Mrv_KaliteBildirimAna.Personel)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Mrv_KaliteBildirimBolumleri.IsletmeBolumleri)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Mrv_KaliteBildirimBolumleri.IsletmeBolumleri)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Mrv_KaliteBildirimHata.HataTanimi)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Mrv_KaliteBildirimHata.HataTanimi)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Mrv_KaliteBildirimHata1.HataTanimi)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Mrv_KaliteBildirimHata1.HataTanimi)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Mrv_KaliteBildirimHata2.HataTanimi)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Mrv_KaliteBildirimHata2.HataTanimi)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="SİL" class="btn btn-danger" /> |
+            @Html.ActionLink("LİSTEYE GERİ DÖN", "KaliteBildirimPusulasi")
+        </div>
+    }
+</div>

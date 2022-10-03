@@ -1,0 +1,399 @@
+﻿@model IEnumerable<Polyteks.Katman.DAL.Concrete.EntityFramework.Mrv_POY_Ikaz>
+
+@{
+    ViewBag.Title = "PoyIkazTakibi";
+    Layout = "~/Views/Shared/Layout.cshtml";
+}
+@if (TempData["Msg"] != null)
+{
+    <div class="custom-alerts alert alert-@TempData["class"] fade in">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true"></button>
+        <h2>@TempData["Msg"]</h2>
+    </div>
+}
+
+<script src="~/Scripts/bootstrap.min.js"></script>
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+@*<link href="/Content/glyphicons.css" rel="stylesheet" />*@
+@*<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">*@
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+<center><h3><b>POY İKAZ TAKİBİ(İÇ HATA BİLDİRİMİ)</b></h3></center>
+
+<center>
+
+    @Html.ActionLink("YENİ İKAZ BİLDİRİMİ YAP", "PoyIkazTakibiYeni", null, htmlAttributes: new { @class = "btn btn-primary btn-lg" })
+
+</center>
+
+<hr />
+
+<h4><b>RAPORLAMA</b></h4>
+
+<a href="@Url.Action("Report",new { id = "Excel" })" class="btn btn-success btn-xl">Excel Dönüştür</a>
+
+
+<hr />
+<p>
+    <center>
+        <input class="form-control" type="text" id="Search" placeholder="ARA">
+        <div class="input-group-append">
+            <div class="input-group-text"></div>
+        </div>
+    </center>
+</p>
+
+<div class="portlet-title">
+    <div class="caption font-blue">
+        <table class="table table-striped table-bordered table-sm">
+            <thead>
+                <tr>
+                    @*<th></th>*@
+                    <th style="background-color: lightslategray; color: black">
+                        <center>TARİH</center>
+                    </th>
+                    <th style="background-color: lightslategray; color: black">
+                        <center>PARTİ</center>
+                    </th>
+                    <th style="background-color: lightslategray; color: black">
+                        <center> DENYE/FLAMAN</center>
+                    </th>
+                    <th style="background-color: lightslategray; color: black">
+                        <center> ÜRT</center>   MAK/KAN/POZ
+                    </th>
+                    <th style="background-color: lightslategray; color: black">
+                        <center>TEKSTÜRE MAKİNE</center>
+                    </th>
+                    <th style="background-color: lightslategray; color: black">
+                        <center>TEKSTÜRE POZİSYON</center>
+                    </th>
+                    <th style="background-color: lightslategray; color: black">
+                        <center>PROBLEM</center>
+                    </th>
+                    <th style="background-color: lightslategray; color: black">
+                        <center>SIRALI YÜKLEME</center>
+                    </th>
+                    <th style="background-color: lightslategray; color: black">
+                        <center>YAPILAN MÜDAHALE</center>
+                    </th>
+                    <th style="background-color: lightslategray; color: black">
+                        <center>LAB TARİH</center>
+                    </th>
+
+                    <th style="background-color: lightslategray; color: black">
+                        <center>LAB SONUÇ</center>
+                    </th>
+                    <th style="background-color: lightslategray; color: black">
+                        <center> TEKSTÜRE SONUÇ</center>
+                    </th>
+                    <th style="background-color: lightslategray; color: black">
+                        <center><b> ÜRETİMDE YAPILAN MÜDAHALEYİ GİR</b></center>
+
+
+                    </th>
+                    <th style="background-color: lightslategray; color: black">
+
+                        <center> <b>TEKSTÜRE SONUCUNU GİR</b></center>
+
+                    </th>
+                    <th style="background-color: lightslategray; color: black">
+
+                        <center> <b>    SİL</b></center>
+
+                    </th>
+                </tr>
+            </thead>
+
+            <tbody>
+                @{
+                    //int sayac = 0;
+                    foreach (var item in Model)
+                    {
+                        if (string.IsNullOrEmpty(item.YapilanMudahale))
+
+                        {
+                            <tr class="Search">
+                                @*<td style="color: black"><center><b>@sayac</b></center></td>*@
+                                <td style="background-color: #f51313; color: black">
+                                    @Html.DisplayFor(modelItem => item.Tarih)
+                                    @*@item.Tarih.Value.ToString("dd/MM/yyyy hh:mm")*@
+                                </td>
+                                <td style="background-color: #f51313; color: black">
+                                    @Html.DisplayFor(modelItem => item.PartiNo)
+                                </td>
+                                <td style="background-color: #f51313; color: black">
+                                    @Html.DisplayFor(modelItem => item.Denye_Flaman)
+                                </td>
+                                <td style="background-color: #f51313; color: black">
+                                    @Html.DisplayFor(modelItem => item.Uretim_Mak_Kan_Poz)
+                                </td>
+
+
+                                <td style="background-color: #f51313; color: black">
+                                    @Html.DisplayFor(modelItem => item.Teksture_Makine_No)
+                                </td>
+                                <td style="background-color: #f51313; color: black">
+                                    @Html.DisplayFor(modelItem => item.Teksture_Pozisyon_No)
+                                </td>
+                                <td style="background-color: #f51313; color: black">
+                                    @Html.DisplayFor(modelItem => item.ProblemTanimi)
+                                </td>
+                                <td style="background-color: #f51313; color: black">
+                                    @Html.DisplayFor(modelItem => item.SiraliYuklemeIstekTalebi)
+                                </td>
+                                <td style="color: black" class="invalid">
+
+
+                                    @Html.DisplayFor(modelItem => item.YapilanMudahale)
+
+
+                                </td>
+                                <td style="background-color: #f51313; color: black">
+                                    @Html.DisplayFor(modelItem => item.LabIncelemeTarihi)
+                                </td>
+                                <td style="background-color: #f51313; color: black">
+                                    @Html.DisplayFor(modelItem => item.LabSonuc)
+                                </td>
+                                <td style="background-color: #f51313; color: black">
+                                    @Html.DisplayFor(modelItem => item.TekstureSonuc)
+                                </td>
+                                <td style="background-color: #f51313; color: black">
+
+                                    <center>  @Html.ActionLink("DÜZENLE", "PoyIkazGuncelle", new { id = item.ID }, new { @class = "btn btn-primary" })</center>
+                                    @*<a href="@Url.Action("Edit", "Imalat",new { id = item.ID })" title="DÜZENLE" class="btn btn-primary"> <i class="fas fa-pen">   </i></a>*@
+
+                                </td>
+
+                                <td style="background-color: #f51313; color: black">
+                                    <center>@Html.ActionLink("SONUÇ GİR", "PoyIkazTekstureSonuc", new { id = item.ID }, new { @class = "btn btn-success" })</center>
+                                    @*<a href="@Url.Action("Details", "Imalat",new { id = item.ID })" title="DETAYLAR" class="btn btn-info"> <i class="fa fa-book" aria-hidden="true">  </i></a>*@
+
+                                </td>
+                                <td style="background-color: #f51313; color: black">
+                                    @*@Html.ActionLink("SİL", "PoyIkazSil", new { id = item.ID }, new { @class = "btn btn-danger" })*@
+                                    <a href="@Url.Action("PoyIkazSil", "Imalat", new { id = item.ID })" title="SİL" class="btn btn-danger"><i class="fa fa-trash"></i></a>
+
+                                </td>
+                            </tr>
+                        }
+                        else
+                        {
+                            <tr class="Search">
+                                @*<td style="color: black"><center><b>@sayac</b></center></td>*@
+                                <td style="background-color: #9df584; color: black ">
+                                    @Html.DisplayFor(modelItem => item.Tarih)
+                                    @*@item.Tarih.Value.ToString("dd/MM/yyyy hh:mm")*@
+                                </td>
+                                <td style="background-color: #9df584; color: black">
+                                    @Html.DisplayFor(modelItem => item.PartiNo)
+                                </td>
+                                <td style="background-color: #9df584; color: black">
+                                    @Html.DisplayFor(modelItem => item.Denye_Flaman)
+                                </td>
+                                <td style="background-color: #9df584; color: black">
+                                    @Html.DisplayFor(modelItem => item.Uretim_Mak_Kan_Poz)
+                                </td>
+
+
+                                <td style="background-color: #9df584; color: black">
+                                    @Html.DisplayFor(modelItem => item.Teksture_Makine_No)
+                                </td>
+                                <td style="background-color: #9df584; color: black">
+                                    @Html.DisplayFor(modelItem => item.Teksture_Pozisyon_No)
+                                </td>
+                                <td style="background-color: #9df584; color: black">
+                                    @Html.DisplayFor(modelItem => item.ProblemTanimi)
+                                </td>
+                                <td style="background-color: #9df584; color: black">
+                                    @Html.DisplayFor(modelItem => item.SiraliYuklemeIstekTalebi)
+                                </td>
+                                <td style="background-color: #9df584; color: black">
+
+
+                                    @Html.DisplayFor(modelItem => item.YapilanMudahale)
+
+
+                                </td>
+                                <td style="background-color: #9df584; color: black">
+                                    @Html.DisplayFor(modelItem => item.LabIncelemeTarihi)
+                                </td>
+                                <td style="background-color: #9df584; color: black">
+                                    @Html.DisplayFor(modelItem => item.LabSonuc)
+                                </td>
+                                <td style="background-color: #9df584; color: black">
+                                    @Html.DisplayFor(modelItem => item.TekstureSonuc)
+                                </td>
+                                <td style="background-color: #9df584; color: black">
+
+                                    <center>  @Html.ActionLink("DÜZENLE", "PoyIkazGuncelle", new { id = item.ID }, new { @class = "btn btn-primary" })</center>
+                                    @*<a href="@Url.Action("Edit", "Imalat",new { id = item.ID })" title="DÜZENLE" class="btn btn-primary"> <i class="fas fa-pen">   </i></a>*@
+
+                                </td>
+
+
+                                <td style="background-color: #9df584; color: black">
+                                    <center>@Html.ActionLink("SONUÇ GİR", "PoyIkazTekstureSonuc", new { id = item.ID }, new { @class = "btn btn-success" })</center>
+                                    @*<a href="@Url.Action("Details", "Imalat",new { id = item.ID })" title="DETAYLAR" class="btn btn-info"> <i class="fa fa-book" aria-hidden="true">  </i></a>*@
+
+                                </td>
+                                <td style="background-color: #9df584; color: black">
+                                    @*@Html.ActionLink("SİL", "PoyIkazSil", new { id = item.ID }, new { @class = "btn btn-danger" })*@
+                                    <a href="@Url.Action("PoyIkazSil", "Imalat", new { id = item.ID })" title="SİL" class="btn btn-danger"><i class="fa fa-trash"></i></a>
+
+                                </td>
+                            </tr>
+                        }
+                    }
+
+                }
+            </tbody>
+        </table>
+        <style>
+            .red {
+                background-color: red;
+            }
+        </style>
+        @*<div class="row-cols-sm-1">
+                            @Html.Grid(Model).Columns(Columns =>
+                       {
+                           Columns.Add(c => c.Tarih).Titled("Tarih").Sortable(true).Filterable(true);
+                           Columns.Add(c => c.PartiNo).Titled("Parti").Sortable(true).Filterable(true);
+                           Columns.Add(c => c.Denye_Flaman).Titled("Denye/Flaman").Sortable(true).Filterable(true);
+
+                           Columns.Add(c => c.Uretim_Mak_Kan_Poz).Titled("Ürt Mak/Kan/Poz").SetWidth("10%").Sortable(true).Filterable(true);
+                           Columns.Add(c => c.Teksture_Makine_No).Titled("Tekstüre Makine").Sortable(true).Filterable(true);
+                           Columns.Add(c => c.Teksture_Pozisyon_No).Titled("Tekstüre Pozisyon").Sortable(true).Filterable(true);
+                           Columns.Add(c => c.ProblemTanimi).Titled("Problem").Encoded(false)
+               .Sanitized(false).SetWidth(5).Sortable(true).Filterable(true);
+                           Columns.Add(c => c.YapilanMudahale).Titled("Müdahale").Sortable(true).Filterable(true);
+
+                           Columns.Add()
+                       .Encoded(false)
+                       .Sanitized(false)
+                       .SetWidth(1)
+                        .RenderValueAs(o => Html.ActionLink("DÜZENLE", "PoyIkazGuncelle", new { id = o.ID }, new { @class = "btn btn-info btn-xl" })).Encoded(false).Filterable(false).Sortable(false).Titled("ÜRETİMDE YAPILAN MÜDAHALEYİ GİR");
+                           Columns.Add(c => c.TekstureSonuc).Titled("Tekstüre Sonuç").Sortable(true).Filterable(true);
+                           Columns.Add()
+                        .Encoded(false)
+                        .Sanitized(false)
+                        .SetWidth(1)
+                         .RenderValueAs(o => Html.ActionLink("DURUM BİLDİR", "PoyIkazTekstureSonuc", new { id = o.ID }, new { @class = "btn btn-success btn-xl" })).Encoded(false).Filterable(false).Sortable(false).Titled("TEKSTÜRE SONUCUNU GİR");
+                           Columns.Add()
+                           .Encoded(false)
+                           .Sanitized(false)
+                           .SetWidth(1)
+
+                          .RenderValueAs(o => Html.ActionLink("SİL", "PoyIkazSil", new { id = o.ID }, new { @class = "btn red btn-block btn-xl" })).Encoded(false).Filterable(false).Sortable(false).Titled("SİL");
+
+
+                       }
+                        ).WithPaging(20).EmptyText("Gösterilecek bir şey bulunamadı").SetLanguage("tr").Sortable(true).Filterable(true).WithMultipleFilters()
+
+                        </div>
+
+
+            <script>
+
+                window.GridMvc = window.GridMvc || {};
+                window.GridMvc.lang = window.GridMvc.lang || {};
+                GridMvc.lang.tr = {
+                    filterTypeLabel: "Filtre: ",
+                    filterValueLabel: "Değer:",
+                    applyFilterButtonText: "Uygula",
+                    filterSelectTypes: {
+                        Equals: "Eşittir",
+                        StartsWith: "Başlar",
+                        Contains: "İçerir",
+                        EndsWith: "Biter",
+                        GreaterThan: "Büyüktür",
+                        LessThan: "Küçüktür",
+
+                    },
+                    code: 'tr',
+                    boolTrueLabel: "Doğru",
+                    boolFalseLabel: "Yanlış",
+                    clearFilterLabel: "Temizle"
+                };
+            </script>
+            <style>
+                .grid-header a {
+                    font-size: 12px;
+                    color: #000000;
+                    font-weight: bold;
+                }
+                .row-cols-sm-1{
+                    font-size:10px;
+                }
+
+            </style>*@
+
+
+    </div>
+</div>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
+
+<script type="text/javascript">
+    $(function () {
+        $('#rowCount')
+            .button()
+            .click(function () {
+                alert("Rows = " + ($('table#myTable tr:last').index() + 1));
+            })
+    });
+    $(document).ready(function () {
+        function Contains(text_one, text_two) {
+            if (text_one.indexOf(text_two) != -1)
+                return true;
+        }
+        $("#Search").keyup(function () {
+            var searchText = $("#Search").val().toLowerCase();
+            $(".Search").each(function () {
+                if (!Contains($(this).text().toLowerCase(), searchText)) {
+                    $(this).hide();
+                }
+                else {
+                    $(this).show();
+                }
+            })
+        });
+    });
+
+</script>
+@*<style>
+
+
+    .Blink {
+      animation: blinker 1.5s cubic-bezier(.5, 0, 1, 1) infinite alternate;
+    }
+    @keyframes blinker {
+      from { opacity: 1; }
+      to { opacity: 0; }
+    }
+
+            </style>*@
+@*<p id="blink">Blinking Effect with JavaScript</p>*@
+<script type="text/javascript">
+    //var blink = document.getElementById('blink');
+    //setInterval(function () {
+    //    blink.style.opacity = (blink.style.opacity == 0 ? 1 : 0);
+    $(function () {
+        var on = false;
+        window.setInterval(function () {
+            on = !on;
+            if (on) {
+                $('.invalid').addClass('invalid-blink')
+            } else {
+                $('.invalid-blink').removeClass('invalid-blink')
+            }
+        }, 500);
+    });
+    //}, 500);
+</script>
+<style>
+    .invalid-blink {
+        background-color: red;
+    }
+</style>

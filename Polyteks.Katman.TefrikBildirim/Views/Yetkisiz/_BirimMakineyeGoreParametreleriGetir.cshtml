@@ -1,0 +1,17 @@
+﻿@model Polyteks.Katman.TefrikBildirim.Models.ImalatDenemelerModel
+    <div class="col-md-12">
+        <div class="row">
+
+
+            @foreach (var item in Model.IslemMakineParametreler)
+            {
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label><b>@item.ParametreAdi.ToUpper() </b></label>
+                        @Html.TextBoxFor(a => a.SecilenMakineId, new { @class = "form-control" })
+                    </div>
+                </div>
+
+            }
+        </div>
+    </div>

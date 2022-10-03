@@ -1,0 +1,190 @@
+﻿@model Polyteks.Katman.TefrikBildirim.Models.YardimciTesisModel
+
+@{
+    ViewBag.Title = "YardimciTesisAnalizSonucDetay";
+    Layout = "~/Views/Shared/Layout.cshtml";
+}
+
+
+@if (TempData["Msg"] != null)
+{
+    <div class="custom-alerts alert alert-@TempData["class"] fade in">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true"></button>
+        <h2>@Html.Raw(TempData["Msg"])</h2>
+    </div>
+}
+
+<div class="row">
+    <div class="col-md-12 ">
+        <div class="portlet light bordered">
+            <div class="portlet-title">
+                <div class="caption font-purple-plum">
+                    <i class="icon-settings font-purple-plum"></i>
+                    @{
+                        string Sira = "";
+                        if (Model.SrcnLabGruplari.Any())
+                        {
+                            foreach (var item in Model.SrcnLabGruplari)
+                            {
+                                if (item != Model.SrcnLabGruplari.Last())
+                                {
+                                    Sira += item.LabGrupAdi + " >> ";
+
+                                }
+                                else
+                                {
+                                    Sira += item.LabGrupAdi;
+                                }
+
+                            }
+                            Sira += "  Sonucu";
+                        }
+                    }
+                    <span class="caption-subject bold uppercase">@Sira</span>
+                </div>
+            </div>
+            <div class="portlet-body form">
+                <div class="form-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <h4>TAKİP KODU: <b class="pull-right font-red-thunderbird">#@Model.LabAnaliz.LabAnalizId</b></h4>
+                                    <h4>ANALİZ DURUMU: <b class="pull-right font-red-sunglo">@Model.LabAnaliz.LabAnalizDurumuAdi</b></h4>
+                                    <h4>TALEP EDEN: <b class="pull-right">@Model.LabAnaliz.KayitYapanKulAdi</b></h4>
+
+                                    <h4>KAYIT TARİHİ: <b class="pull-right">@Model.LabAnaliz.KayitTarihi</b></h4>
+                                    <h4>TALEP EDİLEN TERMİN: <b class="pull-right">@Model.LabAnaliz.IstenenTerminTarihi.Value.ToShortDateString()</b></h4>
+                                    @if (Model.LabAnaliz.PlanlananTerminTarihi != null)
+                                    {
+                                        <h4>PLANLANAN TERMİN: <b class="pull-right">@Model.LabAnaliz.PlanlananTerminTarihi</b></h4>
+                                    }
+                                    @if (Model.LabAnaliz.GerceklesenTerminTarihi != null)
+                                    {
+                                        <h4>SONUÇ TARİHİ: <b class="pull-right">@Model.LabAnaliz.GerceklesenTerminTarihi</b></h4>
+                                    }
+
+
+                                </div>
+                                <div class="col-md-12">
+                                    <a href="@Url.Action("PdfOlarakIndir","Base",new { id=Model.LabAnaliz.LabAnalizId })" class="btn btn-lg red btn-block">PDF OLARAK İNDİR</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="row">
+
+
+                                @if (Model.LabAnaliz.LabAnalizDurumu == 1 && Model.LabAnaliz.KayitYapanKulKodu == Model.Kullanici.KullaniciId.ToString())
+                                {
+                                    <div class="col-md-12">
+                                        <a href="javascript:" onclick="Sil(@Model.LabAnaliz.LabAnalizId)" class="btn btn-lg red btn-block">ANALİZ TALEBİNİ KALDIR</a>
+                                    </div>
+                                }
+                                <div class="col-md-12">
+                                    <h5 class="text-center"><b>HAREKETLER</b></h5>
+                                    <hr />
+                                    @foreach (var item in Model.AnalizHareketleri)
+                                    {
+                                        <div class="well">
+                                            <h5 class="pull-right">@item.KayitTarihi</h5>
+                                            <br />
+                                            <b>@item.HareketAdi</b>
+                                        </div>
+                                    }
+
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </div>
+                    <hr />
+                    <div class="row">
+                        <h4 class="font-purple-intense text-center"><b>ANALİZ DETAYLARI</b></h4>
+                        <div class="col-md-12">
+                            
+                            <table class="table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th class="text-center">
+                                            #
+                                        </th>
+                                        <th class="text-center">
+                                            Kontrol Noktası
+                                        </th>
+                                        @foreach (var item in Model.LabAnalizCesitleri)
+                                        {
+                                            <th class="text-center">
+                                                @item.LabAnalizCesitAdi
+                                            </th>
+                                        }
+
+
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @{
+                                        int i = -1;
+
+                                        foreach (var itt in Model.LabAnalizDetayModeller)
+                                        {
+                                            i++;
+                                            int j = -1;
+                                            <tr>
+                                                <td class="text-center">@(i + 1)</td>
+                                                <td class="text-center">@itt.LabAnalizItem.YardimciTesisKontrolNoktaAdi</td>
+                                                @foreach (var item in itt.LabAnalizItemAnalizCesitSonuclari)
+                                                {
+                                                    j++;
+                                                    if (item.AnalizDegeri == 0)
+                                                    {
+                                                        <td class="text-center">&nbsp;</td>
+                                                    }
+                                                    else
+                                                    {
+                                                        <td class="text-center">@item.AnalizDegeriString</td>
+                                                    }
+
+                                                }
+                                            </tr>
+                                        }
+                                    }
+
+                                </tbody>
+
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts{
+    <script src="~/Temalar/Scripts/sweetalert.js"></script>
+    <script>
+        function Sil(id) {
+            var url = "/YardimciTesisler/YardimciTesisAnalizTalebiKaldir/" + id;
+
+            swal({
+                title: "EMİN MİSİNİZ",
+                text: "Seçilen Kayıdı Listeden Kaldırmak İstiyor musunuz??",
+                icon: "warning",
+                buttons: {
+                    cancel: "Kapat",
+                    git: "Sil"
+                }
+            }).then((value) => {
+                switch (value) {
+                case "git":
+                    window.location.href = url;
+                    break;
+                }
+            });
+
+
+        }
+    </script>
+}

@@ -1,0 +1,153 @@
+﻿@model Polyteks.Katman.TefrikBildirim.Models.LaboratuvarModel
+
+@{
+    ViewBag.Title = "LaboratuvarAnalizHareketleri";
+    Layout = "~/Views/Shared/Layout.cshtml";
+}
+
+@if (TempData["Msg"] != null)
+{
+<div class="custom-alerts alert alert-@TempData["class"] fade in">
+    <button type="button" class="close" data-dismiss="alert" aria-hidden="true"></button>
+    <h2>@Html.Raw(TempData["Msg"])</h2>
+</div>
+}
+<div class="row">
+    <div class="col-md-12 ">
+        <div class="portlet light bordered">
+            <div class="portlet-title">
+                <div class="caption font-red-sunglo">
+                    <i class="icon-settings font-red-sunglo"></i>
+                    <span class="caption-subject bold uppercase">@Model.LabGrup.LabGrupAdi LABORATUVAR ANALİZ HAREKETLERİ</span>
+                </div>
+            </div>
+            <div class="portlet-body form">
+                <div class="form-body">
+                    @Html.Partial("~/Views/Laboratuvar/_LaboratuvarAnalizOrtakButonlar.cshtml", Model)
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h3 class="text-center"><b>ANALİZ HAREKETLER</b></h3>
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <label class="control-label"><b class="font-red-sunglo">ANALİZ SONUCU İSTENİLEN TERMİN</b></label>
+                                        <div class="input-icon right">
+                                            @Html.TextBoxFor(a => a.IstekTarihi, new { @class = "form-control tarih", @onkeydown = "return false" })
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label class="control-label"><b>İSTEK YAPAN</b></label>
+                                        <div class="input-icon right">
+                                            @Html.TextBoxFor(a => a.LabAnaliz.KayitYapanKulAdi, new { @class = "form-control", @onkeydown = "return false" })
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <label class="control-label"><b>PLANLANAN TERMİN</b></label>
+                                        <div class="input-icon right">
+                                            @Html.TextBoxFor(a => a.PlanlananTarih, new { @class = "form-control tarih", @onkeydown = "return false" })
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <label class="control-label"><b>GÜNCEL ANALİZ DURUMU</b></label>
+                                        <div class="input-icon right">
+                                            @Html.TextBoxFor(a => a.LabAnaliz.LabAnalizDurumuAdi, new { @class = "form-control", @onkeydown = "return false" })
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                @if (Model.SrcnLabGruplari.Any())
+                                {
+                                    string Sira = "ANALİZ: ";
+                                    <div class="row">
+                            
+                                        @foreach (var item in Model.SrcnLabGruplari)
+                                        {
+                                            if (item != Model.SrcnLabGruplari.Last())
+                                            {
+                                                Sira += item.LabGrupAdi + " >> ";
+
+                                            }
+                                            else
+                                            {
+                                                Sira += item.LabGrupAdi;
+                                            }
+
+                                        }
+                                        <h5 class="text-center"><b class="font-yellow-casablanca">@Sira </b></h5>
+                                      
+                           
+
+                                    </div>
+                                }
+                            </div>
+                                </div>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h3 class="text-center"><b>ANALİZ HAREKETLERİ</b></h3>
+                            @{
+                                int say = -1;
+
+                                foreach (var item in Model.LabAnalizHareketleri)
+                                {
+                                    say++;
+                                    string renkClass = "bg-yellow-gold bg-font-yellow-gold";
+
+                                    if (say % 2 == 0)
+                                    {
+                                        renkClass = "bg-green-soft bg-font-green-soft";
+                                    }
+                                    <div class="row ">
+
+                                        <div class="col-md-12 ">
+                                            <div class="mt-element-ribbon @renkClass">
+                                                <div class="ribbon ribbon-right ribbon-color-primary uppercase">@item.KayitTarihi</div>
+                                                <p class="ribbon-content"><b> @item.HareketAdi </b></p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                }
+                            }
+                        </div>
+                        <div class="col-md-6">
+                            <h3 class="text-center"><b>ANALİZ SONUÇ LOG KAYITLARI</b></h3>
+                            @{
+                                say = -1;
+
+                                foreach (var item in Model.LabAnalizLoglari)
+                                {
+                                    say++;
+                                    string renkClass = "bg-yellow-gold bg-font-yellow-gold";
+
+                                    if (say % 2 != 0)
+                                    {
+                                        renkClass = "bg-green-soft bg-font-green-soft";
+                                    }
+                                    <div class="row ">
+
+                                        <div class="col-md-12 ">
+                                            <div class="mt-element-ribbon @renkClass">
+                                                <div class="ribbon ribbon-right ribbon-color-primary uppercase">@item.KayitTarihi</div>
+                                                <p class="ribbon-content"><b> @item.Aciklama </b></p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                }
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

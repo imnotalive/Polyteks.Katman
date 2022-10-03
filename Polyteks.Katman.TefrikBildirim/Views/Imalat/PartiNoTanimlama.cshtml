@@ -1,0 +1,54 @@
+﻿@model Polyteks.Katman.TefrikBildirim.Models.ImalatModel
+
+@{
+    ViewBag.Title = "PartiNoTanimlama";
+    Layout = "~/Views/Shared/Layout.cshtml";
+}
+@section styles{
+    <link href="~/Temalar/Scripts/jquery-ui.css" rel="stylesheet" type="text/css" />
+}
+<div class="form-horizontal">
+
+    <div class="form-group">
+        @Html.Label("Değer", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+
+            <input type="text" id="degerAra" class="form-control">
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.Label("Sonuç", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+
+            <input type="text" id="sonuc" class="form-control">
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-3 col-md-3 hidden-sm hidden-xs" style="margin-top: 2%;">
+
+
+        </div>
+    </div>
+</div>
+
+@section scripts{
+    <script src="~/Temalar/Scripts/jquery-ui-1.12.1.min.js"></script>
+    <script type="text/javascript">
+        $("#degerAra").keyup(function () {
+            var id = $("#degerAra").val();
+            if (id.length > 2) {
+         
+            $("#degerAra").autocomplete({
+                source: '/Yetkisiz/OneriGetir/' + id,
+                select: function (event, ui) {
+                    this.value = ui.item.value;
+                    $("#sonuc").val(ui.item.PartiAnaKlasorId);
+                    return false;
+                }
+            }
+                );
+            } 
+        });
+    </script>
+
+}

@@ -1,0 +1,1100 @@
+﻿@model Polyteks.Katman.DAL.Concrete.EntityFramework.Mrv_POY_Ikaz
+
+@{
+    ViewBag.Title = "PoyIkazTakibiYeni";
+    Layout = "~/Views/Shared/Layout.cshtml";
+}
+
+@if (TempData["Msg"] != null)
+{
+    <div class="custom-alerts alert alert-@TempData["class"] fade in">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true"></button>
+        <h2>@TempData["Msg"]</h2>
+    </div>
+}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script src="~/Scripts/jquery-3.4.1.min.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+<link href="~/Content/themes/base/jquery-ui.min.css" rel="stylesheet" />
+@section styles{
+
+    <link href="~/Temalar/TarihSaat/bootstrap-datepicker/css/bootstrap-datetimepicker.css" rel="stylesheet" />
+
+
+}
+
+<div class="portlet-title">
+    <div class="caption font-blue">
+      
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+    <div class="form-body">
+        <div class="form-group">
+            <div class="row">
+                <div class="form-horizontal">
+                  
+                    <div class="vertical-line">
+                        <hr />
+                   
+                     
+                        <center><h1><b>POY İKAZ BİLDİRİMİ</b></h1></center>
+                        <hr />
+
+                        <center><h3><b>TEKSTÜRE ALANI</b></h3></center>
+
+
+
+                        <hr />
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    <div class="row">
+                      
+                        <div class="col-md-6 col-md-offset-3 text-center">
+                            @*<div class="form-group">
+                                <h1><b>POY İKAZ BİLDİRİMİ</b></h1>
+                                <hr />
+                            </div>
+                            <div class="form-group">
+                                <h3><b>TEKSTÜRE ALANI</b></h3>
+                            </div>*@
+                            <div class="form-group">
+                                @*@Html.LabelFor(model => model.PartiNo, "PARTİ NUMARASI", htmlAttributes: new { @class = "control-label col-xs-2" })*@
+
+                                <div class="col-md-10">
+                                    PARTİ NUMARASI
+                                    <br />
+                                    <br />
+                                    @Html.EditorFor(model => model.PartiNo, new { htmlAttributes = new { @class = "form-control test", required = "required", title = "Lütfen Parti Numarası Giriniz!" } })
+                                    @Html.ValidationMessageFor(model => model.PartiNo, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                @*@Html.LabelFor(model => model.Denye_Flaman, "DENYE/FLAMAN", htmlAttributes: new { @class = "control-label col-md-2" })*@
+                                <div class="col-md-10">
+                                    DENYE/FLAMAN
+                                    <br />
+                                    <br />
+                                    @Html.EditorFor(model => model.Denye_Flaman, new { htmlAttributes = new { @class = "form-control ", onkeypress = "return Validate(event);", required = "required", title = "Lütfen Denye/Flaman Numarası Giriniz!" } })
+                                    @Html.ValidationMessageFor(model => model.Denye_Flaman, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                @*@Html.LabelFor(model => model.Uretim_Makine_No, "ÜRETİM MAKİNE NO", htmlAttributes: new { @class = "control-label col-md-2" })*@
+                                <div class="col-md-10">
+                                    ÜRETİM MAKİNE/KANAL/POZİSYON NO
+                                    <br />
+                                    <br />
+                                    @*@Html.EditorFor(model => model.Uretim_Makine_No, new { htmlAttributes = new { @class = "form-control-xs" } })*@
+                                    @Html.DropDownListFor(model => model.Uretim_Mak_Kan_Poz, new List<SelectListItem>
+                        {
+                        new  SelectListItem { Text = "311", Value = "311" },
+                        new  SelectListItem { Text = "312", Value = "312" },
+                        new  SelectListItem { Text = "313", Value = "313" },
+                        new  SelectListItem { Text = "314", Value = "314" },
+                        new  SelectListItem { Text = "315", Value = "315" },
+                        new  SelectListItem { Text = "316", Value = "316" },
+                        new  SelectListItem { Text = "321", Value = "321" },
+                         new  SelectListItem { Text = "322", Value = "322" },
+                          new  SelectListItem { Text = "323", Value = "323" },
+                           new  SelectListItem { Text = "324", Value = "324" },
+                            new  SelectListItem { Text = "325", Value = "325" },
+                                new  SelectListItem { Text = "326", Value = "326" },
+                                  new  SelectListItem { Text = "331", Value = "331" },
+                                    new  SelectListItem { Text = "332", Value = "332" },
+                                      new  SelectListItem { Text = "333", Value = "333" },
+                                     new  SelectListItem { Text = "334", Value = "334" },
+                                        new  SelectListItem { Text = "335", Value = "335" },
+                                        new  SelectListItem { Text = "336", Value = "336" },
+                                         new  SelectListItem { Text = "341", Value = "341" },
+                                        new  SelectListItem { Text = "342", Value = "342" },
+                                        new  SelectListItem { Text = "343", Value = "343" },
+                                         new  SelectListItem { Text = "344", Value = "344" },
+                                         new  SelectListItem { Text = "345", Value = "345" },
+                                       new SelectListItem { Text = "346", Value = "346" },
+                                        new  SelectListItem { Text = "351", Value = "351" },
+                                        new  SelectListItem { Text = "352", Value = "352" },
+                                        new  SelectListItem { Text = "353", Value = "353" },
+                                         new  SelectListItem { Text = "354", Value = "354" },
+                                        new  SelectListItem { Text = "355", Value = "355" },
+                                        new  SelectListItem { Text = "356", Value = "356" },
+                                         new  SelectListItem { Text = "361", Value = "361" },
+                                         new  SelectListItem { Text = "362", Value = "362" },
+                                        new  SelectListItem { Text = "363", Value = "363" },
+                                        new  SelectListItem { Text = "364", Value = "364" },
+                                        new  SelectListItem { Text = "365", Value = "365" },
+                                         new  SelectListItem { Text = "366", Value = "366" },
+                                        new  SelectListItem { Text = "411", Value = "411" },
+                                        new  SelectListItem { Text = "412", Value = "412" },
+                                         new  SelectListItem { Text = "413", Value = "413" },
+                                         new  SelectListItem { Text = "414", Value = "414" },
+                                        new  SelectListItem { Text = "415", Value = "415" },
+                                        new  SelectListItem { Text = "416", Value = "416" },
+                                        new  SelectListItem { Text = "421", Value = "421" },
+                                         new  SelectListItem { Text = "422", Value = "422" },
+                                        new  SelectListItem { Text = "423", Value = "423" },
+                                        new  SelectListItem { Text = "424", Value = "424" },
+                                         new  SelectListItem { Text = "425", Value = "425" },
+                                         new  SelectListItem { Text = "426", Value = "426" },
+                                       new SelectListItem { Text = "431", Value = "431" },
+                                        new  SelectListItem { Text = "432", Value = "432" },
+                                        new  SelectListItem { Text = "433", Value = "433" },
+                                        new  SelectListItem { Text = "434", Value = "434" },
+                                         new  SelectListItem { Text = "435", Value = "435" },
+                                        new  SelectListItem { Text = "436", Value = "436" },
+                                        new  SelectListItem { Text = "441", Value = "441" },
+                                         new  SelectListItem { Text = "442", Value = "442" },
+                                         new  SelectListItem { Text = "443", Value = "443" },
+                                         new  SelectListItem { Text = "444", Value = "444" },
+                                        new  SelectListItem { Text = "445", Value = "445" },
+                                        new  SelectListItem { Text = "446", Value = "446" },
+                                         new  SelectListItem { Text = "451", Value = "451" },
+                                        new  SelectListItem { Text = "452", Value = "452" },
+                                        new  SelectListItem { Text = "453", Value = "453" },
+                                         new  SelectListItem { Text = "454", Value = "454" },
+                                         new  SelectListItem { Text = "455", Value = "455" },
+                                        new  SelectListItem { Text = "456", Value = "456" },
+                                         new  SelectListItem { Text = "461", Value = "461" },
+                                        new  SelectListItem { Text = "462", Value = "462" },
+                                        new  SelectListItem { Text = "463", Value = "463" },
+                                         new  SelectListItem { Text = "464", Value = "464" },
+                                         new  SelectListItem { Text = "465", Value = "465" },
+                                       new SelectListItem { Text = "466", Value = "466" },
+                                         new  SelectListItem { Text = "511", Value = "511" },
+                                        new  SelectListItem { Text = "512", Value = "512" },
+                                        new  SelectListItem { Text = "513", Value = "513" },
+                                         new  SelectListItem { Text = "514", Value = "514" },
+                                        new  SelectListItem { Text = "515", Value = "515" },
+                                        new  SelectListItem { Text = "516", Value = "516" },
+                                         new  SelectListItem { Text = "521", Value = "521" },
+                                         new  SelectListItem { Text = "522", Value = "522" },
+                                         new  SelectListItem { Text = "523", Value = "523" },
+                                        new  SelectListItem { Text = "524", Value = "524" },
+                                        new  SelectListItem { Text = "525", Value = "525" },
+                                         new  SelectListItem { Text = "526", Value = "526" },
+                                        new  SelectListItem { Text = "531", Value = "531" },
+                                        new  SelectListItem { Text = "532", Value = "532" },
+                                         new  SelectListItem { Text = "533", Value = "533" },
+                                         new  SelectListItem { Text = "534", Value = "534" },
+                                   new  SelectListItem { Text = "535", Value = "535" },
+                                        new  SelectListItem { Text = "536", Value = "536" },
+                                        new  SelectListItem { Text = "541", Value = "541" },
+                                         new  SelectListItem { Text = "542", Value = "542" },
+                                        new  SelectListItem { Text = "543", Value = "543" },
+                                        new  SelectListItem { Text = "544", Value = "544" },
+                                         new  SelectListItem { Text = "545", Value = "545" },
+                                         new  SelectListItem { Text = "546", Value = "546" },
+                                       new SelectListItem { Text = "551", Value = "551" },
+                                      new  SelectListItem { Text = "552", Value = "552" },
+                                        new  SelectListItem { Text = "553", Value = "553" },
+                                        new  SelectListItem { Text = "554", Value = "554" },
+                                         new  SelectListItem { Text = "555", Value = "555" },
+                                        new  SelectListItem { Text = "556", Value = "556" },
+                                        new  SelectListItem { Text = "561", Value = "561" },
+                                         new  SelectListItem { Text = "562", Value = "562" },
+                                         new  SelectListItem { Text = "563", Value = "563" },
+                                        new  SelectListItem { Text = "564", Value = "564" },
+                                        new  SelectListItem { Text = "565", Value = "565" },
+                                        new  SelectListItem { Text = "566", Value = "566" },
+                                         new  SelectListItem { Text = "571", Value = "571" },
+                                        new  SelectListItem { Text = "572", Value = "572" },
+                                        new  SelectListItem { Text = "573", Value = "573" },
+                                         new  SelectListItem { Text = "574", Value = "574" },
+                                         new  SelectListItem { Text = "575", Value = "575" },
+                                       new  SelectListItem { Text = "576", Value = "576" },
+                                        new  SelectListItem { Text = "581", Value = "581" },
+                                        new  SelectListItem { Text = "582", Value = "582" },
+                                         new  SelectListItem { Text = "583", Value = "583" },
+                                        new  SelectListItem { Text = "584", Value = "584" },
+                                        new  SelectListItem { Text = "585", Value = "585" },
+                                         new  SelectListItem { Text = "586", Value = "586" },
+                                         new  SelectListItem { Text = "611", Value = "611" },
+                                       new SelectListItem { Text = "612", Value = "612" },
+                                        new  SelectListItem { Text = "613", Value = "613" },
+                                        new  SelectListItem { Text = "614", Value = "614" },
+                                        new  SelectListItem { Text = "615", Value = "615" },
+                                         new  SelectListItem { Text = "616", Value = "616" },
+                                        new  SelectListItem { Text = "621", Value = "621" },
+                                        new  SelectListItem { Text = "622", Value = "622" },
+                                         new  SelectListItem { Text = "623", Value = "623" },
+                                         new  SelectListItem { Text = "624", Value = "624" },
+                                         new  SelectListItem { Text = "625", Value = "625" },
+                                        new  SelectListItem { Text = "626", Value = "626" },
+                                        new  SelectListItem { Text = "631", Value = "631" },
+                                         new  SelectListItem { Text = "632", Value = "632" },
+                                        new  SelectListItem { Text = "633", Value = "633" },
+                                        new  SelectListItem { Text = "634", Value = "634" },
+                                         new  SelectListItem { Text = "635", Value = "635" },
+                                         new  SelectListItem { Text = "636", Value = "636" },
+                                          new  SelectListItem { Text = "641", Value = "641" },
+                                        new  SelectListItem { Text = "642", Value = "642" },
+                                        new  SelectListItem { Text = "643", Value = "643" },
+                                         new  SelectListItem { Text = "644", Value = "644" },
+                                        new  SelectListItem { Text = "645", Value = "645" },
+                                        new  SelectListItem { Text = "646", Value = "646" },
+                                         new  SelectListItem { Text = "651", Value = "651" },
+                                         new  SelectListItem { Text = "652", Value = "652" },
+                                       new SelectListItem { Text = "653", Value = "653" },
+                                        new  SelectListItem { Text = "654", Value = "654" },
+                                        new  SelectListItem { Text = "655", Value = "655" },
+                                        new  SelectListItem { Text = "656", Value = "656" },
+                                         new  SelectListItem { Text = "661", Value = "661" },
+                                        new  SelectListItem { Text = "662", Value = "662" },
+                                        new  SelectListItem { Text = "663", Value = "663" },
+                                         new  SelectListItem { Text = "664", Value = "664" },
+                                         new  SelectListItem { Text = "665", Value = "665" },
+                                         new  SelectListItem { Text = "666", Value = "666" },
+                                        new  SelectListItem { Text = "671", Value = "671" },
+                                        new  SelectListItem { Text = "672", Value = "672" },
+                                         new  SelectListItem { Text = "673", Value = "673" },
+                                        new  SelectListItem { Text = "674", Value = "674" },
+                                        new  SelectListItem { Text = "675", Value = "675" },
+                                         new  SelectListItem { Text = "676", Value = "676" },
+                                         new  SelectListItem { Text = "681", Value = "681" },
+                                       new  SelectListItem { Text = "682", Value = "682" },
+                                        new  SelectListItem { Text = "683", Value = "683" },
+                                        new  SelectListItem { Text = "684", Value = "684" },
+                                         new  SelectListItem { Text = "685", Value = "685" },
+                                        new  SelectListItem { Text = "686", Value = "686" },
+                                        new  SelectListItem { Text = "711", Value = "711" },
+                                         new  SelectListItem { Text = "712", Value = "712" },
+                                         new  SelectListItem { Text = "713", Value = "713" },
+                                       new SelectListItem { Text = "714", Value = "714" },
+                                         new  SelectListItem { Text = "715", Value = "715" },
+                                        new  SelectListItem { Text = "716", Value = "716" },
+                                        new  SelectListItem { Text = "717", Value = "717" },
+                                         new  SelectListItem { Text = "718", Value = "718" },
+                                        new  SelectListItem { Text = "721", Value = "721" },
+                                        new  SelectListItem { Text = "722", Value = "722" },
+                                         new  SelectListItem { Text = "723", Value = "723" },
+                                         new  SelectListItem { Text = "724", Value = "724" },
+                                         new  SelectListItem { Text = "725", Value = "725" },
+                                        new  SelectListItem { Text = "726", Value = "726" },
+                                        new  SelectListItem { Text = "727", Value = "727" },
+                                         new  SelectListItem { Text = "728", Value = "728" },
+                                        new  SelectListItem { Text = "731", Value = "731" },
+                                        new  SelectListItem { Text = "732", Value = "732" },
+                                         new  SelectListItem { Text = "733", Value = "733" },
+                                         new  SelectListItem { Text = "734", Value = "734" },
+                                         new  SelectListItem { Text = "735", Value = "735" },
+                                        new  SelectListItem { Text = "736", Value = "736" },
+                                        new  SelectListItem { Text = "737", Value = "737" },
+                                         new  SelectListItem { Text = "738", Value = "738" },
+                                        new  SelectListItem { Text = "741", Value = "741" },
+                                        new  SelectListItem { Text = "742", Value = "742" },
+                                         new  SelectListItem { Text = "743", Value = "743" },
+                                         new  SelectListItem { Text = "744", Value = "744" },
+                                       new SelectListItem { Text = "745", Value = "745" },
+                                       new  SelectListItem { Text = "746", Value = "746" },
+                                        new  SelectListItem { Text = "747", Value = "747" },
+                                        new  SelectListItem { Text = "748", Value = "748" },
+                                         new  SelectListItem { Text = "751", Value = "751" },
+                                        new  SelectListItem { Text = "752", Value = "752" },
+                                        new  SelectListItem { Text = "753", Value = "753" },
+                                         new  SelectListItem { Text = "754", Value = "754" },
+                                         new  SelectListItem { Text = "755", Value = "755" },
+                                        new  SelectListItem { Text = "756", Value = "756" },
+                                        new  SelectListItem { Text = "757", Value = "757" },
+                                        new  SelectListItem { Text = "758", Value = "758" },
+                                         new  SelectListItem { Text = "761", Value = "761" },
+                                        new  SelectListItem { Text = "762", Value = "762" },
+                                        new  SelectListItem { Text = "763", Value = "763" },
+                                         new  SelectListItem { Text = "764", Value = "764" },
+                                         new  SelectListItem { Text = "765", Value = "765" },
+                                         new  SelectListItem { Text = "766", Value = "766" },
+                                        new  SelectListItem { Text = "767", Value = "767" },
+                                        new  SelectListItem { Text = "768", Value = "768" },
+                                         new  SelectListItem { Text = "771", Value = "771" },
+                                        new  SelectListItem { Text = "772", Value = "772" },
+                                        new  SelectListItem { Text = "773", Value = "773" },
+                                         new  SelectListItem { Text = "774", Value = "774" },
+                                         new  SelectListItem { Text = "775", Value = "775" },
+                                       new SelectListItem { Text = "776", Value = "776" },
+                                       new  SelectListItem { Text = "777", Value = "777" },
+                                        new  SelectListItem { Text = "778", Value = "778" },
+                                        new  SelectListItem { Text = "781", Value = "781" },
+                                         new  SelectListItem { Text = "782", Value = "782" },
+                                        new  SelectListItem { Text = "783", Value = "783" },
+                                        new  SelectListItem { Text = "784", Value = "784" },
+                                         new  SelectListItem { Text = "785", Value = "785" },
+                                         new  SelectListItem { Text = "786", Value = "786" },
+                                        new  SelectListItem { Text = "787", Value = "787" },
+                                        new  SelectListItem { Text = "788", Value = "788" },
+                                        new  SelectListItem { Text = "811", Value = "811" },
+                                         new  SelectListItem { Text = "812", Value = "812" },
+                                        new  SelectListItem { Text = "813", Value = "813" },
+                                        new  SelectListItem { Text = "814", Value = "814" },
+                                         new  SelectListItem { Text = "815", Value = "815" },
+                                         new  SelectListItem { Text = "816", Value = "816" },
+                                        new  SelectListItem { Text = "821", Value = "821" },
+                                        new  SelectListItem { Text = "822", Value = "822" },
+                                         new  SelectListItem { Text = "823", Value = "823" },
+                                        new  SelectListItem { Text = "824", Value = "824" },
+                                         new  SelectListItem { Text = "825", Value = "825" },
+                                        new  SelectListItem { Text = "826", Value = "826" },
+                                        new  SelectListItem { Text = "831", Value = "831" },
+                                         new  SelectListItem { Text = "832", Value = "832" },
+                                         new  SelectListItem { Text = "833", Value = "833" },
+                                       new SelectListItem { Text = "834", Value = "834" },
+                                        new  SelectListItem { Text = "835", Value = "835" },
+                                        new  SelectListItem { Text = "836", Value = "836" },
+                                        new  SelectListItem { Text = "841", Value = "841" },
+                                         new  SelectListItem { Text = "842", Value = "842" },
+                                        new  SelectListItem { Text = "843", Value = "843" },
+                                        new  SelectListItem { Text = "844", Value = "844" },
+                                         new  SelectListItem { Text = "845", Value = "845" },
+                                         new  SelectListItem { Text = "846", Value = "846" },
+                                         new  SelectListItem { Text = "851", Value = "851" },
+                                        new  SelectListItem { Text = "852", Value = "852" },
+                                        new  SelectListItem { Text = "853", Value = "853" },
+                                         new  SelectListItem { Text = "854", Value = "854" },
+                                        new  SelectListItem { Text = "855", Value = "855" },
+                                        new  SelectListItem { Text = "856", Value = "856" },
+                                         new  SelectListItem { Text = "861", Value = "861" },
+                                         new  SelectListItem { Text = "862", Value = "862" },
+                                         new  SelectListItem { Text = "863", Value = "863" },
+                                        new  SelectListItem { Text = "864", Value = "864" },
+                                         new  SelectListItem { Text = "865", Value = "865" },
+                                        new  SelectListItem { Text = "866", Value = "866" },
+                                        new  SelectListItem { Text = "871", Value = "871" },
+                                         new  SelectListItem { Text = "872", Value = "872" },
+                                        new  SelectListItem { Text = "873", Value = "873" },
+                                        new  SelectListItem { Text = "874", Value = "874" },
+                                        new  SelectListItem { Text = "875", Value = "875" },
+                                        new  SelectListItem { Text = "876", Value = "876" },
+                                         new  SelectListItem { Text = "881", Value = "881" },
+                                        new  SelectListItem { Text = "882", Value = "882" },
+                                        new  SelectListItem { Text = "883", Value = "883" },
+                                       new  SelectListItem { Text = "884", Value = "884" },
+                                        new  SelectListItem { Text = "885", Value = "885" },
+                                        new  SelectListItem { Text = "886", Value = "886" },
+                                         new  SelectListItem { Text = "911", Value = "911" },
+                                        new  SelectListItem { Text = "912", Value = "912" },
+                                        new  SelectListItem { Text = "913", Value = "913" },
+                                        new  SelectListItem { Text = "914", Value = "914" },
+                                        new  SelectListItem { Text = "915", Value = "915" },
+                                        new  SelectListItem { Text = "916", Value = "916" },
+                                         new  SelectListItem { Text = "921", Value = "921" },
+                                        new  SelectListItem { Text = "922", Value = "922" },
+                                        new  SelectListItem { Text = "923", Value = "923" },
+                                       new  SelectListItem { Text = "924", Value = "924" },
+                                        new  SelectListItem { Text = "925", Value = "925" },
+                                        new  SelectListItem { Text = "926", Value = "926" },
+                                       new  SelectListItem { Text = "931", Value = "931" },
+                                        new  SelectListItem { Text = "932", Value = "932" },
+                                        new  SelectListItem { Text = "933", Value = "933" },
+                                        new  SelectListItem { Text = "934", Value = "934" },
+                                        new  SelectListItem { Text = "935", Value = "935" },
+                                        new  SelectListItem { Text = "936", Value = "936" },
+                                        new  SelectListItem { Text = "941", Value = "941" },
+                                        new  SelectListItem { Text = "942", Value = "942" },
+                                        new  SelectListItem { Text = "943", Value = "943" },
+                                        new  SelectListItem { Text = "944", Value = "944" },
+                                        new  SelectListItem { Text = "945", Value = "945" },
+                                        new  SelectListItem { Text = "946", Value = "946" },
+                                        new  SelectListItem { Text = "951", Value = "951" },
+                                        new  SelectListItem { Text = "952", Value = "952" },
+                                        new  SelectListItem { Text = "953", Value = "953" },
+                                        new  SelectListItem { Text = "954", Value = "954" },
+                                        new  SelectListItem { Text = "955", Value = "955" },
+                                        new  SelectListItem { Text = "956", Value = "956" },
+                                        new  SelectListItem { Text = "961", Value = "961" },
+                                        new  SelectListItem { Text = "962", Value = "962" },
+                                        new  SelectListItem { Text = "963", Value = "963" },
+                                        new  SelectListItem { Text = "964", Value = "964" },
+                                        new  SelectListItem { Text = "965", Value = "965" },
+                                        new  SelectListItem { Text = "966", Value = "966" },
+                                        new  SelectListItem { Text = "971", Value = "971" },
+                                        new  SelectListItem { Text = "972", Value = "972" },
+                                        new  SelectListItem { Text = "973", Value = "973" },
+                                        new  SelectListItem { Text = "974", Value = "974" },
+                                        new  SelectListItem { Text = "975", Value = "975" },
+                                        new  SelectListItem { Text = "976", Value = "976" },
+                                        new  SelectListItem { Text = "981", Value = "981" },
+                                        new  SelectListItem { Text = "982", Value = "982" },
+                                        new  SelectListItem { Text = "983", Value = "983" },
+                                        new  SelectListItem { Text = "984", Value = "984" },
+                                        new  SelectListItem { Text = "985", Value = "985" },
+                                        new  SelectListItem { Text = "986", Value = "986" },
+                                        new  SelectListItem { Text = "1011", Value = "1011" },
+                                        new  SelectListItem { Text = "1012", Value = "1012" },
+                                        new  SelectListItem { Text = "1013", Value = "1013" },
+                                        new  SelectListItem { Text = "1014", Value = "1014" },
+                                        new  SelectListItem { Text = "1015", Value = "1015" },
+                                        new  SelectListItem { Text = "1016", Value = "1016" },
+                                         new  SelectListItem { Text = "1021", Value = "1021" },
+                                        new  SelectListItem { Text = "1022", Value = "1022" },
+                                        new  SelectListItem { Text = "1023", Value = "1023" },
+                                        new  SelectListItem { Text = "1024", Value = "1024" },
+                                        new  SelectListItem { Text = "1025", Value = "1025" },
+                                        new  SelectListItem { Text = "1026", Value = "1026" },
+                                        new  SelectListItem { Text = "1031", Value = "1031" },
+                                        new  SelectListItem { Text = "1032", Value = "1032" },
+                                        new  SelectListItem { Text = "1033", Value = "1033" },
+                                        new  SelectListItem { Text = "1034", Value = "1034" },
+                                        new  SelectListItem { Text = "1035", Value = "1035" },
+                                        new  SelectListItem { Text = "1036", Value = "1036" },
+                                        new  SelectListItem { Text = "1041", Value = "1041" },
+                                        new  SelectListItem { Text = "1042", Value = "1042" },
+                                        new  SelectListItem { Text = "1043", Value = "1043" },
+                                        new  SelectListItem { Text = "1044", Value = "1044" },
+                                        new  SelectListItem { Text = "1045", Value = "1045" },
+                                        new  SelectListItem { Text = "1046", Value = "1046" },
+                                         new  SelectListItem { Text = "1111", Value = "1111" },
+                                        new  SelectListItem { Text = "1112", Value = "1112" },
+                                        new  SelectListItem { Text = "1113", Value = "1113" },
+                                        new  SelectListItem { Text = "1114", Value = "1114" },
+                                        new  SelectListItem { Text = "1115", Value = "1115" },
+                                         new  SelectListItem { Text = "1116", Value = "1116" },
+                                        new  SelectListItem { Text = "1121", Value = "1121" },
+                                        new  SelectListItem { Text = "1122", Value = "1122" },
+                                        new  SelectListItem { Text = "1123", Value = "1123" },
+                                        new  SelectListItem { Text = "1124", Value = "1124" },
+                                         new  SelectListItem { Text = "1125", Value = "1125" },
+                                        new  SelectListItem { Text = "1126", Value = "1126" },
+                                         new  SelectListItem { Text = "1131", Value = "1131" },
+                                        new  SelectListItem { Text = "1132", Value = "1132" },
+                                        new  SelectListItem { Text = "1133", Value = "1133" },
+                                        new  SelectListItem { Text = "1134", Value = "1134" },
+                                         new  SelectListItem { Text = "1135", Value = "1135" },
+                                        new  SelectListItem { Text = "1136", Value = "1136" },
+                                        new  SelectListItem { Text = "1141", Value = "1141" },
+                                        new  SelectListItem { Text = "1142", Value = "1142" },
+                                        new  SelectListItem { Text = "1143", Value = "1143" },
+                                        new  SelectListItem { Text = "1144", Value = "1144" },
+                                         new  SelectListItem { Text = "1145", Value = "1145" },
+                                        new  SelectListItem { Text = "1146", Value = "1146" },
+                                        new  SelectListItem { Text = "1151", Value = "1151" },
+                                        new  SelectListItem { Text = "1152", Value = "1152" },
+                                        new  SelectListItem { Text = "1153", Value = "1153" },
+                                        new  SelectListItem { Text = "1154", Value = "1154" },
+                                         new  SelectListItem { Text = "1155", Value = "1155" },
+                                        new  SelectListItem { Text = "1156", Value = "1156" },
+                                        new  SelectListItem { Text = "1161", Value = "1161" },
+                                        new  SelectListItem { Text = "1162", Value = "1162" },
+                                        new  SelectListItem { Text = "1163", Value = "1163" },
+                                        new  SelectListItem { Text = "1164", Value = "1164" },
+                                         new  SelectListItem { Text = "1165", Value = "1165" },
+                                        new  SelectListItem { Text = "1166", Value = "1166" },
+                                         new  SelectListItem { Text = "1171", Value = "1171" },
+                                        new  SelectListItem { Text = "1172", Value = "1172" },
+                                        new  SelectListItem { Text = "1173", Value = "1173" },
+                                        new  SelectListItem { Text = "1174", Value = "1174" },
+                                         new  SelectListItem { Text = "1175", Value = "1175" },
+                                        new  SelectListItem { Text = "1176", Value = "1176" },
+                                        new  SelectListItem { Text = "1181", Value = "1181" },
+                                        new  SelectListItem { Text = "1182", Value = "1182" },
+                                        new  SelectListItem { Text = "1183", Value = "1183" },
+                                        new  SelectListItem { Text = "1184", Value = "1184" },
+                                         new  SelectListItem { Text = "1185", Value = "1185" },
+                                        new  SelectListItem { Text = "1186", Value = "1186" },
+                                        new  SelectListItem { Text = "1211", Value = "1211" },
+                                        new  SelectListItem { Text = "1212", Value = "1212" },
+                                         new  SelectListItem { Text = "1213", Value = "1213" },
+                                        new  SelectListItem { Text = "1214", Value = "1214" },
+                                        new  SelectListItem { Text = "1215", Value = "1215" },
+                                        new  SelectListItem { Text = "1216", Value = "1216" },
+                                        new  SelectListItem { Text = "1221", Value = "1221" },
+                                         new  SelectListItem { Text = "1222", Value = "1222" },
+                                        new  SelectListItem { Text = "1223", Value = "1223" },
+                                        new  SelectListItem { Text = "1224", Value = "1224" },
+                                        new  SelectListItem { Text = "1225", Value = "1225" },
+                                        new  SelectListItem { Text = "1226", Value = "1226" },
+                                         new  SelectListItem { Text = "1231", Value = "1231" },
+                                        new  SelectListItem { Text = "1232", Value = "1232" },
+                                        new  SelectListItem { Text = "1233", Value = "1233" },
+                                        new  SelectListItem { Text = "1234", Value = "1234" },
+                                        new  SelectListItem { Text = "1235", Value = "1235" },
+                                         new  SelectListItem { Text = "1236", Value = "1236" },
+                                        new  SelectListItem { Text = "1241", Value = "1241" },
+                                        new  SelectListItem { Text = "1242", Value = "1242" },
+                                        new  SelectListItem { Text = "1243", Value = "1243" },
+                                        new  SelectListItem { Text = "1244", Value = "1244" },
+                                         new  SelectListItem { Text = "1245", Value = "1245" },
+                                        new  SelectListItem { Text = "1246", Value = "1246" },
+                                        new  SelectListItem { Text = "1251", Value = "1251" },
+                                        new  SelectListItem { Text = "1252", Value = "1252" },
+                                        new  SelectListItem { Text = "1253", Value = "1253" },
+                                         new  SelectListItem { Text = "1254", Value = "1254" },
+                                        new  SelectListItem { Text = "1255", Value = "1255" },
+                                        new  SelectListItem { Text = "1256", Value = "1256" },
+                                        new  SelectListItem { Text = "1261", Value = "1261" },
+                                        new  SelectListItem { Text = "1262", Value = "1262" },
+                                         new  SelectListItem { Text = "1263", Value = "1263" },
+                                        new  SelectListItem { Text = "1264", Value = "1264" },
+                                        new  SelectListItem { Text = "1265", Value = "1265" },
+                                        new  SelectListItem { Text = "1266", Value = "1266" },
+                                        new  SelectListItem { Text = "1271", Value = "1271" },
+                                         new  SelectListItem { Text = "1272", Value = "1272" },
+                                        new  SelectListItem { Text = "1273", Value = "1273" },
+                                        new  SelectListItem { Text = "1274", Value = "1274" },
+                                        new  SelectListItem { Text = "1275", Value = "1275" },
+                                        new  SelectListItem { Text = "1276", Value = "1276" },
+                                         new  SelectListItem { Text = "1281", Value = "1281" },
+                                        new  SelectListItem { Text = "1282", Value = "1282" },
+                                        new  SelectListItem { Text = "1283", Value = "1283" },
+                                        new  SelectListItem { Text = "1284", Value = "1284" },
+                                        new  SelectListItem { Text = "1285", Value = "1285" },
+                                         new  SelectListItem { Text = "1286", Value = "1286" },
+                                        new  SelectListItem { Text = "1311", Value = "1311" },
+                                        new  SelectListItem { Text = "1312", Value = "1312" },
+                                        new  SelectListItem { Text = "1313", Value = "1313" },
+                                        new  SelectListItem { Text = "1314", Value = "1314" },
+                                         new  SelectListItem { Text = "1315", Value = "1315" },
+                                        new  SelectListItem { Text = "1316", Value = "1316" },
+                                        new  SelectListItem { Text = "1321", Value = "1321" },
+                                        new  SelectListItem { Text = "1322", Value = "1322" },
+                                        new  SelectListItem { Text = "1323", Value = "1323" },
+                                         new  SelectListItem { Text = "1324", Value = "1324" },
+                                        new  SelectListItem { Text = "1325", Value = "1325" },
+                                        new  SelectListItem { Text = "1326", Value = "1326" },
+                                        new  SelectListItem { Text = "1331", Value = "1331" },
+                                        new  SelectListItem { Text = "1332", Value = "1332" },
+                                        new  SelectListItem { Text = "1333", Value = "1333" },
+                                         new  SelectListItem { Text = "1334", Value = "1334" },
+                                        new  SelectListItem { Text = "1335", Value = "1335" },
+                                        new  SelectListItem { Text = "1336", Value = "1336" },
+                                        new  SelectListItem { Text = "1341", Value = "1341" },
+                                        new  SelectListItem { Text = "1342", Value = "1342" },
+                                        new  SelectListItem { Text = "1343", Value = "1343" },
+                                         new  SelectListItem { Text = "1344", Value = "1344" },
+                                        new  SelectListItem { Text = "1345", Value = "1345" },
+                                        new  SelectListItem { Text = "1346", Value = "1346" },
+                                        new  SelectListItem { Text = "1351", Value = "1351" },
+                                        new  SelectListItem { Text = "1352", Value = "1352" },
+                                        new  SelectListItem { Text = "1353", Value = "1353" },
+                                        new  SelectListItem { Text = "1354", Value = "1354" },
+                                        new  SelectListItem { Text = "1355", Value = "1355" },
+                                       new  SelectListItem { Text = "1356", Value = "1356" },
+                                         new  SelectListItem { Text = "1361", Value = "1361" },
+                                        new  SelectListItem { Text = "1362", Value = "1362" },
+                                        new  SelectListItem { Text = "1363", Value = "1363" },
+                                         new  SelectListItem { Text = "1364", Value = "1364" },
+                                        new  SelectListItem { Text = "1365", Value = "1365" },
+                                         new  SelectListItem { Text = "1366", Value = "1366" },
+                                         new  SelectListItem { Text = "1371", Value = "1371" },
+                                        new  SelectListItem { Text = "1372", Value = "1372" },
+                                        new  SelectListItem { Text = "1373", Value = "1373" },
+                                         new  SelectListItem { Text = "1374", Value = "1374" },
+                                        new  SelectListItem { Text = "1375", Value = "1375" },
+                                        new  SelectListItem { Text = "1376", Value = "1376" },
+                                        new  SelectListItem { Text = "1381", Value = "1381" },
+                                        new  SelectListItem { Text = "1382", Value = "1382" },
+                                        new  SelectListItem { Text = "1383", Value = "1383" },
+                                         new  SelectListItem { Text = "1384", Value = "1384" },
+                                        new  SelectListItem { Text = "1385", Value = "1385" },
+                                         new  SelectListItem { Text = "1386", Value = "1386" },
+                                        new  SelectListItem { Text = "1411", Value = "1411" },
+                                        new  SelectListItem { Text = "1412", Value = "1412" },
+                                        new  SelectListItem { Text = "1413", Value = "1413" },
+                                         new  SelectListItem { Text = "1414", Value = "1414" },
+                                        new  SelectListItem { Text = "1415", Value = "1415" },
+
+                                        new  SelectListItem { Text = "1416", Value = "1416" },
+                                        new  SelectListItem { Text = "1421", Value = "1421" },
+                                        new  SelectListItem { Text = "1422", Value = "1422" },
+                                        new  SelectListItem { Text = "1423", Value = "1423" },
+                                        new  SelectListItem { Text = "1424", Value = "1424" },
+                                        new  SelectListItem { Text = "1425", Value = "1425" },
+                                         new  SelectListItem { Text = "1426", Value = "1426" },
+                                        new  SelectListItem { Text = "1431", Value = "1431" },
+                                        new  SelectListItem { Text = "1432", Value = "1432" },
+                                        new  SelectListItem { Text = "1433", Value = "1433" },
+                                        new  SelectListItem { Text = "1434", Value = "1434" },
+                                         new  SelectListItem { Text = "1435", Value = "1435" },
+                                        new  SelectListItem { Text = "1436", Value = "1436" },
+                                        new  SelectListItem { Text = "1441", Value = "1441" },
+                                        new  SelectListItem { Text = "1442", Value = "1442" },
+                                        new  SelectListItem { Text = "1443", Value = "1443" },
+                                         new  SelectListItem { Text = "1444", Value = "1444" },
+                                        new  SelectListItem { Text = "1445", Value = "1445" },
+                                        new  SelectListItem { Text = "1446", Value = "1446" },
+                                        new  SelectListItem { Text = "1451", Value = "1451" },
+                                        new  SelectListItem { Text = "1452", Value = "1452" },
+                                         new  SelectListItem { Text = "1453", Value = "1453" },
+                                        new  SelectListItem { Text = "1454", Value = "1454" },
+                                        new  SelectListItem { Text = "1455", Value = "1455" },
+                                        new  SelectListItem { Text = "1456", Value = "1456" },
+                                        new  SelectListItem { Text = "1461", Value = "1461" },
+                                         new  SelectListItem { Text = "1462", Value = "1462" },
+                                        new  SelectListItem { Text = "1463", Value = "1463" },
+                                        new  SelectListItem { Text = "1464", Value = "1464" },
+                                        new  SelectListItem { Text = "1465", Value = "1465" },
+                                        new  SelectListItem { Text = "1466", Value = "1466" },
+
+                                         new  SelectListItem { Text = "1471", Value = "1471" },
+                                        new  SelectListItem { Text = "1472", Value = "1472" },
+                                        new  SelectListItem { Text = "1473", Value = "1473" },
+                                        new  SelectListItem { Text = "1474", Value = "1474" },
+                                        new  SelectListItem { Text = "1475", Value = "1475" },
+                                         new  SelectListItem { Text = "1476", Value = "1476" },
+                                        new  SelectListItem { Text = "1481", Value = "1481" },
+                                        new  SelectListItem { Text = "1482", Value = "1482" },
+                                        new  SelectListItem { Text = "1483", Value = "1483" },
+                                        new  SelectListItem { Text = "1484", Value = "1484" },
+                                         new  SelectListItem { Text = "1485", Value = "1485" },
+                                        new  SelectListItem { Text = "1486", Value = "1486" },
+                                           new  SelectListItem { Text = "15101", Value = "15101" },
+                                   new  SelectListItem { Text = "15102", Value = "15102" },
+                                   new  SelectListItem { Text = "15103", Value = "15103" },
+                                   new  SelectListItem { Text = "15104", Value = "15104" },
+                                   new  SelectListItem { Text = "15105", Value = "15105" },
+                                   new  SelectListItem { Text = "15106", Value = "15106" },
+                                   new  SelectListItem { Text = "15107", Value = "15107" },
+                                   new  SelectListItem { Text = "15108", Value = "15108" },
+                                   new  SelectListItem { Text = "15109", Value = "15109" },
+                                   new  SelectListItem { Text = "15110", Value = "15110" },
+                                   new  SelectListItem { Text = "15111", Value = "15111" },
+                                   new  SelectListItem { Text = "15112", Value = "15112" },
+                                   new  SelectListItem { Text = "15201", Value = "15201" },
+                                   new  SelectListItem { Text = "15202", Value = "15202" },
+                                   new  SelectListItem { Text = "15203", Value = "15203" },
+                                   new  SelectListItem { Text = "15204", Value = "15204" },
+                                       new  SelectListItem { Text = "15205", Value = "15205" },
+                                           new  SelectListItem { Text = "15206", Value = "15206" },
+                                               new  SelectListItem { Text = "15207", Value = "15207" },
+                                                   new  SelectListItem { Text = "15208", Value = "15208" },
+                                                       new  SelectListItem { Text = "15209", Value = "15209" },
+                                                           new  SelectListItem { Text = "15210", Value = "15210" },
+                                                               new  SelectListItem { Text = "15211", Value = "15211" },
+                                                                   new  SelectListItem { Text = "15212", Value = "15212" },
+                                                                     new  SelectListItem { Text = "16101", Value = "16101" },
+                                   new  SelectListItem { Text = "16102", Value = "16102" },
+                                   new  SelectListItem { Text = "16103", Value = "16103" },
+                                   new  SelectListItem { Text = "16104", Value = "16104" },
+                                   new  SelectListItem { Text = "16105", Value = "16105" },
+                                   new  SelectListItem { Text = "16106", Value = "16106" },
+                                   new  SelectListItem { Text = "16107", Value = "16107" },
+                                   new  SelectListItem { Text = "16108", Value = "16108" },
+                                   new  SelectListItem { Text = "16109", Value = "16109" },
+                                   new  SelectListItem { Text = "16110", Value = "16110" },
+                                   new  SelectListItem { Text = "16111", Value = "16111" },
+                                   new  SelectListItem { Text = "16112", Value = "16112" },
+                                   new  SelectListItem { Text = "16201", Value = "16201" },
+                                   new  SelectListItem { Text = "16202", Value = "16202" },
+                                   new  SelectListItem { Text = "16203", Value = "16203" },
+                                   new  SelectListItem { Text = "16204", Value = "16204" },
+                                       new  SelectListItem { Text = "16205", Value = "16205" },
+                                           new  SelectListItem { Text = "16206", Value = "16206" },
+                                               new  SelectListItem { Text = "16207", Value = "16207" },
+                                                   new  SelectListItem { Text = "16208", Value = "16208" },
+                                                       new  SelectListItem { Text = "16209", Value = "16209" },
+                                                           new  SelectListItem { Text = "16210", Value = "16210" },
+                                                               new  SelectListItem { Text = "16211", Value = "16211" },
+                                                                   new  SelectListItem { Text = "16212", Value = "16212" },
+                                                                     new  SelectListItem { Text = "17101", Value = "17101" },
+                                   new  SelectListItem { Text = "17102", Value = "17102" },
+                                   new  SelectListItem { Text = "17103", Value = "17103" },
+                                   new  SelectListItem { Text = "17104", Value = "17104" },
+                                   new  SelectListItem { Text = "17105", Value = "17105" },
+                                   new  SelectListItem { Text = "17106", Value = "17106" },
+                                   new  SelectListItem { Text = "17107", Value = "17107" },
+                                   new  SelectListItem { Text = "17108", Value = "17108" },
+                                   new  SelectListItem { Text = "17109", Value = "17109" },
+                                   new  SelectListItem { Text = "17110", Value = "17110" },
+                                   new  SelectListItem { Text = "17111", Value = "17111" },
+                                   new  SelectListItem { Text = "17112", Value = "17112" },
+                                   new  SelectListItem { Text = "17201", Value = "17201" },
+                                   new  SelectListItem { Text = "17202", Value = "17202" },
+                                   new  SelectListItem { Text = "17203", Value = "17203" },
+                                   new  SelectListItem { Text = "17204", Value = "17204" },
+                                       new  SelectListItem { Text = "17205", Value = "17205" },
+                                           new  SelectListItem { Text = "17206", Value = "17206" },
+                                               new  SelectListItem { Text = "17207", Value = "17207" },
+                                                   new  SelectListItem { Text = "17208", Value = "17208" },
+                                                       new  SelectListItem { Text = "17209", Value = "17209" },
+                                                           new  SelectListItem { Text = "17210", Value = "17210" },
+                                                               new  SelectListItem { Text = "17211", Value = "17211" },
+                                                                   new  SelectListItem { Text = "17212", Value = "17212" },
+                                   new  SelectListItem { Text = "18101", Value = "18101" },
+                                   new  SelectListItem { Text = "18102", Value = "18102" },
+                                   new  SelectListItem { Text = "18103", Value = "18103" },
+                                   new  SelectListItem { Text = "18104", Value = "18104" },
+                                   new  SelectListItem { Text = "18105", Value = "18105" },
+                                   new  SelectListItem { Text = "18106", Value = "18106" },
+                                   new  SelectListItem { Text = "18107", Value = "18107" },
+                                   new  SelectListItem { Text = "18108", Value = "18108" },
+                                   new  SelectListItem { Text = "18109", Value = "18109" },
+                                   new  SelectListItem { Text = "18110", Value = "18110" },
+                                   new  SelectListItem { Text = "18111", Value = "18111" },
+                                   new  SelectListItem { Text = "18112", Value = "18112" },
+                                   new  SelectListItem { Text = "18201", Value = "18201" },
+                                   new  SelectListItem { Text = "18202", Value = "18202" },
+                                   new  SelectListItem { Text = "18203", Value = "18203" },
+                                   new  SelectListItem { Text = "18204", Value = "18204" },
+                                       new  SelectListItem { Text = "18205", Value = "18205" },
+                                           new  SelectListItem { Text = "18206", Value = "18206" },
+                                               new  SelectListItem { Text = "18207", Value = "18207" },
+                                                   new  SelectListItem { Text = "18208", Value = "18208" },
+                                                       new  SelectListItem { Text = "18209", Value = "18209" },
+                                                           new  SelectListItem { Text = "18210", Value = "18210" },
+                                                               new  SelectListItem { Text = "18211", Value = "18211" },
+                                                                   new  SelectListItem { Text = "18212", Value = "18212" },
+
+                                        new  SelectListItem { Text = "2111", Value = "2111" },
+                                        new  SelectListItem { Text = "2112", Value = "2112" },
+                                        new  SelectListItem { Text = "2113", Value = "2113" },
+                                         new  SelectListItem { Text = "2114", Value = "2114" },
+                                        new  SelectListItem { Text = "2115", Value = "2115" },
+                                        new  SelectListItem { Text = "2116", Value = "2116" },
+                                        new  SelectListItem { Text = "2221", Value = "2221" },
+                                        new  SelectListItem { Text = "2222", Value = "2222" },
+                                         new  SelectListItem { Text = "2223", Value = "2223" },
+                                        new  SelectListItem { Text = "2224", Value = "2224" },
+                                        new  SelectListItem { Text = "2225", Value = "2225" },
+                                        new  SelectListItem { Text = "2226", Value = "2226" },
+                                        new  SelectListItem { Text = "2311", Value = "2311" },
+                                         new  SelectListItem { Text = "2312", Value = "2312" },
+                                        new  SelectListItem { Text = "2313", Value = "2313" },
+                                        new  SelectListItem { Text = "2314", Value = "2314" },
+                                        new  SelectListItem { Text = "2315", Value = "2315" },
+                                        new  SelectListItem { Text = "2316", Value = "2316" },
+                                         new  SelectListItem { Text = "2321", Value = "2321" },
+                                        new  SelectListItem { Text = "2322", Value = "2322" },
+                                        new  SelectListItem { Text = "2323", Value = "2323" },
+                                        new  SelectListItem { Text = "2324", Value = "2324" },
+                                        new  SelectListItem { Text = "2325", Value = "2325" },
+                                         new  SelectListItem { Text = "2326", Value = "2326" },
+                                         new  SelectListItem { Text = "2411", Value = "2411" },
+                                         new  SelectListItem { Text = "2412", Value = "2412" },
+                                        new  SelectListItem { Text = "2413", Value = "2413" },
+                                        new  SelectListItem { Text = "2414", Value = "2414" },
+                                        new  SelectListItem { Text = "2415", Value = "2415" },
+                                        new  SelectListItem { Text = "2416", Value = "2416" },
+                                         new  SelectListItem { Text = "2421", Value = "2421" },
+                                        new  SelectListItem { Text = "2422", Value = "2422" },
+                                        new  SelectListItem { Text = "2423", Value = "2423" },
+                                        new  SelectListItem { Text = "2424", Value = "2424" },
+                                        new  SelectListItem { Text = "2425", Value = "2425" },
+                                            new  SelectListItem { Text = "2426", Value = "2426" },
+                                            new  SelectListItem { Text = "2511", Value = "2511" },
+                                         new  SelectListItem { Text = "2512", Value = "2512" },
+                                        new  SelectListItem { Text = "2513", Value = "2513" },
+                                        new  SelectListItem { Text = "2514", Value = "2514" },
+                                        new  SelectListItem { Text = "2515", Value = "2515" },
+                                        new  SelectListItem { Text = "2516", Value = "2516" },
+                                         new  SelectListItem { Text = "2521", Value = "2521" },
+                                        new  SelectListItem { Text = "2522", Value = "2522" },
+                                        new  SelectListItem { Text = "2523", Value = "2523" },
+                                        new  SelectListItem { Text = "2524", Value = "2524" },
+                                        new  SelectListItem { Text = "2525", Value = "2525" },
+                                        new  SelectListItem { Text = "2526", Value = "2526" },
+                                         new  SelectListItem { Text = "2611", Value = "2611" },
+                                         new  SelectListItem { Text = "2612", Value = "2612" },
+                                        new  SelectListItem { Text = "2613", Value = "2613" },
+                                        new  SelectListItem { Text = "2614", Value = "2614" },
+                                        new  SelectListItem { Text = "2615", Value = "2615" },
+                                        new  SelectListItem { Text = "2616", Value = "2616" },
+                                         new  SelectListItem { Text = "2621", Value = "2621" },
+                                        new  SelectListItem { Text = "2622", Value = "2622" },
+                                        new  SelectListItem { Text = "2623", Value = "2623" },
+                                        new  SelectListItem { Text = "2624", Value = "2624" },
+                                        new  SelectListItem { Text = "2625", Value = "2625" },
+                                              new  SelectListItem { Text = "2626", Value = "2626" },
+                                   new  SelectListItem { Text = "2711", Value = "2711" },
+                                         new  SelectListItem { Text = "2712", Value = "2712" },
+                                        new  SelectListItem { Text = "2713", Value = "2713" },
+                                        new  SelectListItem { Text = "2714", Value = "2714" },
+                                        new  SelectListItem { Text = "2715", Value = "2715" },
+                                        new  SelectListItem { Text = "2716", Value = "2716" },
+                                         new  SelectListItem { Text = "2721", Value = "2721" },
+                                        new  SelectListItem { Text = "2722", Value = "2722" },
+                                        new  SelectListItem { Text = "2723", Value = "2723" },
+                                        new  SelectListItem { Text = "2724", Value = "2724" },
+                                        new  SelectListItem { Text = "2725", Value = "2725" },
+                                               new  SelectListItem { Text = "2726", Value = "2726" },
+                                   new  SelectListItem { Text = "2911", Value = "2911" },
+                                         new  SelectListItem { Text = "2912", Value = "2912" },
+                                        new  SelectListItem { Text = "2913", Value = "2913" },
+                                        new  SelectListItem { Text = "2914", Value = "2914" },
+                                        new  SelectListItem { Text = "2915", Value = "2915" },
+                                        new  SelectListItem { Text = "2916", Value = "2916" },
+                                                  new  SelectListItem { Text = "2917", Value = "2917" },
+                                        new  SelectListItem { Text = "2918", Value = "2918" },
+                                        new  SelectListItem { Text = "2919", Value = "2919" },
+                                          new  SelectListItem { Text = "29110", Value = "29110" },
+                                         new  SelectListItem { Text = "2921", Value = "2921" },
+                                        new  SelectListItem { Text = "2922", Value = "2922" },
+                                        new  SelectListItem { Text = "2923", Value = "2923" },
+                                        new  SelectListItem { Text = "2924", Value = "2924" },
+                                        new  SelectListItem { Text = "2925", Value = "2925" },
+                                        new  SelectListItem { Text = "2926", Value = "2926" },
+                                   new  SelectListItem { Text = "2927", Value = "2927" },
+                                         new  SelectListItem { Text = "2928", Value = "2928" },
+                                        new  SelectListItem { Text = "2929", Value = "2929" },
+                                        new  SelectListItem { Text = "29210", Value = "29210" },
+                                        new  SelectListItem { Text = "3011", Value = "3011" },
+                                        new  SelectListItem { Text = "3012", Value = "3012" },
+                                         new  SelectListItem { Text = "3013", Value = "3013" },
+                                        new  SelectListItem { Text = "3014", Value = "3014" },
+                                        new  SelectListItem { Text = "3015", Value = "3015" },
+                                        new  SelectListItem { Text = "3016", Value = "3016" },
+                                        new  SelectListItem { Text = "3017", Value = "3017" },
+                                   new  SelectListItem { Text = "3018", Value = "3018" },
+                                         new  SelectListItem { Text = "3019", Value = "3019" },
+                                        new  SelectListItem { Text = "30110", Value = "30110" },
+                                        new  SelectListItem { Text = "3021", Value = "3021" },
+                                        new  SelectListItem { Text = "3022", Value = "3022" },
+                                        new  SelectListItem { Text = "3023", Value = "3023" },
+                                         new  SelectListItem { Text = "3024", Value = "3024" },
+                                        new  SelectListItem { Text = "3025", Value = "3025" },
+                                        new  SelectListItem { Text = "3026", Value = "3026" },
+                                        new  SelectListItem { Text = "3027", Value = "3027" },
+                                        new  SelectListItem { Text = "3028", Value = "3028" },
+                                   new  SelectListItem { Text = "3029", Value = "3029" },
+                                         new  SelectListItem { Text = "30210", Value = "30210" },
+                                        new  SelectListItem { Text = "3111", Value = "3111" },
+                                        new  SelectListItem { Text = "3112", Value = "3112" },
+                                        new  SelectListItem { Text = "3113", Value = "3113" },
+                                        new  SelectListItem { Text = "3114", Value = "3114" },
+                                         new  SelectListItem { Text = "3115", Value = "3115" },
+                                        new  SelectListItem { Text = "3116", Value = "3116" },
+                                        new  SelectListItem { Text = "3117", Value = "3117" },
+                                        new  SelectListItem { Text = "3118", Value = "3118" },
+                                        new  SelectListItem { Text = "3119", Value = "3119" },
+                                   new  SelectListItem { Text = "31110", Value = "31110" },
+                                         new  SelectListItem { Text = "3121", Value = "3121" },
+                                        new  SelectListItem { Text = "3122", Value = "3122" },
+                                        new  SelectListItem { Text = "3123", Value = "3123" },
+                                        new  SelectListItem { Text = "3124", Value = "3124" },
+                                        new  SelectListItem { Text = "3125", Value = "3125" },
+                                         new  SelectListItem { Text = "3126", Value = "3126" },
+                                        new  SelectListItem { Text = "3127", Value = "3127" },
+                                                  new  SelectListItem { Text = "3128", Value = "3128" },
+                                        new  SelectListItem { Text = "3129", Value = "3129" },
+                                        new  SelectListItem { Text = "31210", Value = "31210" },
+                                                  new  SelectListItem { Text = "3211", Value = "3211" },
+                                        new  SelectListItem { Text = "3212", Value = "3212" },
+                                        new  SelectListItem { Text = "3213", Value = "3213" },
+                                                  new  SelectListItem { Text = "3214", Value = "3214" },
+                                        new  SelectListItem { Text = "3215", Value = "3215" },
+                                        new  SelectListItem { Text = "3216", Value = "3216" },
+                                                  new  SelectListItem { Text = "3217", Value = "3217" },
+                                        new  SelectListItem { Text = "3218", Value = "3218" },
+                                        new  SelectListItem { Text = "3219", Value = "3219" },
+                                                  new  SelectListItem { Text = "32110", Value = "32110" },
+                                        new  SelectListItem { Text = "3221", Value = "3221" },
+                                        new  SelectListItem { Text = "3222", Value = "3222" },
+                                                  new  SelectListItem { Text = "3223", Value = "3223" },
+                                        new  SelectListItem { Text = "3224", Value = "3224" },
+                                        new  SelectListItem { Text = "3225", Value = "3225" },
+                                                  new  SelectListItem { Text = "3226", Value = "3226" },
+                                        new  SelectListItem { Text = "3227", Value = "3227" },
+                                        new  SelectListItem { Text = "3228", Value = "3228" },
+                                                  new  SelectListItem { Text = "3229", Value = "3229" },
+                                        new  SelectListItem { Text = "32210", Value = "32210" }
+
+                        }, "--POY/FDY İPLİK POZİSYONU SEÇİNİZ--", new { @style = "color:black", @class = "form-control", required = "required", title = "Lütfen POY/FDY için iplik pozisyonu seçiniz!" })
+                                    @Html.ValidationMessageFor(model => model.Uretim_Mak_Kan_Poz, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+
+
+
+                            <div class="form-group">
+
+                                <div class="col-md-10">
+                                    PROBLEM TANIMI
+                                    <br />
+                                    <br />
+                                    @*@Html.EditorFor(model => model.ProblemTanimi, new { htmlAttributes = new { @class = "form-control test",required = "required", title = "Lütfen Parti Numarası Giriniz!" } })*@
+                                    @Html.DropDownListFor(model => model.ProblemTanimi, new List<SelectListItem>
+                   {      new  SelectListItem { Text = "C KALİTE", Value = "C KALİTE" },
+                     new  SelectListItem { Text = "KOPMA", Value = "KOPMA" },
+                   new  SelectListItem { Text = "KAPİLER", Value = "KAPİLER" },
+                   new  SelectListItem { Text = "YAGSIZ", Value = "YAGSIZ" },
+                   new  SelectListItem { Text = "SAKALLI", Value = "SAKALLI" }
+                                    }, "--PROBLEM TANIMINI SEÇİNİZ--", new { @style = "color:black", @class = "form-control", required = "required", title = "Lütfen Problem Tanımı seçiniz!" })
+                                    @Html.ValidationMessageFor(model => model.ProblemTanimi, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                @*@Html.LabelFor(model => model.Teksture_Makine_No, "TEKSTÜRE MAKİNE NO", htmlAttributes: new { @class = "control-label col-md-2" })*@
+                                <div class="col-md-10">
+                                    TEKSTÜRE MAKİNE NO
+                                    <br />
+                                    <br />
+                                    @*@Html.EditorFor(model => model.Teksture_Makine_No, new { htmlAttributes = new { @class = "form-control-xs" } })*@
+                                    @Html.DropDownListFor(model => model.Teksture_Makine_No, new List<SelectListItem>
+                          {
+                                    new  SelectListItem { Text = "FK6-05", Value = "FK6-05" },
+                          new  SelectListItem { Text = "FK6-6", Value = "FK6-6" },
+                          new  SelectListItem { Text = "FK6-7", Value = "FK6-7" },
+                                    new  SelectListItem { Text = "FK6-8", Value = "FK6-8" },
+                          new  SelectListItem { Text = "FK6-9", Value = "FK6-9" },
+                          new  SelectListItem { Text = "FK6-10", Value = "FK6-10" },
+                          new  SelectListItem { Text = "FK6-11", Value = "FK6-11" },
+                            new  SelectListItem { Text = "FK6-12", Value = "FK6-12" },
+                          new  SelectListItem { Text = "FK6-13", Value = "FK6-13" },
+                          new  SelectListItem { Text = "FK7-1A", Value = "FK7-1A" },
+                          new  SelectListItem { Text = "FK7-1B", Value = "FK7-1B" },
+                           new  SelectListItem { Text = "FK7-2A", Value = "FK7-2A" },
+                            new  SelectListItem { Text = "FK7-2B", Value = "FK7-2B" },
+                            new  SelectListItem { Text = "FK7-3A", Value = "FK7-3A" },
+                              new  SelectListItem { Text = "FK7-3B", Value = "FK7-3B" },
+                               new  SelectListItem { Text = "FK7-4A", Value = "FK7-4A" },
+                          new  SelectListItem { Text = "FK7-4B", Value = "FK7-4B" },
+                                  new  SelectListItem { Text = "FK7-14A", Value = "FK7-14A" },
+                          new  SelectListItem { Text = "FK7-14B", Value = "FK7-14B" },
+                              new  SelectListItem { Text = "FK7-15A", Value = "FK7-15A" },
+                          new  SelectListItem { Text = "FK7-15B", Value = "FK7-15B" },
+                            new  SelectListItem { Text = "AD1-A", Value = "AD1-A" },
+                              new  SelectListItem { Text = "AD1-B", Value = "AD1-B" },
+                             new  SelectListItem { Text = "AD2-A", Value = "AD2-A" },
+                              new  SelectListItem { Text = "AD2-B", Value = "AD2-B" },
+                                  new  SelectListItem { Text = "AD3-A", Value = "AD3-A" },
+                                    new  SelectListItem { Text = "AD3-B", Value = "AD3-B" },
+                                      new  SelectListItem { Text = "AS1-A", Value = "AS1-A" },
+                                        new  SelectListItem { Text = "AS1-B", Value = "AS1-B" },
+
+                          new  SelectListItem { Text = "AS2-A", Value = "AS2-A" },
+                            new  SelectListItem { Text = "AS2-B", Value = "AS2-B" },
+                          new  SelectListItem { Text = "AS3-A", Value = "AS3-A" },
+                          new  SelectListItem { Text = "AS3-B", Value = "AS3-B" },
+                          new  SelectListItem { Text = "AS4-A", Value = "AS4-A" },
+                          new  SelectListItem { Text = "AS4-B", Value = "AS4-B" },
+                          new  SelectListItem { Text = "AS5-A", Value = "AS5-A" },
+                          new  SelectListItem { Text = "AS5-B", Value = "AS5-B" },
+                          new  SelectListItem { Text = "AS6-A", Value = "AS6-A" },
+                          new  SelectListItem { Text = "AS6-B", Value = "AS6-B" },
+                          new  SelectListItem { Text = "AS7-A", Value = "AS7-A" },
+                          new  SelectListItem { Text = "AS7-B", Value = "AS7-B" },
+                          new  SelectListItem { Text = "AS8-A", Value = "AS8-A" },
+                          new  SelectListItem { Text = "AS8-B", Value = "AS8-B" },
+                          new  SelectListItem { Text = "AS9-A", Value = "AS9-A" },
+                          new  SelectListItem { Text = "AS9-B", Value = "AS9-B" },
+                new  SelectListItem { Text = "AS10-A", Value = "AS10-A" },
+                          new  SelectListItem { Text = "AS10-B", Value = "AS10-B" },
+                            new  SelectListItem { Text = "AS11-A", Value = "AS11-A" },
+                          new  SelectListItem { Text = "AS11-B", Value = "AS11-B" },
+
+
+
+                          }, "--TEKSTÜRE MAKİNE NUMARASI SEÇİNİZ--", new { @style = "color:black", @class = "form-control", required = "required", title = "Lütfen Tekstüre Makine Numarası Seçiniz!" })
+                                    @Html.ValidationMessageFor(model => model.Teksture_Makine_No, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+
+                            <div class="form-group">
+                                @*@Html.LabelFor(model => model.Teksture_Pozisyon_No, "TEKSTÜRE POZİSYON NO", htmlAttributes: new { @class = "control-label col-md-2" })*@
+                                <div class="col-md-10">
+                                    TEKSTÜRE POZİSYON NO
+                                    <br />
+                                    <br />
+                                    @Html.EditorFor(model => model.Teksture_Pozisyon_No, new { htmlAttributes = new { @class = "form-control", required = "required", title = "Lütfen Tekstüre Pozisyon Numarası Giriniz!" } })
+                                    @Html.ValidationMessageFor(model => model.Teksture_Pozisyon_No, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="form-group">
+
+                                <div class="col-md-10">
+                                    SIRALI YÜKLEME
+                                    <br />
+                                    <br />
+                                    @Html.DropDownListFor(model => model.SiraliYuklemeIstekTalebi, new List<SelectListItem>
+                {      new  SelectListItem { Text = "SIRALI", Value = "SIRALI" },
+                  new  SelectListItem { Text = "KESİT KONTROL", Value = "KESİT KONTROL" },
+                new  SelectListItem { Text = "GENLEŞME", Value = "GENLEŞME" },
+                                 }, "--SIRALI YÜKLEME İSTEK TALEBİNİ SEÇİNİZ--", new { @style = "color:black", @class = "form-control", required = "required", title = "Lütfen Sıralı Yükleme İstek Talebini Seçiniz!" })
+
+                                    @Html.ValidationMessageFor(model => model.SiraliYuklemeIstekTalebi, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+                        <hr />
+                        <div class="form-group">
+
+                            <center>         <input type="submit" value="BİLDİRİM YAP" class="btn btn-primary btn-lg" /></center>
+
+                        </div>
+
+                        <hr />
+                    </div>
+                </div>
+
+                
+
+                <div>
+                    @Html.ActionLink("LİSTEYE GERİ DÖN", "PoyIkazTakibi", "Imalat", htmlAttributes: new { @class = "btn btn-danger" })
+                </div>
+            </div>
+        </div>
+    </div>
+        }        <script type="text/javascript">
+                            function Validate(event) {
+                                var regex = new RegExp("^[0-9/]");
+                                var key = String.fromCharCode(event.charCode ? event.which : event.charCode);
+                                if (!regex.test(key)) {
+                                    event.preventDefault(); 167
+                                    return false;
+                                }
+                            }
+                        </script>
+                        <style>
+                            .test {
+                                text-transform: uppercase;
+                            }
+                        </style>
+                        @*<style>
+                            hr {
+                                border: 0;
+                                clear: both;
+                                display: block;
+                                width: 100%;
+                                background-color: #000000;
+                                height: 1px;
+                            }
+                            .center {
+                                text-align: center;
+                            }
+                        </style>
+                        <style>
+                            .vertical-line {
+                                border-left: thin solid #000000;
+                                border-right: thin solid #000000;
+                            }
+                        </style>
+                        <style>
+                            .col-lg-3 {
+                                border: 1px black solid;
+                            }
+                        </style>
+                        <style>
+                            .input-group {
+                                border: 1px black;
+                                text-align: center;
+                            }
+                        </style>*@
+                        @section scripts{
+                            <script src="~/Temalar/TarihSaat/bootstrap-datepicker/js/bootstrap-datetimepicker.js"></script>
+                            <script src="~/Temalar/TarihSaat/bootstrap-datepicker/js/bootstrap-datetimepicker.tr.js"></script>
+
+                            <script type="text/javascript">
+
+                                $(".datepicker").datetimepicker({
+
+                                    allowEmptyDate: true,
+
+                                    autoclose: 1,
+                                    language: 'tr',
+                                    format: 'dd.mm.yyyy hh:ii:00P',
+                                    endDate: new Date(),
+                                    startView: '3',
+                                    todayHighlight: 1,
+
+
+                                });
+
+                            </script>
+                        }
+                    </div>
+                </div>
+

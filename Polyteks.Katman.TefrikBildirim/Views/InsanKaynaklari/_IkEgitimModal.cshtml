@@ -1,0 +1,58 @@
+﻿@using Polyteks.Katman.DAL.Concrete.EntityFramework
+
+@model Polyteks.Katman.DAL.Concrete.EntityFramework.SrcnIkEgitims
+
+    <div id="@Model.IkEgitimId" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Eğitim Tanımlama</h4>
+                </div>
+                @using (Html.BeginForm("EgitimEkleDuzenle", "InsanKaynaklari"))
+                {
+                    @Html.HiddenFor(a => a.IkEgitimId)
+
+                    <div class="modal-body">
+                        <div class="form-body">
+                            <div class="row">
+   
+                                @{
+                                    int i = -1;
+                                    foreach (var item in (List<SrcnIkEgitimTipis>) ViewBag.IkEgitimTipleri)
+                                    {
+                                        i++;
+                                    <div class=" col-md-4">
+                                        <div class="mt-radio-inline">
+                                            <label class="mt-radio font-yellow">
+                                                @Html.RadioButtonFor(a => a.IkEgitimTipi, item.IkEgitimTipi) @item.IkEgitimTipiAdi
+                                                <span></span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                }
+                                }
+                                <br/>
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label><b>EĞİTİM ADI </b></label>
+                                        @Html.TextBoxFor(a => a.IkEgitimAdi, new {@class = "form-control"})
+                                    </div>
+                                </div>
+                         
+                            </div>
+                         
+
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn green">KAYDET</button>
+                        <button type="button" class="btn dark btn-outline" data-dismiss="modal">KAPAT</button>
+                    </div>
+                }
+            </div>
+
+        </div>
+    </div>

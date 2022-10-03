@@ -1,0 +1,234 @@
+﻿@model Polyteks.Katman.Has.Models.TefrikAnalizModel
+@{
+    ViewBag.Title = "MakineHatalari";
+    Layout = "~/Views/Shared/Layout.cshtml";
+}
+@if (TempData["Msg"] != null)
+{
+    <div class="custom-alerts alert alert-@TempData["class"] fade in">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true"></button>
+        <h2>@Html.Raw(TempData["Msg"])</h2>
+    </div>
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="portlet light bordered">
+            <div class="portlet-title">
+                <div class="caption">
+                    <i class="icon-bubble font-green-sharp"></i>
+                    <span class="caption-subject font-green-sharp bold uppercase">@Model.Makine.MakineAdi - @Model.Makine.MakineNo</span>
+                </div>
+            </div>
+            <div class="portlet-body">
+                <ul class="nav nav-pills">
+                    @foreach (var item in Model.MakineTurListe.ToList())
+                    {
+                        string aktifClass = null;
+
+                        if (Model.Makine.ToplamCalismaSaati.ToString() == item.Id)
+                        {
+                            aktifClass = "active";
+
+                        }
+                        <li class="@aktifClass">
+                            <a href="@Url.Action("Bolum","Home",new{id=item.Id})"> @item.Tanim </a>
+                        </li>
+                    }
+                </ul>
+                <hr />
+                <div class="tab-content">
+                    <div class="tab-pane fade active in">
+                        <div class="row">
+                            <div class="col-md-11 text-right">
+
+                                <h2><b class="font-red-sunglo">@Model.SrcnKullanicis.IsimSoyisim</b><br/>
+                                    <b class="font-blue-steel">@Model.SrcnKullanicis.GrupAdi</b></h2>
+                            </div>
+                            <div class="col-md-1 text-right">
+                                @{
+                                    if (Model.SrcnKullanicis.Resim != null)
+                                    {
+                                        string imageBase64 = Convert.ToBase64String(Model.SrcnKullanicis.Resim);
+                                        string imageSrc = string.Format("data:image/gif;base64,{0}", imageBase64);
+
+                                        <img src="@imageSrc" width="100%" class="img-responsive" />
+                                    }
+                                    else
+                                    { 
+                                        <img src="@Url.Content("~/Temalar/Resimler/fotoyok.jpg")" width="100%" class="img-responsive" />
+                                        
+                                    }
+                                }
+                            </div>
+                        </div>
+                        <div class="row">
+
+                            <h2 class="text-center"><b>@Model.Makine.MakineAdi - @Model.Makine.MakineNo</b></h2>
+
+                        </div>
+                        @using (Html.BeginForm("MakineHataGoruldu", "Home"))
+                        {
+                            @Html.HiddenFor(a => a.Makine.SayacOndalikSayisi)
+                            @Html.HiddenFor(a => a.SrcnKullanicis.KullaniciId)
+                            <div class="row">
+                                <div class="table-responsive">
+                                    <table class="table table-striped table-bordered table-hover table-checkable order-column no-footer ">
+                                        <thead>
+                                        <tr>
+                                            <th class="text-center">
+                                                #
+                                            </th>
+
+                                            <th class="text-center">
+                                                KAYIT TARİHİ
+                                            </th>
+                                            <th class="text-center">
+                                                BİLDİREN
+                                            </th>
+                                            <th class="text-center">
+                                                STOK ADI
+                                            </th>
+                                            <th class="text-center">
+                                                PARTİ NO
+                                            </th>
+                                            <th class="text-center">
+                                                POZİSYON
+                                            </th>
+                                            <th class="text-center">
+                                                HATA
+                                            </th>
+                                            <th class="text-center">MÜDAHALE</th>
+
+
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        @{
+                                            int say = -1;
+                                            foreach (var item in Model.MakineHataBildirimleri)
+                                            {
+                                                say++;
+                                                int b = say + 1;
+                                                <tr>
+                                                    <td class="text-center">@b</td>
+                                                    @Html.HiddenFor(a => a.MakineHataBildirimleri[say].MakineHataBildirimId)
+                                                    <td class="text-center">@item.KayitTarihi</td>
+                                                    <td class="text-center">@item.SonGuncellemeYapanPersonelAdi</td>
+                                                    <td class="text-center"><b class="">@item.StokAdi</b></td>
+                                                    <td class="text-center"><b class="font-red">@item.PartiNo</b></td>
+                                                    <td class="text-center"><b class="font-red">@item.MakinePozisyonNo</b></td>
+                                                    <td class="text-center">@item.HataNedeni</td>
+                                                    <td class="text-center">
+                                                        <div class="mt-checkbox-inline">
+                                                            <label class="mt-checkbox">
+                                                                @Html.CheckBoxFor(a => a.MakineHataBildirimleri[say].SeciliMi)
+                                                                <span></span>
+                                                            </label>
+                                                        </div>
+                                                    </td>
+
+
+                                                </tr>
+                                            }
+                                        }
+                                        </tbody>
+                                        <tfoot>
+                                        <tr>
+                                            <th class="text-center">
+                                                #
+                                            </th>
+
+                                            <th class="text-center">
+                                                KAYIT TARİHİ
+                                            </th>
+                                            <th class="text-center">
+                                                BİLDİREN
+                                            </th>
+                                            <th class="text-center">
+                                                İŞ EMRİ NO
+                                            </th>
+                                            <th class="text-center">
+                                                PARTİ NO
+                                            </th>
+                                            <th class="text-center">
+                                                POZİSYON
+                                            </th>
+                                            <th class="text-center">
+                                                HATA
+                                            </th>
+                                            <th class="text-center">MÜDAHALE</th>
+
+
+                                        </tr>
+                                        </tfoot>
+                                    </table>
+                                </div>
+                            </div>
+
+                            <hr/>
+
+                    
+
+                            <div class="form-actions">
+                                <div class="btn-block">
+
+                                    <button type="submit" class="btn btn-lg red-sunglo btn-block">
+                                        SEÇİLEN HATALARI MÜDAHALE EDİLDİ OLARAK İŞARETLE <i class="fa fa-edit"></i>
+                                    </button>
+
+                                    <!-- Modal -->
+
+
+                                </div>
+                            </div>
+
+                        }
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts
+{
+    <script>
+        var dtable = $('.dtTable').DataTable({
+            //"order": [[0, 'desc']],
+
+            "pageLength": 100,
+            orderCellsTop: true,
+            fixedHeader: true,
+            "ordering": false,
+            responsive: false,
+            "language": {
+                "lengthMenu": "_MENU_",
+                "search": "",
+                searchPlaceholder: "ARA",
+                "zeroRecords": "KAYIT BULUNAMADI",
+                "info": "_TOTAL_ KAYIT BULUNDU",
+                "infoEmpty": "KAYIT BULUNAMADI",
+                "infoFiltered": "(TOPLAM KAYIT _MAX_)",
+                "oPaginate": {
+                    "sFirst": "İlk",
+                    "sLast": "Son",
+                    "sNext": "Sonraki",
+                    "sPrevious": "Önceki"
+                },
+                "oAria": {
+                    "sSortAscending": ": artan sütun sıralamasını aktifleştir",
+                    "sSortDescending": ": azalan sütun sıralamasını aktifleştir"
+                }
+            },
+            columnDefs: [
+                { type: 'date-dd-mmm-yyyy', targets: 0 }
+            ]
+
+        });
+
+
+    </script>
+}
+

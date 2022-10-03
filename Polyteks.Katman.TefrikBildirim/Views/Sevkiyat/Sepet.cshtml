@@ -1,0 +1,136 @@
+﻿@model Polyteks.Katman.DAL.Concrete.EntityFramework.Mrv_MalzemeAna
+@{
+    ViewBag.Title = "Sepet";
+    Layout = "~/Views/Shared/Layout.cshtml";
+    var model = ViewData["SrcnKullanicis"] as Polyteks.Katman.DAL.Concrete.EntityFramework.SrcnKullanicis;
+}
+@if (TempData["Msg"] != null)
+{
+    <div class="custom-alerts alert alert-@TempData["class"] fade in">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true"></button>
+        <h2>@Html.Raw(TempData["Msg"])</h2>
+    </div>
+}
+
+
+<div class="row">
+    <div class="col-md-20 ">
+        <div class="portlet light bordered">
+            <div class="portlet-title">
+                <CENTER><h2><b> TALEPLERİM</b></h2></CENTER>
+                <h2 class="container"> <b>@Html.Label(model.IsimSoyisim.ToString())</b></h2>
+
+
+                <table class="table table-hover table-bordered table-dark">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th>
+                                Tarih
+                            </th>
+                            <th>
+                                Stok Adı
+                            </th>
+                            @*<th>
+                        Stok Kodu
+                    </th>*@
+                            <th>
+                                Parti Numarası
+                            </th>
+                            <th>
+                                Kalite
+                            </th>
+                            <th>
+                                Miktar
+                            </th>
+                            <th>
+                                Birim
+                            </th>
+                            <th>
+                                Açıklama
+                            </th>
+                            <th>
+                                DÜZENLE
+                            </th>
+                            <th>
+                                SİL
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model.Mrv_MalzemeDetay)
+                        {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Tarih)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.StokAdi)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Parti)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Kalite)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Miktar)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Birim)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Aciklama)
+                            </td>
+                            @if (Model.Tip.Value == 1)
+                            {
+                                <td> @Html.ActionLink("MAMÜL AMBARI TALEP DÜZENLE", "MamulAmbariDuzenle", "Sevkiyat", new { id = item.ID, a = item.Parti, b = item.Kalite.Trim() }, htmlAttributes: new { @class = "btn btn-danger" })</td>
+                                <td> @Html.ActionLink("SİL", "MamulAmbarSil", "Sevkiyat", new { id = item.ID }, htmlAttributes: new { @class = "btn btn-danger" })</td>
+                            }
+                            else if (Model.Tip.Value == 2)
+                            {
+                                <td> @Html.ActionLink("HAM MADDE AMBARI TALEP DÜZENLE", "HamMaddeAmbarDuzenle", "Sevkiyat", new { id = item.ID, a = item.StokKodu.Trim(), b = item.Miktar}, htmlAttributes: new { @class = "btn btn-danger" })</td>
+                                <td> @Html.ActionLink("SİL", "MamulAmbarSil", "Sevkiyat", new { id = item.ID }, htmlAttributes: new { @class = "btn btn-danger" })</td>
+
+                            }
+                            else if (Model.Tip.Value == 3)
+                            {
+                            <td> @Html.ActionLink("YEDEK PARÇA AMBARI TALEP DÜZENLE", "YedekParcaAmbarDuzenle", "Sevkiyat", new { id = item.ID, a = item.StokKodu.Trim(), b = item.Miktar }, htmlAttributes: new { @class = "btn btn-danger" })</td>
+                            <td> @Html.ActionLink("SİL", "MamulAmbarSil", "Sevkiyat", new { id = item.ID }, htmlAttributes: new { @class = "btn btn-danger" })</td>
+                            }
+
+                            @*<td>
+            @Html.DisplayFor(modelItem => item.TamamlandiMi)
+        </td>
+        <td>
+            @if (!item.TamamlandiMi.Value)
+            {
+                using (Html.BeginForm("FisAnaOnayla", "Sevkiyat", FormMethod.Post))
+                {
+                    @Html.Hidden("id", item.MalzemeNo)
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-10">
+                            <input type="submit" value="Onayla" class="btn btn-default" />
+                        </div>
+                    </div>
+                }
+            }
+        </td>*@
+                        </tr>
+                        }
+                    </tbody>
+                </table>
+                <div>
+                    <h4> <b>TOPLAM MİKTAR:</b>   @Model.Mrv_MalzemeDetay.Sum(i => i.Miktar)</h4>
+                </div>
+                <div>
+                    @if (Model.Mrv_MalzemeDetay.Count != 0)
+                    {
+                        using (Html.BeginForm("SepetOnayi", "Sevkiyat", FormMethod.Post))
+                        {
+                            @Html.Hidden("id", Model.MalzemeNo)
+                            <input class="btn btn-success" type="submit" value="ONAYLA" />
+                        }
+                    }
+                </div>
+            </div>
+            </div></div></div>

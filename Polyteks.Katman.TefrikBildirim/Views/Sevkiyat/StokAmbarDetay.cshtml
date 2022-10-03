@@ -1,0 +1,56 @@
+﻿@model IEnumerable<Polyteks.Katman.DAL.Concrete.EntityFramework.StokAmbar>
+@{
+    ViewBag.Title = "StokAmbarDetay";
+    Layout = "~/Views/Shared/Layout.cshtml";
+}
+
+<script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+<script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>
+<div>
+    <h4>AMBARLARIN STOK DETAYLARI</h4>
+    <hr />
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.AmbarNo)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.StokKodu)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.LotNo)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Miktar1)
+                </th>
+
+
+                <th></th>
+            </tr>
+        </thead>
+        @foreach (var item in Model)
+        {
+            <tbody>
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.AmbarNo)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.StokKodu)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.LotNo)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Miktar1)
+                    </td>
+
+                </tr>
+            </tbody>
+        }
+
+    </table>
+</div>
+
+

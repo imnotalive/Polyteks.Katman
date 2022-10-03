@@ -1,0 +1,148 @@
+﻿@model Polyteks.Katman.DAL.Concrete.EntityFramework.Kullanici
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html lang="tr">
+
+<head>
+    <meta charset="utf-8" />
+    <title>TAŞDELEN GRUP </title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta content="width=device-width, initial-scale=1" name="viewport" />
+    <meta content="TAŞDELEN GRUP" name="description" />
+    <meta content="" name="author" />
+    <!-- BEGIN GLOBAL MANDATORY STYLES -->
+    <link href="~/Temalar/fontlar.css" rel="stylesheet" type="text/css" />
+    <link href="~/Temalar/AdminTema/assets/global/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/Temalar/AdminTema/assets/global/plugins/simple-line-icons/simple-line-icons.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/Temalar/AdminTema/assets/global/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/Temalar/AdminTema/assets/global/plugins/bootstrap-switch/css/bootstrap-switch.min.css" rel="stylesheet" type="text/css" />
+    <!-- END GLOBAL MANDATORY STYLES -->
+    <!-- BEGIN THEME GLOBAL STYLES -->
+    <link href="~/Temalar/AdminTema/assets/global/css/components.min.css" rel="stylesheet" id="style_components" type="text/css" />
+    <link href="~/Temalar/AdminTema/assets/global/css/plugins.min.css" rel="stylesheet" type="text/css" />
+    <!-- END THEME GLOBAL STYLES -->
+    <!-- BEGIN PAGE LEVEL STYLES -->
+    <link href="~/Temalar/AdminTema/assets/pages/css/login-2.min.css" rel="stylesheet" type="text/css" />
+    <!-- END PAGE LEVEL STYLES -->
+    <!-- BEGIN THEME LAYOUT STYLES -->
+    <!-- END THEME LAYOUT STYLES -->
+    <link rel="shortcut icon" href="@Url.Content("~/Temalar/Resimler/logo.png")" />
+</head>
+<!-- END HEAD -->
+<body class=" login">
+    <!-- BEGIN LOGO -->
+    <div class="logo" style="padding: 0px; margin: 0px;">
+        <a href="@Url.Action("Giris","Kullanici")" class="text-center">
+            <img src="@Url.Content("~/Temalar/Resimler/logo.png")" style="max-height: 250px;" alt="" />
+        </a>
+    </div>
+    <!-- END LOGO -->
+    <!-- BEGIN LOGIN -->
+    <div class="content">
+        <div class="login-form">
+            <div class="form-title">
+                <span class="form-title">Hoşgeldiniz</span>
+                <span class="form-subtitle">Giriş Yapınız</span>
+            </div>
+            @if (Session["yetksiz"] != null)
+            {
+                <div class="custom-alerts alert alert-danger">
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true"></button>
+                    <h2>@Session["yetksiz"]</h2>
+                </div>
+            }
+            @if (Session["uyari"] != null)
+            {
+                <div class="custom-alerts alert alert-danger">
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true"></button>
+                    <h2>@Session["uyari"]</h2>
+                </div>
+            }
+
+            @if (TempData["Msg"] != null)
+            {
+                <div class="custom-alerts alert alert-@TempData["class"] fade in">
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true"></button>
+                    <h2>@TempData["Msg"]</h2>
+                </div>
+            }
+
+            <div class="form-group">
+                <label class="control-label visible-ie8 visible-ie9">İSİM SOYİSİM</label>
+                <input type="text" class="form-control input-lg" placeholder="İSİM SOYİSİM" id="policeKel" />
+
+            </div>
+
+            <div id="aramasonuc">
+            </div>
+            <div id="modalDoldur"></div>
+            @*}*@
+        </div>
+    </div>
+
+        <script src="~/Temalar/AdminTema/assets/global/plugins/jquery.min.js" type="text/javascript"></script>
+        <script src="~/Temalar/AdminTema/assets/global/plugins/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
+        <script src="~/Temalar/AdminTema/assets/global/plugins/js.cookie.min.js" type="text/javascript"></script>
+        <script src="~/Temalar/AdminTema/assets/global/plugins/jquery-slimscroll/jquery.slimscroll.min.js" type="text/javascript"></script>
+        <script src="~/Temalar/AdminTema/assets/global/plugins/jquery.blockui.min.js" type="text/javascript"></script>
+        <script src="~/Temalar/AdminTema/assets/global/plugins/bootstrap-switch/js/bootstrap-switch.min.js" type="text/javascript"></script>
+
+        <script src="~/Temalar/AdminTema/assets/global/scripts/app.min.js" type="text/javascript"></script>
+
+        <script>
+            $(document).ready(function () {
+                $('#clickmewow').click(function () {
+                    $('#radio1003').attr('checked', 'checked');
+                });
+            })
+        </script>
+
+<script>
+    $('#policeKel').on('input',
+        function (e) {
+            var id = $('#policeKel').val();
+            var url = "/Yetkisiz/KullaniciListeGetir/" + id;
+            if (id.length > 2) {
+
+                $.ajax({
+                    url: url,
+
+                    dataType: "html",
+                    success: function (data) {
+
+                        $("#aramasonuc").empty();
+                        $("#aramasonuc").append(data);
+                    }
+                });
+            }
+
+        });
+</script>
+
+<script>
+    function UzerineGeldi(id) {
+      //  alert(id);
+        var url = "/Yetkisiz/KullaniciGetir/" + id;
+
+        $.ajax({
+            url: url,
+
+            dataType: "html",
+            success: function (data) {
+
+                $("#modalDoldur").empty();
+                $("#modalDoldur").append(data);
+            }
+        });
+      
+   
+
+    }
+</script>
+</body>
+</html>

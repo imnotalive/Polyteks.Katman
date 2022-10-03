@@ -1,0 +1,64 @@
+﻿
+@model Polyteks.Katman.TefrikBildirim.Models.Class1
+
+<script src="~/Scripts/jquery-3.6.0.min.js"></script>
+<script src="~/Scripts/bootstrap.min.js"></script>
+@*<div class="modal-dialog">
+    <div class="modal-content">*@
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+
+        </div>
+        <div class="modal-body">
+            <div style="margin-left:50px">
+
+                @Html.Label("İŞLETME")
+                @Html.DropDownList("DrpIsletme", Model.Isletme, "--işletme seçin--", new { @class = "form-control" })
+                <br />
+                @Html.Label("HATALAR")
+                @Html.DropDownList("DrpHatalar", Model.Hatalar, "--Hata seçin--", new { @class = "form-control" })
+            </div>
+
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">KAPAT</button>
+            <button type="submit" class="btn btn-primary">KAYDET</button>
+
+        </div>
+        @*</div>
+    </div>*@
+        <script>
+            $(function () {
+                $('#DrpIsletme').change(function () {
+                    var id = $('#DrpIsletme').val();
+                    $.ajax({
+                        url: '/Laboratuvar/hataGetir',
+                        data: { p: id },
+                        type: "POST",
+                        dataType: "Json",
+                        success: function (data) {
+                            console.log(data);
+                            $('#DrpHatalar').empty();
+                            for (var i = 0; i < data.length; i++) {
+                                $('#DrpHatalar').append("<option value='" + data[i].Value + "'>" + data[i].Text + "</Option>");
+                            }
+                        }
+                    });
+                });
+            });
+
+
+
+        </script>
+        @*<div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">Modal title</h4>
+                </div>
+                <div class="modal-body">
+                    @Html.Label("İŞLETME")
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>*@

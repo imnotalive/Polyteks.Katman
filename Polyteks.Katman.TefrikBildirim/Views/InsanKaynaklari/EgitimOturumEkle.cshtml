@@ -1,0 +1,237 @@
+﻿@model Polyteks.Katman.TefrikBildirim.Models.IkModel
+
+@{
+    ViewBag.Title = "EgitimFirmaTanimEkle";
+    Layout = "~/Views/Shared/Layout.cshtml";
+}
+@section styles
+{
+    <style>
+        label {
+            font-weight: bold;
+        }
+    </style>
+    <link href="~/Temalar/TarihSaat/bootstrap-datepicker/css/bootstrap-datetimepicker.css" rel="stylesheet" />
+    <link href="~/Temalar/Select/bootstrap-select.css" rel="stylesheet" />
+    <link href="~/Temalar/ClockPicker/bootstrap-clockpicker.css" rel="stylesheet" />
+    <link href="~/Temalar/ClockPicker/jquery-clockpicker.css" rel="stylesheet" />
+}
+
+@if (TempData["Msg"] != null)
+{
+    <div class="custom-alerts alert alert-@TempData["class"] fade in">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true"></button>
+        <h2>@Html.Raw(TempData["Msg"])</h2>
+    </div>
+}
+
+<div class="row">
+    <div class="col-md-12 ">
+        <div class="portlet light bordered">
+            <div class="portlet-title">
+                <div class="caption font-blue">
+                    <i class="icon-settings font-blue"></i>
+
+
+                    <span class="caption-subject bold uppercase">@Model.IkEgitim.IkEgitimAdi OTURUMU EKLE</span>
+                </div>
+            </div>
+            <div class="portlet-body form">
+                @Html.Partial("~/Views/InsanKaynaklari/_IkBaseButonlar.cshtml", Model)
+                <hr />
+                <div class="row">
+                    <h2 class="font-red-thunderbird text-center">@Model.IkEgitim.IkEgitimAdi.ToUpper() OTURUMU EKLE</h2>
+                </div>
+                <div class="row">
+
+                    <div class="col-md-12">
+                        @using (Html.BeginForm())
+                        {
+                            @Html.HiddenFor(a => a.EgitimOturum.EgitimOturumId)
+                            @Html.HiddenFor(a => a.IkEgitim.IkEgitimId)
+                            <div class="modal-body">
+                                <div class="form-body">
+
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label><b>OTURUM TARİHİ </b></label>
+                                                        @Html.TextBoxFor(a => a.EgitimOturum.OturumTarihi, new { @class = "form-control tarih", @onkeydown = "return false" })
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label><b>BAŞLANGIÇ SAATİ </b></label>
+                                                        @Html.TextBoxFor(a => a.EgitimOturum.OturumTarihiSaati, new { @class = "form-control clockpicker", @onkeydown = "return false" })
+                                                    </div>
+                                                </div>
+                                                
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label><b>OTURUM BİTİŞ TARİHİ </b></label>
+                                                        @Html.TextBoxFor(a => a.EgitimOturum.OturumTarihiBitisi, new { @class = "form-control tarih", @onkeydown = "return false" })
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label><b>BİTİŞ SAATİ </b></label>
+                                                        @Html.TextBoxFor(a => a.EgitimOturum.OturumTarihiBitisSaati, new { @class = "form-control clockpicker", @onkeydown = "return false" })
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-md-12">
+                                                    <div class="form-group">
+                                                        <label><b>FİRMA SEÇİMİ </b></label>
+                                                        @Html.DropDownListFor(a => a.EgitimOturum.IkEgitimFirmaId, Model.DropFirmalar, "Seçiniz", new { @class = "form-control" })
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-12">
+
+                                                    <div class="form-group">
+                                                        <div class="row">
+                                                            <div class="col-md-9">
+                                                                <label><b>PERSONEL </b></label>
+                                                                @Html.DropDownListFor(a => a.SecimId, Model.DropKullanicilar, "Seçiniz", new { @class = "selectpicker show-tick form-control", @id = "dropPersonel" })
+                                                            </div>
+                                                            <div class="col-md-3">
+                                                                <label><b>&nbsp; </b></label>
+                                                                <a href="javascript:" class="btn btn-block blue" onclick="PersoneliEkle()">Listeye Ekle</a>
+                                                            </div>
+
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div id="aramasonuc">
+                                                @Html.Partial("~/Views/InsanKaynaklari/_EgitimOturumKatilimciListe.cshtml", Model)
+
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <label><b>AÇIKLAMA </b></label>
+                                                @Html.TextAreaFor(a => a.EgitimOturum.Aciklama, new { @class = "form-control", @rows = 5 })
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="submit" class="btn green btn-block">KAYDET</button>
+
+                            </div>
+                        }
+                    </div>
+                    <hr />
+                    <div class="col-md-2">
+                        <a href="@Url.Action("EgitimOturumlari","InsanKaynaklari",new{id=Model.IkEgitim.IkEgitimId})" class="btn btn-block yellow-gold"><i class="fa fa-arrow-left"></i> GERİ</a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+@section scripts
+{
+    <script src="~/Temalar/TarihSaat/bootstrap-datepicker/js/bootstrap-datetimepicker.js"></script>
+    <script src="~/Temalar/TarihSaat/bootstrap-datepicker/js/bootstrap-datetimepicker.tr.js"></script>
+    <script src="~/Temalar/Select/bootstrap-select.js"></script>
+    <script src="~/Temalar/Scripts/sweetalert.js"></script>
+    <script src="~/Temalar/ClockPicker/bootstrap-clockpicker.js"></script>
+    <script src="~/Temalar/ClockPicker/jquery-clockpicker.js"></script>
+    <script>
+        $('.tarih').datetimepicker({
+            language: 'tr',
+            weekStart: 1,
+            todayBtn: 1,
+            autoclose: 1,
+            todayHighlight: 1,
+            startView: 2,
+            minView: 2,
+            forceParse: 0,
+            format: "dd MM yyyy",
+            inline: true
+        });
+
+    </script>
+
+    <script>
+        $('#dropPersonel').selectpicker({
+            liveSearch: true,
+            maxOptions: 1
+        });
+    </script>
+    <script>
+        function PersoneliEkle() {
+            var id = $('#dropPersonel').val();
+
+            var url = "/InsanKaynaklari/PersoneliSessionaEkle/" + id;
+
+            $.ajax({
+                url: url,
+
+                dataType: "html",
+                success: function (data) {
+
+                    $("#aramasonuc").empty();
+                    $("#aramasonuc").append(data);
+                }
+            });
+
+
+        }
+    </script>
+    <script>
+        function Sil(id) {
+            var url = "/InsanKaynaklari/PersoneliSessiondanKaldir/" + id;
+
+            swal({
+                title: "EMİN MİSİNİZ",
+                text: "Seçilen Kaydı Listeden Kaldırmak İstiyor Musunuz?",
+                icon: "warning",
+                buttons: {
+                    cancel: "Kapat",
+                    git: "Sil"
+                }
+            }).then((value) => {
+                switch (value) {
+                case "git":
+                    $.ajax({
+                        url: url,
+
+                        dataType: "html",
+                        success: function (data) {
+
+                            $("#aramasonuc").empty();
+                            $("#aramasonuc").append(data);
+                        }
+                    });
+                    break;
+                }
+            });
+
+
+        }
+    </script>
+    <script type="text/javascript">
+        $('.clockpicker').clockpicker({
+            placement: 'bottom',
+            align: 'left',
+            autoclose: true,
+            'default': 'now'
+        });
+    </script>
+   
+}

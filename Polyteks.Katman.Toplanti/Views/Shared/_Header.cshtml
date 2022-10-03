@@ -1,0 +1,27 @@
+﻿@model Polyteks.Katman.Toplanti.Models.LayoutModelToplanti
+<div class="page-header">
+    @Html.Partial("~/Views/Shared/_HeaderUst.cshtml",Model)
+    <!-- BEGIN HEADER MENU -->
+    <div class="page-header-menu">
+        <div class="container">
+
+            <div class="hor-menu  ">
+                <ul class="nav navbar-nav">
+                    <li>
+                        <a href="@Url.Action("Index","Home",new{id=0})">
+                            ANASAYFA
+                        </a>
+                    </li>
+                    <li>
+                        <a href="@Url.Action("Toplantilar","Home",new{id=1})">
+                            TOPLANTILARINIZ
+                        </a>
+                    </li>
+
+                </ul>
+            </div>
+            <!-- END MEGA MENU -->
+        </div>
+    </div>
+    <!-- END HEADER MENU -->
+</div>

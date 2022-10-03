@@ -1,0 +1,230 @@
+﻿@model Polyteks.Katman.Has.Models.TefrikAnalizModel
+
+@{
+    ViewBag.Title = "MakineHatalari";
+    Layout = "~/Views/Shared/Layout.cshtml";
+}
+
+@if (TempData["Msg"] != null)
+{
+    <div class="custom-alerts alert alert-@TempData["class"] fade in">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true"></button>
+        <h2>@Html.Raw(TempData["Msg"])</h2>
+    </div>
+}
+<div class="row" style="display: none">
+    <div class="col-sm-6 text-center">
+        <label class="label label-success">Area Chart</label>
+        <div id="area-chart"></div>
+    </div>
+    <div class="col-sm-6 text-center">
+        <label class="label label-success">Line Chart</label>
+        <div id="line-chart"></div>
+    </div>
+    <div class="col-sm-6 text-center">
+        <label class="label label-success">Bar Chart</label>
+        <div id="bar-chart"></div>
+    </div>
+    <div class="col-sm-6 text-center">
+        <label class="label label-success">Bar stacked</label>
+        <div id="stacked"></div>
+    </div>
+    <div class="col-sm-6 col-sm-offset-3 text-center">
+        <label class="label label-success">Pie Chart</label>
+        <div id="pie-chart"></div>
+    </div>
+
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="portlet light bordered">
+            <div class="portlet-title">
+                <div class="caption">
+                    <i class="icon-bubble font-green-sharp"></i>
+                    <span class="caption-subject font-green-sharp bold uppercase">@Model.Makine.MakineAdi - @Model.Makine.MakineNo</span>
+                </div>
+
+            </div>
+            <div class="portlet-body">
+                <ul class="nav nav-pills">
+                    @foreach (var item in Model.MakineTurListe.ToList())
+                    {
+                        string aktifClass = null;
+
+                        if (Model.Makine.ToplamCalismaSaati.ToString() == item.Id)
+                        {
+                            aktifClass = "active";
+
+                        }
+                        <li class="@aktifClass">
+                            <a href="@Url.Action("Bolum","Home",new{id=item.Id})"> @item.Tanim </a>
+                        </li>
+                    }
+                </ul>
+                <hr />
+                <div class="tab-content">
+                    <div class="tab-pane fade active in">
+                        <div class="row">
+                       
+                            <h2 class="text-center"><b>@Model.Makine.MakineAdi - @Model.Makine.MakineNo</b></h2>
+
+                        </div>
+                        <div class="row">
+                            <div class="table-responsive">
+                                <table class="table table-striped table-bordered table-hover table-checkable order-column no-footer dtTable">
+                                    <thead>
+                                        <tr>
+                                            <th class="text-center">
+                                                #
+                                            </th>
+
+                                            <th class="text-center">
+                                                KAYIT TARİHİ
+                                            </th>
+                                            <th class="text-center">
+                                                BİLDİREN
+                                            </th>
+                                            <th class="text-center">
+                                                İŞ EMRİ NO
+                                            </th>
+                                            <th class="text-center">
+                                                PARTİ NO
+                                            </th>
+                                            <th class="text-center">
+                                                POZİSYON
+                                            </th>
+                                            <th class="text-center">
+                                                HATA
+                                            </th>
+                                            @* <th class="text-center">#</th>*@
+
+
+                                        </tr>
+                                    </thead>
+
+                                    <tbody>
+                                        @{
+                                            int say = -1;
+                                            foreach (var item in Model.MakineHataBildirimleri)
+                                            {
+                                                say++;
+                                                int b = say + 1;
+                                                <tr>
+                                                    <td class="text-center">@b</td>
+                                                    @Html.HiddenFor(a => a.MakineHataBildirimleri[say].MakineHataBildirimId)
+                                                    <td class="text-center">@item.KayitTarihi</td>
+                                                    <td class="text-center">@item.SonGuncellemeYapanPersonelAdi</td>
+                                                    <td class="text-center"><b class="">@item.StokAdi</b></td>
+                                                    <td class="text-center"><b class="font-red">@item.PartiNo</b></td>
+                                                    <td class="text-center"><b class="font-red">@item.MakinePozisyonNo</b></td>
+                                                    <td class="text-center">@item.HataNedeni</td>
+                                                    <td class="text-center">
+                                                        @*<div class="mt-checkbox">
+                                <label class="mt-checkbox mt-checkbox-outline">
+                                    @Html.CheckBoxFor(a => a.MakineHataBildirimleri[say].SeciliMi)
+                                </label> aa
+                            </div>*@
+                                                        <div class="mt-checkbox-inline">
+                                                            <label class="mt-checkbox">
+                                                                @Html.CheckBoxFor(a => a.MakineHataBildirimleri[say].SeciliMi)
+                                                                <span></span>
+                                                            </label>
+
+                                                        </div>
+                                                    </td>
+
+
+                                                </tr>
+                                            }
+                                        }
+                                    </tbody>
+                                    <tfoot>
+                                        <tr>
+                                            <th class="text-center">
+                                                #
+                                            </th>
+
+                                            <th class="text-center">
+                                                KAYIT TARİHİ
+                                            </th>
+                                            <th class="text-center">
+                                                BİLDİREN
+                                            </th>
+                                            <th class="text-center">
+                                                İŞ EMRİ NO
+                                            </th>
+                                            <th class="text-center">
+                                                PARTİ NO
+                                            </th>
+                                            <th class="text-center">
+                                                POZİSYON
+                                            </th>
+                                            <th class="text-center">
+                                                HATA
+                                            </th>
+                                            <th class="text-center">MÜDAHALE</th>
+
+
+                                        </tr>
+                                    </tfoot>
+                                </table>
+                            </div>
+                        </div>
+                        
+                        <hr/>
+                        <div class="form-actions">
+                            <div class="btn-block">
+                                <a href="@Url.Action("MakineHataGoruldu","Home",new{id=Model.Makine.SayacOndalikSayisi})" class="btn blue btn-block">
+                                TÜM HATALARI İNCELENDİ OLARAK İŞARETLE
+                                </a>
+</div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts
+{
+    
+    <script>
+        var dtable = $('.dtTable').DataTable({
+            //"order": [[0, 'desc']],
+            "pageLength": 100,
+            orderCellsTop: true,
+            fixedHeader: true,
+            "ordering": false,
+            responsive: false,
+            "language": {
+                "lengthMenu": "_MENU_",
+                "search": "",
+                searchPlaceholder: "ARA",
+                "zeroRecords": "KAYIT BULUNAMADI",
+                "info": "_TOTAL_ KAYIT BULUNDU",
+                "infoEmpty": "KAYIT BULUNAMADI",
+                "infoFiltered": "(TOPLAM KAYIT _MAX_)",
+                "oPaginate": {
+                    "sFirst": "İlk",
+                    "sLast": "Son",
+                    "sNext": "Sonraki",
+                    "sPrevious": "Önceki"
+                },
+                "oAria": {
+                    "sSortAscending": ": artan sütun sıralamasını aktifleştir",
+                    "sSortDescending": ": azalan sütun sıralamasını aktifleştir"
+                }
+            },
+            columnDefs: [
+                { type: 'date-dd-mmm-yyyy', targets: 0 }
+            ]
+        });
+
+
+    </script>
+}
+
+

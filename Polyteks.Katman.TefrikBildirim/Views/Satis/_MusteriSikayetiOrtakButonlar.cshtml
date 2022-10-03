@@ -1,0 +1,23 @@
+﻿@model Polyteks.Katman.TefrikBildirim.Models.SatisModel
+
+@if (Model.MusteriSikayetDosya.MusteriSikayetDosyaId != 0)
+{
+    int idd = Model.MusteriSikayetDosya.MusteriSikayetDosyaId;
+    <div class="row">
+        <div class="col-md-3">
+            <a href="@Url.Action("MusteriSikayetDosyaBilgileri","Satis",new{id=idd})" class="btn red btn-block">DOSYA BİLGİLERİ</a>
+        </div>
+        <div class="col-md-3">
+            <a href="@Url.Action("MusteriSikayetDosyaHareketleri","Satis",new{id=idd})" class="btn grey-gallery btn-block">DOSYA HAREKETLERİ</a>
+        </div>
+        <div class="col-md-3">
+            <a href="@Url.Action("MusteriSikayetiDosyaAnalizleri","Satis",new{id=idd})" class="btn green-meadow btn-block">ANALİZLER</a>
+        </div>
+        <div class="col-md-3">
+            <a href="@Url.Action("MusteriSikayetDosyaResimleri","Satis",new{id=idd})" class="btn grey-gallery btn-block ">FOTOĞRAFLAR</a>
+        </div>
+    </div>
+}
+
+
+<hr/>

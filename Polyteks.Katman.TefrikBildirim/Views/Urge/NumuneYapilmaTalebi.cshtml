@@ -1,0 +1,214 @@
+﻿@model Polyteks.Katman.TefrikBildirim.Models.UrgeModel
+
+@{
+    ViewBag.Title = "NumuneYapilmaTalebi";
+    Layout = "~/Views/Shared/Layout.cshtml";
+}
+@section styles{
+
+
+    <style>
+        .mt-radio {
+            font-weight: bold;
+        }
+    </style>
+
+}
+
+@if (TempData["Msg"] != null)
+{
+    <div class="custom-alerts alert alert-@TempData["class"] fade in">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true"></button>
+        <h2>@Html.Raw(TempData["Msg"])</h2>
+    </div>
+}
+
+<div class="row">
+    <div class="col-md-12 ">
+        <div class="portlet light bordered">
+            <div class="portlet-title">
+                <div class="caption font-blue">
+                    <i class="icon-settings font-blue"></i>
+                    @{
+                        string Sira = "";
+
+                        Sira = Model.NumuneYapilabilirlikDosya.NumuneDosyaTipiAdi + " NUMUNE DETAYLARI";
+                    }
+
+                    <span class="caption-subject bold uppercase"> @Sira</span>
+                </div>
+            </div>
+            <div class="portlet-body form">
+
+
+                <div class="row">
+                    <div class="col-md-12">
+
+                        @using (Html.BeginForm())
+                        {
+                            string CariPoly = null;
+                            string CariTasd = null;
+                            string CariPset = null;
+
+
+                            @Html.HiddenFor(a => a.NumuneYapilabilirlikDosya.NumuneYapilabilirlikDosyaId)
+                            <div class="form-body">
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <label class="control-label"><b>CARİ</b></label>
+                                            <div class="input-icon right">
+                                                @Html.TextBoxFor(a => a.NumuneYapilabilirlikDosya.CariAdi, new { @class = "form-control", @onkeydown = "return false" , @readonly = true})
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-4">
+                                            <label class="control-label"><b class="font-red-sunglo">KAYIT TARİHİ</b></label>
+                                            <div class="input-icon right">
+                                                @Html.TextBoxFor(a => a.NumuneYapilabilirlikDosya.KayitTarihi, new { @class = "form-control tarih", @onkeydown = "return false" , @readonly = true})
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <label class="control-label"><b>İSTEK YAPAN</b></label>
+                                            <div class="input-icon right">
+                                                @Html.TextBoxFor(a => a.NumuneYapilabilirlikDosya.KayitYapanKulAdi, new { @class = "form-control", @onkeydown = "return false" , @readonly = true})
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <br />
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <label class="control-label"><b>SATIŞ AÇIKLAMASI</b></label>
+                                            <div class="input-icon right">
+                                                @Html.TextAreaFor(a => a.NumuneYapilabilirlikDosya.Aciklama, new { @class = "form-control", @rows = 5 , @readonly = true})
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <hr />
+                                </div>
+
+
+                                <div class="row">
+                                    @Html.Partial("~/Views/Shared/_DosyaNumuneLabAnalizTablolar.cshtml", Model.DosyaNumuneLabAnalizTablolar)
+
+                                </div>
+
+                                <div class="form-group">
+                                    @{
+                                        string yapilabilirlikDurumu = "Belirlenmedi";
+                                        string denemeYapilabilirlikDurumu = "Belirlenmedi";
+                                        if (Model.NumuneYapilabilirlikDosya.YapilabilirlikDurumu == 1)
+                                        {
+                                            yapilabilirlikDurumu = "YAPILABİLİR";
+                                        }
+                                        if (Model.NumuneYapilabilirlikDosya.YapilabilirlikDurumu == 2)
+                                        {
+                                            yapilabilirlikDurumu = "YAPILAMAZ";
+                                        }
+
+                                        if (Model.NumuneYapilabilirlikDosya.DenemeYapilmaDurumu == 1)
+                                        {
+                                            denemeYapilabilirlikDurumu = "YAPILDI";
+                                        }
+                                        if (Model.NumuneYapilabilirlikDosya.DenemeYapilmaDurumu == 2)
+                                        {
+                                            denemeYapilabilirlikDurumu = "YAPILMADI";
+                                        }
+                                    }
+
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <label class="control-label"><b>AR-GE & ÜR-GE YORUMU</b></label>
+                                            <div class="input-icon right">
+                                                @Html.TextAreaFor(a => a.NumuneYapilabilirlikDosya.UrgeYorumu, new { @class = "form-control", @rows = 3 , @readonly = true})
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-4">
+                                            <label class="control-label"><b>YAPILABİLİRLİK DURUMU</b></label>
+                                            <div class="input-icon right row">
+                                                <div class="input-icon right">
+                                                    <input type="text" value="@yapilabilirlikDurumu.ToUpper()" class="form-control font-red-thunderbird" readonly />
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <label class="control-label"><b>İŞLETME SEÇİMİ</b></label>
+                                            <div class="input-icon right">
+                                                @Html.DropDownListFor(a => a.NumuneYapilabilirlikDosya.FabrikaBirimId, new SelectList(ViewBag.Birimler, "BirimId", "BirimAdi"), new { @class = "form-control" })
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <hr />
+                                    <div class="form-group">
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <label class="control-label"><b>GÜNCEL DURUM</b></label>
+                                                <div class="input-icon right row">
+                                                    <div class="mt-radio-inline">
+                                                        @foreach (var item in Model.DosyaDurumlari)
+                                                        {
+                                                            <div class="col-md-6">
+                                                                <label class="mt-radio bold">
+                                                                    @Html.RadioButtonFor(a => a.NumuneYapilabilirlikDosya.DosyaDurumId, item.DosyaDurumId) @item.DosyaDurumAdi.ToUpper()
+                                                                    <span></span>
+                                                                </label>
+                                                            </div>
+                                                        }
+
+
+
+
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <label class="control-label"><b>TALEP DETAYLARI</b></label>
+                                                <div class="input-icon right">
+                                                    @Html.TextAreaFor(a => a.NumuneYapilabilirlikDosya.NumuneTalepDetayi, new { @class = "form-control", @rows = 3 })
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <br />
+                                <div class="form-actions">
+                                    <button type="submit" class="btn blue btn-block">DEĞİŞİKLİKLERİ KAYDET</button>
+                                </div>
+                            </div>
+
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    @section scripts{
+        <script>
+            birimler.style.visibility = "hidden";
+            birimler.style.display = "none";
+            function radioDurumYapilabilirlik(id) {
+
+                var birimler = document.getElementById("birimler");
+
+
+                birimler.style.visibility = "hidden";
+                birimler.style.display = "none";
+
+                if (id == 1) {
+
+                    birimler.style.display = "block";
+                    birimler.style.visibility = "visible";
+
+                }
+            }
+        </script>
+    }

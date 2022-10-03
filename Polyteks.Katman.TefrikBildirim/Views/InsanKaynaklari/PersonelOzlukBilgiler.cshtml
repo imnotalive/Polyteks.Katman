@@ -1,0 +1,73 @@
+﻿@using GridMvc.Html
+@model IEnumerable<Polyteks.Katman.DAL.Concrete.EntityFramework.ZzzSrcnKullaniciCalismaPozisyonOzet>
+
+@{
+    ViewBag.Title = "PersonelOzlukBilgiler";
+    Layout = "~/Views/Shared/Layout.cshtml";
+}
+@if (TempData["Msg"] != null)
+{
+    <div class="custom-alerts alert alert-@TempData["class"] fade in">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true"></button>
+        <h2>@Html.Raw(TempData["Msg"])</h2>
+    </div>
+}
+
+<link href="~/Content/Gridmvc.css" rel="stylesheet" />
+<script src="~/Scripts/jquery-3.0.0.min.js"></script>
+<script src="~/Scripts/gridmvc.min.js"></script>
+<script type="text/javascript"></script>
+<script src="~/scripts/jquery-1.10.2.js"></script>
+
+<div class="portlet-title">
+    <div class="caption font-blue">
+        <i class="icon-settings font-blue"></i>
+
+
+        <span class="caption-subject bold uppercase">PERSONEL BİLGİLERİ</span>
+    </div>
+</div>
+<br />
+
+
+
+@Html.Grid(Model).Columns(columns =>
+{
+    columns.Add(m => m.IsimSoyisim).Titled("İsim Soyisim").Sortable(true).Filterable(true);
+    columns.Add(m => m.CalismaPozisyonAdi).Titled("İş Pozisyonu").Sortable(true).Filterable(true);
+    columns.Add(m => m.Birim).Titled("Birim").Sortable(true).Filterable(true);
+    columns.Add(m => m.Bolum).Titled("Bölüm").Sortable(true).Filterable(true);
+    columns.Add(m => m.GrupAdi).Titled("Grup Adı").Sortable(true).Filterable(true);
+    columns.Add(m => m.Vardiya).Titled("Vardiya").Sortable(true).Filterable(true);
+    columns.Add().Encoded(false).Sanitized(false)
+        .SetWidth(30).RenderValueAs(o => Html.ActionLink("Düzenle", "PersonelOzlukBilgiDuzenle", new { id = o.KullaniciId, personelKodu = o.PersonelKodu }, new { @class = "btn red btn-block" })).Encoded(false).Filterable(false).Sortable(false).Titled("Düzenle")
+;
+}).WithPaging(30).SetLanguage("tr").Sortable(true).Filterable(true).WithMultipleFilters()
+
+
+
+<script>
+    /***
+* Grid.Mvc russian language (ru-RU) http://gridmvc.codeplex.com/
+*/
+    window.GridMvc = window.GridMvc || {};
+    window.GridMvc.lang = window.GridMvc.lang || {};
+    GridMvc.lang.tr = {
+        filterTypeLabel: "Filtre: ",
+        filterValueLabel: "Değer:",
+        applyFilterButtonText: "Uygula",
+        filterSelectTypes: {
+            Equals: "Eşittir",
+            StartsWith: "Başlar",
+            Contains: "İçerir",
+            EndsWith: "Biter",
+            GreaterThan: "Büyüktür",
+            LessThan: "Küçüktür",
+
+        },
+        code: 'tr',
+        boolTrueLabel: "Doğru",
+        boolFalseLabel: "Yanlış",
+        clearFilterLabel: "Temizle"
+    };
+</script>

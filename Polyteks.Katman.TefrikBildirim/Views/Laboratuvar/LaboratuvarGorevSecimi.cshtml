@@ -1,0 +1,60 @@
+﻿@model Polyteks.Katman.TefrikBildirim.Models.LaboratuvarModel
+
+@{
+    ViewBag.Title = "LaboratuvarGorevSecimi";
+    Layout = "~/Views/Shared/Layout.cshtml";
+}
+
+@if (TempData["Msg"] != null)
+{
+    <div class="custom-alerts alert alert-@TempData["class"] fade in">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true"></button>
+        <h2>@Html.Raw(TempData["Msg"])</h2>
+    </div>
+}
+
+<div class="row">
+    <div class="col-md-12 ">
+        <div class="portlet light bordered">
+            <div class="portlet-title">
+                <div class="caption font-red-sunglo">
+                    <i class="icon-settings font-red-sunglo"></i>
+                    <span class="caption-subject bold uppercase">@Model.LabGrup.LabGrupAdi İŞLEM SEÇİMİ</span>
+                </div>
+            </div>
+            <div class="portlet-body form">
+                <div class="form-body">
+                    <div class="row">
+                        @{
+                            string Sira = "";
+                            foreach (var item in Model.SrcnLabGruplari)
+                            {
+                                if (item != Model.SrcnLabGruplari.Last())
+                                {
+                                    Sira += item.LabGrupAdi + " >> ";
+
+                                }
+                                else
+                                {
+                                    Sira += item.LabGrupAdi;
+                                }
+
+                            }
+                            <h4 class="text-center"><b>@Sira </b></h4>
+                            <br />
+                        }
+
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <a href="@Url.Action("LabGrupLabCesitTanimlamalari", "Laboratuvar", new {id = Model.LabGrup.LabGrupId})" class="btn  blue-steel btn-block">ANALİZ ÇEŞİTLERİ </a>
+                        </div>
+                        <div class="col-md-4">
+                            <a href="@Url.Action("LaboratuvarAnalizIstegi", "Laboratuvar", new {id = Model.LabGrup.LabGrupId})" class="btn red-sunglo btn-block">ANALİZ İSTEĞİ </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,331 @@
+﻿@model Polyteks.Katman.TefrikBildirim.Models.ImalatModel
+@{
+    ViewBag.Title = "ImalatKategoriAnalizTalebi";
+    Layout = "~/Views/Shared/Layout.cshtml";
+}
+
+@section styles{
+
+    <link href="~/Temalar/TarihSaat/bootstrap-datepicker/css/bootstrap-datetimepicker.css" rel="stylesheet" />
+
+    <style>
+        .mt-radio {
+            font-weight: bold;
+        }
+    </style>
+
+}
+@if (TempData["Msg"] != null)
+{
+    <div class="custom-alerts alert alert-@TempData["class"] fade in">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true"></button>
+        <h2>@Html.Raw(TempData["Msg"])</h2>
+    </div>
+}
+
+<div class="row">
+    <div class="col-md-12 ">
+        <div class="portlet light bordered">
+            <div class="portlet-title">
+                <div class="caption font-red-sunglo">
+                    <i class="icon-settings font-red-sunglo"></i>
+                    <span class="caption-subject bold uppercase">@Model.LabGrup.LabGrupAdi LABORATUVAR ANALİZ İSTEĞİ</span>
+                </div>
+            </div>
+            <div class="portlet-body form">
+                <div class="form-body">
+                    @if (Model.SrcnLabGruplari.Any())
+                    {
+                        string Sira = "";
+                        <div class="row">
+
+                            @foreach (var item in Model.SrcnLabGruplari)
+                            {
+                                if (item != Model.SrcnLabGruplari.Last())
+                                {
+                                    Sira += item.LabGrupAdi + " >> ";
+
+                                }
+                                else
+                                {
+                                    Sira += item.LabGrupAdi;
+                                }
+
+                            }
+                            <h4 class="text-center"><b>@Sira </b></h4>
+                            <br />
+
+
+                        </div>
+                    }
+
+                    <div class="row">
+                        <div class="col-md-9">
+                            <h3 class="text-center"><b>ANALİZ İSTEĞİ DETAYLARI</b></h3>
+                            <hr />
+                            @using (Html.BeginForm())
+                            {
+                                @Html.HiddenFor(a => a.LabGrup.LabGrupId)
+                                @Html.HiddenFor(a => a.LabGrup.AnalizTipi)
+                                <div class="form-body">
+                                    <div class="form-group">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <label class="control-label"><b class="font-red-sunglo">ANALİZ SONUCU İSTENİLEN TERMİN</b></label>
+                                                <div class="input-icon right">
+                                                    @Html.TextBoxFor(a => a.IstekTarihi, new { @class = "form-control tarih", @onkeydown = "return false" })
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <label class="control-label"><b>İSTEK YAPAN</b></label>
+                                                <div class="input-icon right">
+                                                    @Html.TextBoxFor(a => a.Kullanici.IsimSoyisim, new { @class = "form-control", @onkeydown = "return false" })
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label"><b>ANALİZ TİPİ</b></label>
+                                        <div class="input-icon right">
+                                            <div class="mt-radio-inline">
+                                                <label class="mt-radio font-red-sunglo">
+                                                    @Html.RadioButtonFor(a => a.LabAnaliz.ImalatAnalizYapilmaTipi, 0) SEÇİM YAPILMADI
+                                                    <span></span>
+                                                </label>
+                                                <label class="mt-radio" style="color: #26c281">
+                                                    @Html.RadioButtonFor(a => a.LabAnaliz.ImalatAnalizYapilmaTipi, 1) NORMAL
+                                                    <span></span>
+                                                </label>
+                                                <label class="mt-radio" style="color: #3598dc">
+                                                    @Html.RadioButtonFor(a => a.LabAnaliz.ImalatAnalizYapilmaTipi, 2) TEKRAR
+                                                    <span></span>
+                                                </label>
+                                                <label class="mt-radio" style="color: #26c281">
+                                                    @Html.RadioButtonFor(a => a.LabAnaliz.ImalatAnalizYapilmaTipi, 3) TECRÜBE
+                                                    <span></span>
+                                                </label>
+                                                <label class="mt-radio" style="color: #3598dc">
+                                                    @Html.RadioButtonFor(a => a.LabAnaliz.ImalatAnalizYapilmaTipi, 4) DENEME
+                                                    <span></span>
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="form-group">
+                                        <label class="control-label"><b>İŞ EMRİ  NUMARASI OLUŞTURULDU MU ?</b></label>
+                                        <div class="input-icon right">
+                                            <div class="mt-radio-inline">
+                                                <label class="mt-radio" style="color: #26c281">
+                                                    @Html.RadioButtonFor(a => a.IsEmriNumarasiHazirlikDurumu, 1, new { onclick = "radioDurum(1)" }) EVET
+                                                    <span></span>
+                                                </label>
+                                                <label class="mt-radio" style="color: #3598dc">
+                                                    @Html.RadioButtonFor(a => a.IsEmriNumarasiHazirlikDurumu, 2, new { onclick = "radioDurum(2)" }) HAYIR
+                                                    <span></span>
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    @* // iş emri var*@
+                                    <div class="form-group" id="isEmriGrup" style="display: none">
+                                        <div class="row">
+                                            <div class="col-md-4">
+                                                <label class="control-label"><b>İŞ EMRİ NUMARASI</b></label>
+                                                <div class="input-icon right">
+                                                    @Html.TextBoxFor(a => a.LabAnaliz.RefakartKartNo, new { @class = "form-control" })
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <label class="control-label"><b>TAKIM SAATİ</b></label>
+                                                <div class="input-icon right">
+                                                    @Html.TextBoxFor(a => a.LabAnaliz.TakimSaati, new { @class = "form-control", @type = "time" })
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <label class="control-label"><b>ANALİZ YAPILACAK BOBİN SAYISI</b></label>
+                                                <div class="input-icon right">
+                                                    @Html.TextBoxFor(a => a.LabAnaliz.AnalizYapilacakBobinSayisi, new { @class = "form-control", @onkeypress = "return isNumberKey(event)" })
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    @* // iş emri yok*@
+                                    <div class="form-group" id="partiGrup" style="display: none">
+                                        <div class="row">
+                                            <div class="col-md-4">
+                                                <label class="control-label"><b>PARTİ NO</b></label>
+                                                <div class="input-icon right">
+                                                    @Html.TextBoxFor(a => a.LabAnaliz.PartiNo, new { @class = "form-control" })
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <label class="control-label"><b>TAKIM SAATİ</b></label>
+                                                <div class="input-icon right">
+                                                    @Html.TextBoxFor(a => a.PartiNoTakimSaati, new { @class = "form-control", @type = "time" })
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <label class="control-label"><b>ANALİZ YAPILACAK BOBİN SAYISI</b></label>
+                                                <div class="input-icon right">
+                                                    @Html.TextBoxFor(a => a.PartiNoBobinSayisi, new { @class = "form-control", @onkeypress = "return isNumberKey(event)" })
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <br />
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <label class="control-label"><b>BÖLÜM</b></label>
+                                                <div class="input-icon right">
+                                                    @Html.DropDownListFor(a => a.UretimHattiId, Model.UretimHatlari, "Bölüm Seçiniz", new { @class = "form-control", @id = "dropId" })
+                                                </div>
+                                            </div>
+                                            <div id="drop-item">
+
+                                                @Html.Partial("~/Views/Yetkisiz/_UretimHattiMakineleriImalat.cshtml", Model)
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <label class="control-label"><b>AÇIKLAMA</b></label>
+                                            <div class="input-icon right">
+                                                @Html.TextAreaFor(a => a.LabAnaliz.Aciklama, new { @class = "form-control", @rows = 5 })
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-actions">
+                                    <button type="submit" class="btn blue btn-block">KAYDET</button>
+                                </div>
+
+                            }
+                        </div>
+                        <div class="col-md-3">
+
+                            <h3 class="text-center"><b>ANALİZLER</b></h3>
+                            <hr />
+                            <div class="mt-element-list">
+                                <div class="mt-list-head list-simple font-white bg-red">
+                                    <div class="list-head-title-container">
+
+                                        <h3 class="list-title">@Model.LabGrup.LabGrupAdi</h3>
+                                    </div>
+                                </div>
+                                <div class="mt-list-container list-simple">
+                                    <ul>
+
+                                        @foreach (var item in Model.LabGrubuAnalizleri)
+                                        {
+                                            <li class="mt-list-item">
+                                                <div class="list-icon-container done">
+                                                    <i class="icon-check"></i>
+                                                </div>
+                                                <div class="list-item-content">
+                                                    <b>@item.LabAnalizCesitAdi</b>
+
+                                                </div>
+                                            </li>
+
+                                        }
+
+
+
+                                    </ul>
+                                </div>
+                            </div>
+
+
+                        </div>
+                    </div>
+                </div>
+
+
+
+            </div>
+            <div>
+                <a href="#" class="btn yellow"><i class="fa fa-arrow-left"></i> GERİ</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts
+{
+    <script src="~/Temalar/TarihSaat/bootstrap-datepicker/js/bootstrap-datetimepicker.js"></script>
+    <script src="~/Temalar/TarihSaat/bootstrap-datepicker/js/bootstrap-datetimepicker.tr.js"></script>
+    <script>
+        $('.tarih').datetimepicker({
+            language: 'tr',
+            weekStart: 1,
+            todayBtn: 1,
+            autoclose: 1,
+            todayHighlight: 1,
+            startView: 2,
+            minView: 2,
+            forceParse: 0,
+            format: "dd MM yyyy",
+            inline: true
+        });
+
+    </script>
+    <script>
+
+        function isNumberKey(evt) {
+            var charCode = (evt.which) ? evt.which : event.keyCode;
+            if (charCode > 31 && (charCode < 48 || charCode > 57)) return false;
+
+            return true;
+        }
+
+
+    </script>
+    <script>
+        function radioDurum(id) {
+
+            var partiGrup = document.getElementById("partiGrup");
+            var isEmriGrup = document.getElementById("isEmriGrup");
+            if (id == 2) {
+
+                partiGrup.style.display = "block";
+                partiGrup.style.visibility = "visible";
+                isEmriGrup.style.visibility = "hidden";
+                isEmriGrup.style.display = "none";
+            }
+
+            if (id == 1) {
+                partiGrup.style.display = "none";
+                partiGrup.style.visibility = "hidden";
+                isEmriGrup.style.display = "block";
+                isEmriGrup.style.visibility = "visible";
+            }
+
+
+        }
+    </script>
+
+    <script>
+
+        $("#dropId").change(function () {
+
+
+            $.ajax({
+                type: 'POST',
+                //dataType: "json",
+
+                url: '/Yetkisiz/UretimHattinaGoreMakineGetirImalat/' + $("#dropId").val(),
+
+                success: function (data) {
+                    $("#drop-item").empty();
+                    $("#drop-item").append(data);
+
+                }
+            });
+        });
+
+
+    </script>
+}

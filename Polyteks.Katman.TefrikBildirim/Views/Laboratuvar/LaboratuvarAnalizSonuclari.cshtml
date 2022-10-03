@@ -1,0 +1,506 @@
+﻿@model Polyteks.Katman.TefrikBildirim.Models.LaboratuvarModel
+@{
+    ViewBag.Title = "LaboratuvarAnalizSonuclari";
+    Layout = "~/Views/Shared/Layout.cshtml";
+}
+@*@section styles
+    {
+        <style>
+            table {
+                table-layout: fixed;
+            }
+        </style>
+    }*@
+@if (TempData["Msg"] != null)
+{
+    <div class="custom-alerts alert alert-@TempData["class"] fade in">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true"></button>
+        <h2>@Html.Raw(TempData["Msg"])</h2>
+    </div>
+}
+<div class="row">
+    <div class="col-md-12 ">
+        <div class="portlet light bordered">
+            <div class="portlet-title">
+                <div class="caption font-red-sunglo">
+                    <i class="icon-settings font-red-sunglo"></i>
+                    <span class="caption-subject bold uppercase">@Model.LabGrup.LabGrupAdi LABORATUVAR ANALİZ SONUÇLARI</span>
+                </div>
+            </div>
+            <div class="portlet-body form">
+                @Html.Partial("~/Views/Laboratuvar/_LaboratuvarAnalizOrtakButonlar.cshtml", Model)
+                @using (Html.BeginForm())
+                {
+
+                    int i = -1;
+                <div class="form-body">
+
+
+                    @Html.HiddenFor(a => a.LabAnaliz.LabAnalizId)
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <label class="control-label"><b class="font-red-sunglo">GÜNCEL ANALİZ DURUMU</b></label>
+                                <div class="input-icon right">
+                                    @foreach (var item in Model.LabAnalizDurumlari)
+                                    {
+                                        <div class="mt-radio">
+                                            <label class="mt-radio">
+                                                @Html.RadioButtonFor(a => a.LabAnaliz.LabAnalizDurumu, @item.LabAnalizDurumu)@item.LabAnalizDurumuAdi
+                                                <span></span>
+                                            </label>
+
+                                        </div>
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    @if (Model.LabAnaliz.AnalizTipi == 3)
+                    {
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label class="control-label"><b>FİRMA</b></label>
+                                    <div class="input-icon right">
+                                        @Html.TextBoxFor(a => a.NumuneYapilabilirlikDosya.CariAdi, new { @class = "form-control", @onkeydown = "return false" })
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="control-label"><b class="font-red-sunglo">TALEP EDEN AÇIKLAMA</b></label>
+                                    <div class="input-icon right">
+                                        @Html.TextAreaFor(a => a.LabAnaliz.Aciklama, new { @class = "form-control", @rows = 3, @onkeydown = "return false" })
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <h3 class="text-center"><b>ANALİZ SONUÇLARI</b></h3>
+                                @{
+                                    i = -1;
+                                    foreach (var item in Model.LaboratuvarAnalizItemSonuclarModeller)
+                                    {
+                                        i++;
+                                        int j = -1;
+
+                                        @Html.HiddenFor(a => a.LaboratuvarAnalizItemSonuclarModeller[i].LabAnalizItem.LabAnalizItemId)
+                                        <div class="row">
+                                            @{
+                                                string bobinAdi = "";
+                                                if (item.LabAnalizItem.BobinAdi != null)
+                                                {
+                                                    bobinAdi = item.LabAnalizItem.BobinAdi;
+                                                }
+                                                else
+                                                {
+                                                    bobinAdi = item.LabAnalizItem.YardimciTesisKontrolNoktaAdi;
+                                                }
+
+                                            }
+                                            <div class="col-md-12">
+                                                <h5><b class="font-blue">@bobinAdi</b></h5>
+                                            </div>
+                                            @{
+                                                foreach (var sonuc in item.LabAnalizItemAnalizCesitSonuclari)
+                                                {
+                                                    j++;
+                                                    string degertipiClass = "form-control decSayi";
+                                                    if (sonuc.DegerTipi == 1)
+                                                    {
+                                                        degertipiClass = "form-control";
+                                                    }
+
+                                                    <div class="col-md-3">
+                                                        @Html.HiddenFor(a => a.LaboratuvarAnalizItemSonuclarModeller[i].LabAnalizItemAnalizCesitSonuclari[j].LabAnalizItemAnalizCesitId)
+                                                        <div class="form-group">
+                                                            <label class="col-md-6 control-label">@sonuc.LabAnalizCesitAdi</label>
+                                                            <div class="col-md-6">
+                                                                @Html.TextBoxFor(a => a.LaboratuvarAnalizItemSonuclarModeller[i].LabAnalizItemAnalizCesitSonuclari[j].AnalizDegeriString, new { @class = degertipiClass })
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    if ((j + 1) % 4 == 0)
+                                                    {
+                                                        <br />
+                                                        <p>&nbsp;</p>
+                                                        <div class="clearfix"></div>
+                                                    }
+                                                }
+                                            }
+                                        </div>
+
+                                    }
+                                }
+
+                            </div>
+                        </div>
+                    }
+                    @if (Model.LabAnaliz.AnalizTipi == 2)
+                    {
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label class="control-label"><b>FİRMA</b></label>
+                                    <div class="input-icon right">
+                                        @Html.TextBoxFor(a => a.MusteriSikayetDosya.CariAdi, new { @class = "form-control", @onkeydown = "return false" })
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="control-label"><b class="font-red-sunglo">TALEP EDEN AÇIKLAMA</b></label>
+                                    <div class="input-icon right">
+                                        @Html.TextAreaFor(a => a.LabAnaliz.Aciklama, new { @class = "form-control", @rows = 3, @onkeydown = "return false" })
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <h3 class="text-center"><b>ANALİZ SONUÇLARI</b></h3>
+                                @{
+                                    i = -1;
+                                    foreach (var item in Model.LaboratuvarAnalizItemSonuclarModeller)
+                                    {
+                                        i++;
+                                        int j = -1;
+
+                                        @Html.HiddenFor(a => a.LaboratuvarAnalizItemSonuclarModeller[i].LabAnalizItem.LabAnalizItemId)
+                                        <div class="row">
+                                            @{
+                                                string bobinAdi = "";
+                                                if (item.LabAnalizItem.BobinAdi != null)
+                                                {
+                                                    bobinAdi = item.LabAnalizItem.BobinAdi;
+                                                }
+                                                else
+                                                {
+                                                    bobinAdi = item.LabAnalizItem.YardimciTesisKontrolNoktaAdi;
+                                                }
+
+                                            }
+                                            <div class="col-md-12">
+                                                <h5><b class="font-blue">@bobinAdi</b></h5>
+                                            </div>
+                                            @{
+                                                foreach (var sonuc in item.LabAnalizItemAnalizCesitSonuclari)
+                                                {
+                                                    j++;
+                                                    string degertipiClass = "form-control decSayi";
+                                                    if (sonuc.DegerTipi == 1)
+                                                    {
+                                                        degertipiClass = "form-control";
+                                                    }
+
+                                                    <div class="col-md-3">
+                                                        @Html.HiddenFor(a => a.LaboratuvarAnalizItemSonuclarModeller[i].LabAnalizItemAnalizCesitSonuclari[j].LabAnalizItemAnalizCesitId)
+                                                        <div class="form-group">
+                                                            <label class="col-md-6 control-label">@sonuc.LabAnalizCesitAdi</label>
+                                                            <div class="col-md-6">
+                                                                @Html.TextBoxFor(a => a.LaboratuvarAnalizItemSonuclarModeller[i].LabAnalizItemAnalizCesitSonuclari[j].AnalizDegeriString, new { @class = degertipiClass })
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    if ((j + 1) % 4 == 0)
+                                                    {
+                                                        <br />
+                                                        <p>&nbsp;</p>
+                                                        <div class="clearfix"></div>
+                                                    }
+                                                }
+                                            }
+                                        </div>
+
+                                    }
+                                }
+
+                            </div>
+                        </div>
+                    }
+
+                    @if (Model.LabAnaliz.AnalizTipi == 0)
+                    {
+                        <div class="row">
+                            <div class="col-md-3">
+                                <h3 class="text-center">PARTİ NO: <b>@Model.LabAnaliz.PartiNo</b></h3>
+                            </div>
+                            <div class="col-md-3">
+                                <h3 class="text-center">İŞ EMRİ NUMARASI: <b>@Model.LabAnaliz.RefakartKartNo</b></h3>
+                            </div>
+                            <div class="col-md-3">
+                                <h3 class="text-center">MAKİNE: <b>@Model.Makine.MakineNo</b></h3>
+                            </div>
+                            <div class="col-md-3">
+                                <h3 class="text-center">TAKIM SAATİ: <b>@Model.LabAnaliz.TakimSaati</b></h3>
+                            </div>
+
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12" style="overflow-x: auto;">
+                                <h3 class="text-center"><b>ANALİZ SONUÇLARI</b></h3>
+                                <div class="table-responsive">
+                                    <table class="table table-bordered ">
+                                        <thead>
+                                            <tr>
+                                                <th class="text-center">#</th>
+                                                <th class="text-center">ANALİZ</th>
+                                                @*<th class="text-center">Pozisyon</th>*@
+                                                @{
+                                                    foreach (var item in Model.LaboratuvarAnalizItemSonuclarModeller)
+                                                    {
+
+                                                        <th class="text-center">@item.LabAnalizItem.BobinAdi</th>
+                                                    }
+                                                    @*foreach (var item in Model.LabAnalizCesitleri)
+                                        {
+                                            <th class="text-center">@item.LabAnalizCesitAdi</th>
+                                        }*@
+                                                }
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @{
+                                                i = -1;
+                                                foreach (var item in Model.LabSatirItemlar)
+                                                {
+                                                    i++;
+                                                    int j = -1;
+
+                                                    <tr>
+                                                        <td class="text-center">
+                                                            @(i + 1)
+
+                                                        </td>
+                                                        <td class="text-center">@item.LabAnalizCesitAdi</td>
+                                                        @{
+
+                                                            foreach (var sonuc in item.LabAnalizItemAnalizCesitSonuclari)
+                                                            {
+                                                                j++;
+                                                                string degertipiClass = "form-control decSayi";
+                                                                if (sonuc.DegerTipi == 1)
+                                                                {
+                                                                    degertipiClass = "form-control";
+                                                                }
+
+
+                                                                <td class="text-center">
+
+
+                                                                    @Html.TextBoxFor(a => a.LabSatirItemlar[i].LabAnalizItemAnalizCesitSonuclari[j].AnalizDegeriString, new { @class = degertipiClass })
+                                                                </td>
+                                                            }
+                                                        }
+                                                    </tr>
+                                                }
+                                            }
+                                        </tbody>
+
+                                        @* <tbody>
+                                @{
+                                    i = -1;
+                                    foreach (var item in Model.LaboratuvarAnalizItemSonuclarModeller)
+                                    {
+                                        i++;
+                                        int j = -1;
+
+                                        <tr>
+                                            @Html.HiddenFor(a => a.LaboratuvarAnalizItemSonuclarModeller[i].LabAnalizItem.LabAnalizItemId)
+                                            <td class="text-center">
+                                                @(i + 1)
+
+                                            </td>
+                                            <td class="text-center">
+                                                @Html.TextBoxFor(a => a.LaboratuvarAnalizItemSonuclarModeller[i].LabAnalizItem.MakinePozisyonNo, new { @class = "form-control decSayi", })
+                                            </td>
+                                            @{
+                                                foreach (var sonuc in item.LabAnalizItemAnalizCesitSonuclari)
+                                                {
+                                                    j++;
+                                                    string degertipiClass = "form-control decSayi";
+                                                    if (sonuc.DegerTipi == 1)
+                                                    {
+                                                        degertipiClass = "form-control";
+                                                    }
+                                                    <td class="text-center">
+                                                        @Html.HiddenFor(a => a.LaboratuvarAnalizItemSonuclarModeller[i].LabAnalizItemAnalizCesitSonuclari[j].LabAnalizItemAnalizCesitId)
+
+                                                        @Html.TextBoxFor(a => a.LaboratuvarAnalizItemSonuclarModeller[i].LabAnalizItemAnalizCesitSonuclari[j].AnalizDegeriString, new { @class = degertipiClass })
+                                                    </td>
+                                                }
+                                            }
+                                        </tr>
+                                    }
+                                }
+                            </tbody>
+
+                                        *@
+
+
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12" style="overflow-x: auto;">
+                                <h3 class="text-center"><b>ANALİZ SONUÇLARI</b></h3>
+                                <div class="table-responsive">
+                                    <table class="table table-bordered ">
+                                        <thead>
+                                            <tr>
+                                                <th class="text-center">#</th>
+                                       
+                                                <th class="text-center">Pozisyon</th>
+                                                @{
+                                               
+                                                    foreach (var item in Model.LabAnalizCesitleri)
+                                        {
+                                            <th class="text-center">@item.LabAnalizCesitAdi</th>
+                                        }
+                                                }
+                                            </tr>
+                                        </thead>
+                             
+
+                                      <tbody>
+                                @{
+                                    i = -1;
+                                    foreach (var item in Model.LaboratuvarAnalizItemSonuclarModeller)
+                                    {
+                                        i++;
+                                        int j = -1;
+
+                                        <tr>
+                                            @Html.HiddenFor(a => a.LaboratuvarAnalizItemSonuclarModeller[i].LabAnalizItem.LabAnalizItemId)
+                                            <td class="text-center">
+                                                @(i + 1)
+
+                                            </td>
+                                            <td class="text-center">
+                                                @Html.TextBoxFor(a => a.LaboratuvarAnalizItemSonuclarModeller[i].LabAnalizItem.MakinePozisyonNo, new { @class = "form-control decSayi", })
+                                            </td>
+                                            @{
+                                                foreach (var sonuc in item.LabAnalizItemAnalizCesitSonuclari)
+                                                {
+                                                    j++;
+                                                    string degertipiClass = "form-control decSayi";
+                                                    if (sonuc.DegerTipi == 1)
+                                                    {
+                                                        degertipiClass = "form-control";
+                                                    }
+                                                    <td class="text-center">
+                                                        @Html.HiddenFor(a => a.LaboratuvarAnalizItemSonuclarModeller[i].LabAnalizItemAnalizCesitSonuclari[j].LabAnalizItemAnalizCesitId)
+
+                                                        @Html.TextBoxFor(a => a.LaboratuvarAnalizItemSonuclarModeller[i].LabAnalizItemAnalizCesitSonuclari[j].AnalizDegeriString, new { @class = degertipiClass })
+                                                    </td>
+                                                }
+                                            }
+                                        </tr>
+                                    }
+                                }
+                            </tbody>
+
+                                    
+
+
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                    @if (Model.LabAnaliz.AnalizTipi == 4)
+                    {
+
+                        <div class="row">
+                            <div class="col-md-12" style="overflow-x: auto;">
+                                <h3 class="text-center"><b>ANALİZ SONUÇLARI</b></h3>
+                                <div class="table-responsive">
+                                    <table class="table table-bordered ">
+                                        <thead>
+                                            <tr>
+                                                <th class="text-center">#</th>
+                                                <th class="text-center font-red-sunglo">Kontrol Noktası</th>
+                                                @{
+                                                    foreach (var item in Model.LabAnalizCesitleri)
+                                                    {
+                                                        <th class="text-center font-red-sunglo">@item.LabAnalizCesitAdi</th>
+                                                    }
+                                                }
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @{
+                                                i = -1;
+                                                foreach (var item in Model.LaboratuvarAnalizItemSonuclarModeller)
+                                                {
+                                                    i++;
+                                                    int j = -1;
+
+                                                    <tr>
+                                                        @Html.HiddenFor(a => a.LaboratuvarAnalizItemSonuclarModeller[i].LabAnalizItem.LabAnalizItemId)
+                                                        <td class="text-center">
+                                                            @(i + 1)
+
+                                                        </td>
+                                                        <td class="text-center">
+                                                            <b class="font-blue"> @item.LabAnalizItem.YardimciTesisKontrolNoktaAdi</b>
+                                                        </td>
+                                                        @{
+                                                            foreach (var sonuc in item.LabAnalizItemAnalizCesitSonuclari)
+                                                            {
+                                                                j++;
+                                                                string degertipiClass = "form-control decSayi";
+                                                                if (sonuc.DegerTipi == 1)
+                                                                {
+                                                                    degertipiClass = "form-control";
+                                                                }
+                                                                <td class="text-center">
+                                                                    @Html.HiddenFor(a => a.LaboratuvarAnalizItemSonuclarModeller[i].LabAnalizItemAnalizCesitSonuclari[j].LabAnalizItemAnalizCesitId)
+
+                                                                    @Html.TextBoxFor(a => a.LaboratuvarAnalizItemSonuclarModeller[i].LabAnalizItemAnalizCesitSonuclari[j].AnalizDegeriString, new { @class = degertipiClass })
+                                                                </td>
+                                                            }
+                                                        }
+                                                    </tr>
+                                                }
+                                            }
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                    <hr />
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <label class="control-label"><b class="font-red-sunglo">LABORATUVAR AÇIKLAMA</b></label>
+                                <div class="input-icon right">
+                                    @Html.TextAreaFor(a => a.LabAnaliz.LabAciklama, new { @class = "form-control", @rows = 5 })
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                    <div class="form-actions">
+                        <button type="submit" class="btn blue btn-block">KAYDET</button>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts
+{
+    <script src="~/Temalar/Scripts/jquery.decimalMask.js"></script>
+    <script>
+        $(function () {
+            $('.decSayi').decimalMask('-9999,99');
+        });
+    </script>
+}

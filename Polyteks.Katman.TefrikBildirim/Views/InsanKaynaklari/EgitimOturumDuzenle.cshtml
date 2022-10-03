@@ -1,0 +1,316 @@
+﻿@model Polyteks.Katman.TefrikBildirim.Models.IkModel
+
+@{
+    ViewBag.Title = "EgitimOturumDuzenle";
+    Layout = "~/Views/Shared/Layout.cshtml";
+}
+@section styles
+{
+    <style>
+        label {
+            font-weight: bold;
+        }
+    </style>
+    <link href="~/Temalar/TarihSaat/bootstrap-datepicker/css/bootstrap-datetimepicker.css" rel="stylesheet" />
+    <link href="~/Temalar/Select/bootstrap-select.css" rel="stylesheet" />
+    <link href="~/Temalar/ClockPicker/bootstrap-clockpicker.css" rel="stylesheet" />
+    <link href="~/Temalar/ClockPicker/jquery-clockpicker.css" rel="stylesheet" />
+}
+
+@if (TempData["Msg"] != null)
+{
+    <div class="custom-alerts alert alert-@TempData["class"] fade in">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true"></button>
+        <h2>@Html.Raw(TempData["Msg"])</h2>
+    </div>
+}
+
+<div class="row">
+    <div class="col-md-12 ">
+        <div class="portlet light bordered">
+            <div class="portlet-title">
+                <div class="caption font-blue">
+                    <i class="icon-settings font-blue"></i>
+
+
+                    <span class="caption-subject bold uppercase">@Model.EgitimOturum.IkEgitimAdi OTURUMU DÜZENLE</span>
+                </div>
+            </div>
+            <div class="portlet-body form">
+                @Html.Partial("~/Views/InsanKaynaklari/_IkBaseButonlar.cshtml", Model)
+                <hr />
+                <div class="row">
+                    <h2 class="font-red-thunderbird text-center"><b>@Model.EgitimOturum.IkEgitimAdi.ToUpper() OTURUMU DÜZENLE</b></h2>
+                </div>
+                <div class="row">
+
+                    <div class="col-md-12">
+                        @using (Html.BeginForm())
+                        {
+                            @Html.HiddenFor(a => a.EgitimOturum.EgitimOturumId, new { @id = "oturumId" })
+
+                            <div class="modal-body">
+                                <div class="form-body">
+
+                                    <div class="row">
+                                        <div class="col-md-6">
+
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <label class="control-label font-green-jungle"><b>OTURUM DURUMU</b></label>
+                                                    <div class="input-icon right">
+                                                        <div class="mt-radio-inline">
+                                                            @foreach (var ii in Model.EgitimKatilimlari.Where(a => a.EgitimKatilimTipi == 1).ToList())
+                                                            {
+                                                                string clasAdi = "mt-radio";
+
+                                                                if (Model.EgitimOturum.EgitimKatilimTanimId == ii.EgitimKatilimTanimId)
+                                                                {
+                                                                    clasAdi = "mt-radio font-red-thunderbird";
+                                                                }
+
+                                                                <label class="mt-radio @clasAdi">
+                                                                    @Html.RadioButtonFor(a => a.EgitimOturum.EgitimKatilimTanimId, ii.EgitimKatilimTanimId) @ii.KatilimDurumAdi
+                                                                    <span></span>
+                                                                </label>
+                                                            }
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label><b>OTURUM TARİHİ </b></label>
+                                                        @Html.TextBoxFor(a => a.EgitimOturum.OturumTarihi, new { @class = "form-control tarih", @onkeydown = "return false" })
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label><b>BAŞLANGIÇ SAATİ </b></label>
+                                                        @Html.TextBoxFor(a => a.EgitimOturum.OturumTarihiSaati, new { @class = "form-control clockpicker", @onkeydown = "return false" })
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label><b>OTURUM BİTİŞ TARİHİ </b></label>
+                                                        @Html.TextBoxFor(a => a.EgitimOturum.OturumTarihiBitisi, new { @class = "form-control tarih", @onkeydown = "return false" })
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label><b>BİTİŞ SAATİ </b></label>
+                                                        @Html.TextBoxFor(a => a.EgitimOturum.OturumTarihiBitisSaati, new { @class = "form-control clockpicker", @onkeydown = "return false" })
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-12">
+                                                    <div class="form-group">
+                                                        <label><b>FİRMA SEÇİMİ </b></label>
+                                                        @Html.DropDownListFor(a => a.EgitimOturum.IkEgitimFirmaId, Model.DropFirmalar, "Seçiniz", new { @class = "form-control" })
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-12">
+
+                                                    <div class="form-group">
+                                                        <div class="row">
+                                                            <div class="col-md-9">
+                                                                <label><b>PERSONEL </b></label>
+                                                                @Html.DropDownListFor(a => a.SecimId, Model.DropKullanicilar, new { @class = "selectpicker show-tick form-control", @id = "dropPersonel" })
+                                                            </div>
+                                                            <div class="col-md-3">
+                                                                <label><b>&nbsp; </b></label>
+                                                                <a href="javascript:" class="btn btn-block blue" onclick="PersoneliEkle()">Listeye Ekle</a>
+                                                            </div>
+
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="container">
+                                            <div class="form-group">
+                                                <div class="input-group">
+                                                    <span class="input-group-addon"><i class="glyphicon glyphicon-search"></i></span>
+                                                    <input type="text" id="Search" placeholder="ARA" class="form-control" />
+
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-6">
+                                                <h4 class="font-green-jungle text-center"><b>KATILACAK PERSONELLER</b></h4>
+                                                <table class="dtTable table table-bordered">
+                                                    <thead>
+                                                        <tr>
+                                                            <th class="text-center">
+                                                                #
+                                                            </th>
+                                                            <th class="text-center">
+                                                                PERSONEL
+                                                            </th>
+
+
+                                                            <th class="text-center">#</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        @{
+                                                            int say = 0;
+
+                                                            foreach (var item in Model.EgitimOturumSrcnKullanicilar)
+                                                            {
+                                                                say++;
+                                                                <tr class="Search">
+                                                                    @Html.HiddenFor(a => a.EgitimOturumSrcnKullanicilar[say - 1].EgitimOturumSrcnKullaniciId)
+                                                                    <td class="text-center">@say</td>
+                                                                    <td class="text-center">@item.IsimSoyisim</td>
+
+                                                                    @*<td class="text-center">
+                        <div class="mt-radio-inline">
+                            @foreach (var ii in Model.EgitimKatilimlari.Where(a => a.EgitimKatilimTipi == 2).ToList())
+                            {
+                                string clasAdi = "mt-radio";
+
+                                if (Model.EgitimOturumSrcnKullanicilar[say - 1].EgitimKatilimTanimId == ii.EgitimKatilimTanimId)
+                                {
+                                    clasAdi = "mt-radio font-red-thunderbird";
+                                }
+
+                            <label class="mt-radio @clasAdi">
+                                @Html.RadioButtonFor(a => a.EgitimOturumSrcnKullanicilar[say - 1].EgitimKatilimTanimId, ii.EgitimKatilimTanimId) @ii.KatilimDurumAdi
+                                <span></span>
+                            </label>
+                            }
+
+                        </div>
+
+                    </td>*@
+                                                                    <td class="text-center"><a href="javascript:" onclick="Sil(@item.EgitimOturumSrcnKullaniciId)" class="btn red btn-block ">Sil</a></td>
+                                                                </tr>
+                                                            }
+                                                        }
+
+                                                    </tbody>
+
+                                                </table>
+
+
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <label><b>AÇIKLAMA </b></label>
+                                                @Html.TextAreaFor(a => a.EgitimOturum.Aciklama, new { @class = "form-control", @rows = 5 })
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="submit" class="btn green btn-block">DEĞİŞİKLİKLERİ KAYDET</button>
+
+                            </div>
+                        }
+                    </div>
+                    <hr />
+                    <div class="col-md-1">
+                        <a href="@Url.Action("EgitimOturumlari","InsanKaynaklari",new{id=Model.EgitimOturum.IkEgitimId})" class="btn btn-block yellow-gold"><i class="fa fa-arrow-left"></i> GERİ</a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+@section scripts
+{
+    <script src="~/Temalar/TarihSaat/bootstrap-datepicker/js/bootstrap-datetimepicker.js"></script>
+    <script src="~/Temalar/TarihSaat/bootstrap-datepicker/js/bootstrap-datetimepicker.tr.js"></script>
+    <script src="~/Temalar/Select/bootstrap-select.js"></script>
+    <script src="~/Temalar/Scripts/sweetalert.js"></script>
+    <script src="~/Temalar/ClockPicker/bootstrap-clockpicker.js"></script>
+    <script src="~/Temalar/ClockPicker/jquery-clockpicker.js"></script>
+    <script>
+        $('.tarih').datetimepicker({
+            language: 'tr',
+            weekStart: 1,
+            todayBtn: 1,
+            autoclose: 1,
+            todayHighlight: 1,
+            startView: 2,
+            minView: 2,
+            forceParse: 0,
+            format: "dd MM yyyy",
+            inline: true
+        });
+
+    </script>
+
+    <script>
+        $('#dropPersonel').selectpicker({
+            liveSearch: true,
+            maxOptions: 1
+        });
+    </script>
+    <script>
+        function PersoneliEkle() {
+            var id = $('#dropPersonel').val();
+            var id2 = $('#oturumId').val();
+            var url = "/InsanKaynaklari/EgitimOturumaPersonelEkle/" + id2 + "/" + id;
+
+            window.location.href = url;
+
+
+        }
+    </script>
+    <script>
+        function Sil(id) {
+            var url = "/InsanKaynaklari/EgitimOturumdanPersonelSil/" + id;
+
+            swal({
+                title: "EMİN MİSİNİZ",
+                text: "Seçilen Kaydı Listeden Kaldırmak İstiyor Musunuz?",
+                icon: "warning",
+                buttons: {
+                    cancel: "Kapat",
+                    git: "Sil"
+                }
+            }).then((value) => {
+                switch (value) {
+                    case "git":
+                        window.location.href = url;
+                        break;
+                }
+            });
+
+
+        }
+    </script>
+    <script src="~/Scripts/jquery-3.0.0.min.js"></script>
+    <script>
+        //LIVE SEARCH
+        $(document).ready(function () {
+            function Contains(text_one, text_two) {
+                if (text_one.indexOf(text_two) != -1)
+                    return true;
+            }
+            $("#Search").keyup(function () {
+                var searchText = $("#Search").val().toLowerCase();
+                $(".Search").each(function () {
+                    if (!Contains($(this).text().toLowerCase(), searchText)) {
+                        $(this).hide();
+                    }
+                    else {
+                        $(this).show();
+                    }
+                })
+            });
+        });
+    </script>
+
+}

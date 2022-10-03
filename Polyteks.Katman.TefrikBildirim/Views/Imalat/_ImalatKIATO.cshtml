@@ -1,0 +1,186 @@
+﻿@model Polyteks.Katman.TefrikBildirim.Models.ImalatModel
+
+@using (Html.BeginForm("KismiImalatDosyaTalebi", "Imalat"))
+{
+    @Html.HiddenFor(a => a.Birim.BirimId)
+
+    if (Model.Birim.BirimId == 3)
+    {
+        //POY
+        <div class="col-md-12">
+            <table class="dtTable table table-bordered">
+                <thead>
+                    <tr>
+                        <th class="text-center">
+                            MAKİNE
+                        </th>
+                        <th class="text-center">
+                            ÜRETİM
+                        </th>
+                        @foreach (var item in Model.Kanallar)
+                        {
+                            <th class="text-center">
+                                @item.Tanim
+                            </th>
+                        }
+                    </tr>
+                </thead>
+                <tbody>
+                    @{
+                        int i = -1;
+                        foreach (var item in Model.GunlukImalatMatrisHucreSatirlar)
+                        {
+                            i++;
+                            int j = -1;
+                            <tr>
+                                <td class="text-center">
+                                    <b class="font-green-jungle">
+                                        @item.LottanOzelAlanaGecis.MakineNo
+                                    </b>
+                                    <br />
+                                    @item.LottanOzelAlanaGecis.RefakatNo
+
+                                    <br />
+                                    <a href="javascript:" class="btn red btn-block" onclick="ListedenKaldir(@item.LottanOzelAlanaGecis.RefakatNo)">KALDIR</a>
+                                </td>
+
+                                <td class="text-center">
+                                    <b class="font-red-sunglo">
+                                        @item.LottanOzelAlanaGecis.PartiNo
+                                    </b>
+                                    <br />
+                                    <b>  @item.LottanOzelAlanaGecis.StokAdi</b>
+                                    <br />
+                                    Üret. Tekn: @item.LottanOzelAlanaGecis.UretimTeknigi
+                                </td>
+                                @foreach (var itt in item.GunlukImalatMatrisHucreler)
+                                {
+                                    j++;
+
+                                    @Html.HiddenFor(a => a.GunlukImalatMatrisHucreSatirlar[i].GunlukImalatMatrisHucreler[j].LottanOzelAlanaGecis.RefakatNo)
+                                    @Html.HiddenFor(a => a.GunlukImalatMatrisHucreSatirlar[i].GunlukImalatMatrisHucreler[j].KanalNo)
+                                    <td class="text-center">
+                                        @if (itt.MevcutMu == false)
+                                        {
+                                            <b class="font-red-sunglo">Mevcut Değil</b>
+                                        }
+                                        else
+                                        {
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <b class="font-purple-sharp">TAKIM SAATİ</b>
+                                                    <br />
+                                                    @Html.TextBoxFor(a => a.GunlukImalatMatrisHucreSatirlar[i].GunlukImalatMatrisHucreler[j].TakimSaati, new { @class = "form-control", @type = "time" })
+                                                </div>
+                                                <div class="col-md-12">
+                                                    <b class="font-blue-madison">BOBİN SAYISI</b>
+                                                    <br />
+                                                    @Html.TextBoxFor(a => a.GunlukImalatMatrisHucreSatirlar[i].GunlukImalatMatrisHucreler[j].BobinSayisi, new { @class = "form-control intSayi" })
+                                                </div>
+
+                                            </div>
+                                        }
+
+
+                                    </td>
+                                }
+                            </tr>
+                        }
+                    }
+                </tbody>
+            </table>
+        </div>
+    }
+    else
+    {
+        <div class="col-md-12">
+            <table class="dtTable table table-bordered">
+                <thead>
+                    <tr>
+                        <th class="text-center">
+                            MAKİNE
+                        </th>
+                        <th class="text-center">
+                            ÜRETİM
+                        </th>
+                        <th class="text-center">
+                            TAKIM SAATİ
+                        </th>
+                        <th class="text-center">
+                            BOBİN SAYISI
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @{
+                        int i = -1;
+                        foreach (var item in Model.GunlukImalatMatrisHucreSatirlar)
+                        {
+                            i++;
+                            @Html.HiddenFor(a => a.GunlukImalatMatrisHucreSatirlar[i].LottanOzelAlanaGecis.RefakatNo)
+                            <tr>
+                                <td class="text-center">
+
+                                    <b class="font-green-jungle">
+                                        @item.LottanOzelAlanaGecis.MakineNo
+                                    </b>
+                                    <br />
+                                    @item.LottanOzelAlanaGecis.RefakatNo
+                                    <br />
+                                    <a href="javascript:" class="btn red btn-block" onclick="ListedenKaldir(@item.LottanOzelAlanaGecis.RefakatNo)">KALDIR</a>
+                                </td>
+
+                                <td class="text-center">
+                                    <b class="font-red-sunglo">
+                                        @item.LottanOzelAlanaGecis.PartiNo
+                                    </b>
+                                    <br />
+                                    <b>  @item.LottanOzelAlanaGecis.StokAdi</b>
+                                    <br />
+                                    Üret. Tekn: @item.LottanOzelAlanaGecis.UretimTeknigi
+                                </td>
+                                <td class="text-center">
+                                    @Html.TextBoxFor(a => a.GunlukImalatMatrisHucreSatirlar[i].TakimSaati, new { @class = "form-control ", @type = "time" })
+
+
+                                </td>
+                                <td class="text-center">
+                                    @Html.TextBoxFor(a => a.GunlukImalatMatrisHucreSatirlar[i].BobinSayisi, new { @class = "form-control intSayi" })
+                                </td>
+                            </tr>
+                        }
+                    }
+                </tbody>
+            </table>
+        </div>
+    }
+
+
+    <div class="col-md-12">
+        <div class="row">
+            <h3 class="text-center"><b>YAPILMASI İSTENEN ANALİZLER</b></h3>
+            @{
+                int m = -1;
+                foreach (var item in Model.LabAnalizCesitleri)
+                {
+                    m++;
+                    <div class="col-md-2">
+                        <div class="mt-checkbox">
+                            <label class="mt-checkbox">
+                                @Html.CheckBoxFor(a => a.LabAnalizCesitleri[m].SeciliMi) <b>@Model.LabAnalizCesitleri[m].LabAnalizCesitAdi</b>
+                                <span></span>
+                            </label>
+                        </div>
+                    </div>
+                }
+            }
+        </div>
+
+    </div>
+    <div class="col-md-12">
+        <div class="form-actions">
+            <button type="submit" class="btn blue btn-block" onclick="beklemeAnimasyonu()">KAYDET</button>
+        </div>
+    </div>
+}
+

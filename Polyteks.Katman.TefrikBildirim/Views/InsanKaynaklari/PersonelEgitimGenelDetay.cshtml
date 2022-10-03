@@ -1,0 +1,107 @@
+﻿@model Polyteks.Katman.DAL.Concrete.EntityFramework.SrcnIkEgitimOturums
+
+@{
+    ViewBag.Title = "PersonelEgitimGenelDetay";
+    Layout = "~/Views/Shared/Layout.cshtml";
+}
+
+<center><h2><b>Personel Eğitiminin Genel Detayları</b></h2></center>
+
+<div>
+
+    <hr />
+    <dl class="d-lg-table">
+
+
+        <dt>
+            <b>KAYIT TARİHİ</b>
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.KayitTarihi)
+        </dd>
+
+        <dt>
+            OTURUM TARİHİ
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.OturumTarihi)
+        </dd>
+
+        <dt>
+            KAYIT YAPAN
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.KayitYapanKulAdi)
+        </dd>
+
+        <dt>
+            EĞİTİM ADI
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IkEgitimAdi)
+        </dd>
+
+        <dt>
+            FİRMA ADI
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IkFirmaAdi)
+        </dd>
+
+        <dt>
+            AÇIKLAMA
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Aciklama)
+        </dd>
+
+
+        <dt>
+            KATILIM DURUMU
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.KatilimDurumAdi)
+        </dd>
+
+        <dt>
+            EĞİTİM BAŞLANGIÇ SAATİ
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.OturumTarihiSaati)
+        </dd>
+        <dt>
+            EĞİTİM BİTİŞ SAATİ
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.OturumTarihiBitisSaati)
+        </dd>
+        <dt>
+            EĞİTİM BİTİŞ TARİHİ
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.OturumTarihiBitisi)
+        </dd>
+
+
+        <dt>
+            EĞİTİM SÜRESİ
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.OturumSureAciklama)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("LİSTEYE GERİ DÖN", "PersonelEgitimGenel", "InsanKaynaklari", htmlAttributes: new { @class = "btn btn-info btn-xl" })
+</p>
+

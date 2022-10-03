@@ -1,0 +1,67 @@
+﻿@model Polyteks.Katman.TefrikBildirim.Models.SatisModel
+
+    <div class="form-group">
+        <br />
+        <div class="row">
+            <div class="col-md-12">
+
+
+                <table class="dtTable table table-bordered">
+                    <thead>
+                        <tr>
+                            <th class="text-center">
+                                #
+                            </th>
+                            <th class="text-center">
+                                Sevk Tarihi
+                            </th>
+                            <th class="text-center">
+                                PartiNo
+                            </th>
+                            <th class="text-center">
+                                İŞ EMRİ
+                            </th>
+                            <th class="text-center">
+                                Stok Adı
+                            </th>
+                         
+                            <th class="text-center">
+                                StokKodu
+                            </th>
+                            <th class="text-center">SevkMiktari</th>
+                            <th class="text-center">IrsalıyeNo</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @{
+                            int say = 0;
+
+                            foreach (var item in Model.MusteriSikayetOlusturmaModeller)
+                            {
+                                say++;
+                                                <tr>
+                                                    <td class="text-center">
+                                                        #
+                                                    </td>
+                                                    <td class="text-center">@item.SevkTarihi</td>
+                                                    <td class="text-center">@item.PartiNo</td>
+                                                    <td class="text-center">@item.RefKartNo</td>
+                                                    <td class="text-center">@item.StokAdi</td>
+
+                                                    <td class="text-center">@item.StokKodu</td>
+                                                    <td class="text-center">@item.SevkMiktari</td>
+                                                    <td class="text-center">@item.IrsalıyeNo</td>
+
+                                                </tr>
+                            }
+                        }
+
+                    </tbody>
+
+                </table>
+            </div>
+        </div>
+    </div>
+
+
+

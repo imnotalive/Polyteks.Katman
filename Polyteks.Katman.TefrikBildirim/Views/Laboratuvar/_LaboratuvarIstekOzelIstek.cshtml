@@ -1,0 +1,54 @@
+﻿@model Polyteks.Katman.TefrikBildirim.Models.LaboratuvarModel
+
+<div class="form-group">
+    <div class="row">
+        <div class="col-md-6">
+            <label class="control-label"><b>ANALİZ YAPILACAK İPLİK  SAYISI</b></label>
+            <div class="input-icon right">
+                @Html.TextBoxFor(a => a.LabAnaliz.AnalizYapilacakBobinSayisi, new { @class = "form-control", @onkeypress = "return isNumberKey(event)" })
+            </div>
+        </div>
+                                            
+        <div class="col-md-6">
+            <label class="control-label"><b>ANALİZ YAPILACAK KUMAŞ SAYISI</b></label>
+            <div class="input-icon right">
+                @Html.TextBoxFor(a => a.LabAnaliz.AnalizYapilacakKumasSayisi, new { @class = "form-control", @onkeypress = "return isNumberKey(event)" })
+            </div>
+        </div>
+
+    </div>
+</div>
+
+@{
+    int i = -1;
+    foreach (var itt in Model.MalzemeLabAnalizModeller)
+    {
+        i++;
+        int j = -1;
+        <hr/>
+        <div class="form-group">
+            <label class="control-label"><b>@itt.MalzemeAdi ANALİZLERİ</b></label>
+         
+            <div class="row">
+
+           
+            @foreach (var item in itt.LabAnalizCesitleri)
+            {
+                j++;
+
+                <div class="col-md-2">
+                    <div class="mt-checkbox">
+                        <label class="mt-checkbox mt-checkbox-outline">
+                            @Html.HiddenFor(a => a.MalzemeLabAnalizModeller[i].LabAnalizCesitleri[j].LabAnalizCesitId)
+                            @Html.CheckBoxFor(a => a.MalzemeLabAnalizModeller[i].LabAnalizCesitleri[j].SeciliMi)@item.LabAnalizCesitAdi
+                            <span></span>
+                        </label>
+
+                    </div>
+                </div>
+            }
+            </div>
+        </div>
+    }
+}
+

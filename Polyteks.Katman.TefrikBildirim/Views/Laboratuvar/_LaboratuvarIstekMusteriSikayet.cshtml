@@ -1,0 +1,95 @@
+﻿@model Polyteks.Katman.TefrikBildirim.Models.LaboratuvarModel
+
+
+
+@*<div class="form-group">
+    <div class="row">
+        <div class="col-md-4">
+            <label class="control-label"><b>FİRMA SEÇİMİ</b></label>
+            <div class="input-icon right">
+                <div class="mt-radio-inline">
+                    <label class="mt-radio font-red-sunglo">
+                        @Html.RadioButtonFor(a => a.LabAnaliz.FirmaTipi, 0, new { onclick = "radioDurumCari(0)" }) SEÇİM YAPILMADI
+                        <span></span>
+                    </label>
+                    <label class="mt-radio" style="color: #26c281">
+                        @Html.RadioButtonFor(a => a.LabAnaliz.FirmaTipi, 1, new { onclick = "radioDurumCari(1)" }) POLYTEKS
+                        <span></span>
+                    </label>
+                    <label class="mt-radio" style="color: #3598dc">
+                        @Html.RadioButtonFor(a => a.LabAnaliz.FirmaTipi, 2, new { onclick = "radioDurumCari(2)" }) TAŞDELEN
+                        <span></span>
+                    </label>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4" id="rdpoly" style="visibility: hidden">
+            <label class="control-label"><b class="font-red-sunglo">POLYTEKS CARİ SEÇİMİ</b></label>
+            <div class="input-icon right">
+                @Html.DropDownListFor(a => a.CariKoduPoly, Model.CarilerPoly, "Seçiniz", new { @class = "form-control " })
+            </div>
+        </div>
+        <div class="col-md-4" id="rdTasd" style="visibility: hidden">
+            <label class="control-label"><b>TAŞDELEN CARİ SEÇİMİ</b></label>
+            <div class="input-icon right">
+                @Html.DropDownListFor(a => a.CariKoduTasd, Model.CarilerTasd, "Seçiniz", new { @class = "form-control " })
+            </div>
+        </div>
+    </div>
+</div>
+
+@{
+    int i = -1;
+    foreach (var item in Model.MusteriSikayetGrupItemModeller)
+    {
+        i++;
+        int j = -1;
+
+    <div class="form-group">
+        <div class="row">
+            <div class="col-md-12">
+
+                <label class="control-label"><b class="font-blue">@item.AnaGrup.MusteriSikayetGrupAdi</b></label>
+                <br />
+                @foreach (var itt in item.AltItemGruplar)
+                {
+                    j++;
+
+                    @Html.HiddenFor(a => a.MusteriSikayetGrupItemModeller[i].AnaGrup.MusteriSikayetGrupId)
+
+                    if (item.AnaGrup.RadioSecimMi == null)
+                    {
+                        @Html.HiddenFor(a => a.MusteriSikayetGrupItemModeller[i].AltItemGruplar[j].MusteriSikayetGrupId)
+                        <div class=" col-md-2">
+                            <div class="mt-checkbox">
+                                <label class="mt-checkbox">
+                                    @Html.CheckBoxFor(a => a.MusteriSikayetGrupItemModeller[i].AltItemGruplar[j].SeciliMi) <b>@itt.MusteriSikayetGrupAdi</b>
+                                    <span></span>
+                                </label>
+                            </div>
+                        </div>
+                    }
+                    else
+                    {
+                        <div class=" col-md-2">
+                            <div class="mt-radio-inline">
+                                <label class="mt-radio font-red-sunglo">
+                                    @Html.RadioButtonFor(a => a.MusteriSikayetGrupItemModeller[i].RadioSecimId, itt.MusteriSikayetGrupId) @itt.MusteriSikayetGrupAdi
+                                    <span></span>
+                                </label>
+                            </div>
+                        </div>
+                    }
+
+                }
+                
+              
+            </div>
+        </div>
+    </div>
+
+        <hr/>
+    }
+
+
+}*@

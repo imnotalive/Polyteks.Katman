@@ -1,0 +1,648 @@
+﻿@model Polyteks.Katman.TefrikBildirim.Models.ImalatNumuneModel
+
+@{
+    ViewBag.Title = "BirimDenemeDosyaDetay";
+    Layout = "~/Views/Shared/Layout.cshtml";
+}
+
+
+@section styles{
+
+
+    <style>
+        .mt-radio {
+            font-weight: bold;
+        }
+    </style>
+    <link href="~/Temalar/Select/bootstrap-select.css" rel="stylesheet" />
+    <link href="~/Temalar/Scripts/jquery-ui.css" rel="stylesheet" type="text/css" />
+}
+
+
+@if (TempData["Msg"] != null)
+{
+    <div class="custom-alerts alert alert-@TempData["class"] fade in">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true"></button>
+        <h2>@Html.Raw(TempData["Msg"])</h2>
+    </div>
+}
+@{
+    string Sira = "";
+
+    Sira = string.Format("{0} - {1} NUMUNE DETAYLARI", Model.Birim.BirimAdi, Model.NumuneYapilabilirlikDosya.NumuneDosyaTipiAdi);
+
+    string yapilabilirlikDurumu = "Belirlenmedi";
+    string denemeYapilabilirlikDurumu = "Belirlenmedi";
+    if (Model.NumuneYapilabilirlikDosya.YapilabilirlikDurumu == 1)
+    {
+        yapilabilirlikDurumu = "YAPILABİLİR";
+    }
+    if (Model.NumuneYapilabilirlikDosya.YapilabilirlikDurumu == 2)
+    {
+        yapilabilirlikDurumu = "YAPILAMAZ";
+    }
+    if (Model.NumuneYapilabilirlikDosya.DenemeYapilmaDurumu == 1)
+    {
+        denemeYapilabilirlikDurumu = "YAPILDI";
+    }
+    if (Model.NumuneYapilabilirlikDosya.DenemeYapilmaDurumu == 2)
+    {
+        denemeYapilabilirlikDurumu = "YAPILMADI";
+    }
+}
+
+
+<div class="row">
+    <div class="col-md-12 ">
+        <div class="portlet-body form">
+            <div class="portlet box red">
+                <div class="portlet-title">
+                    <div class="caption">
+                        <i class="fa fa-gift"></i>@Sira.ToUpper()
+                    </div>
+
+                </div>
+                <div class="portlet-body">
+                    <div class="row">
+                        <div class="col-md-3 col-sm-3 col-xs-3">
+                            <ul class="nav nav-tabs tabs-left">
+                                <li class="active">
+                                    <a href="#cariBilgi" data-toggle="tab" aria-expanded="true"> CARİ VE DOSYA BİLGİLERİ </a>
+                                </li>
+                                <li class="">
+                                    <a href="#urgeYorum" data-toggle="tab" aria-expanded="false"> AR-GE ÜR-GE YORUMU </a>
+                                </li>
+                                <li class="">
+                                    <a href="#labAnalizleri" data-toggle="tab" aria-expanded="false"> NUMUNE LAB ANALİZLERİ </a>
+                                </li>
+                                <li class="dropdown">
+                                    <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                                        YAPILAN DENEMELER
+                                        <i class="fa fa-angle-down"></i>
+                                    </a>
+                                    <ul class="dropdown-menu" role="menu">
+                                        <li>
+                                            <a href="#yeniDosyaItem" tabindex="-1" data-toggle="tab"> Yeni Deneme Ekle </a>
+                                        </li>
+
+                                        @foreach (var item in Model.BirimDenemeAraModeller)
+                                        {
+                                            string tabKod = "#tab" + item.DenemeDosyaItem.DenemeDosyaItemId.ToString();
+
+                                            <li>
+                                                <a href="@tabKod" tabindex="-1" data-toggle="tab"> @item.DenemeDosyaItem.DenemeAdi / @item.DenemeDosyaItem.Sira  </a>
+                                            </li>
+                                        }
+
+                                    </ul>
+                                </li>
+
+                            </ul>
+                        </div>
+                        <div class="col-md-9 col-sm-9 col-xs-9">
+                            <div class="tab-content">
+                                <div class="tab-pane active in" id="cariBilgi">
+                                    <div class="form-group">
+                                        <div class="row">
+                                            <div class="col-md-4">
+                                                <label class="control-label"><b>CARİ</b></label>
+                                                <div class="input-icon right">
+                                                    @Html.TextBoxFor(a => a.NumuneYapilabilirlikDosya.CariAdi, new { @class = "form-control", @onkeydown = "return false" })
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-4">
+                                                <label class="control-label"><b class="font-red-sunglo">KAYIT TARİHİ</b></label>
+                                                <div class="input-icon right">
+                                                    @Html.TextBoxFor(a => a.NumuneYapilabilirlikDosya.KayitTarihi, new { @class = "form-control tarih", @onkeydown = "return false" })
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <label class="control-label"><b>İSTEK YAPAN</b></label>
+                                                <div class="input-icon right">
+                                                    @Html.TextBoxFor(a => a.NumuneYapilabilirlikDosya.KayitYapanKulAdi, new { @class = "form-control", @onkeydown = "return false" })
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                        <br />
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <label class="control-label"><b>SATIŞ AÇIKLAMASI</b></label>
+                                                <div class="input-icon right">
+                                                    @Html.TextAreaFor(a => a.NumuneYapilabilirlikDosya.Aciklama, new { @class = "form-control", @rows = 5 })
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <br />
+                                        @using (Html.BeginForm("DenemeAdiDegistir", "Imalat"))
+                                        {
+                                            @Html.HiddenFor(a => a.DenemeDosya.DenemeDosyaId)
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label><b class="font-green"> TANIM KODU </b></label>
+                                                        @Html.TextBoxFor(a => a.DenemeDosya.DenemeAdi, new { @class = "form-control" })
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <label><b class="font-green"> &nbsp; </b></label>
+                                                    <button type="submit" class="btn blue btn-block">TANIM KODU DEĞİŞTİR</button>
+                                                </div>
+                                            </div>
+
+                                        }
+                                        <hr />
+                                    </div>
+                                </div>
+                                <div class="tab-pane fade" id="urgeYorum">
+                                    <div class="form-group">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <label class="control-label"><b>AR-GE & ÜR-GE YORUMU</b></label>
+                                                <div class="input-icon right">
+                                                    @Html.TextAreaFor(a => a.NumuneYapilabilirlikDosya.UrgeYorumu, new { @class = "form-control", @rows = 3 })
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-6">
+                                                <label class="control-label"><b>YAPILABİLİRLİK DURUMU</b></label>
+                                                <div class="input-icon right row">
+                                                    <div class="input-icon right">
+                                                        <input type="text" value="@yapilabilirlikDurumu.ToUpper()" class="form-control font-red-thunderbird" />
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="tab-pane fade" id="labAnalizleri">
+                                    <div class="form-group">
+                                        <div class="row">
+                                            @Html.Partial("~/Views/Shared/_DosyaNumuneLabAnalizTablolar.cshtml", Model.DosyaNumuneLabAnalizTablolar)
+
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                @{
+                                    int t = -1;
+                                    int i = -1;
+                                    foreach (var item in Model.BirimDenemeAraModeller)
+                                    {
+                                        t++;
+                                        i = -1;
+
+                                        string tabKod = "tab" + item.DenemeDosyaItem.DenemeDosyaItemId.ToString();
+                                        <div class="tab-pane fade" id="@tabKod">
+                                            <div class="row">
+                                                <div class="col-md-4">
+                                                    <label class="control-label"><b>TANIM KODU</b></label>
+                                                    <div class="input-icon right">
+                                                        <input type="text" value="@item.DenemeDosyaItem.DenemeAdi / @item.DenemeDosyaItem.Sira" class="form-control" onkeydown="return false" />
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-md-4">
+                                                    <label class="control-label"><b>MAKİNE</b></label>
+                                                    <div class="input-icon right">
+                                                        <input type="text" value="@item.DenemeDosyaItem.MakineNo" class="form-control" onkeydown="return false" />
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <label class="control-label"><b>İŞLEM</b></label>
+                                                    <div class="input-icon right">
+                                                        <input type="text" value="@item.DenemeDosyaItem.IslemTuru" class="form-control" onkeydown="return false" />
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                            <hr />
+                                            <div class="row">
+                                                <div class="col-md-5">
+                                                    <h3 class="text-center">PARAMETRELER</h3>
+                                                    <div class="row">
+                                                        <div class="col-md-12">
+                                                            <table class="dtTable table table-bordered">
+                                                                <thead>
+                                                                    <tr>
+                                                                        <th class="text-center">
+                                                                            PARAMETRE
+                                                                        </th>
+                                                                        <th class="text-center font-red-sunglo">
+                                                                            DEĞER
+                                                                        </th>
+                                                                        <th class="text-center ">
+                                                                            PARAMETRE
+                                                                        </th>
+                                                                        <th class="text-center font-red-sunglo">
+                                                                            DEĞER
+                                                                        </th>
+                                                                    </tr>
+                                                                </thead>
+                                                                <tbody>
+                                                                    @{
+                                                                        string AnaTablo = "";
+                                                                        string sutunStr = "";
+                                                                        int kk = 0;
+                                                                        foreach (var parametre in item.DosyaItemMakineParametreler)
+                                                                        {
+                                                                            kk++;
+                                                                            sutunStr += string.Format("<td class=\"text-center \">{0}</td><td class=\"text-center font-red-sunglo bold\">{1}</td>", parametre.ParametreAdi, parametre.ParametreDegeri);
+                                                                            if (kk == 2)
+                                                                            {
+                                                                                kk = 0;
+                                                                                AnaTablo += "<tr>" + sutunStr + "</tr>";
+                                                                                sutunStr = null;
+                                                                            }
+
+                                                                        }
+                                                                    }
+                                                                    @Html.Raw(AnaTablo)
+                                                                </tbody>
+                                                            </table>
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-7">
+                                                    <h3 class="text-center">LAB SONUÇLARI</h3>
+                                                    @foreach (var Tablo in item.DosyaLabAnalizTablolar)
+                                                    {
+                                                        i++;
+
+                                                        <div class="row">
+
+
+                                                            <div class="col-md-12">
+
+                                                                <div class="row">
+                                                                    <div class="col-md-6">
+                                                                        <h5><b>ANALİZ KODU </b><b class="font-red-thunderbird">@string.Format("#{0}", Tablo.LabAnaliz.LabAnalizId)</b></h5>
+                                                                    </div>
+                                                                    <div class="col-md-6">
+                                                                        <h5><b>ANALİZ TİPİ </b><b class="font-red-thunderbird">@string.Format("{0}", Tablo.LabAnaliz.LabAnalizDurumuAdi)</b></h5>
+                                                                    </div>
+                                                                </div>
+
+                                                                <table class="dtTable table table-bordered">
+                                                                    <thead>
+                                                                        <tr>
+                                                                            <th class="text-center">
+                                                                                ANALİZ
+                                                                            </th>
+                                                                            @foreach (var aa in Tablo.LabAnalizItemlar)
+                                                                            {
+                                                                                string araOzetHead = string.Format("{0}", aa.BobinAdi);
+                                                                                <th class="text-center">
+                                                                                    @Html.Raw(araOzetHead)
+                                                                                </th>
+                                                                            }
+
+                                                                        </tr>
+                                                                    </thead>
+                                                                    <tbody>
+                                                                        @{
+
+                                                                            int j = -1;
+                                                                            foreach (var TabloSatir in Tablo.DosyaLabAnalizTabloSatirlar)
+                                                                            {
+                                                                                j++;
+                                                                                var k = -1;
+                                                                                <tr>
+
+                                                                                    <td class="text-center">@TabloSatir.LabAnalizCesit.LabAnalizCesitAdi</td>
+                                                                                    @foreach (var sutun in TabloSatir.LabAnalizItemAnalizCesitSonuclari)
+                                                                                    {
+                                                                                        k++;
+                                                                                        string degertipiClass = "form-control decSayi";
+                                                                                        if (sutun.DegerTipi == 1)
+                                                                                        {
+                                                                                            degertipiClass = "form-control";
+                                                                                        }
+
+                                                                                        <td class="text-center">
+                                                                                            @Html.HiddenFor(a => a.BirimDenemeAraModeller[t].DosyaLabAnalizTablolar[i].DosyaLabAnalizTabloSatirlar[j].LabAnalizItemAnalizCesitSonuclari[k].LabAnalizItemAnalizCesitId)
+
+
+
+                                                                                            <b>@Model.BirimDenemeAraModeller[t].DosyaLabAnalizTablolar[i].DosyaLabAnalizTabloSatirlar[j].LabAnalizItemAnalizCesitSonuclari[k].AnalizDegeriString</b>
+
+                                                                                        </td>
+                                                                                    }
+                                                                                </tr>
+                                                                            }
+                                                                        }
+
+                                                                    </tbody>
+                                                                </table>
+                                                            </div>
+                                                        </div>
+                                                        <div class="progress-info">
+                                                            <div class="progress">
+                                                                <span style="width: 100%;" class="progress-bar progress-bar-success green-sharp">
+                                                                </span>
+                                                            </div>
+                                                        </div>
+                                                    }
+                                                </div>
+                                            </div>
+
+
+                                        </div>
+                                    }
+                                }
+                                <div class="tab-pane fade" id="yeniDosyaItem">
+                                    <div class="form-group">
+                                        @if (Model.DenemeDosya.DenemeAdi == null)
+                                        {
+                                            <h3 class="bold font-red-thunderbird">LÜTFEN İLK OLARAK TANIM KODUNU BELİRLEYİNİZ</h3>
+                                        }
+                                        else
+                                        {
+                                            <div class="row">
+
+                                                <div class="col-md-7">
+                                                    <div class="row">
+                                                        <div class="col-md-12">
+                                                            <div class="row">
+                                                                <div class="col-md-6">
+                                                                    <label class="control-label"><b class="font-green-meadow">HAM MADDE SEÇİMİ</b></label>
+                                                                    <div class="input-icon right">
+                                                                        <input type="text" id="stokAra" class="form-control">
+                                                                        <input type="hidden" id="stokId">
+
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-md-6">
+                                                                    <label class="control-label"><b class="font-green-meadow">&nbsp;</b></label>
+                                                                    <a href="javascript:" class="btn green-meadow btn-block" onclick="ListeyeEkle(3)">Ekle</a>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        
+                                                        <div class="col-md-12">
+                                                            <div class="row">
+                                                                <div class="col-md-6">
+                                                                    <label class="control-label"><b class="font-purple-plum">DENEME & NUMUNE SEÇİMİ</b></label>
+                                                                    <div class="input-icon right">
+                                                                        <input type="text" id="denemeAra" class="form-control">
+                                                                        <input type="hidden" id="denemeId">
+
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-md-6">
+                                                                    <label class="control-label"><b class="font-green-meadow">&nbsp;</b></label>
+                                                                    <a href="javascript:" class="btn purple-plum btn-block" onclick="ListeyeEkle(1)">Ekle</a>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        
+                                                        <div class="col-md-12">
+                                                            <div class="row">
+                                                                <div class="col-md-6">
+                                                                    <label class="control-label"><b class="font-yellow-gold">POTA-PARTİ SEÇİMİ</b></label>
+                                                                    <div class="input-icon right">
+                                                                        <input type="text" id="partiAra" class="form-control">
+                                                                        <input type="hidden" id="partiId">
+
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-md-6">
+                                                                    <label class="control-label"><b class="font-green-meadow">&nbsp;</b></label>
+                                                                    <a href="javascript:" class="btn yellow-gold btn-block" onclick="ListeyeEkle(2)">Ekle</a>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+
+
+                                                    </div>
+                                                    <hr />
+                                                    <div class="row">
+                                                        <div class="col-md-12">
+                                                            <label class="control-label"><b class="font-red-sunglo">MAKİNE SEÇİMİ</b></label>
+                                                            <div class="input-icon right">
+                                                                @Html.HiddenFor(a => a.DenemeDosya.DenemeDosyaId, new { @id = "modelId" })
+                                                                @Html.DropDownListFor(a => a.DenemeDosyaItem.MakineNo, Model.DropBirimMakineleri, new { @class = "selectpicker show-tick form-control", @id = "policeKel" })
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-5">
+
+                                                    <div class="row" id="hamMaddeListe">
+
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        }
+
+
+                                        <hr />
+
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+        </div>
+    </div>
+</div>
+
+@section scripts{
+
+    <script src="~/Temalar/Scripts/sweetalert.js"></script>
+    <script>
+        function ListeyeEkle(id) {
+
+            var kod = null;
+            if (id == 1) {
+                var denemeAdi = $("#denemeAra").val();
+                var denemeId = $("#denemeId").val();
+                kod = denemeId;
+                //alert(denemeAdi + " " + denemeId);
+            }
+            if (id == 2) {
+                var partiAdi = $("#partiAra").val();
+                var partiId = $("#partiId").val();
+
+
+                kod = partiId;
+            }
+            if (id == 3) {
+                var stokAdi = $("#stokAra").val();
+                var StokId = $("#stokId").val();
+
+                kod = StokId;
+            }
+
+            if (kod.length == 0) {
+                swal({
+                    title: "DİKKAT",
+                    text: "SEÇİM YAPMADINIZ",
+                    icon: "warning",
+                    buttons: {
+                        cancel: "Kapat"
+
+                    }
+                });
+            }
+            else {
+                var url = "/Yetkisiz/NumuneDenemeHamMaddeListeyeEkle/" + id + "/" + kod;
+                $.ajax({
+                    url: url,
+
+                    dataType: "html",
+                    success: function (data) {
+
+                        $("#hamMaddeListe").empty();
+                        $("#hamMaddeListe").append(data);
+
+                        swal({
+                            title: "BAŞARILI",
+                            text: "EKLEME İŞLEMİ YAPILMIŞTIR",
+                            icon: "info",
+                            buttons: {
+                                cancel: "Kapat"
+
+                            }
+                        });
+                    }
+                });
+
+
+            }
+
+        }
+    </script>
+    
+    
+    
+    <script>
+        function HamMaddeSil(id) {
+
+        
+                var url = "/Yetkisiz/NumuneDenemeHamMaddeListedenSil/" + id;
+                $.ajax({
+                    url: url,
+
+                    dataType: "html",
+                    success: function (data) {
+
+                        $("#hamMaddeListe").empty();
+                        $("#hamMaddeListe").append(data);
+
+                        swal({
+                            title: "UYARI",
+                            text: "SİLME İŞLEMİ YAPILMIŞTIR",
+                            icon: "warning",
+                            buttons: {
+                                cancel: "Kapat"
+
+                            }
+                        });
+                    }
+                });
+
+
+          
+
+        }
+    </script>
+
+    <script src="~/Temalar/Scripts/jquery-ui-1.12.1.min.js"></script>
+    <script type="text/javascript">
+        $("#stokAra").keyup(function () {
+            var id = $("#stokAra").val();
+            if (id.length > 2) {
+
+                $("#stokAra").autocomplete({
+                    source: '/Yetkisiz/StokAdiGetir/' + id,
+                    select: function (event, ui) {
+                        this.value = ui.item.value;
+                        $("#stokId").val(ui.item.StokKodu);
+                        return false;
+                    }
+                }
+                );
+            }
+        });
+    </script>
+
+    <script type="text/javascript">
+        $("#denemeAra").keyup(function () {
+            var id = $("#denemeAra").val();
+            if (id.length > 2) {
+
+                $("#denemeAra").autocomplete({
+                    source: '/Yetkisiz/DenemeAdiGetir/' + id,
+                    select: function (event, ui) {
+                        this.value = ui.item.value;
+                        $("#denemeId").val(ui.item.DenemeDosyaId);
+                        return false;
+                    }
+                }
+                );
+            }
+        });
+    </script>
+    <script type="text/javascript">
+        $("#partiAra").keyup(function () {
+            var id = $("#partiAra").val();
+            if (id.length > 2) {
+
+                $("#partiAra").autocomplete({
+                    source: '/Yetkisiz/PartiAdiGetir/' + id,
+                    select: function (event, ui) {
+                        this.value = ui.item.value;
+                        $("#partiId").val(ui.item.PartiAnaKlasorId);
+                        return false;
+                    }
+                }
+                );
+            }
+        });
+    </script>
+
+    <script src="~/Temalar/Select/bootstrap-select.js"></script>
+    <script>
+        $("#policeKel").change(function () {
+            //function ListeGetir() {
+
+            var id = $('#policeKel').val();
+            var id2 = $('#modelId').val();
+            var url = "/Yetkisiz/ImalatDenemeDosyaDetayMakineItemGetir/" + id2 + "/" + id;
+
+            $.ajax({
+                url: url,
+
+                dataType: "html",
+                success: function (data) {
+
+                    $("#aramasonuc").empty();
+                    $("#aramasonuc").append(data);
+                }
+            });
+
+
+            //  }
+        });
+    </script>
+    <script>
+        $('#policeKel').selectpicker({
+            liveSearch: true,
+            maxOptions: 1
+        });
+
+    </script>
+}

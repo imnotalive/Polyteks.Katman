@@ -1,0 +1,91 @@
+﻿@model Polyteks.Katman.TefrikBildirim.Models.PaketlemeGunlukTalimatModel
+
+@{
+    ViewBag.Title = "PaketlemeGunlukTalimatEkle";
+    Layout = "~/Views/Shared/Layout.cshtml";
+}
+
+@section styles{
+
+    <link href="~/Temalar/TarihSaat/bootstrap-datepicker/css/bootstrap-datetimepicker.css" rel="stylesheet" />
+
+
+}
+
+@if (TempData["Msg"] != null)
+{
+    <div class="custom-alerts alert alert-@TempData["class"] fade in">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true"></button>
+        <h2>@Html.Raw(TempData["Msg"])</h2>
+    </div>
+}
+@{
+    string GrupAdi = "GÜNLÜK TALİMAT EKLE";
+    if (Model.GunlukTalimatTipi.PaketlemeGunlukTalimatTipi != 0)
+    {
+        GrupAdi = Model.GunlukTalimatTipi.PaketlemeGunlukTalimatTipiAdi.ToUpper() + " - " + GrupAdi;
+    }
+
+}
+
+<div class="row">
+    <div class="col-md-12 ">
+        <div class="portlet light bordered">
+            <div class="portlet-title">
+                <div class="caption font-red-sunglo">
+                    <i class="icon-settings font-red-sunglo"></i>
+                    <span class="caption-subject bold uppercase"> @GrupAdi</span>
+                </div>
+            </div>
+
+            <div class="row">
+            </div>
+            <hr />
+            <div class="row">
+                @using (Html.BeginForm("PaketlemeGunlukTalimatEkle", "Paketleme"))
+                {
+                    @Html.HiddenFor(a => a.GunlukTalimat.PaketlemeGunlukTalimatTipi)
+                    <div class="col-md-4">
+                        <label class="control-label"><b class="font-green-jungle">OLUŞTURULACAK GÜNLÜK TALİMAT TARİHİ</b></label>
+                        <div class="input-icon right">
+                            @Html.TextBoxFor(a => a.GunlukTalimat.TalimatTarihi, new { @class = "form-control tarih", @onkeydown = "return false" })
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+
+
+                        <label class="control-label"><b class="font-green-jungle">&nbsp;</b></label>
+                        <button type="submit" class="btn yellow btn-block"><i class="fa fa-legal"></i> SEÇİLİ GÜN İÇİN TALİMAT OLUŞTUR</button>
+
+
+
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@section scripts{
+
+<script src="~/Temalar/TarihSaat/bootstrap-datepicker/js/bootstrap-datetimepicker.js"></script>
+<script src="~/Temalar/TarihSaat/bootstrap-datepicker/js/bootstrap-datetimepicker.tr.js"></script>
+<script>
+    $('.tarih').datetimepicker({
+        language: 'tr',
+        weekStart: 1,
+        todayBtn: 1,
+        autoclose: 1,
+        todayHighlight: 1,
+        startView: 2,
+        minView: 2,
+        forceParse: 0,
+        format: "dd MM yyyy",
+        inline: true
+    });
+
+</script>
+
+}

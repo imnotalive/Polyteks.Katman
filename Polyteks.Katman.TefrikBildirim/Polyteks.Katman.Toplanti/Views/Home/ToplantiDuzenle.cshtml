@@ -1,0 +1,184 @@
+﻿@model Polyteks.Katman.Toplanti.Models.ToplantiDetayModel
+
+@{
+    ViewBag.Title = "ToplantiDuzenle";
+    Layout = "~/Views/Shared/Layout.cshtml";
+}
+
+@if (TempData["Msg"] != null)
+{
+    <div class="custom-alerts alert alert-@TempData["class"] fade in">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true"></button>
+        <h2>@Html.Raw(TempData["Msg"])</h2>
+    </div>
+}
+<div class="row">
+    <div class="col-md-12 ">
+        <div class="portlet light bordered">
+            <div class="portlet-title">
+                <div class="caption font-red-sunglo">
+                    <i class="icon-settings font-red-sunglo"></i>
+                    <span class="caption-subject bold uppercase">TOPLANTI DETAYLARI</span>
+                </div>
+            </div>
+            <div class="portlet-body form">
+                <div class="form-body">
+                    <div class="row">
+                        <div class="col-md-12">
+
+                            @using (Html.BeginForm())
+                            {
+                                @Html.HiddenFor(a => a.Randevu.ToplantiRandevuId)
+                            <div class="form-body">
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <label class="control-label"><b class="font-red-sunglo">KAYIT TARİHİ</b></label>
+                                            <div class="input-icon right">
+                                                <input type="text" value="@Model.Randevu.KayitTarihi.ToShortDateString()" class="form-control" />
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <label class="control-label"><b class="font-red-sunglo">TOPLANTI TARİHİ</b></label>
+                                            <div class="input-icon right">
+                                                <input type="text" value="@Model.Randevu.ToplantiTarihi.Value.ToShortDateString()" class="form-control" />
+                                            </div>
+                                        </div>
+                                       <div class="col-md-4">
+                                            <label class="control-label"><b class="font-red-sunglo">KAYIT YAPAN</b></label>
+                                            <div class="input-icon right">
+                                                <input type="text" value="@Model.Randevu.TalepEdenKulAdi" class="form-control" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <div class="row">
+                                        <h3 class="text-center">TOPLANTI RANDEVU DURUMU</h3>
+                                        @{
+                                            int i = -1;
+                                            if (Model.Randevu.ToplantiRandevuDurumId==3 && Model.YetkiliMi==false)
+                                            {
+                                                @Html.HiddenFor(a => a.Randevu.ToplantiRandevuDurumId)
+                                                <h5><b>@Model.Randevu.ToplantiRandevuDurumAdi</b></h5>
+                                            }
+                                            else
+                                            {
+                                                foreach (var item in Model.RandevuDurumlar)
+                                                {
+                                                    string clasAdi = "font-yellow";
+                                                    if (item.ToplantiRandevuDurumId == Model.Randevu.ToplantiRandevuDurumId)
+                                                    {
+                                                        clasAdi = "font-red";
+                                                    }
+                                                    <div class=" col-md-4">
+                                                        <div class="mt-radio-inline">
+                                                            <label class="mt-radio @clasAdi">
+                                                                @Html.RadioButtonFor(a => a.Randevu.ToplantiRandevuDurumId, item.ToplantiRandevuDurumId)<b> @item.ToplantiRandevuDurumAdi</b>
+                                                                <span></span>
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                }  
+                                            }
+                                          
+                                        }
+
+
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <table class="dtTable table table-bordered">
+                                                <thead>
+                                                    <tr>
+                                                        <th class="text-center">
+                                                            #
+                                                        </th>
+                                                        <th class="text-center">
+                                                           SALON
+                                                        </th>
+                                                        <th class="text-center">
+                                                           SAAT
+                                                        </th>
+                                                        <th class="text-center">
+                                                         KULLANIM DURUMU
+                                                        </th>
+                                                        <th class="text-center">
+                                                           #
+                                                        </th>
+                                                       
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    @{
+                                                        var say = 0;
+
+                                                        foreach (var item in Model.RandevuSaatleri)
+                                                        {
+                                                            say++;
+                                                            <tr>
+                                                                <td class="text-center">@say</td>
+                                                                <td class="text-center">@item.ToplantiSalonAdi</td>
+                                                                <td class="text-center">@item.BaslangicSaat - @item.BitisSaat</td>
+                                                              @if (item.PasifeCekiliMi == "1")
+                                                              {
+                                                                  <td class="text-center"><b class="font-red-sunglo">PASİF</b></td>
+                                                                  <td class="text-center"><a href="@Url.Action("ToplantiSalonRandevuSaatAktifEt","Home",new{id=item.ToplantiRandevuSaatId})" class="btn btn-block green">AKTİF ET</a></td>
+                                                              }
+                                                              else
+                                                              {
+                                                                  <td class="text-center"><b class="font-green">AKTİF</b></td>
+                                                                  <td class="text-center"><a href="@Url.Action("ToplantiSalonRandevuSaatPasifEt","Home",new{id=item.ToplantiRandevuSaatId})" class="btn btn-block red">PASİF ET</a></td>
+                                                              }
+
+
+                                                            </tr>
+                                                        }
+                                                    }
+
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <label class="control-label"><b>TOPLANTI BAŞLIĞI</b></label>
+                                                    <div class="input-icon right">
+                                                        @Html.TextBoxFor(a => a.Randevu.ToplantiBasligi, new {@class = "form-control "})
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <label class="control-label"><b>TOPLANTI AÇIKLAMASI</b></label>
+                                                    <div class="input-icon right">
+                                                        @Html.TextAreaFor(a => a.Randevu.ToplantiAciklamaca, new {@class = "ckeditor"})
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div class="form-actions">
+                                    <button type="submit" class="btn blue btn-block">KAYDET</button>
+                                </div>
+                            </div>
+                            }
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+@section scripts{
+    <script src="~/Temalar/Scripts/ckeditor/ckeditor.js"></script>
+    <script src="~/Temalar/Scripts/ckeditor/config.js"></script>
+
+}

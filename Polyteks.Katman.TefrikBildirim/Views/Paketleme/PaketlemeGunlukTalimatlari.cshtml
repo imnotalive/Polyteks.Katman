@@ -1,0 +1,229 @@
+﻿@model Polyteks.Katman.TefrikBildirim.Models.PaketlemeGunlukTalimatModel
+@using PagedList.Mvc;
+@{
+    ViewBag.Title = "PaketlemeGunlukTalimatlari";
+    Layout = "~/Views/Shared/Layout.cshtml";
+}
+@section styles{
+
+    <link href="~/Temalar/TarihSaat/bootstrap-datepicker/css/bootstrap-datetimepicker.css" rel="stylesheet" />
+
+
+}
+
+@if (TempData["Msg"] != null)
+{
+    <div class="custom-alerts alert alert-@TempData["class"] fade in">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true"></button>
+        <h2>@Html.Raw(TempData["Msg"])</h2>
+    </div>
+}
+@{
+    string GrupAdi = "GÜNLÜK TALİMATLAR";
+    if (Model.GunlukTalimatTipi.PaketlemeGunlukTalimatTipi != 0)
+    {
+        GrupAdi = Model.GunlukTalimatTipi.PaketlemeGunlukTalimatTipiAdi.ToUpper() + " - " + GrupAdi;
+    }
+
+}
+
+
+<div class="row">
+    <div class="col-md-12 ">
+        <div class="portlet light bordered">
+            <div class="portlet-title">
+                <div class="caption font-red-sunglo">
+                    <i class="icon-settings font-red-sunglo"></i>
+                    <span class="caption-subject bold uppercase"> @GrupAdi</span>
+                </div>
+            </div>
+
+            <div class="row">
+                @foreach (var item in Model.GunlukTalimatTipleri)
+                {
+                    string ClassAdi = "dark";
+
+                    string hizliUrl = "/Paketleme/PaketlemeGunlukTalimatlari/1/30/" + item.PaketlemeGunlukTalimatTipi;
+
+                    if (item.PaketlemeGunlukTalimatTipi == Model.GunlukTalimatTipi.PaketlemeGunlukTalimatTipi)
+                    {
+                        ClassAdi = "red bold";
+                        GrupAdi = item.PaketlemeGunlukTalimatTipiAdi.ToUpper() + " " + GrupAdi;
+
+                    }
+                    <div class="col-md-push-1 col-md-2">
+                        <a href="@Url.Action("PaketlemeGunlukTalimatlari","Paketleme",new{id=item.PaketlemeGunlukTalimatTipi})" class="btn btn-block  @ClassAdi">@item.PaketlemeGunlukTalimatTipiAdi.ToUpper()</a>
+
+
+                    </div>
+
+                }
+            </div>
+            <hr />
+            @if (false)
+            {
+                string EkleYazisi =Model.GunlukTalimatTipi.PaketlemeGunlukTalimatTipiAdi+ " GÜNLÜK TALİMAT EKLE";
+                <div class="row">
+                    <div class="col-md-8">
+                    </div>
+                    <div class="col-md-4">
+                        <a href="@Url.Action("PaketlemeGunlukTalimatEkle","Paketleme",new{id=Model.GunlukTalimatTipi.PaketlemeGunlukTalimatTipi})" class="btn yellow btn-block"><i class="fa fa-legal"></i> @EkleYazisi</a>
+
+                    </div>
+                </div>
+            }
+
+            @if (Model.GunlukTalimatTipi.PaketlemeGunlukTalimatTipi != 0)
+            {
+                <div class="row">
+                    @using (Html.BeginForm("PaketlemeGunlukTalimatEkle", "Paketleme"))
+                    {
+                        @Html.HiddenFor(a => a.GunlukTalimat.PaketlemeGunlukTalimatTipi)
+                   
+                        <div class="col-md-4">
+                            <label class="control-label"><b class="font-green-jungle">OLUŞTURULACAK GÜNLÜK TALİMAT TARİHİ</b></label>
+                            <div class="input-icon right">
+                                @Html.TextBoxFor(a => a.GunlukTalimat.TalimatTarihi, new { @class = "form-control tarih", @onkeydown = "return false" })
+                            </div>
+                        </div>
+
+                        <div class="col-md-4">
+
+
+                            <label class="control-label"><b class="font-green-jungle">&nbsp;</b></label>
+                            <button type="submit" class="btn yellow btn-block"><i class="fa fa-legal"></i> SEÇİLİ GÜN İÇİN TALİMAT OLUŞTUR</button>
+
+
+
+                        </div>
+                    }
+                </div>
+                <div class="row">
+                    <div id="ortala">
+                        @Html.PagedListPager(Model.GunlukTalimatlar, page => Url.Action("PaketlemeGunlukTalimatlari", new { page, pageSize = Model.GunlukTalimatlar.PageSize, id = Model.GunlukTalimatTipi.PaketlemeGunlukTalimatTipi }))
+                    </div>
+                    <div class="table-scrollable">
+
+                        <table class="table table-striped table-bordered">
+
+                            <thead>
+                                <tr>
+                                    <th class="text-center">#</th>
+
+                                    <th class="text-center">
+                                        TALİMAT TARİHİ
+                                    </th>
+
+                                    <th class="text-center">
+                                        KAYIT YAPAN
+                                    </th>
+                                    <th class="text-center">
+                                        PAKETLEME ALANI
+                                    </th>
+                                    <th class="text-center">
+                                        PDF
+                                    </th>
+                                    <th class="text-center">#</th>
+                                    <th class="text-center">#</th>
+
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @{
+                                    int say = 0;
+
+                                    foreach (var item in Model.GunlukTalimatlar)
+                                    {
+                                        say++;
+
+
+                                        <tr>
+                                            <td class="text-center">@say</td>
+                                            <td class="text-center">@item.TalimatTarihi</td>
+                                            <td class="text-center">@item.KayitYapanKulAdi</td>
+                                            <td class="text-center">@item.PaketlemeGunlukTalimatTipiAdi</td>
+                                            <td class="text-center"><a href="@Url.Action("PaketlemeGunlukTalimatIndir", "Paketleme", new {id = item.PaketlemeGunlukTalimatId})" class="btn btn-block blue">İndir</a></td>
+
+                                            <td class="text-center"><a href="@Url.Action("PaketlemeGunlukTalimatDuzenle", "Paketleme", new {id = item.PaketlemeGunlukTalimatId})" class="btn btn-block blue">Düzenle</a></td>
+
+
+                                            <td class="text-center"><a href="javascript:" onclick="Sil(@item.PaketlemeGunlukTalimatId)" class="btn purple-seance">Sil</a></td>
+
+                                        </tr>
+
+                                    }
+                                }
+
+
+
+
+                            </tbody>
+                        </table>
+
+
+
+                    </div>
+                </div>
+            }
+            else
+            {
+
+
+                <h2 class="red-sunglo text-center">LÜTFEN PAKETLEME ALANI SEÇİNİZ</h2>
+
+            }
+        </div>
+    </div>
+</div>
+
+
+@section scripts{
+    <script>
+        $("#ortala").addClass("text-center");
+    </script>
+
+    <script src="~/Temalar/Scripts/sweetalert.js"></script>
+    <script>
+        function Sil(id) {
+            var url = "/Paketleme/PaketlemeGunlukTalimatSil/" + id;
+
+            swal({
+                title: "EMİN MİSİNİZ",
+                text: "Seçilen Kayıdı Silmek istediğinizi Onaylıyor musunuz ??",
+                icon: "warning",
+                buttons: {
+                    cancel: "Kapat",
+                    git: "EVET ONAYLA"
+                }
+            }).then((value) => {
+                switch (value) {
+                    case "git":
+                        window.location.href = url;
+                        break;
+                }
+            });
+
+
+        }
+    </script>
+
+
+    <script src="~/Temalar/TarihSaat/bootstrap-datepicker/js/bootstrap-datetimepicker.js"></script>
+    <script src="~/Temalar/TarihSaat/bootstrap-datepicker/js/bootstrap-datetimepicker.tr.js"></script>
+    <script>
+        $('.tarih').datetimepicker({
+            language: 'tr',
+            weekStart: 1,
+            todayBtn: 1,
+            autoclose: 1,
+            todayHighlight: 1,
+            startView: 2,
+            minView: 2,
+            forceParse: 0,
+            format: "dd MM yyyy",
+            inline: true
+        });
+
+    </script>
+
+}

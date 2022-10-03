@@ -1,0 +1,183 @@
+﻿@model Polyteks.Katman.TefrikBildirim.Models.SatisModel
+
+@{
+    ViewBag.Title = "MusteriSikayetiDosyaInteraktifEkle";
+    Layout = "~/Views/Shared/Layout.cshtml";
+}
+
+
+@section styles{
+
+    <link href="~/Temalar/TarihSaat/bootstrap-datepicker/css/bootstrap-datetimepicker.css" rel="stylesheet" />
+
+    <style>
+        .mt-radio {
+            font-weight: bold;
+        }
+    </style>
+
+
+
+}
+
+
+@if (TempData["Msg"] != null)
+{
+    <div class="custom-alerts alert alert-@TempData["class"] fade in">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true"></button>
+        <h2>@Html.Raw(TempData["Msg"])</h2>
+    </div>
+}
+
+<div class="row">
+    <div class="col-md-12 ">
+        <div class="portlet light bordered">
+            <div class="portlet-title">
+                <div class="caption font-red-sunglo">
+                    <i class="icon-settings font-red-sunglo"></i>
+                    <span class="caption-subject bold uppercase"> MÜŞTERİ ŞİKAYETİ</span>
+                </div>
+            </div>
+            <div class="portlet-body form">
+                <div class="form-body">
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label class="control-label"><b>FİRMA SEÇİMİ</b></label>
+                                <div class="input-icon right">
+                                    <div class="input-icon right">
+                                        <div class="mt-radio-inline">
+                                            <label class="mt-radio font-red-sunglo">
+                                                @Html.RadioButtonFor(a => a.MusteriSikayetDosya.FirmaTipi, 0, new { onclick = "radioDurumCari(0)" }) SEÇİM YAPILMADI
+                                                <span></span>
+                                            </label>
+                                            <label class="mt-radio font-blue">
+                                                @Html.RadioButtonFor(a => a.MusteriSikayetDosya.FirmaTipi, 1, new { onclick = "radioDurumCari(1)" }) POLYTEKS
+                                                <span></span>
+                                            </label>
+                                            <label class="mt-radio font-green-jungle">
+                                                @Html.RadioButtonFor(a => a.MusteriSikayetDosya.FirmaTipi, 2, new { onclick = "radioDurumCari(2)" }) TAŞDELEN
+                                                <span></span>
+                                            </label>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                        </div>
+                        <div>
+                            @Html.HiddenFor(a => a.DbTipi, new { id = "db" })
+                            @Html.HiddenFor(a => a.CariKodu, new { id = "ck" })
+                            @Html.HiddenFor(a => a.StokKodu, new { id = "sk" })
+                        </div>
+                        <div class="row" id="cari">
+
+                        </div>
+                        <div class="row" id="stokkodu">
+
+                        </div>
+                        <div class="row" id="frmBolge">
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@section scripts
+{
+    <script>
+        $('body').delegate('#DropCariStokKodu', 'change', function () {
+
+            var db = $("#db").val();
+            var id = $("#ck").val();
+            var id2 = $("#DropCariStokKodu").val();
+
+            var sonucKod = $.trim(db) + "--" + $.trim(id) + "--" + $.trim(id2);
+             // alert(sonucKod);
+
+            var url = "/Yetkisiz/MusteriSikayetiDosyaStokKoduSecimi/" + sonucKod;
+            $("#frmBolge").empty();
+            $.ajax({
+                url: url,
+
+                dataType: "html",
+                success: function (data) {
+                    beklemeAnimasyonuGizle();
+                   
+                    $("#frmBolge").append(data);
+                }
+            });
+
+        });
+    </script>
+    <script>
+        $('body').delegate('#DropCari', 'change', function () {
+
+            beklemeAnimasyonu();
+            var id = $("#db").val();
+            var id2 = $("#DropCari").val();
+            $("#ck").val(id2);
+            //  alert(id + " " + id2);
+            var url = "/Yetkisiz/MusteriSikayetiDosyaDbCariSecimi/" + id+"/" + id2;
+            $("#stokkodu").empty();
+            $("#frmBolge").empty();
+            $.ajax({
+                url: url,
+
+                dataType: "html",
+                success: function (data) {
+                    beklemeAnimasyonuGizle();
+                   
+                    $("#stokkodu").append(data);
+                }
+            });
+
+            // 
+        });
+
+      
+
+
+    </script>
+    <script>
+        function radioDurumCari(id) {
+            beklemeAnimasyonu();
+
+            $("#db").val(id);
+            $("#cari").empty();
+            $("#stokkodu").empty();
+            $("#frmBolge").empty();
+            if (id != 0) {
+            
+
+                var url = "/Yetkisiz/MusteriSikayetiDosyaDbSecimi/" + id;
+               
+                $.ajax({
+                    url: url,
+
+                    dataType: "html",
+                    success: function (data) {
+                        beklemeAnimasyonuGizle();
+                        //$("#cari").empty();
+                        //$("#stokkodu").empty();
+                        $("#cari").append(data);
+                        
+                    }
+                });
+            
+            }
+
+
+
+        }
+    </script>
+ 
+  
+}

@@ -1,0 +1,187 @@
+﻿@model Polyteks.Katman.Has.Models.TefrikAnalizModel
+
+@{
+    ViewBag.Title = "Bolum";
+    Layout = "~/Views/Shared/Layout.cshtml";
+}
+@if (TempData["Msg"] != null)
+{
+    <div class="custom-alerts alert alert-@TempData["class"] fade in">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true"></button>
+        <h2>@Html.Raw(TempData["Msg"])</h2>
+    </div>
+}
+@Html.Partial("~/Views/Home/_HataGorulduOnayla.cshtml", Model)
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="portlet light bordered">
+            <div class="portlet-title">
+                <div class="caption">
+                    <i class="fa fa-industry font-green-sharp"></i>
+                    <span class="caption-subject font-green-sharp bold uppercase">@Model.Makine.OzelAlan14</span>
+                </div>
+
+            </div>
+            <div class="portlet-body">
+                <ul class="nav nav-pills">
+
+                    @foreach (var item in Model.MakineTurListe.ToList())
+                    {
+                        string aktifClass = null;
+
+                        if (Model.Makine.ToplamCalismaSaati.ToString() == item.Id)
+                        {
+                            aktifClass = "active";
+
+                        }
+                        <li class="@aktifClass">
+                            <a href="@Url.Action("Bolum","Home",new{id=item.Id})"> <b> @item.Tanim</b> </a>
+                        </li>
+                    }
+                </ul>
+                <p class="pull-right">Son Sistem Güncelleme Saati: @DateTime.Now</p>
+                <hr />
+
+                <div class="tab-content">
+
+
+                    <div class="tab-pane fade active in">
+
+                        <div class="row">
+                            <div class="clearfix">
+
+                            </div>
+
+                            @{
+                                int say = 0;
+                                int k = -1;
+                                foreach (var item in Model.TefrikMakineDurumModelItemlar)
+                                {
+                                    k++;
+                                    if (item.HataSayisi > 0 || item.KalanMiktar > 0)
+                                    {
+                                        say++;
+                                        string btnClass = "btn red-thunderbird";
+                                        //if (say % 3 == 1)
+                                        //{
+                                        //    btnClass = "btn blue";
+                                        //}
+                                        //if (say % 3 == 2)
+                                        //{
+                                        //    btnClass = "btn yellow";
+                                        //}
+                                        @Html.HiddenFor(a => a.TefrikMakineDurumModelItemlar[k].Makine.MakineNo, new { @id = "makAdi"+item.Makine.SayacOndalikSayisi.ToString() })
+
+                                        <div class="col-md-6" style="padding: 1px;" onmouseenter="UzerineGeldi(@item.Makine.SayacOndalikSayisi)">
+                                            
+                                           
+                                            @*
+                                                @Url.Action("MakineHatalari", "Home", new {id = item.Makine.SayacOndalikSayisi})
+                                            *@
+                                            <div>
+                                                <a href="#javascript" class="@btnClass btn-circle btn-block" data-toggle="modal" data-target="#modalPersonel">
+                                                    <div class="row">
+                                                        <hr/>
+
+                                                        <h3> <b class="text-center">@item.Makine.MakineAdi - @item.Makine.MakineNo </b></h3>
+
+                                                        <div class="col-md-4">
+                                                            <p>
+                                                                ÖNCEKİ VARDIYA HATA SAYISI <br/>
+                                                                <h2 class="text-center"><b>@item.OncekiVardiyaHataSayisi</b></h2>
+                                                            </p>
+                                                        </div>
+                                                        <div class="col-md-4">
+                                                            <p>
+                                                                BU VARDIYA HATA SAYISI <br/>
+                                                                <h2 class="text-center"><b>@item.SuankiVardiyaHataSayisi</b></h2>
+                                                            </p>
+                                                        </div>
+                                                        <div class="col-md-4">
+                                                            <p>
+                                                                BAKILACAK HATA SAYISI
+                                                                <br/>
+                                                                @if (item.KalanMiktar > 0)
+                                                                {
+                                                                    <h2 class="text-center"><b>@item.KalanMiktar</b></h2>
+                                                                }
+                                                                else
+                                                                {
+                                                                    <h2 class="text-center"><b>@item.HataSayisi</b></h2>
+                                                                }
+
+                                                            </p>
+                                                        </div>
+                                                    </div>
+                                                    <hr/>
+                                                </a>
+                                            </div>
+
+                                        </div>
+                                    }
+                                }
+                            }
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts
+{
+    <script>
+
+        setTimeout(aaa, 180000);
+
+        function aaa() {
+
+            location.reload();
+
+        }
+
+        function UzerineGeldi(id) {
+           // alert(id);
+            var makAdi = $("#makAdi" + id).val();
+          //  alert(makAdi);
+            $("#hMakAdi").text(makAdi);
+            $("#makId").val(id);
+            //alert(makAdi);
+
+        }
+    </script>
+
+    <script>
+        function radioGrupPersonel(id) {
+
+            var seciliClass = document.getElementsByClassName("cls" + id)[0];
+            var tumunuGizle = document.getElementsByClassName("tumunugizle")[0];
+            tumunuGizle.style.visibility = "hidden";
+            tumunuGizle.style.display = "none";
+            seciliClass.style.display = "block";
+            seciliClass.style.visibility = "visible";
+            //radioGrupPersonel(id);
+
+            for (var i = 0; i < document.getElementsByClassName("tumunugizle").length; ++i) {
+                var item = document.getElementsByClassName("tumunugizle")[i];
+               
+                if (item.id=="#"+id) {
+                    //alert(item.id);
+                    item.style.display = "block";
+                    item.style.visibility = "visible";
+                }
+                else
+                {
+                    item.style.visibility = "hidden";
+                    item.style.display = "none";
+                }
+                //console.log(item);
+                //alert(idd);
+            }
+
+        }
+    </script>
+}

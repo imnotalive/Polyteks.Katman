@@ -1,0 +1,37 @@
+﻿@model Polyteks.Katman.Toplanti.Models.LayoutModelToplanti
+<!-- BEGIN HEADER TOP -->
+<div class="page-header-top">
+    <div class="container">
+        <!-- BEGIN LOGO -->
+        <div class="page-logo">
+            <a href="index.html">
+                <img src="@Url.Content("~/Temalar/Resimler/logo.png")" alt="logo" class="logo-default" style="max-height: 70px; margin: 0px; max-width:200px; padding-top:5px;" />
+            </a>
+        </div>
+        <!-- END LOGO -->
+        <!-- BEGIN RESPONSIVE MENU TOGGLER -->
+        <a href="javascript:;" class="menu-toggler"></a>
+        <!-- END RESPONSIVE MENU TOGGLER -->
+        <!-- BEGIN TOP NAVIGATION MENU -->
+        <div class="top-menu">
+            <ul class="nav navbar-nav pull-right">
+
+                <li class="dropdown dropdown-user dropdown-dark">
+                    <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
+                        <span class="username username-hide-on-mobile"> @Model.Kullanici.IsimSoyisim </span>
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-default">
+                        <a href="@Url.Action("Cikis","Kullanici")">
+                            <i class="icon-key"></i> ÇIKIŞ YAP
+                        </a>
+
+
+                    </ul>
+                </li>
+
+            </ul>
+        </div>
+        <!-- END TOP NAVIGATION MENU -->
+    </div>
+</div>
+<!-- END HEADER TOP -->

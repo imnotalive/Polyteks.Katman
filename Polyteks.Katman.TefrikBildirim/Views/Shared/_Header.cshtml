@@ -1,0 +1,716 @@
+﻿@model Polyteks.Katman.Has.Models.LayoutModelTefrik
+@{
+    /*
+     * Açık
+      <ul class="page-sidebar-menu   " data-keep-expanded="false" data-auto-scroll="true" data-slide-speed="200">
+     */
+
+    string HeaderClass = "";
+    if (TempData["Gizle"] != null)
+    {
+        HeaderClass = "page-sidebar-menu-closed";
+    }
+}
+
+
+<ul class="page-sidebar-menu @HeaderClass" data-keep-expanded="false" data-auto-scroll="true" data-slide-speed="200">
+    <li class="nav-item start ">
+        <a href="@Url.Action("Index","Home")" class="nav-link" onclick="beklemeAnimasyonu()">
+            <i class="icon-home"></i>
+            <span class="title"><b>ANASAYFA</b></span>
+
+        </a>
+    </li>
+
+    <li class="nav-item  ">
+        <a href="javascript:;" class="nav-link nav-toggle">
+            <i class="fa fa-recycle"></i>
+            <span class="title"><b>ÜR-GE</b></span>
+            <span class="arrow"></span>
+        </a>
+        <ul class="sub-menu">
+
+            <li class="nav-item  ">
+                <a href="@Url.Action("NumuneYapilabilirlikYorumOnaylari", "Urge",new {id=0})" class="nav-link" onclick="beklemeAnimasyonu()">
+                    <span class="title">NUMUNE YAPILABİLİRLİK ÜR-GE YORUMLARI</span>
+                </a>
+            </li>
+            <li class="nav-item  ">
+                <a href="@Url.Action("NumuneYapilmaTalepleri", "Urge",new {id=0})" class="nav-link" onclick="beklemeAnimasyonu()">
+                    <span class="title">NUMUNE YAPILMA TALEPLERİ</span>
+                </a>
+            </li>
+
+        </ul>
+    </li>
+    <li class="nav-item  ">
+        <a href="javascript:;" class="nav-link nav-toggle">
+            <i class="fa fa-hourglass-end"></i>
+            <span class="title"><b>İMALAT</b></span>
+            <span class="arrow"></span>
+        </a>
+        <ul class="sub-menu">
+            <li class="nav-item  ">
+                <a href="@Url.Action("PoyIkazTakibi", "Imalat")" class="nav-link" onclick="beklemeAnimasyonu()">
+                    <span class="title">POY İKAZ TAKİBİ</span>
+                </a>
+            </li>
+            <li class="nav-item  ">
+                <a href="@Url.Action("KaliteBildirimPusulasiImalat", "Imalat")" class="nav-link" onclick="beklemeAnimasyonu()">
+                    <span class="title">KALİTE PROBLEM BİLDİRİMİ</span>
+                </a>
+            </li>
+            <li class="nav-item  ">
+                <a href="@Url.Action("ImalatPartiSonuBirimeGoreListe", "Imalat", new{id=0})" class="nav-link" onclick="beklemeAnimasyonu()">
+                    <span class="title">PARTİ TAKİBİ</span>
+                </a>
+            </li>
+            <li class="nav-item  ">
+                <a href="@Url.Action("NumuneHavuzuListesi", "Imalat", new{id=0})" class="nav-link" onclick="beklemeAnimasyonu()">
+                    <span class="title">NUMUNE TALEP HAVUZU</span>
+                </a>
+            </li>
+
+
+            <li class="nav-item  ">
+                <a href="@Url.Action("ImalatPartiAnaKlasorleri", "Imalat", new{id=0})" class="nav-link" onclick="beklemeAnimasyonu()">
+                    <span class="title">PARTİ KLASÖRÜ</span>
+                </a>
+            </li>
+            <li class="nav-item  ">
+                <a href="@Url.Action("DenemeDosyalari", "Imalat")" class="nav-link" onclick="beklemeAnimasyonu()">
+                    <span class="title">DENEME & NUMUNE DOSYALARI</span>
+                </a>
+            </li>
+            @foreach (var item in Model.PartiAltKlasorTipleri)
+            {
+                <li class="nav-item  ">
+                    <a href="@Url.Action("ImalatPartiAltKlasorleri", "Imalat", new{id=item.PartiAltKlasorTipiId})" class="nav-link" onclick="beklemeAnimasyonu()">
+                        <span class="title">@item.PartiAltKlasorTipAdi</span>
+                    </a>
+                </li>
+            }
+            <li class="nav-item  ">
+                <a href="@Url.Action("PartiNoyaGoreKismiAnalizTalebi", "Imalat", new{id=0})" class="nav-link" onclick="beklemeAnimasyonu()">
+                    <span class="title">ÇALIŞAN PARTİ İÇİN KISMI ANALİZ TALEBİ</span>
+                </a>
+            </li>
+            <li class="nav-item  ">
+                <a href="@Url.Action("PartinoyaGoreGunlukImalatTalebi", "Imalat", new{id=0})" class="nav-link" onclick="beklemeAnimasyonu()">
+                    <span class="title">GÜNLÜK İMALAT ANALİZ TALEBİ</span>
+                </a>
+            </li>
+            <li class="nav-item  ">
+                <a href="@Url.Action("Index", "Imalat",new {id=0})" class="nav-link" onclick="beklemeAnimasyonu()">
+                    <span class="title">LABORATUVAR ANALİZLERİ</span>
+                </a>
+            </li>
+
+            <li class="nav-item  ">
+                <a href="@Url.Action("AyniAndaCalisanPartiler", "Imalat",new {id=0})" class="nav-link" onclick="beklemeAnimasyonu()">
+                    <span class="title">AYNI MAKİNEDE ÇALIŞAN ÜRETİMLER</span>
+                </a>
+            </li>
+            <li class="nav-item  ">
+                <a href="@Url.Action("MusteriSikayetleriIsletmeYorumlari", "Satis",new {id=0})" class="nav-link" onclick="beklemeAnimasyonu()">
+                    <span class="title">MÜŞTERİ ŞİKAYETİ İŞLETME YORUMU</span>
+                </a>
+            </li>
+            <li class="nav-item  ">
+                <a href="@Url.Action("MusteriSikayetOnaylar", "Satis")" class="nav-link" onclick="beklemeAnimasyonu()">
+                    <span class="title">MÜŞTERİ ŞİKAYET DOSYA ONAYLARI</span>
+                </a>
+            </li>
+
+
+        </ul>
+    </li>
+    <li class="nav-item  ">
+        <a href="javascript:;" class="nav-link nav-toggle">
+            <i class="fa fa-users"></i>
+            <span class="title"><b>İNSAN KAYNAKLARI</b></span>
+            <span class="arrow"></span>
+        </a>
+        <ul class="sub-menu">
+
+            <li class="nav-item  ">
+                <a href="@Url.Action("PersonelSicilIslemler", "InsanKaynaklari",new {id=0})" class="nav-link" onclick="beklemeAnimasyonu()">
+                    <span class="title">PERSONEL EĞİTİM</span>
+                </a>
+            </li>
+
+            <li class="nav-item  ">
+                <a href="@Url.Action("PersonelOzlukBilgiler", "InsanKaynaklari")" class="nav-link" onclick="beklemeAnimasyonu()">
+                    <span class="title">PERSONEL BİLGİLERİ</span>
+                </a>
+            </li>
+
+            <li class="nav-item  ">
+                <a href="@Url.Action("PersonelOzlukBilgisiEkle", "InsanKaynaklari")" class="nav-link" onclick="beklemeAnimasyonu()">
+                    <span class="title">PERSONEL EKLE</span>
+                </a>
+            </li>
+            @*<li class="nav-item  ">
+                    <a href="@Url.Action("Liste", "InsanKaynaklari")" class="nav-link" onclick="beklemeAnimasyonu()">
+                        <span class="title">Personel Kartları</span>
+                    </a>
+                </li>*@
+        </ul>
+    </li>
+    <li class="nav-item  ">
+        <a href="javascript:;" class="nav-link nav-toggle">
+            <i class="fa fa-search "></i>
+            <span class="title"><b>İZLENEBİLİRLİK</b></span>
+            <span class="arrow"></span>
+        </a>
+        <ul class="sub-menu">
+
+            <li class="nav-item  ">
+                <a href="@Url.Action("PartiSonuDurum", "Izlenebilirlik",new {id=0})" class="nav-link" onclick="beklemeAnimasyonu()">
+                    <span class="title">PARTİ GÜNCEL DURUM</span>
+                </a>
+            </li>
+            @*<li class="nav-item  ">
+                    <a href="@Url.Action("_IzlenebilirlikRefkartNoDetay", "Izlenebilirlik",new {id=0})" class="nav-link" onclick="beklemeAnimasyonu()">
+                        <span class="title">Refakat Kart Numarası Detayı</span>
+                    </a>
+                </li>*@
+        </ul>
+
+
+    </li>
+
+    <li class="nav-item  ">
+        <a href="javascript:;" class="nav-link nav-toggle">
+            <i class="fa fa-flask"></i>
+            <span class="title"><b>LABORATUVAR</b></span>
+            <span class="arrow"></span>
+        </a>
+        <ul class="sub-menu">
+            <li class="nav-item">
+                <a href="@Url.Action("LabPoyIkazTakibi", "Laboratuvar")" class="nav-link" onclick="beklemeAnimasyonu()">
+                    <span class="title">POY İKAZ TAKİBİ</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="@Url.Action("KaliteBildirimPusulasi", "Laboratuvar")" class="nav-link" onclick="beklemeAnimasyonu()">
+                    <span class="title">KALİTE PROBLEM BİLDİRİMİ</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="@Url.Action("LabPartiSonuBilgiOnayiBekleyenListe", "Laboratuvar")" class="nav-link" onclick="beklemeAnimasyonu()">
+                    <span class="title">PARTİ SONU BİLGİLENDİRME</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="@Url.Action("GunlukImalatDosyalar", "Laboratuvar")" class="nav-link" onclick="beklemeAnimasyonu()">
+                    <span class="title">GÜNLÜK İMALAT ANALİZLERİ</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="@Url.Action("NumuneYapilabilirlikDosyalar", "Laboratuvar")" class="nav-link" onclick="beklemeAnimasyonu()">
+                    <span class="title">NUMUNE YAPILABİLİRLİK DOSYALARI</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="@Url.Action("NumuneYapilabilirlikDosyaOnaylar", "Laboratuvar")" class="nav-link" onclick="beklemeAnimasyonu()">
+                    <span class="title">NUMUNE YAPILABİLİRLİK DOSYA ONAYLARI</span>
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a href="@Url.Action("YapilacakAnalizler", "Laboratuvar")" class="nav-link" onclick="beklemeAnimasyonu()">
+                    <span class="title">YAPILACAK ANALİZLER</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="@Url.Action("MusteriSikayetDosyalar", "Laboratuvar")" class="nav-link" onclick="beklemeAnimasyonu()">
+                    <span class="title">MÜŞTERİ ŞİKAYET DOSYALARI</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="@Url.Action("MusteriSikayetOnaylar", "Laboratuvar")" class="nav-link" onclick="beklemeAnimasyonu()">
+                    <span class="title">MÜŞTERİ ŞİKAYET DOSYA ONAYLARI</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="@Url.Action("Index", "Laboratuvar")" class="nav-link" onclick="beklemeAnimasyonu()">
+                    <span class="title">ANALİZ AĞACI</span>
+                </a>
+            </li>
+
+        </ul>
+    </li>
+    <li class="nav-item  ">
+        <a href="javascript:;" class="nav-link nav-toggle">
+            <i class="fa fa-space-shuttle"></i>
+            <span class="title"><b>PAKETLEME</b></span>
+            <span class="arrow"></span>
+        </a>
+        <ul class="sub-menu">
+
+            <li class="nav-item  ">
+                <a href="@Url.Action("PaketlemePartiSonuBekleyenListe", "Paketleme",new {id=3})" class="nav-link" onclick="beklemeAnimasyonu()">
+                    <span class="title">PARTİ SONU </span>
+                </a>
+            </li>
+            <li class="nav-item  ">
+                <a href="@Url.Action("PaketlemeGunlukTalimatAnaliz", "Paketleme" )" class="nav-link" onclick="beklemeAnimasyonu()">
+                    <span class="title">GÜNLÜK TALİMAT ANALİZ</span>
+                </a>
+            </li>
+            <li class="nav-item  ">
+                <a href="@Url.Action("PaketlemeGunlukTalimatlari", "Paketleme" )" class="nav-link" onclick="beklemeAnimasyonu()">
+                    <span class="title">GÜNLÜK TALİMATLAR </span>
+                </a>
+            </li>
+            <li class="nav-item  ">
+                <a href="@Url.Action("PaketlemeTefrikRapor", "Paketleme" )" class="nav-link" onclick="beklemeAnimasyonu()">
+                    <span class="title">TEFRİK RAPORU </span>
+                </a>
+            </li>
+        </ul>
+    </li>
+    <li class="nav-item  ">
+        <a href="javascript:;" class="nav-link nav-toggle">
+            <i class="fa fa-money"></i>
+            <span class="title"><b>SATIŞ</b></span>
+            <span class="arrow"></span>
+        </a>
+        <ul class="sub-menu">
+
+            <li class="nav-item  ">
+                <a href="@Url.Action("NumuneYapilabilirlikDosyaTipleri", "Satis",new {id=0})" class="nav-link" onclick="beklemeAnimasyonu()">
+                    <span class="title">NUMUNE YAPILABİLİRLİK</span>
+                </a>
+            </li>
+
+            <li class="nav-item  ">
+                <a href="@Url.Action("MusteriSikayetiDosyalari", "Satis",new {id=0})" class="nav-link" onclick="beklemeAnimasyonu()">
+                    <span class="title">MÜŞTERİ ŞİKAYETİ</span>
+                </a>
+            </li>
+            </ul>
+        </li>
+            @*<li class="nav-item  ">
+            <a href="@Url.Action("SatisGoster", "Satis",new {id=0})" class="nav-link" onclick="beklemeAnimasyonu()">
+                <span class="title">SİPARİŞ GÖRÜNTÜLE</span>
+            </a>
+        </li>*@
+            <li class="nav-item  ">
+                <a href="javascript:;" class="nav-link nav-toggle">
+                    <i class="fa fa-industry"></i>
+                    <span class="title"><b>YARDIMCI TESİSLER</b></span>
+                    <span class="arrow"></span>
+                </a>
+                <ul class="sub-menu">
+
+                    <li class="nav-item  ">
+                        <a href="@Url.Action("YardimciTesisLabAnalizleri", "YardimciTesisler")" class="nav-link" onclick="beklemeAnimasyonu()">
+                            <span class="title">LABORATUVAR ANALİZLERİ</span>
+                        </a>
+                    </li>
+
+                </ul>
+                </li>
+              
+            <li class="nav-item  ">
+                <a href="javascript:;" class="nav-link nav-toggle">
+                    <i class="fa fa-truck"></i>
+                    <span class="title"><b>SEVKİYAT</b></span>
+                    <span class="arrow"></span>
+                </a>
+                <ul class="sub-menu">
+                    <li class="nav-item  ">
+                        <a href="@Url.Action("Ambarlar", "Sevkiyat",new {id=0})" class="nav-link" onclick="beklemeAnimasyonu()">
+                            <span class="title">AMBAR STOK GÖRÜNTÜLEME && MAL TALEBİ</span>
+                        </a>
+                    </li>
+                    <li class="nav-item  ">
+                        <a href="@Url.Action("MalzemeAnaListe", "Sevkiyat",new {id=0})" class="nav-link" onclick="beklemeAnimasyonu()">
+                            <span class="title">TÜM MAL TALEPLERİ</span>
+                        </a>
+                    </li>
+
+
+                </ul>
+            </li>
+            @*<li class="nav-item  ">
+            <a href="javascript:;" class="nav-link nav-toggle">
+                <i class="fa fa-recycle"></i>
+                <span class="title"><b>AR-GE</b></span>
+                <span class="arrow"></span>
+            </a>
+            <ul class="sub-menu">
+
+                <li class="nav-item  ">
+                    <a href="@Url.Action("", "",new {id=0})" class="nav-link" onclick="beklemeAnimasyonu()">
+                        <span class="title">Link-1</span>
+                    </a>
+                </li>
+
+
+            </ul>
+        </li>*@
+            @*<li class="nav-item  ">
+            <a href="javascript:;" class="nav-link nav-toggle">
+                <i class="fa fa-warning "></i>
+                <span class="title"><b>DENETİM</b></span>
+                <span class="arrow"></span>
+            </a>
+            <ul class="sub-menu">
+
+                <li class="nav-item  ">
+                    <a href="@Url.Action("", "",new {id=0})" class="nav-link" onclick="beklemeAnimasyonu()">
+                        <span class="title">Link-1</span>
+                    </a>
+                </li>
+
+
+            </ul>
+        </li>*@
+
+
+
+
+            @*<li class="nav-item  ">
+                    <a href="javascript:;" class="nav-link nav-toggle">
+                        <i class="fa fa-tasks"></i>
+                        <span class="title"><b>PLANLAMA</b></span>
+                        <span class="arrow"></span>
+                    </a>
+                    <ul class="sub-menu">
+
+                        <li class="nav-item  ">
+                            <a href="@Url.Action("", "",new {id=0})" class="nav-link" onclick="beklemeAnimasyonu()">
+                                <span class="title">Link-1</span>
+                            </a>
+                        </li>
+
+
+                    </ul>
+                </li>
+
+                <li class="nav-item  ">
+                    <a href="javascript:;" class="nav-link nav-toggle">
+                        <i class="fa fa-credit-card"></i>
+                        <span class="title"><b>SATIN ALMA</b></span>
+                        <span class="arrow"></span>
+                    </a>
+                    <ul class="sub-menu">
+
+                        <li class="nav-item  ">
+                            <a href="@Url.Action("", "",new {id=0})" class="nav-link" onclick="beklemeAnimasyonu()">
+                                <span class="title">Link-1</span>
+                            </a>
+                        </li>
+
+
+                    </ul>
+                </li>
+
+
+
+
+
+            </ul>
+        </li>
+        @*<li class="nav-item  ">
+                <a href="javascript:;" class="nav-link nav-toggle">
+                    <i class="fa fa-warning"></i>
+                    <span class="title"><b>MAKİNE BAKIMI</b></span>
+                    <span class="arrow"></span>
+                </a>
+                <ul class="sub-menu">
+
+                    <li class="nav-item  ">
+                        <a href="@Url.Action("MakineHatalari", "Home")" class="nav-link" onclick="beklemeAnimasyonu()">
+                            <span class="title">Makine Hataları</span>
+                        </a>
+                    </li>
+                    <li class="nav-item  ">
+                        <a href="@Url.Action("Bolum", "Home",new {id=0})" class="nav-link" onclick="beklemeAnimasyonu()">
+                            <span class="title">Güncel Hatalar</span>
+                        </a>
+                    </li>
+
+                </ul>
+            </li>*@
+
+            @if (false)
+            {
+
+
+                <li class="nav-item  ">
+                    <a href="javascript:;" class="nav-link nav-toggle">
+                        <i class="fa fa-recycle"></i>
+                        <span class="title">AR-GE</span>
+                        <span class="arrow"></span>
+                    </a>
+                    <ul class="sub-menu">
+
+                        <li class="nav-item  ">
+                            <a href="@Url.Action("", "",new {id=0})" class="nav-link" onclick="beklemeAnimasyonu()">
+                                <span class="title">Link-1</span>
+                            </a>
+                        </li>
+
+
+                    </ul>
+                </li>
+                <li class="nav-item  ">
+                    <a href="javascript:;" class="nav-link nav-toggle">
+                        <i class="fa fa-warning "></i>
+                        <span class="title">DENETİM</span>
+                        <span class="arrow"></span>
+                    </a>
+                    <ul class="sub-menu">
+
+                        <li class="nav-item  ">
+                            <a href="@Url.Action("", "",new {id=0})" class="nav-link" onclick="beklemeAnimasyonu()">
+                                <span class="title">Link-1</span>
+                            </a>
+                        </li>
+
+
+                    </ul>
+                </li>
+                <li class="nav-item  ">
+                    <a href="javascript:;" class="nav-link nav-toggle">
+                        <i class="fa fa-hourglass-end"></i>
+                        <span class="title">İMALAT</span>
+                        <span class="arrow"></span>
+                    </a>
+                    <ul class="sub-menu">
+                        <li class="nav-item  ">
+                            <a href="@Url.Action("ImalatPartiSonuBirimeGoreListe", "Imalat", new{id=0})" class="nav-link" onclick="beklemeAnimasyonu()">
+                                <span class="title">PARTİ TAKİBİ</span>
+                            </a>
+                        </li>
+                        <li class="nav-item  ">
+                            <a href="@Url.Action("ImalatPartiAnaKlasorleri", "Imalat", new{id=0})" class="nav-link" onclick="beklemeAnimasyonu()">
+                                <span class="title">PARTİ KLASÖRÜ</span>
+                            </a>
+                        </li>
+
+                        @foreach (var item in Model.PartiAltKlasorTipleri)
+                        {
+                            <li class="nav-item  ">
+                                <a href="@Url.Action("ImalatPartiAltKlasorleri", "Imalat", new{id=item.PartiAltKlasorTipiId})" class="nav-link" onclick="beklemeAnimasyonu()">
+                                    <span class="title">@item.PartiAltKlasorTipAdi</span>
+                                </a>
+                            </li>
+                        }
+
+                        <li class="nav-item  ">
+                            <a href="@Url.Action("PartinoyaGoreGunlukImalatTalebi", "Imalat", new{id=0})" class="nav-link" onclick="beklemeAnimasyonu()">
+                                <span class="title">GÜNLÜK İMALAT ANALİZ TALEBİ</span>
+                            </a>
+                        </li>
+                        <li class="nav-item  ">
+                            <a href="@Url.Action("Index", "Imalat",new {id=0})" class="nav-link" onclick="beklemeAnimasyonu()">
+                                <span class="title">Laboratuvar Analizleri</span>
+                            </a>
+                        </li>
+
+                        <li class="nav-item  ">
+                            <a href="@Url.Action("AyniAndaCalisanPartiler", "Imalat",new {id=0})" class="nav-link" onclick="beklemeAnimasyonu()">
+                                <span class="title">AYNI MAKİNEDE ÇALIŞAN ÜRETİMLER</span>
+                            </a>
+                        </li>
+
+
+                    </ul>
+                </li>
+                <li class="nav-item  ">
+                    <a href="javascript:;" class="nav-link nav-toggle">
+                        <i class="fa fa-users"></i>
+                        <span class="title">İNSAN KAYNAKLARI</span>
+                        <span class="arrow"></span>
+                    </a>
+                    <ul class="sub-menu">
+
+                        <li class="nav-item  ">
+                            <a href="@Url.Action("PersonelSicilIslemler", "InsanKaynaklari",new {id=0})" class="nav-link" onclick="beklemeAnimasyonu()">
+                                <span class="title">Personel Eğitim</span>
+                            </a>
+                        </li>
+
+                        <li class="nav-item  ">
+                            <a href="@Url.Action("PersonelOzlukBilgiler", "InsanKaynaklari")" class="nav-link" onclick="beklemeAnimasyonu()">
+                                <span class="title">Personel Bilgileri</span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+
+                <li class="nav-item  ">
+                    <a href="javascript:;" class="nav-link nav-toggle">
+                        <i class="fa fa-search "></i>
+                        <span class="title">İZLENEBİLİRLİK</span>
+                        <span class="arrow"></span>
+                    </a>
+                    <ul class="sub-menu">
+
+                        <li class="nav-item  ">
+                            <a href="@Url.Action("PartiSonuDurum", "Izlenebilirlik",new {id=0})" class="nav-link" onclick="beklemeAnimasyonu()">
+                                <span class="title">Parti Güncel Durum</span>
+                            </a>
+                        </li>
+
+
+                    </ul>
+                </li>
+
+                <li class="nav-item  ">
+                    <a href="javascript:;" class="nav-link nav-toggle">
+                        <i class="fa fa-flask"></i>
+                        <span class="title">LABORATUVAR</span>
+                        <span class="arrow"></span>
+                    </a>
+                    <ul class="sub-menu">
+                        <li class="nav-item  ">
+                            <a href="@Url.Action("LabPartiSonuBilgiOnayiBekleyenListe", "Laboratuvar")" class="nav-link" onclick="beklemeAnimasyonu()">
+                                <span class="title">PARTİ SONU BİLGİLENDİRME</span>
+                            </a>
+                        </li>
+                        <li class="nav-item  ">
+                            <a href="@Url.Action("YapilacakAnalizler", "Laboratuvar")" class="nav-link" onclick="beklemeAnimasyonu()">
+                                <span class="title">YAPILACAK ANALİZLER</span>
+                            </a>
+                        </li>
+                        <li class="nav-item  ">
+                            <a href="@Url.Action("Index", "Laboratuvar")" class="nav-link" onclick="beklemeAnimasyonu()">
+                                <span class="title">Analiz Ağacı</span>
+                            </a>
+                        </li>
+                        <li class="nav-item  ">
+                            <a href="@Url.Action("NumuneYapilabilirlikDosyalar", "Laboratuvar")" class="nav-link" onclick="beklemeAnimasyonu()">
+                                <span class="title">NUMUNE YAPILABİLİRLİK DOSYALARI</span>
+                            </a>
+                        </li>
+                        <li class="nav-item  ">
+                            <a href="@Url.Action("GunlukImalatDosyalar", "Laboratuvar")" class="nav-link" onclick="beklemeAnimasyonu()">
+                                <span class="title">GÜNLÜK İMALAT ANALİZLERİ</span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="nav-item  ">
+                    <a href="javascript:;" class="nav-link nav-toggle">
+                        <i class="fa fa-tasks"></i>
+                        <span class="title">PLANLAMA</span>
+                        <span class="arrow"></span>
+                    </a>
+                    <ul class="sub-menu">
+
+                        <li class="nav-item  ">
+                            <a href="@Url.Action("", "",new {id=0})" class="nav-link" onclick="beklemeAnimasyonu()">
+                                <span class="title">Link-1</span>
+                            </a>
+                        </li>
+
+
+                    </ul>
+                </li>
+                <li class="nav-item  ">
+                    <a href="javascript:;" class="nav-link nav-toggle">
+                        <i class="fa fa-space-shuttle"></i>
+                        <span class="title">PAKETLEME</span>
+                        <span class="arrow"></span>
+                    </a>
+                    <ul class="sub-menu">
+
+                        <li class="nav-item  ">
+                            <a href="@Url.Action("PaketlemePartiSonuBekleyenListe", "Paketleme",new {id=3})" class="nav-link" onclick="beklemeAnimasyonu()">
+                                <span class="title">Parti Sonu </span>
+                            </a>
+                        </li>
+                        <li class="nav-item  ">
+                            <a href="@Url.Action("PaketlemeGunlukTalimatAnaliz", "Paketleme" )" class="nav-link" onclick="beklemeAnimasyonu()">
+                                <span class="title">Günlük Talimat Analiz </span>
+                            </a>
+                        </li>
+                        <li class="nav-item  ">
+                            <a href="@Url.Action("PaketlemeGunlukTalimatlari", "Paketleme" )" class="nav-link" onclick="beklemeAnimasyonu()">
+                                <span class="title">Günlük Talimatlar </span>
+                            </a>
+                        </li>
+
+                    </ul>
+                </li>
+                <li class="nav-item  ">
+                    <a href="javascript:;" class="nav-link nav-toggle">
+                        <i class="fa fa-credit-card"></i>
+                        <span class="title">SATIN ALMA</span>
+                        <span class="arrow"></span>
+                    </a>
+                    <ul class="sub-menu">
+
+                        <li class="nav-item  ">
+                            <a href="@Url.Action("", "",new {id=0})" class="nav-link" onclick="beklemeAnimasyonu()">
+                                <span class="title">Link-1</span>
+                            </a>
+                        </li>
+
+
+                    </ul>
+                </li>
+                <li class="nav-item  ">
+                    <a href="javascript:;" class="nav-link nav-toggle">
+                        <i class="fa fa-money"></i>
+                        <span class="title">SATIŞ</span>
+                        <span class="arrow"></span>
+                    </a>
+                    <ul class="sub-menu">
+
+                        <li class="nav-item  ">
+                            <a href="@Url.Action("NumuneYapilabilirlikDosyalari", "Satis",new {id=0})" class="nav-link" onclick="beklemeAnimasyonu()">
+                                <span class="title">NUMUNE YAPILABİLİRLİK</span>
+                            </a>
+                        </li>
+
+                        <li class="nav-item  ">
+                            <a href="@Url.Action("MusteriSikayetiDosyalari", "Satis",new {id=0})" class="nav-link" onclick="beklemeAnimasyonu()">
+                                <span class="title">MÜŞTERİ ŞİKAYETİ</span>
+                            </a>
+                        </li>
+
+                    </ul>
+                </li>
+                <li class="nav-item  ">
+                    <a href="javascript:;" class="nav-link nav-toggle">
+                        <i class="fa fa-truck"></i>
+                        <span class="title">SEVKİYAT</span>
+                        <span class="arrow"></span>
+                    </a>
+                    <ul class="sub-menu">
+
+                        <li class="nav-item  ">
+                            <a href="@Url.Action("", "",new {id=0})" class="nav-link" onclick="beklemeAnimasyonu()">
+                                <span class="title">Link-1</span>
+                            </a>
+                        </li>
+
+
+                    </ul>
+                </li>
+                <li class="nav-item  ">
+                    <a href="javascript:;" class="nav-link nav-toggle">
+                        <i class="fa fa-industry"></i>
+                        <span class="title">YARDIMCI TESİSLER</span>
+                        <span class="arrow"></span>
+                    </a>
+                    <ul class="sub-menu">
+
+                        <li class="nav-item  ">
+                            <a href="@Url.Action("YardimciTesisLabAnalizleri", "YardimciTesisler")" class="nav-link" onclick="beklemeAnimasyonu()">
+                                <span class="title">Laboratuvar Analizleri</span>
+                            </a>
+                        </li>
+
+
+                    </ul>
+                </li>
+            }
+        </ul>

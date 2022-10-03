@@ -1,0 +1,77 @@
+﻿@model Polyteks.Katman.TefrikBildirim.Models.LaboratuvarModel
+
+@{
+    ViewBag.Title = "LabGrupLabCesitTanimlamalari";
+    Layout = "~/Views/Shared/Layout.cshtml";
+}
+
+@if (TempData["Msg"] != null)
+{
+    <div class="custom-alerts alert alert-@TempData["class"] fade in">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true"></button>
+        <h2>@Html.Raw(TempData["Msg"])</h2>
+    </div>
+}
+
+<div class="row">
+    <div class="col-md-12 ">
+        <div class="portlet light bordered">
+            <div class="portlet-title">
+                <div class="caption font-red-sunglo">
+                    <i class="icon-settings font-red-sunglo"></i>
+                    <span class="caption-subject bold uppercase">@Model.LabGrup.LabGrupAdi ANALİZLERİ</span>
+                </div>
+            </div>
+            <div class="portlet-body form">
+                <div class="form-body">
+                    @using (Html.BeginForm())
+                    {
+                        int say = -1;
+
+                        @Html.HiddenFor(a => a.LabGrup.LabGrupId)
+                        @Html.HiddenFor(a => a.LabGrup.LabGrupAdi)
+                        <div class="row">
+                            <div class="">
+                                @foreach (var item in Model.LabGrubuAnalizleri)
+                                {
+                                    say++;
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+
+                                            @{
+                                                string renk = "";
+                                                if (item.SeciliMi)
+                                                {
+                                                    renk = "font-red-sunglo";
+                                                }
+                                            }
+                                            <label class="mt-checkbox mt-checkbox-outline @renk">
+                                                @Html.HiddenFor(a => a.LabGrubuAnalizleri[say].LabGrupCesitId)
+                                                @Html.HiddenFor(a => a.LabGrubuAnalizleri[say].LabAnalizCesitId)
+                                                @Html.CheckBoxFor(a => a.LabGrubuAnalizleri[say].SeciliMi)
+
+                                                <b> @Model.LabGrubuAnalizleri[say].LabAnalizCesitAdi</b>
+
+                                                <span></span>
+
+                                            </label>
+
+                                        </div>
+                                    </div>
+
+                                }
+                            </div>
+                              
+                        </div>
+
+                        <div class="form-actions">
+                            <button type="submit" class="btn red btn-block uppercase">KAYDET YAP</button>
+                        </div>
+                    }
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

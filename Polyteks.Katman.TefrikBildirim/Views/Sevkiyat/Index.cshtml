@@ -1,0 +1,94 @@
+﻿@*@model IEnumerable<Polyteks.Katman.DAL.Concrete.EntityFramework.Mrv_MalzemeTalep>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/Layout.cshtml";
+}
+
+<h2>@User.Identity.Name</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.SiraNo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.StokKodu)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LotNo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TalepEdilenMiktar)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Aciklama)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Miktar1)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MalzemeID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Tarih)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Mrv_MalzemeTalep1.StokKodu)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Mrv_MalzemeTalep2.StokKodu)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SrcnKullanicis.KullaniciKodu)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.SiraNo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.StokKodu)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.LotNo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TalepEdilenMiktar)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Aciklama)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Miktar1)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.MalzemeID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Tarih)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Mrv_MalzemeTalep1.StokKodu)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Mrv_MalzemeTalep2.StokKodu)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SrcnKullanicis.KullaniciKodu)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.ID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
+        </td>
+    </tr>
+}
+
+</table>*@

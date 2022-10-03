@@ -1,0 +1,124 @@
+﻿@model Polyteks.Katman.DAL.Concrete.EntityFramework.Mrv_POY_Ikaz
+
+@{
+    ViewBag.Title = "PoyIkazSil";
+    Layout = "~/Views/Shared/Layout.cshtml";
+}
+
+@if (TempData["Msg"] != null)
+{
+    <div class="custom-alerts alert alert-@TempData["class"] fade in">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true"></button>
+        <h2>@TempData["Msg"]</h2>
+    </div>
+}
+<h3><b><font color="red">SİLMEK İSTEDİĞİNİZDEN EMİN MİSİNİZ ?</font></b></h3>
+<div>
+
+    <hr />
+    <table class="table table-bordered table-hover  ">
+        <tr>
+            <td>
+                <b>İKAZ TARİHİ/SAATİ</b>
+
+            </td>
+            <td>
+                <b>PARTİ NUMARASI</b>
+            </td>
+            <td>
+                <b>DENYE/FLAMAN</b>
+            </td>
+
+            <td>
+                <b>ÜRETİM MAKİNE /KANAL /POZİSYON NUMARASI</b>
+            </td>
+     
+            <td>
+                <b>PROBLEM TANIMI</b>
+            </td>
+            <td>
+                <b>YAPILAN MÜDAHALE</b>
+            </td>
+            <td>
+                <b>TEKSTÜRE MAKİNE NO</b>
+            </td>
+
+            <td>
+                <b>TEKSTÜRE POZİSYON NO</b>
+            </td>
+            <td>
+                <b>LAB İNCELEME TARİHİ</b>
+            </td>
+
+            <td>
+                <b>LAB SONUÇ</b>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                @Html.DisplayFor(model => model.Tarih)
+            </td>
+
+
+
+            <td>
+                @Html.DisplayFor(model => model.PartiNo)
+            </td>
+
+
+
+            <td>
+                @Html.DisplayFor(model => model.Denye_Flaman)
+            </td>
+
+
+            <td>
+                @Html.DisplayFor(model => model.Uretim_Mak_Kan_Poz)
+            </td>
+
+            <td>
+                @Html.DisplayFor(model => model.ProblemTanimi)
+            </td>
+
+
+
+            <td>
+                @Html.DisplayFor(model => model.YapilanMudahale)
+            </td>
+
+
+
+            <td>
+                @Html.DisplayFor(model => model.Teksture_Makine_No)
+            </td>
+
+            <td>
+                @Html.DisplayFor(model => model.Teksture_Pozisyon_No)
+            </td>
+
+
+
+            <td>
+                @Html.DisplayFor(model => model.LabIncelemeTarihi)
+            </td>
+
+
+            <td>
+                @Html.DisplayFor(model => model.LabSonuc)
+            </td>
+        </tr>
+    </table>
+
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+
+            @Html.ActionLink("LİSTEYE GERİ DÖN", "PoyIkazTakibi", "Imalat", htmlAttributes: new { @class = "btn btn-pink" })
+            <input type="submit" value="SİL" class="btn btn-danger" />
+        </div>
+    }
+</div>
+

@@ -1,0 +1,252 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{CDE9E7FD-9D38-4CA3-9ED7-329C8F8AB4D4}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>Polyteks.Katman.LaborantGIAS</RootNamespace>
+    <AssemblyName>Polyteks.Katman.LaborantGIAS</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <PublishUrl>\\Veeam\smart_pota\LabTeknisyenTablet\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Unc</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ProductName>LTS PROGRAMI</ProductName>
+    <PublisherName>SrcnDyrn</PublisherName>
+    <SuiteName>LTS PROGRAMI</SuiteName>
+    <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
+    <WebPage>publish.htm</WebPage>
+    <OpenBrowserOnPublish>false</OpenBrowserOnPublish>
+    <ApplicationRevision>49</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <CreateDesktopShortcut>true</CreateDesktopShortcut>
+    <PublishWizardCompleted>true</PublishWizardCompleted>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignManifests>true</SignManifests>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestCertificateThumbprint>87D09E99548366BE58960C580702BB96B0D19620</ManifestCertificateThumbprint>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestKeyFile>
+    </ManifestKeyFile>
+  </PropertyGroup>
+  <PropertyGroup>
+    <GenerateManifests>true</GenerateManifests>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>ltsIco.ico</ApplicationIcon>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Form1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form1.Designer.cs">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmDenemeNumuneDetayDuzenle.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmDenemeNumuneDetayDuzenle.Designer.cs">
+      <DependentUpon>FrmDenemeNumuneDetayDuzenle.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmDenemeNumuneListe.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmDenemeNumuneListe.Designer.cs">
+      <DependentUpon>FrmDenemeNumuneListe.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmGiris.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmGiris.Designer.cs">
+      <DependentUpon>FrmGiris.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmGunlukImalatDetay.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmGunlukImalatDetay.Designer.cs">
+      <DependentUpon>FrmGunlukImalatDetay.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmGunlukImalatDetayDuzenle.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmGunlukImalatDetayDuzenle.Designer.cs">
+      <DependentUpon>FrmGunlukImalatDetayDuzenle.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmGunlukImalatEkle.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmGunlukImalatEkle.Designer.cs">
+      <DependentUpon>FrmGunlukImalatEkle.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmGunlukImalatListe.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmGunlukImalatListe.Designer.cs">
+      <DependentUpon>FrmGunlukImalatListe.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmNumPad.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmNumPad.Designer.cs">
+      <DependentUpon>FrmNumPad.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmYapilacakIsler.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmYapilacakIsler.Designer.cs">
+      <DependentUpon>FrmYapilacakIsler.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Models\GunlukImalatItem.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Form1.resx">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmDenemeNumuneDetayDuzenle.resx">
+      <DependentUpon>FrmDenemeNumuneDetayDuzenle.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmDenemeNumuneListe.resx">
+      <DependentUpon>FrmDenemeNumuneListe.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmGiris.resx">
+      <DependentUpon>FrmGiris.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmGunlukImalatDetay.resx">
+      <DependentUpon>FrmGunlukImalatDetay.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmGunlukImalatDetayDuzenle.resx">
+      <DependentUpon>FrmGunlukImalatDetayDuzenle.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmGunlukImalatEkle.resx">
+      <DependentUpon>FrmGunlukImalatEkle.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmGunlukImalatListe.resx">
+      <DependentUpon>FrmGunlukImalatListe.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmNumPad.resx">
+      <DependentUpon>FrmNumPad.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmYapilacakIsler.resx">
+      <DependentUpon>FrmYapilacakIsler.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <None Include="packages.config" />
+    <None Include="Polyteks.Katman.Designer.WFATefrikProgrami" />
+    <None Include="Polyteks.Katman.WFALaborantGIAS_1_TemporaryKey.pfx" />
+    <None Include="Polyteks.Katman.WFATefrikProgrami">
+      <SubType>Form</SubType>
+    </None>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Polyteks.Katman.DAL\Polyteks.Katman.DAL.csproj">
+      <Project>{F97E07F3-51EF-4414-B3E3-216B4EE939B9}</Project>
+      <Name>Polyteks.Katman.DAL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Polyteks.Katman.Entities\Polyteks.Katman.Entities.csproj">
+      <Project>{D0DBEFC5-D26B-4DD2-9386-45971A86D86B}</Project>
+      <Name>Polyteks.Katman.Entities</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.6.1">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.6.1 %28x86 and x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\back1.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\back2.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\back3.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="ltsIco.ico" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

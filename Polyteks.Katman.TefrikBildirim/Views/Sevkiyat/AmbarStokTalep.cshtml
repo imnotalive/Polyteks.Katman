@@ -1,0 +1,179 @@
+﻿@model Polyteks.Katman.DAL.Concrete.EntityFramework.ZzzMrvStokDetayTakip
+
+@{
+    ViewBag.Title = "AmbarStokTalep";
+    Layout = "~/Views/Shared/Layout.cshtml";
+}
+
+@if (TempData["Msg"] != null)
+{
+    <div class="custom-alerts alert alert-@TempData["class"] fade in">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true"></button>
+        <h2>@Html.Raw(TempData["Msg"])</h2>
+    </div>
+}
+
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+<div class="form-horizontal">
+
+            
+                <hr />
+                <div class="row">
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <b>Ambar Adı</b>
+                            @Html.EditorFor(model => model.AmbarAdi, new { htmlAttributes = new { @class = "form-control", @readonly = true } })
+                            @Html.ValidationMessageFor(model => model.AmbarAdi, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    @Html.HiddenFor(model => model.AmbarNo)
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <b>Ambar Numarası</b>
+                            @Html.EditorFor(model => model.AmbarNo, new { htmlAttributes = new { @class = "form-control", @readonly = true } })
+                            @Html.ValidationMessageFor(model => model.AmbarNo, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <b>Stok Adı</b>
+                            @Html.EditorFor(model => model.StokAdi, new { htmlAttributes = new { @class = "form-control", @readonly = true } })
+                            @Html.ValidationMessageFor(model => model.StokAdi, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    @Html.HiddenFor(model => model.StokKodu)
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <b>Stok Kodu</b>
+                            @Html.TextBoxFor(a => a.StokKodu, new { @class = "form-control", @readonly = true })
+                        </div>
+                    </div>
+                    @Html.HiddenFor(model => model.StokTuru)
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <b>Stok Türü</b>
+                            @Html.EditorFor(model => model.StokTuru, new { htmlAttributes = new { @class = "form-control", @readonly = true } })
+                            @Html.ValidationMessageFor(model => model.StokTuru, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    @Html.HiddenFor(model => model.LotNo)
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <b>Lot No</b>
+                            @Html.TextBoxFor(a => a.LotNo, new { @class = "form-control", @readonly = true })
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <b>Miktar</b>
+
+                            @Html.EditorFor(model => model.Miktar1, new { htmlAttributes = new { @class = "form-control", @readonly = true } })
+                            @Html.ValidationMessageFor(model => model.Miktar1, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+
+
+                    @Html.HiddenFor(model => model.OlcuBirimi1)
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <b>Ölçü Birimi</b>
+                            @Html.EditorFor(model => model.OlcuBirimi1, new { htmlAttributes = new { @class = "form-control", @readonly = true } })
+                            @Html.ValidationMessageFor(model => model.StokAdi, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+
+
+                </div>
+     </div>
+
+        }
+
+        <div>
+            @Html.ActionLink("GERİ", "StokAmbar", "Sevkiyat", htmlAttributes: new { @class = "btn btn-success" })
+        </div>
+
+        <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+        <script src="~/Scripts/jquery.validate.min.js"></script>
+        <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+        <!--
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">YEDEK PARÇA TALEBİ</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+
+
+
+            <form id="frm-talep">-->
+    @*@Html.HiddenFor(a => a.AmbarNo)*@
+    @*@Html.HiddenFor(a => a.AmbarStokTalep.StokKartId)
+        @Html.HiddenFor(a => a.AmbarStokTalep.TalepEdilenAmbarId)*@
+    <!--<div class="modal-body">
+        <div class="row">
+
+
+            <div class="col-md-6">
+                <div class="form-group">
+                    <b>Stok Adı</b>
+
+                </div>
+            </div>-->
+    @*<div class="col-md-6">
+            <div class="form-group">
+                <b>Talep Edilen Ambar</b>
+                @Html.TextBoxFor(a => a.Ambar.AmbarAdi, new { @class = "form-control", @readonly = true })
+            </div>
+        </div>*@
+    @*<div class="col-md-6">
+            <div class="form-group">
+                <b>Aktarılacak Ambar</b>
+                @Html.DropDownListFor(a => a.AmbarStokTalep.AktarilacakAmbarId, Model.Ambars.Select(a => new SelectListItem()
+                {
+                    Text = a.AmbarAdi,
+                    Value = a.Id.ToString()
+                }), new { @class = "form-control" })
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="form-group">
+                <b>Miktar</b>
+                @Html.DropDownListFor(a => a.AmbarStokTalep.Miktar, Model.DropItems.Select(a => new SelectListItem()
+                {
+                    Text = a.Tanim,
+                    Value = a.Id
+                }), new { @class = "form-control" })
+            </div>
+        </div>*@
+
+
+    <!--<div class="col-md-12">
+
+                        <a href="javascript:" class="btn btn-block btn-success" onclick="frmTalep()">KAYDET</a>
+
+                    </div>
+                </div>
+
+
+            </div>
+            <div class="modal-footer ">
+                <button type="button" class="btn btn-default btn-danger" data-dismiss="modal" id="modalKapat">KAPAT</button>
+
+            </div>
+        </form>
+
+
+
+    </div>-->
+

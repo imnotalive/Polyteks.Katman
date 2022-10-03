@@ -1,0 +1,164 @@
+﻿@model Polyteks.Katman.DAL.Concrete.EntityFramework.Mrv_MalzemeDetay
+
+@{
+    ViewBag.Title = "MamulAmbariTalepteBulun";
+    Layout = "~/Views/Shared/Layout.cshtml";
+    var data = ViewBag.data as Polyteks.Katman.DAL.Concrete.EntityFramework.View_STOK_DURUM_PTKS_TASD;
+}
+@if (TempData["Msg"] != null)
+{
+    <div class="custom-alerts alert alert-@TempData["class"] fade in">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true"></button>
+        <h2>@Html.Raw(TempData["Msg"])</h2>
+    </div>
+}
+
+
+<div class="row">
+    <div class="col-md-20 ">
+        <div class="portlet light bordered">
+            <div class="portlet-title">
+                <h1><u><b>MAL TALEBİ OLUŞTURMA</b></u></h1>
+                @if (ViewBag.Hata != null)
+                {
+                    <div class="text-danger">
+                        <p><h2><b>@ViewBag.Hata</b></h2></p>
+                    </div>
+                }
+                @using (Html.BeginForm())
+                {
+                    @Html.AntiForgeryToken()
+
+                    <div class="form-horizontal">
+
+                        @*@Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                <div class="form-group">
+
+                    <div class="col-md-6">
+                        <b>PARTİ NUMARASI :</b>  @Html.Label(stok.IATOPartiNo.ToString()) <br />
+                        <b>KALİTE :</b>    @Html.Label(stok.Kalite.ToString())<br />
+                        <b>SEÇİLEBİLECEK MAXİMUM TALEP MİKTARI :</b>    @Html.Label(stok.Miktar.ToString())
+                            @Html.Label("KALİTE :" + stok.Kalite.ToString())<br />
+
+                    @Html.Label("SEÇİLEBİLECEK MAXİMUM TALEP MİKTARI :" + stok.Miktar.ToString())
+                            </div>
+                </div>*@
+                        <table class="table table-hover table-bordered table-dark">
+                            <thead class="thead-dark">
+                                <tr>
+                                    <th>
+                                        <b>Stok Adı</b>
+                                    </th>
+                                    <th>
+                                        <b>Parti Numarası</b>
+                                    </th>
+                                    <th>
+                                        <b>Kalite</b>
+                                    </th>
+                                    <th>
+                                        <b> Talep Edilebilecek Maximum Miktar</b>
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>@data.StokAdi</td>
+                                    <td>@data.IATOPartiNo</td>
+                                    <td>@data.Kalite</td>
+                                    <td>@*@data.Miktar.Value.ToString("G29")*@    @string.Format("{0:#,0.00}", data.Miktar)</td>
+
+
+                                </tr>
+
+                            </tbody>
+                        </table>
+                        @*<input type='button' value='Get TextBox Value' id='getButtonValue' />*@
+
+                        <div class="form-group">
+                            <div class="col-md-6">
+
+                                @*@Html.LabelFor(model => model.Miktar, htmlAttributes: new { @class = "control-label col-md-2" })*@
+                                <b> MİKTAR:</b>   @Html.EditorFor(model => model.Miktar, new { htmlAttributes = new { @class = "form-control" } }) <br />
+                                <input type="button" id="max" value="Maximum Değer İçin Tıklayınız.." />
+                                @Html.ValidationMessageFor(model => model.Miktar, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-6">
+
+                                @*@Html.LabelFor(model => model.Miktar, htmlAttributes: new { @class = "control-label col-md-2" })*@
+                                <b>AÇIKLAMA :</b>  <br /> @Html.TextAreaFor(model => model.Aciklama, new { @class = "form-control", @rows = 3 })
+                                @Html.ValidationMessageFor(model => model.Aciklama, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+
+                        <div class="col-md-6">
+                            <center><input type="submit" value="TALEP OLUŞTUR" class="btn btn-danger" /></center>
+                        </div>
+                    </div>
+                    <br />
+
+                }
+                <br />         <br />         <br />
+                <div>
+                    @Html.ActionLink("GERİ", "MamulAmbariStokGoruntuleme", "Sevkiyat", htmlAttributes: new { @class = "btn btn-danger" })
+                </div>
+            </div>
+            </div>
+        </div>
+    </div>
+
+                @if (false)
+                {
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Parti, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.Parti, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Parti, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Kalite, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.Kalite, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Kalite, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                }
+                @*@model Polyteks.Katman.DAL.Concrete.EntityFramework.Mrv_MalzemeDetay
+
+                    @{
+                        ViewBag.Title = "TalepteBulun";
+                        Layout = "~/Views/Shared/Layout.cshtml";
+                        //var stok = ViewData["View_STOK_DURUM_PTKS_TASD"] as Polyteks.Katman.DAL.Concrete.EntityFramework.View_STOK_DURUM_PTKS_TASD;
+                    }*@
+
+                @*<h2>MAL TALEBİ OLUŞTURMA</h2>
+
+                    <div class="modal" id="Modal1">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <center><h2 class="modal-title"><b>MİKTAR TALEBİNDE BULUN</b></h2></center>
+                                </div>*@
+                @*<form>
+                        <div class="modal-body">
+                            @Html.EditorFor(model => model.Miktar, new { htmlAttributes = new { @class = "form-control" } })
+                        </div>
+                    </form>*@
+                <!--</div>
+                    </div>
+
+                </div>-->
+
+
+                <script>
+    const buttonElement = document.getElementById('max');
+    const txtElement = document.getElementById('Miktar');
+
+    buttonElement.addEventListener('click', function () {
+        txtElement.value = @(data.Miktar.ToString());
+    });
+                </script>

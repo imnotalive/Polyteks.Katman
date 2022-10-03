@@ -1,0 +1,272 @@
+﻿@model Polyteks.Katman.TefrikBildirim.Models.ImalatNumuneModel
+
+@{
+    ViewBag.Title = "NumuneImalatNumuneDosyaDetay";
+    Layout = "~/Views/Shared/Layout.cshtml";
+}
+
+@section styles{
+
+
+    <style>
+        .mt-radio {
+            font-weight: bold;
+        }
+    </style>
+
+}
+
+@if (TempData["Msg"] != null)
+{
+    <div class="custom-alerts alert alert-@TempData["class"] fade in">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true"></button>
+        <h2>@Html.Raw(TempData["Msg"])</h2>
+    </div>
+}
+@{
+    string Sira = "";
+
+    Sira = Model.NumuneYapilabilirlikDosya.NumuneDosyaTipiAdi + " NUMUNE DETAYLARI";
+
+    string yapilabilirlikDurumu = "Belirlenmedi";
+    string denemeYapilabilirlikDurumu = "Belirlenmedi";
+    if (Model.NumuneYapilabilirlikDosya.YapilabilirlikDurumu == 1)
+    {
+        yapilabilirlikDurumu = "YAPILABİLİR";
+    }
+    if (Model.NumuneYapilabilirlikDosya.YapilabilirlikDurumu == 2)
+    {
+        yapilabilirlikDurumu = "YAPILAMAZ";
+    }
+
+    if (Model.NumuneYapilabilirlikDosya.DenemeYapilmaDurumu == 1)
+    {
+        denemeYapilabilirlikDurumu = "YAPILDI";
+    }
+    if (Model.NumuneYapilabilirlikDosya.DenemeYapilmaDurumu == 2)
+    {
+        denemeYapilabilirlikDurumu = "YAPILMADI";
+    }
+}
+
+
+<div class="row">
+    <div class="col-md-12 ">
+        <div class="portlet-body form">
+            <div class="portlet box blue">
+                <div class="portlet-title">
+                    <div class="caption">
+                        <i class="fa fa-gift"></i>@Sira.ToUpper()
+                    </div>
+
+                </div>
+                <div class="portlet-body">
+                    <div class="row">
+                        <div class="col-md-3 col-sm-3 col-xs-3">
+                            <ul class="nav nav-tabs tabs-left">
+                                <li class="active">
+                                    <a href="#cariBilgi" data-toggle="tab" aria-expanded="true"> CARİ BİLGİLERİ </a>
+                                </li>
+                                <li class="">
+                                    <a href="#urgeYorum" data-toggle="tab" aria-expanded="false"> AR-GE ÜR-GE YORUMU </a>
+                                </li>
+                                <li class="">
+                                    <a href="#labAnalizleri" data-toggle="tab" aria-expanded="false"> NUMUNE LAB ANALİZLERİ </a>
+                                </li>
+                                <li class="dropdown">
+                                    <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                                        BİRİM DENEME & NUMUNELERİ
+                                        <i class="fa fa-angle-down"></i>
+                                    </a>
+                                    <ul class="dropdown-menu" role="menu">
+                                        @foreach (var item in Model.BirimDenemeAraModeller)
+                                        {
+                                            string tabKod = "#tab" + item.Birim.BirimId.ToString();
+                                            <li>
+                                                <a href="@tabKod" tabindex="-1" data-toggle="tab"> @item.Birim.BirimAdi.ToUpper() </a>
+                                            </li>
+                                        }
+
+                                    </ul>
+                                </li>
+
+                            </ul>
+                        </div>
+                        <div class="col-md-9 col-sm-9 col-xs-9">
+                            <div class="tab-content">
+                                <div class="tab-pane active in" id="cariBilgi">
+                                    <div class="form-group">
+                                        <div class="row">
+                                            <div class="col-md-4">
+                                                <label class="control-label"><b>CARİ</b></label>
+                                                <div class="input-icon right">
+                                                    @Html.TextBoxFor(a => a.NumuneYapilabilirlikDosya.CariAdi, new { @class = "form-control", @onkeydown = "return false" })
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-4">
+                                                <label class="control-label"><b class="font-red-sunglo">KAYIT TARİHİ</b></label>
+                                                <div class="input-icon right">
+                                                    @Html.TextBoxFor(a => a.NumuneYapilabilirlikDosya.KayitTarihi, new { @class = "form-control tarih", @onkeydown = "return false" })
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <label class="control-label"><b>İSTEK YAPAN</b></label>
+                                                <div class="input-icon right">
+                                                    @Html.TextBoxFor(a => a.NumuneYapilabilirlikDosya.KayitYapanKulAdi, new { @class = "form-control", @onkeydown = "return false" })
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                        <br />
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <label class="control-label"><b>SATIŞ AÇIKLAMASI</b></label>
+                                                <div class="input-icon right">
+                                                    @Html.TextAreaFor(a => a.NumuneYapilabilirlikDosya.Aciklama, new { @class = "form-control", @rows = 5 })
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <hr />
+                                    </div>
+                                </div>
+                                <div class="tab-pane fade" id="urgeYorum">
+                                    <div class="form-group">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <label class="control-label"><b>AR-GE & ÜR-GE YORUMU</b></label>
+                                                <div class="input-icon right">
+                                                    @Html.TextAreaFor(a => a.NumuneYapilabilirlikDosya.UrgeYorumu, new { @class = "form-control", @rows = 3 })
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-6">
+                                                <label class="control-label"><b>YAPILABİLİRLİK DURUMU</b></label>
+                                                <div class="input-icon right row">
+                                                    <div class="input-icon right">
+                                                        <input type="text" value="@yapilabilirlikDurumu.ToUpper()" class="form-control font-red-thunderbird" />
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="tab-pane fade" id="labAnalizleri">
+                                    <div class="form-group">
+                                        <div class="row">
+                                            @Html.Partial("~/Views/Shared/_DosyaNumuneLabAnalizTablolar.cshtml",Model.DosyaNumuneLabAnalizTablolar)
+                            
+                                        </div>
+                                    </div>
+                                </div>
+                                @foreach (var item in Model.BirimDenemeAraModeller)
+                                {
+                                    string tabKod = "tab" + item.Birim.BirimId.ToString();
+                            <div class="tab-pane fade" id="@tabKod">
+                                <a href="javascript:" onclick="DosyaOlustur(@item.Birim.BirimId,@Model.NumuneYapilabilirlikDosya.NumuneYapilabilirlikDosyaId)" class="btn red-thunderbird pull-right"> @item.Birim.BirimAdi İÇİN DENEME & NUMUNE YENİ DOSYA OLUŞTUR </a>
+                             
+
+                                @if (item.DenemeDosyalar.Any())
+                                {
+                                 
+                                    <div class="row">
+                                        <div class="col-md-12">
+
+                                            <br/>
+                                            <table class="dtTable table table-bordered">
+                                                <thead>
+                                                    <tr>
+                                                        <th class="text-center">
+                                                            #
+                                                        </th>
+                                                        <th class="text-center">
+                                                            TANIM KODU
+                                                        </th>
+                                                        <th class="text-center">
+                                                            KAYIT TARİH
+                                                        </th>
+                                                        <th class="text-center">
+                                                            KAYIT YAPAN
+                                                        </th>
+                                                        <th class="text-center">
+                                                          BİRİM
+                                                        </th>
+                                                        <th class="text-center">
+                                                            DURUM
+                                                        </th>
+                                                    
+                                                        <th class="text-center">
+                                                            #
+                                                        </th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    @{
+                                                        var say = 0;
+
+                                                        foreach (var denemeDosya in item.DenemeDosyalar)
+                                                        {
+                                                            say++;
+                                                            <tr>
+
+                                                                <td class="text-center">@say</td>
+                                                                <td class="text-center">@denemeDosya.DenemeAdi</td>
+                                                                <td class="text-center">@denemeDosya.OlusturmaTarihi</td>
+                                                                <td class="text-center">@denemeDosya.KayitYapanKulAdi</td>
+                                                                <td class="text-center">@denemeDosya.BirimAdi</td>
+                                                                <td class="text-center">Durum</td>
+                                                                <td class="text-center">
+                                                                    <a href="@Url.Action("BirimDenemeDosyaDetay", "Imalat", new {id = denemeDosya.DenemeDosyaId})" class="btn blue btn-block">İncele</a>
+                                                                </td>
+                                                            </tr>
+                                                        }
+                                                    }
+
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                }
+
+                            </div>
+                                }
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+        </div>
+    </div>
+</div>
+
+@section scripts{
+    <script src="~/Temalar/Scripts/sweetalert.js"></script>
+    <script>
+        function DosyaOlustur(id, id2) {
+            var url = "/Imalat/NumuneImalatBirimIcinDosyaOlustur/" + id +"/"+id2;
+
+            swal({
+                title: "EMİN MİSİNİZ",
+                text: "Seçilen birim için yeni deneme dosyası oluşturmak istiyor musunuz??",
+                icon: "warning",
+                buttons: {
+                    cancel: "Kapat",
+                    git: "Olustur"
+                }
+            }).then((value) => {
+                switch (value) {
+                case "git":
+                    window.location.href = url;
+                    break;
+                }
+            });
+
+
+        }
+    </script>
+}

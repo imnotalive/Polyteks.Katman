@@ -1,0 +1,114 @@
+﻿@model Polyteks.Katman.TefrikBildirim.Models.SatisModel
+
+@{
+    ViewBag.Title = "MusteriSikayetleriIsletmeYorumlari";
+    Layout = "~/Views/Shared/Layout.cshtml";
+}
+
+@if (TempData["Msg"] != null)
+{
+    <div class="custom-alerts alert alert-@TempData["class"] fade in">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true"></button>
+        <h2>@TempData["Msg"]</h2>
+    </div>
+}
+<div class="portlet box blue">
+    <div class="portlet-title">
+        <div class="caption">
+            <i class="fa fa-money"></i>
+
+            <span class="caption-subject bold uppercase">MÜŞTERİ ŞİKAYET DOSYALARI</span>
+        </div>
+    </div>
+
+
+    <div class="portlet-body">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="row">
+                    @{
+                        int SatirSay = 0;
+                        foreach (var item in Model.DosyaDurumlari)
+                        {
+                            SatirSay++;
+                            string classAdi = "btn dark btn-block ";
+                            if (Model.DosyaDurumu.DosyaDurumId == item.DosyaDurumId)
+                            {
+                                classAdi = "btn red btn-block ";
+                            }
+                            <div class="col-md-6">
+                                <a href="@Url.Action("MusteriSikayetleriIsletmeYorumlari", "Satis", new {id = item.DosyaDurumId})" class="@classAdi">@item.DosyaDurumAdi.ToUpper()</a>
+
+                            </div>
+
+                            if (SatirSay == 2)
+                            {
+                                SatirSay = 0;
+                                <div class="clearfix"></div>
+                                <br />
+                            }
+                        }
+                    }
+                </div>
+            </div>
+        </div>
+        <br />
+        <div class="row">
+            <div class="col-md-12">
+
+                <table class="dtTable table table-bordered">
+                    <thead>
+                        <tr>
+                            <th class="text-center">
+                                #
+                            </th>
+                            <th class="text-center">
+                                KOD
+                            </th>
+                            <th class="text-center">
+                                KAYIT
+                            </th>
+
+                            <th class="text-center">
+                                PERSONEL
+                            </th>
+                            <th class="text-center">
+                                CARİ
+                            </th>
+                            <th class="text-center">
+                                GÜNCEL DURUM
+                            </th>
+                            <th class="text-center">#</th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @{
+                            int say = 0;
+
+                            foreach (var item in Model.MusteriSikayetDosyalar)
+                            {
+                                say++;
+                                <tr>
+                                    <td class="text-center">@say</td>
+                                    <td class="text-center"><b>@string.Format("#{0}", item.MusteriSikayetDosyaId)</b></td>
+                                    <td class="text-center">@item.KayitTarihi</td>
+                                    <td class="text-center">@item.KayitYapanKulAdi</td>
+                                    <td class="text-center">@item.CariAdi</td>
+                                    <td class="text-center">@item.DosyaDurumAdi</td>
+                                    <td><a href="@Url.Action("MusteriSikayetleriIsletmeYorum", "Satis", new {id = item.MusteriSikayetDosyaId})" class="btn blue btn-block">İncele</a></td>
+
+
+                                </tr>
+                            }
+                        }
+
+                    </tbody>
+
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+

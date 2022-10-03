@@ -1,0 +1,53 @@
+﻿@model IEnumerable<Polyteks.Katman.DAL.Concrete.EntityFramework.View_Stok_Durum_PTKS>
+
+@{
+    ViewBag.Title = "PolyStokGoruntuleme";
+    Layout = "~/Views/Shared/Layout.cshtml";
+}
+@if (TempData["Msg"] != null)
+{
+    <div class="custom-alerts alert alert-@TempData["class"] fade in">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true"></button>
+        <h2>@Html.Raw(TempData["Msg"])</h2>
+    </div>
+}
+<h2>Poly Stok Goruntuleme</h2>
+
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.IATOPartiNo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.StokAdi)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Kalite)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Miktar)
+        </th>
+
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.IATOPartiNo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.StokAdi)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Kalite)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Miktar)
+            </td>
+
+        </tr>
+    }
+
+</table>

@@ -1,0 +1,70 @@
+﻿@model Polyteks.Katman.TefrikBildirim.Models.IkModel
+<div class="container">
+    <div class="col-md-6">
+        <div class="form-group">
+            <div class="input-group">
+                <span class="input-group-addon"><i class="glyphicon glyphicon-search"></i></span>
+                <input type="text" id="Search" placeholder="ARA" class="form-control" />
+
+            </div>
+            </div>
+      
+            <h4 class="font-green-jungle text-center"><b>KATILACAK PERSONELLER</b></h4>
+            <table class="dtTable table table-bordered">
+                <thead>
+                    <tr>
+                        <th class="text-center">
+                            #
+                        </th>
+                        <th class="text-center">
+                            PERSONEL
+                        </th>
+
+                        <th class="text-center">#</th>
+
+                    </tr>
+                </thead>
+                <tbody>
+                    @{
+                        int say = 0;
+
+                        foreach (var item in Model.EgitimOturumSrcnKullanicilar)
+                        {
+                            say++;
+                            <tr class="Search">
+                                @Html.HiddenFor(a => a.EgitimOturumSrcnKullanicilar[say - 1].SrcnKullaniciId)
+                                <td class="text-center">@say</td>
+                                <td class="text-center">@item.IsimSoyisim</td>
+
+
+                                <td class="text-center"><a href="javascript:" onclick="Sil(@item.SrcnKullaniciId)" class="btn red btn-block ">Sil</a></td>
+                            </tr>
+                        }
+                    }
+
+                </tbody>
+
+            </table>
+        </div>
+    </div>
+    <script src="~/Scripts/jquery-3.0.0.min.js"></script>
+    <script>
+        //LIVE SEARCH
+        $(document).ready(function () {
+            function Contains(text_one, text_two) {
+                if (text_one.indexOf(text_two) != -1)
+                    return true;
+            }
+            $("#Search").keyup(function () {
+                var searchText = $("#Search").val().toLowerCase();
+                $(".Search").each(function () {
+                    if (!Contains($(this).text().toLowerCase(), searchText)) {
+                        $(this).hide();
+                    }
+                    else {
+                        $(this).show();
+                    }
+                })
+            });
+        });
+    </script>

@@ -1,0 +1,182 @@
+﻿@model Polyteks.Katman.TefrikBildirim.Models.SatisModel
+
+@{
+    ViewBag.Title = "NumuneYapilabilirlikDosyaTipleri";
+    Layout = "~/Views/Shared/Layout.cshtml";
+}
+
+@if (TempData["Msg"] != null)
+{
+    <div class="custom-alerts alert alert-@TempData["class"] fade in">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true"></button>
+        <h2>@TempData["Msg"]</h2>
+    </div>
+}
+<div class="portlet box blue">
+    <div class="portlet-title">
+        <div class="caption">
+            <i class="fa fa-money"></i>
+            @{
+                string Baslik = "NUMUNE YAPILABİLİRLİK DOSYALARI";
+                if (Model.DosyaDurumu.DosyaDurumAdi!=null)
+                {
+                    Baslik = @Model.DosyaDurumu.DosyaDurumAdi;
+                }
+            }
+            <span class="caption-subject bold uppercase">@Baslik</span>
+        </div>
+    </div>
+    <div class="portlet-body">
+        <div class="row">
+            @foreach (var item in Model.NumuneDosyaTipleri.ToList())
+            {
+
+                string ClassAdi = "blue-hoki";
+                if (item.NumuneDosyaTipi == Model.NumuneDosyaTipi.NumuneDosyaTipi)
+                {
+                    ClassAdi = "green-jungle";
+                }
+
+                <div class="col-md-6">
+                    <a href="@Url.Action("NumuneYapilabilirlikDosyaTipleri", "Satis", new {id = item.NumuneDosyaTipi})" class="btn btn-block  @ClassAdi">@item.NumuneDosyaTipiAdi.ToUpper() DOSYALAR</a>
+
+                </div>
+
+            }
+        </div>
+
+
+        <hr />
+
+        @if (Model.NumuneDosyaTipi.NumuneDosyaTipi == 0)
+        {
+            <div class="row">
+                <div class="col-md-12">
+                    <h3 class="text-center"><b>LÜTFEN NUMUNE DURUMU SEÇİNİZ</b></h3>
+                </div>
+            </div>
+        }
+        else
+        { 
+            <div class="row">
+                   @{
+                            int SatirSay = 0;
+                            foreach (var item in Model.DosyaDurumlari)
+                            {
+                                SatirSay++;
+                                string classAdi = "btn dark btn-block ";
+                                if (Model.DosyaDurumu.DosyaDurumId == item.DosyaDurumId)
+                                {
+                                    classAdi = "btn red btn-block ";
+                                }
+                                <div class="col-md-6">
+                                      <a href="@Url.Action("NumuneYapilabilirlikDosyaTipleri", "Satis", new {id=Model.NumuneDosyaTipi.NumuneDosyaTipi, id2 = item.DosyaDurumId})" class="@classAdi">@item.DosyaDurumAdi.ToUpper()</a>
+                             
+                                </div>
+
+                                if (SatirSay == 2)
+                                {
+                                    SatirSay = 0;
+                                    <div class="clearfix"></div>
+                                    <br/>
+                                }
+                            }
+                        }
+                
+               
+            </div>
+            <hr />
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h4><b>@Model.NumuneDosyaTipi.NumuneDosyaTipiAdi.ToUpper() DOSYALAR</b></h4>
+                        </div>
+                        <div class="col-md-6">
+                            <a href="@Url.Action("NumuneYapilabilirlikDosyaEkle", "Satis", new {id = Model.NumuneDosyaTipi.NumuneDosyaTipi})" class="btn btn-block green ">@Model.NumuneDosyaTipi.NumuneDosyaTipiAdi.ToUpper() TALEBİ</a>
+                        </div>
+                    </div>
+
+                    <table class="dtTable table table-bordered">
+                        <thead>
+                            <tr>
+                                <th class="text-center">
+                                    #
+                                </th>
+                                <th class="text-center">
+                                    KOD
+                                </th>
+                                <th class="text-center">
+                                    KAYIT
+                                </th>
+
+                                <th class="text-center">
+                                    PERSONEL
+                                </th>
+                                <th class="text-center">
+                                    CARİ
+                                </th>
+                                <th class="text-center">
+                                    GÜNCEL DURUM
+                                </th>
+                                <th class="text-center">#</th>
+                                <th class="text-center">#</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @{
+                                int say = 0;
+
+                                foreach (var item in Model.NumuneYapilabilirlikDosyalar)
+                                {
+                                    say++;
+                                    <tr>
+                                        <td class="text-center">@say</td>
+                                        <td class="text-center"><b>@string.Format("#{0}", item.NumuneYapilabilirlikDosyaId)</b></td>
+                                        <td class="text-center">@item.KayitTarihi</td>
+                                        <td class="text-center">@item.KayitYapanKulAdi</td>
+                                        <td class="text-center">@item.CariAdi</td>
+                                        <td class="text-center">@item.DosyaDurumAdi</td>
+                                        <td><a href="@Url.Action("NumuneYapilabilirlikDosyaBilgileri", "Satis", new {id = item.NumuneYapilabilirlikDosyaId})" class="btn blue btn-block">İncele</a></td>
+                                        <td><a href="javascript:" onclick="DosyaSil(@item.NumuneYapilabilirlikDosyaId, 2)" class="btn red btn-block">Sil</a></td>
+
+                                    </tr>
+                                }
+                            }
+
+                        </tbody>
+
+                    </table>
+                </div>
+            </div>
+        }
+
+    </div>
+</div>
+
+@section scripts{
+    <script src="~/Temalar/Scripts/sweetalert.js"></script>
+    <script>
+        function DosyaSil(id, id2) {
+            var url = "/Satis/DosyaSil/" + id +"/"+id2;
+
+            swal({
+                title: "EMİN MİSİNİZ",
+                text: "Seçilen Kayıdı Listeden Kaldırmak İstiyor musunuz??",
+                icon: "warning",
+                buttons: {
+                    cancel: "Kapat",
+                    git: "Sil"
+                }
+            }).then((value) => {
+                switch (value) {
+                case "git":
+                    window.location.href = url;
+                    break;
+                }
+            });
+
+
+        }
+    </script>
+}

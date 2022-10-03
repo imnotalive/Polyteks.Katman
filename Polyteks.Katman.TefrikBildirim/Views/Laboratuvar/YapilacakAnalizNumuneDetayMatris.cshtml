@@ -1,0 +1,136 @@
+﻿@model Polyteks.Katman.TefrikBildirim.Models.LaboratuvarModel
+
+@{
+    ViewBag.Title = "YapilacakAnalizNumuneDetayMatris";
+    Layout = "~/Views/Shared/Layout.cshtml";
+}
+
+@section styles{
+
+    <link href="~/Temalar/TarihSaat/bootstrap-datepicker/css/bootstrap-datetimepicker.css" rel="stylesheet" />
+
+    <style>
+        .mt-radio {
+            font-weight: bold;
+        }
+
+        .vl {
+            border: 2px solid #c3cec3;
+        }
+    </style>
+
+}
+
+@if (TempData["Msg"] != null)
+{
+    <div class="custom-alerts alert alert-@TempData["class"] fade in">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true"></button>
+        <h2>@Html.Raw(TempData["Msg"])</h2>
+    </div>
+}
+<div class="row">
+    <div class="col-md-12 ">
+        <div class="portlet light bordered">
+            <div class="portlet-title">
+                <div class="caption font-red-sunglo">
+                    <i class="icon-settings font-red-sunglo"></i>
+                    <span class="caption-subject bold uppercase">@Model.LabGrup.LabGrupAdi LABORATUVAR ANALİZ BİLGİLERİ</span>
+                </div>
+            </div>
+            <div class="portlet-body form">
+                <div class="form-body">
+                    <div class="row">
+
+                        <div class="col-md-6">
+                            <h4 class="text-center bold"> KUMAŞ-ATKI BÖLÜMÜ</h4>
+
+                            <table class="dtTable table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th class="text-center">
+                                            #
+                                        </th>
+                                        @foreach (var item in Model.Theadler)
+                                        {
+                                            <th class="text-center">
+                                                @item.ToUpper()
+                                            </th>
+                                        }
+
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @{
+                                        var i = -1;
+
+                                        foreach (var itt in Model.LabSatirItemlar)
+                                        {
+                                            i++;
+                                            var j = -1;
+                                            <tr>
+                                                <td class="text-center">@itt.LabAnalizCesitAdi</td>
+                                                @foreach (var item in itt.LabAnalizItemAnalizCesitSonuclari)
+                                                {
+                                                    j++;
+                                                    <td class="text-center">
+                                                        @Html.TextBoxFor(a => a.LabSatirItemlar[i].LabAnalizItemAnalizCesitSonuclari[j].AnalizDegeriString, new { @class = "form-control" })
+                                                    </td>
+                                                }
+
+                                            </tr>
+                                        }
+                                    }
+
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <div class="col-md-6">
+                            <h4 class="text-center bold"> KUMAŞ-ÇÖZGÜ BÖLÜMÜ</h4>
+
+                            <table class="dtTable table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th class="text-center">
+                                            #
+                                        </th>
+                                        @foreach (var item in Model.Theadler)
+                                        {
+                                            <th class="text-center">
+                                                @item.ToUpper()
+                                            </th>
+                                        }
+
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @{
+                                         i = -1;
+
+                                        foreach (var itt in Model.LabSatirItemlar)
+                                        {
+                                            i++;
+                                            var j = -1;
+                                            <tr>
+                                                <td class="text-center">@itt.LabAnalizCesitAdi</td>
+                                                @foreach (var item in itt.LabAnalizItemAnalizCesitSonuclari)
+                                                {
+                                                    j++;
+                                                    <td class="text-center">
+                                                        @Html.TextBoxFor(a => a.LabSatirItemlar[i].LabAnalizItemAnalizCesitSonuclari[j].AnalizDegeriString, new { @class = "form-control" })
+                                                    </td>
+                                                }
+
+                                            </tr>
+                                        }
+                                    }
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

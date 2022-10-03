@@ -1,0 +1,26 @@
+﻿@model Polyteks.Katman.Bildirim.Models.LayoutModelBildirim
+@{
+    /*
+     * Açık
+      <ul class="page-sidebar-menu   " data-keep-expanded="false" data-auto-scroll="true" data-slide-speed="200">
+     */
+
+    string HeaderClass = "";
+    if (TempData["Gizle"] != null)
+    {
+        HeaderClass = "page-sidebar-menu-closed";
+    }
+}
+
+
+<ul class="page-sidebar-menu @HeaderClass" data-keep-expanded="false" data-auto-scroll="true" data-slide-speed="200">
+    <li class="nav-item start ">
+        <a href="@Url.Action("Index","Home")" class="nav-link">
+            <i class="icon-home"></i>
+            <span class="title">ANASAYFA</span>
+
+        </a>
+    </li>
+
+
+</ul>

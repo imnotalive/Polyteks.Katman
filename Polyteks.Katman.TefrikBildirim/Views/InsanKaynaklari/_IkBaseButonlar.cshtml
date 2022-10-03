@@ -1,0 +1,33 @@
+﻿@model Polyteks.Katman.TefrikBildirim.Models.IkModel
+<div>
+    <div class="row">
+        <div class="col-md-4">
+            <a href="@Url.Action("EgitimTanimListesi","InsanKaynaklari")" class="btn btn-block dark">EĞİTİM TANIMLAMALARI</a>
+        </div>
+        <div class="col-md-4">
+            <a href="@Url.Action("FirmaTanimListesi","InsanKaynaklari")" class="btn btn-block dark">FİRMA TANIMLAMALARI</a>
+        </div>
+        <div class="col-md-4">
+            <a href="@Url.Action("EgitimFirmaTanimListesi","InsanKaynaklari")" class="btn btn-block blue-madison">EĞİTİM-FİRMA TANIMLAMALARI</a>
+        </div>
+    </div>
+    <br/>
+    <div class="row">
+        <div class="col-md-6">
+            <a href="@Url.Action("PersonelEgitimGenel","InsanKaynaklari")" class="btn btn-block yellow-gold">VERİLEN TÜM EĞİTİMLER</a>
+        </div>
+        <div class="col-md-6">
+            <a href="@Url.Action("PersonelSicilAra","InsanKaynaklari")" class="btn btn-block yellow-gold">PERSONEL SİCİL KARTLARI</a>
+        </div>
+    </div>
+    <br/>
+    <div class="row">
+        @foreach (var item in Model.IkEgitimTipleri)
+        {
+            <div class="col-md-4">
+                <a href="@Url.Action("EgitimleriTipineGoreGetir", "InsanKaynaklari",new{id=item.IkEgitimTipi})" class="btn btn-block green-jungle">@item.IkEgitimTipiAdi.ToUpper() LİSTESİ</a>
+            </div>
+        }
+               
+    </div>
+</div>

@@ -1,0 +1,148 @@
+﻿@model Polyteks.Katman.TefrikBildirim.Models.ImalatPartiAltKlasorModel
+
+@{
+    ViewBag.Title = "ImalatPartiAnaKlasorleri";
+    Layout = "~/Views/Shared/Layout.cshtml";
+}
+
+@section styles{
+
+    <style>
+        .mt-radio {
+            font-weight: bold;
+        }
+    </style>
+    <link href="~/Temalar/Select/bootstrap-select.css" rel="stylesheet" />
+}
+
+@if (TempData["Msg"] != null)
+{
+    <div class="custom-alerts alert alert-@TempData["class"] fade in">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true"></button>
+        <h2>@Html.Raw(TempData["Msg"])</h2>
+    </div>
+}
+@{
+    string GrupAdi = String.Format("{0} {1} DOSYA EKLE",Model.Birim.BirimAdi.ToUpper(), Model.PartiAltKlasorTipi.PartiAltKlasorTipAdi.ToUpper());
+   
+ 
+   
+}
+
+<div class="row">
+    <div class="col-md-12 ">
+        <div class="portlet light bordered">
+            <div class="portlet-title">
+                <div class="caption font-red-sunglo">
+                    <i class="icon-settings font-red-sunglo"></i>
+                    <span class="caption-subject bold uppercase"> @GrupAdi</span>
+                </div>
+            </div>
+
+
+            <div class="row">
+                <div class="row">
+                    @foreach (var item in Model.Birimler)
+                    {
+                        string ClassAdi = "dark";
+                        string calisanParti = "dark";
+                        string partiSonuBeklenen = "dark";
+                        string partiSonuTalebi = "dark";
+                        string partiSonuOnayi = "dark";
+
+                        if (item.BirimId == Model.Birim.BirimId)
+                        {
+                            ClassAdi = "red bold";
+
+                            if (Model.IkinciButonGrup == 1)
+                            {
+                                calisanParti = "yellow mint bold";
+                            }
+                            if (Model.IkinciButonGrup == 2)
+                            {
+                                partiSonuOnayi = "green-turquoise bold";
+                            }
+                            if (Model.IkinciButonGrup == 3)
+                            {
+                                partiSonuTalebi = "purple-wisteria bold";
+                            }
+
+                        }
+                        <div class="col-md-3">
+                            @{
+                                string TemizUrl = "/Imalat/ImalatPartiAltKlasorEkle/" + Model.PartiAltKlasorTipi.PartiAltKlasorTipiId.ToString() + "/" + item.BirimId.ToString();
+                            }
+                            <a href="@TemizUrl" class="btn btn-block  @ClassAdi">@item.BirimAdi.ToUpper()</a>
+
+                        </div>
+
+                    }
+                </div>
+                <hr />
+                @if (Model.Birim.BirimId != 0)
+                {
+
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label class="control-label"><b class="font-red-sunglo">MAKİNE SEÇİMİ</b></label>
+                                <div class="input-icon right">
+                                    @Html.HiddenFor(a => a.PartiAltKlasorTipi.PartiAltKlasorTipiId, new { @id = "modelId" })
+                                    @Html.DropDownListFor(a => a.SecilenPartiNo, Model.DropBirimMakineleri,  new { @class = "selectpicker show-tick form-control", @id = "policeKel" })
+                                </div>
+                            </div>
+                     
+                        </div>
+
+                        <hr />
+                        <div class="row" id="aramasonuc">
+
+                        </div>
+
+                    </div>
+
+                }
+                else
+                {
+                    <h2 class="red-sunglo text-center">LÜTFEN BİRİM SEÇİNİZ</h2>
+                }
+
+
+            </div>
+        </div>
+    </div>
+</div>
+@section scripts{
+    <script src="~/Temalar/Select/bootstrap-select.js"></script>
+    <script>
+        $("#policeKel").change(function() {
+            //function ListeGetir() {
+           
+                var id = $('#policeKel').val();
+                var id2 = $('#modelId').val();
+                var url = "/Yetkisiz/ImalatPartiAltKlasorMakineItemGetir/" + id2 + "/" + id;
+
+                $.ajax({
+                    url: url,
+
+                    dataType: "html",
+                    success: function(data) {
+
+                        $("#aramasonuc").empty();
+                        $("#aramasonuc").append(data);
+                    }
+                });
+
+
+          //  }
+        });
+    </script>
+    <script>
+        $('#policeKel').selectpicker({
+            liveSearch: true,
+            maxOptions: 1
+        });
+
+    </script>
+}
+

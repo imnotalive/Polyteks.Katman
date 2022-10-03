@@ -1,0 +1,164 @@
+﻿@model Polyteks.Katman.TefrikBildirim.Models.ImalatPartiAltKlasorModel
+
+@{
+    ViewBag.Title = "ImalatPartiAltKlasorleri";
+    Layout = "~/Views/Shared/Layout.cshtml";
+}
+
+@if (TempData["Msg"] != null)
+{
+    <div class="custom-alerts alert alert-@TempData["class"] fade in">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true"></button>
+        <h2>@Html.Raw(TempData["Msg"])</h2>
+    </div>
+}
+@{
+    string GrupAdi = Model.PartiAltKlasorTipi.PartiAltKlasorTipAdi;
+    if (Model.Id != 0)
+    {
+        GrupAdi = Model.Birim.BirimAdi.ToUpper() + " " + GrupAdi;
+    }
+}
+
+<div class="row">
+    <div class="col-md-12 ">
+        <div class="portlet light bordered">
+            <div class="portlet-title">
+                <div class="caption font-red-sunglo">
+                    <i class="icon-settings font-red-sunglo"></i>
+                    <span class="caption-subject bold uppercase"> @GrupAdi</span>
+                </div>
+            </div>
+
+
+            <div class="row">
+                <div class="row">
+                    @foreach (var item in Model.Birimler)
+                    {
+                        string ClassAdi = "dark";
+                        string calisanParti = "dark";
+                        string partiSonuBeklenen = "dark";
+                        string partiSonuTalebi = "dark";
+                        string partiSonuOnayi = "dark";
+
+                        if (item.BirimId == Model.Birim.BirimId)
+                        {
+                            ClassAdi = "red bold";
+
+                            if (Model.IkinciButonGrup == 1)
+                            {
+                                calisanParti = "yellow mint bold";
+                            }
+                            if (Model.IkinciButonGrup == 2)
+                            {
+                                partiSonuOnayi = "green-turquoise bold";
+                            }
+                            if (Model.IkinciButonGrup == 3)
+                            {
+                                partiSonuTalebi = "purple-wisteria bold";
+                            }
+
+                        }
+                        <div class="col-md-3">
+                            @{
+                                string TemizUrl = "/Imalat/ImalatPartiAltKlasorleri/" + Model.PartiAltKlasorTipi.PartiAltKlasorTipiId.ToString() + "/" + item.BirimId.ToString();
+                            }
+                            <a href="@TemizUrl" class="btn btn-block  @ClassAdi">@item.BirimAdi.ToUpper()</a>
+
+                        </div>
+
+                    }
+                </div>
+                <hr />
+                @if (Model.Birim.BirimId != 0)
+                {
+
+                    <div class="row">
+                        <div class="col-md-8">
+
+                        </div>
+                        <div class="col-md-4">
+                            @{
+                                string urlEkle  = "/Imalat/ImalatPartiAltKlasorEkle/" + Model.PartiAltKlasorTipi.PartiAltKlasorTipiId.ToString() + "/" + Model.Birim.BirimId.ToString();
+                            }
+                            <a class="btn blue-oleo btn-block " href="@urlEkle">
+                                @Model.PartiAltKlasorTipi.PartiAltKlasorTipAdi EKLE
+                            </a>
+
+
+                        </div>
+                    </div>
+                    <br />
+                    <div class="row">
+                        <div class="col-md-12">
+
+
+                            <table class="dtTable table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th class="text-center">
+                                            #
+                                        </th>
+                                        <th class="text-center">
+                                            KAYIT TARİHİ
+                                        </th>
+                                        <th class="text-center">
+                                            KOD
+                                        </th>
+                                        <th class="text-center">
+                                            PARTİ
+                                        </th>
+
+
+
+                                        <th class="text-center">
+                                           KAYIT YAPAN
+                                        </th>
+                                        <th class="text-center">#</th>
+                                        <th class="text-center">#</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @{
+                                        int say = 0;
+
+                                        foreach (var item in Model.PartiAltKlasorleri)
+                                        {
+                                            say++;
+                                            <tr>
+                                                <td class="text-center">@say</td>
+                                                <td class="text-center">@item.OlusturmaTarihi</td>
+                                                <td class="text-center">@item.PartiAltKlasorKodAdi</td>
+                                                <td class="text-center">@item.PartiAdi</td>
+                                                <td class="text-center">@item.KayitYapanKulAdi</td>
+                                                <td>
+                                                    <a class="btn blue-sharp btn-block" href="@Url.Action("ImalatPartiAltKlasorDuzenle","Imalat",new{id=item.PartiAltKlasorId})">
+                                                        DÜZENLE
+                                                    </a>
+
+                                                </td>
+                                                <td class="text-center"><a href="javascript:" onclick="Sil(@item.PartiAltKlasorId)" class="btn red btn-block ">Sil</a></td>
+                                            </tr>
+                                        }
+                                    }
+
+                                </tbody>
+
+                            </table>
+                        </div>
+                     
+                
+                    </div>
+
+                }
+                else
+                {
+                    <h2 class="red-sunglo text-center">LÜTFEN BİRİM SEÇİNİZ</h2>
+                }
+
+
+            </div>
+        </div>
+    </div>
+</div>
+

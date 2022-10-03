@@ -1,0 +1,94 @@
+﻿
+@{
+    ViewBag.Title = "PartiSonuTakipGeriAlListe";
+    Layout = "~/Areas/Yonetim/Views/Shared/Layout.cshtml";
+}
+@if (TempData["Msg"] != null)
+{
+    <div class="custom-alerts alert alert-@TempData["class"] fade in">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true"></button>
+        <h2>@Html.Raw(TempData["Msg"])</h2>
+    </div>
+}
+
+<div class="row">
+    <div class="col-md-12 ">
+        <div class="portlet light bordered">
+            <div class="portlet-title">
+                <div class="caption font-red-sunglo">
+                    <i class="icon-settings font-red-sunglo"></i>
+                    <span class="caption-subject bold uppercase"> Parti Sonu Takip Geri Al </span>
+                </div>
+            </div>
+
+
+            <div class="row">
+                <div class="col-md-4">
+                    <label class="control-label"><b>PARTİ NO </b></label>
+                    <input type="text" class="form-control" id="partiNo" />
+                </div>
+                <div class="col-md-4">
+                    <label class="control-label"><b>İŞ EMRİ </b></label>
+                    <input type="text" class="form-control" id="isEmri">
+                </div>
+                <div class="col-md-4">
+                    <label class="control-label"><b>&nbsp;</b></label>
+                    <button type="button" class="btn red btn-block" id="kayitGetir">Ara</button>
+
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <table class="dtTable table table-bordered">
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@section scripts
+{
+    <script>
+        $("#kayitGetir").click(function() {
+            $('.dtTable').empty();
+            var id = $('#partiNo').val();
+            var id2 = $('#isEmri').val();
+            $.ajax({
+                url: '@Url.Action("PartiSonuListeGetir", "YonetimImalat")',
+                type: 'POST',
+                dataType: 'json',
+                data: { id: id, id2: id2 },
+                success: function(result) {
+                    $.each(result, function (i, data) {
+                        var date = new Date(parseInt(data.PartiKapatmaTarihi.replace("/Date(", "").replace(")/", ""), 10));
+                        
+                        table = '<thead><tr><th class="text-center">PARTİ</th>';
+                        table += '<th class="text-center">İŞ EMRİ</th>';
+                        table += '<th class="text-center">YAPILACAK PARTI SONU İŞLEM TİPİ</th>';
+                        table += '<th class="text-center">YAPILACAK PARTI SONU HAREKET ADI</th>';
+                        table += '<th class="text-center">BİRİM ADI</th>';
+                        table += '<th class="text-center">KAPATAN KULLANICI</th>';
+                        table += '<th class="text-center">PARTİ KAPATMA TARİHİ</th>';
+                        table += '<th class="text-center">#</th>';
+                        table += '</tr></thead>';
+                        table += '<tbody><tr>';
+                        table += '<td class="text-center">'+data.PartiNo+'</td>';
+                        table += '<td class="text-center">'+data.RefakatNo+'</td>';
+                        table += '<td class="text-center">' + data.YapilacakPartiSonuIslemTipiAdi + '</td>';
+                        table += '<td class="text-center">'+data.PartiSonuTakipHareketAdi+'</td>';
+                        table += '<td class="text-center">'+data.BirimAdi+'</td>';
+                        table += '<td class="text-center">' + data.KapatanKulAdi + '</td>';
+                        table += '<td class="text-center">' + date.toString('dd/MM/yyyy') + '</td>';
+                        table += '<td class="text-center"><a class="btn red btn-block" href="/Yonetim/YonetimImalat/PartiSonuTakipSil/' + data.PartiSonuTakipId + '">Sil</a></td>';
+                        table += ' </tbody></table>';
+                        $('.dtTable').append(table);
+                    })
+                },
+                error: function(hata) {
+                }
+            });
+        });
+    </script>
+}

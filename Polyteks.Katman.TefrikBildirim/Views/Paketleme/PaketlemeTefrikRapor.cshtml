@@ -1,0 +1,212 @@
+﻿@model Polyteks.Katman.TefrikBildirim.Models.PaketlemeTefrikModel
+
+@{
+    ViewBag.Title = "PaketlemeTefrikRapor";
+    Layout = "~/Views/Shared/Layout.cshtml";
+}
+
+@if (TempData["Msg"] != null)
+{
+    <div class="custom-alerts alert alert-@TempData["class"] fade in">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true"></button>
+        <h2>@Html.Raw(TempData["Msg"])</h2>
+    </div>
+}
+@{
+    string GrupAdi = "TEFRİK KONTROL RAPORU";
+
+
+}
+
+@section styles{
+
+    <link href="~/Temalar/TarihSaat/bootstrap-datepicker/css/bootstrap-datetimepicker.css" rel="stylesheet" />
+
+
+}
+
+<div class="row">
+    <div class="col-md-12 ">
+        <div class="portlet light bordered">
+            <div class="portlet-title">
+                <div class="caption font-red-sunglo">
+                    <i class="icon-settings font-red-sunglo"></i>
+                    <span class="caption-subject bold uppercase"> @GrupAdi</span>
+                </div>
+            </div>
+
+            @using (Html.BeginForm("PaketlemeTefrikRapor", "Paketleme"))
+            {
+
+        <div class="row">
+
+            <div class="col-md-4">
+                <label class="control-label"><b>BAŞLANGIÇ TARİH SEÇİMİ </b></label>
+                <div class="input-icon right">
+                    @Html.TextBoxFor(a => a.BaslangicTarihi, "{0:yyyy-MM-ddThh:mm:ss}", new { @class = "form-control tarih", @onkeydown = "return false", @autocomplete = "off" })
+                </div>
+            </div>
+            <div class="col-md-4">
+                <label class="control-label"><b>BİTİŞ TARİH SEÇİMİ </b></label>
+                <div class="input-icon right">
+                    @Html.TextBoxFor(a => a.BitisTarihi, "{0:yyyy-MM-ddThh:mm:ss}", new { @class = "form-control tarih", @onkeydown = "return false", @autocomplete = "off" })
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <label class="control-label"><b>&nbsp; </b></label>
+                <button type="submit" class="btn btn-block red-thunderbird"><b> RAPOR İNDİR <i class="fa fa-book"></i></b></button>
+            </div>
+
+
+            <div class="text-center">
+                @Html.Label("LÜTFEN İLK ÖNCE YIL,SONRA AY,SONRA GÜN VE EN SON SAAT VE DAKİKA SEÇİMİ YAPINIZ !", new { @class = "duyuru" })
+                <style>
+                    .duyuru {
+                        font-size: 25px;
+                        font-weight: bold;
+                        color: black;
+                        margin-top: 50px;
+                        margin-bottom: 100px;
+                        margin-right: 15px;
+                        margin-left: 150px;
+                        /* background-color: lightblue;*/
+                    }
+                </style>
+            </div>
+            @*&nbsp&nbsp
+        &nbsp
+        <h3 class="text-center"><b>LÜTFEN NUMUNE DURUMU SEÇİNİZ</b></h3>*@
+        </div>
+                <br />
+
+
+            }
+
+            @if (Model.TefrikRaporOzeItems.Any())
+            {
+                <div class="row">
+                    <div class="table-scrollable">
+                        <table class="table table-striped table-bordered">
+                            <thead>
+                                <tr>
+                                    <th class="text-center">
+                                        #
+                                    </th>
+                                    <th class="text-center">
+                                        STOK
+                                    </th>
+                                    <th class="text-center">
+                                        TARİH
+                                    </th>
+                                    <th class="text-center">
+                                        BİRİM
+                                    </th>
+                                    <th class="text-center">
+                                        PARTİ
+                                    </th>
+                                    <th class="text-center">
+                                        İŞ EMRİ
+                                    </th>
+                                    <th class="text-center">
+                                        ÜRT. SIRA NO
+                                    </th>
+                                    <th class="text-center">
+                                        MAKİNE
+                                    </th>
+                                    <th class="text-center">
+                                        TOPLAM BOBİN SAYISI
+                                    </th>
+                                    <th class="text-center">
+                                        KISA BOBİN SAYISI
+                                    </th>
+                                    <th class="text-center">
+                                        POZİSYON
+                                    </th>
+                                    <th class="text-center">
+                                        HATA
+                                    </th>
+                                    <th class="text-center">
+                                        HSIRANO
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @{
+                                    int say = 0;
+                                    foreach (var item in Model.TefrikRaporOzeItems)
+                                    {
+                                        say++;
+                                                                <tr>
+                                                                    <td class="text-center">@say</td>
+                                                                    <td class="text-center">@item.StokAdi</td>
+                                                                    <td class="text-center">@item.Tarih</td>
+                                                                    <td class="text-center">@item.BirimAdi</td>
+
+                                                                    <td class="text-center">@item.PartiNo</td>
+                                                                    <td class="text-center">@item.RefakatKartNo</td>
+                                                                    <td class="text-center">@item.UretimSiraNo</td>
+                                                                    <td class="text-center">@item.MakineNo</td>
+                                                                    <td class="text-center">@item.ToplamBobin</td>
+                                                                    <td class="text-center">@item.KısaBobin</td>
+                                                                    <td class="text-center">@item.Pozisyon</td>
+                                                                    <td class="text-center">@item.HataNedeni</td>
+                                                                    <td class="text-center">@item.HSiraNo</td>
+                                                                </tr>
+                                    }
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            }
+
+        </div>
+    </div>
+</div>
+
+
+@section scripts{
+    <script src="~/Temalar/TarihSaat/bootstrap-datepicker/js/bootstrap-datetimepicker.js"></script>
+    <script src="~/Temalar/TarihSaat/bootstrap-datepicker/js/bootstrap-datetimepicker.tr.js"></script>
+
+    <script type="text/javascript">
+
+        $(".tarih").datetimepicker({
+        
+                allowEmptyDate: true,
+                //minDate: '01/01/1986',
+                autoclose: 1,
+                language: 'tr',
+                format: 'dd.mm.yyyy hh:ii:00P',
+                endDate: '-1d',
+                startView: '3',
+                todayHighlight: 1,
+            
+        });
+        //$('#dateFieldId').datepicker({
+        //    todayBtn: "linked",
+        //    todayHighlight: true,
+        //    orientation: "left",
+        //    autoclose: true
+        //});
+    </script>
+
+    @*<script>
+            $('.tarih').datetimepicker({
+                language: 'tr',
+                weekStart: 1,
+                todayBtn: 1,
+
+                todayHighlight: 1,
+                startView: 2,
+                minView: 2,
+                forceParse: 0,
+                format: "dd MM yyyy",
+                inline: true
+            });
+
+        </script>*@
+
+}
+

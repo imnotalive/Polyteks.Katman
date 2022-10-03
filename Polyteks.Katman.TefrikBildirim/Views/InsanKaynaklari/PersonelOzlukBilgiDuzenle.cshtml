@@ -1,0 +1,150 @@
+﻿@model Polyteks.Katman.TefrikBildirim.Models.PersonelOzlukBilgiModel
+
+@{
+    ViewBag.Title = "PersonelOzlukBilgiDuzenle";
+    Layout = "~/Views/Shared/Layout.cshtml";
+}
+
+@if (TempData["Msg"] != null)
+{
+    <div class="custom-alerts alert alert-@TempData["class"] fade in">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true"></button>
+        <h2>@Html.Raw(TempData["Msg"])</h2>
+    </div>
+}
+
+<div class="row">
+    <div class="col-md-12 ">
+        <div class="portlet light bordered">
+            <div class="portlet-title">
+                <div class="caption font-blue">
+                    <i class="icon-settings font-blue"></i>
+
+
+                    <span class="caption-subject bold uppercase">@Model.SrcnKullanici.IsimSoyisim BİLGİLERİ</span>
+                </div>
+            </div>
+            <div class="portlet-body form">
+              
+                <div class="row">
+                    <div class="col-md-12">
+                        @using (Html.BeginForm())
+                        {
+                            @Html.HiddenFor(a => a.SrcnKullanici.KullaniciId)
+                            @Html.HiddenFor(a => a.SrcnKullanici.PersonelKodu)
+                            <div class="modal-body">
+                                <div class="form-body">
+                                    <div class="row">
+                                        <div class="row">
+                                            <div class="col-md-2">
+                                                @if (Model.SrcnKullanici.Resim != null)
+                                                {
+                                                    string imageBase64 = Convert.ToBase64String(Model.SrcnKullanici.Resim);
+                                                    string imageSrc = string.Format("data:image/gif;base64,{0}", imageBase64);
+
+                                                    <img src="@imageSrc" class="img-fluid" style="max-width: 100%;" />
+                                                }
+                                                else
+                                                {
+                                                    <h2 class="text-center">Resim Yüklenmedi</h2>
+                                                }
+                                                <br />
+                                                <label><b>LİSTEDEN KALDIRMA DURUMU </b></label>
+                                                <div class="mt-radio-inline">
+                                                    <label class="mt-radio font-yellow">
+                                                        @Html.RadioButtonFor(a => a.SrcnKullanici.GizlemeDurumu, 0) LİSTEDE KALSIN
+                                                        <span></span>
+                                                    </label>
+                                                    <label class="mt-radio font-red-thunderbird">
+                                                        @Html.RadioButtonFor(a => a.SrcnKullanici.GizlemeDurumu, 1) LİSTEDEN KALDIR
+                                                        <span></span>
+                                                    </label>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-10">
+
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label><b>İSİM SOYİSİM </b></label>
+                                                            @Html.TextBoxFor(a => a.SrcnKullanici.IsimSoyisim, new { @class = "form-control", @rows = 5 })
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label><b>E-MAIL </b></label>
+                                                            @Html.TextBoxFor(a => a.SrcnKullanici.EmailAdres, new { @class = "form-control", @rows = 5 })
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="row">
+                                                    <div class="col-md-3">
+                                                        <div class="form-group">
+                                                            <label><b>BİRİM </b></label>
+                                                            @Html.DropDownListFor(a => a.BirimId, Model.DropFabBirimleri, "Seçiniz", new { @class = "form-control" })
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-3">
+                                                        <div class="form-group">
+                                                            <label><b>BÖLÜM </b></label>
+                                                            @Html.DropDownListFor(a => a.BolumId, Model.DropFabrikaBolumleri, "Seçiniz", new { @class = "form-control" })
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label><b>İŞ POZİSYONU </b></label>
+                                                            @Html.DropDownListFor(a => a.CalismaPozisyonu, Model.DropCalismaPozisyonlari, "Seçiniz", new { @class = "form-control" })
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label><b>GRUP </b></label>
+                                                            @Html.DropDownListFor(a => a.GrupId, Model.DropGruplar, "Seçiniz", new { @class = "form-control" })
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label><b>VARDIYA </b></label>
+                                                            @Html.DropDownListFor(a => a.Vardiya, Model.DropVardiyalar, "Seçiniz", new { @class = "form-control" })
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label><b>ŞİFRE</b></label>
+                                                            @Html.TextBoxFor(a => a.SicilNo, new { @class = "form-control", @rows = 5 })
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label><b>SİCİL NO</b></label>
+                                                            @Html.TextBoxFor(a => a.GercekSicilNo, new { @class = "form-control", @rows = 5 })
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="submit" class="btn green btn-block">KAYDET</button>
+
+                            </div>
+                        }
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+

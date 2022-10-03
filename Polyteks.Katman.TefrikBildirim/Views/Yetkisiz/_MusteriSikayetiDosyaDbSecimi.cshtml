@@ -1,0 +1,13 @@
+﻿@model Polyteks.Katman.TefrikBildirim.Models.SatisModel
+
+<div class="form-group">
+    <div class="row">
+        <div class="col-md-6">
+            <label class="control-label"><b>@Model.CariKoduTasd</b></label>
+            @Html.DropDownListFor(a => a.CariKoduPoly, Model.CarilerPoly,"Seçiniz", new { @class = "form-control", id="DropCari" })
+        </div>
+    </div>
+</div>
+
+
+

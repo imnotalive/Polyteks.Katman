@@ -1,0 +1,268 @@
+﻿@model Polyteks.Katman.Toplanti.Models.ToplantiRandevuModel
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/Layout.cshtml";
+}
+@section styles{
+
+    <link href="~/Temalar/TarihSaat/bootstrap-datepicker/css/bootstrap-datetimepicker.css" rel="stylesheet" />
+    <style>
+        .acikMavi {
+            color: #27a4b0;
+        }
+
+        .dikeyYaz {
+            writing-mode: vertical-rl;
+            text-orientation: upright;
+            position: relative;
+            float: left;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .fixedbutton {
+            position: fixed !important;
+            height: 60%;
+            right: 5px;
+            z-index: 999;
+            text-align: center;
+        }
+    </style>
+}
+@if (TempData["Msg"] != null)
+{
+    <div class="custom-alerts alert alert-@TempData["class"] fade in">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true"></button>
+        <p style="font-size: 25px;"><b>@Html.Raw(TempData["Msg"])</b></p>
+    </div>
+}
+
+<a href="javascript:" class="btn red-sunglo btn-circle fixedbutton tetikle">
+
+    <b class="text-center dikeyYaz">TALEP OLUŞTUR</b>
+
+</a>
+
+<div class="row">
+    <div class="col-md-8 text-center">
+        <h3><b class="font-blue-steel">!!! TOPLANTI YAPMAK İSTEDİĞİNİZ GÜN, SAAT, TOPLANTI SALONUNUN DOLULUK DURUMUNU İNCELEYEBİLİR, REZERVASYON TALEBİNDE BULUNABİLİRSİNİZ !!!</b></h3>
+    </div>
+    <div>
+        @using (Html.BeginForm("SeciliTariheGit", "Home"))
+        {
+            <div class="col-md-2">
+                <div class="form-group">
+                    <label class="control-label">
+                        <b>
+                            TARİH SEÇİMİ
+                        </b>
+                    </label>
+                    <div class="input-icon right">
+                        @Html.TextBoxFor(a => a.SecilenGun, new { @class = "form-control tarih", @onkeydown = "return false", @autocomplete = "off" })
+                    </div>
+                    <div>
+
+                    </div>
+                </div>
+
+            </div>
+            <div class="col-md-2">
+                <div class="form-group">
+                    <label class="control-label">
+                        <b>
+                            &nbsp;
+                        </b>
+                    </label>
+                    <div class="input-icon right">
+
+                        <button type="submit" class="btn yellow-gold btn-block btn-circle "><i class="fa fa-calendar-plus-o"></i> SEÇİLİ TARİHE GİT</button>
+                    </div>
+                    <div>
+
+                    </div>
+                </div>
+
+            </div>
+        }
+    </div>
+
+</div>
+<hr />
+<div class="row bg-white">
+    <br />
+    <div class="col-md-2">
+        <a href="@Url.Action("Index","Home",new { id=Model.GunSay-1})" class="btn red-pink btn-block btn-circle"><i class=" fa fa-arrow-left"></i> ÖNCEKİ GÜN</a>
+    </div>
+    <div class="col-md-8">
+        <div class="text-center">
+            <h3> <b> @Model.SecilenGun</b> TARİHLİ TOPLANTI SALONU DURUMLARI </h3>
+        </div>
+    </div>
+
+    <div class="col-md-2">
+        <a href="@Url.Action("Index","Home",new { id=Model.GunSay+1})" class="btn green-meadow btn-block btn-circle"> SIRADAKİ GÜN <i class=" fa fa-arrow-right"></i></a>
+    </div>
+
+</div>
+
+
+<div class="row bg-white">
+    <hr />
+    <div class="col-md-12" style="padding-right: 80px;">
+        @using (Html.BeginForm("ToplantiOlustur", "Home"))
+        {
+            @Html.HiddenFor(a => a.GunSay)
+            <table class="table ">
+                <thead>
+                    <tr>
+                        <th class="text-center">#</th>
+
+                        @for (int i = 0; i < Model.ToplantiSalonlari.Count; i++)
+                        {
+
+                            <th class="text-center">
+                                <b>
+                                    @Model.ToplantiSalonlari[i].ToplantiSalonAdi
+                                </b>
+
+                            </th>
+                        }
+                    </tr>
+                </thead>
+                <tbody>
+
+                    @for (int i = 0; i < Model.ToplantiRandevuSaatlerModeller.Count; i++)
+                    {
+
+                        var item = Model.ToplantiRandevuSaatlerModeller[i];
+
+                        string SaatSira = string.Format("{0}{1}", item.Saat.SaatId, i);
+                        string toplantiSira = string.Format("{0}{1}{2}", SaatSira, item.Saat.SaatId, "00");
+                        string fncString = string.Format("radiobas({0},{1})", SaatSira, toplantiSira);
+                        @Html.HiddenFor(a => a.ToplantiRandevuSaatlerModeller[i].Saat.SaatId)
+                        <tr>
+                            <td class="text-center @SaatSira @toplantiSira">
+                                <div class="mt-radio">
+                                    <label class="mt-radio">
+                                        @Html.RadioButtonFor(a => a.ToplantiRandevuSaatlerModeller[i].SecilenToplantiSalonuId, 0, new { onclick = fncString }) SEÇİM YOK
+                                        <span></span>
+                                    </label>
+                                </div>
+
+                            </td>
+
+                            @for (int j = 0; j < item.ToplantiRandevuSalonModelleri.Count; j++)
+                            {
+                                var altModel = item.ToplantiRandevuSalonModelleri[j];
+                                var salon = altModel.ToplantiSalonu;
+                                toplantiSira = string.Format("{0}{1}{2}", SaatSira, item.Saat.SaatId, j);
+                                fncString = string.Format("radiobas({0},{1})", SaatSira, toplantiSira);
+                                string tdClass = "";
+                                if (altModel.DoluMu)
+                                {
+                                    tdClass = "bg-red-thunderbird";
+                                }
+                                <td class="text-center @SaatSira @toplantiSira @tdClass">
+
+
+                                  
+
+                                        @if (altModel.DoluMu)
+                                        {
+                                        
+                                    <div data-toggle="modal" data-target="#@altModel.ToplantiRandevu.ToplantiRandevuId">
+
+
+                                        <b class="font-white"> @item.Saat.BaslangicSaat-@item.Saat.BitisSaat</b> <b>@salon.ToplantiSalonAdi</b>
+                                        <br />
+                                        <p class="font-white">
+                                            @altModel.ToplantiRandevu.ToplantiBasligi
+                                        </p>
+                                        <p class="font-white">
+                                            <i class="fa fa-hand-peace-o"></i> @altModel.ToplantiRandevuSaat.TalepEdenKullaniciAdi
+                                        </p>
+                                   
+                                   
+
+                                    </div>
+                                        }
+                                        else
+                                        {
+                                            <div class="mt-radio">
+                                        <label class="mt-radio">
+                                     
+                                             
+
+                                            @Html.RadioButtonFor(a => a.ToplantiRandevuSaatlerModeller[i].SecilenToplantiSalonuId, salon.ToplantiSalonId, new { onclick = fncString })
+                                            <b class="font-green-jungle"> @item.Saat.BaslangicSaat-@item.Saat.BitisSaat</b> <b class="font-red-sunglo">@salon.ToplantiSalonAdi</b>
+                                            <br/>
+                                            <p>
+                                            @Html.Raw(string.Format(" MIN:<b> {0}</b> MAX:<b> {1}</b> KİŞİ", salon.MinimumKisi, salon.MaksimumKisi))
+                                            </p>
+                                            <span></span>
+                                        </label>
+                                            </div>
+                                        }
+                                    
+
+
+
+                                </td>
+                            }
+                        </tr>
+                    }
+                </tbody>
+            </table>
+            <button type="submit" class="kayit" style="display: none">KAYDET</button>
+        }
+    </div>
+
+
+</div>
+@foreach (var item in Model.ToplantiRandevular)
+{
+    @Html.Partial("~/Views/Home/_RandevuBilgi.cshtml",item)
+
+}
+
+
+@section scripts{
+    <script src="~/Temalar/TarihSaat/bootstrap-datepicker/js/bootstrap-datetimepicker.js"></script>
+    <script src="~/Temalar/TarihSaat/bootstrap-datepicker/js/bootstrap-datetimepicker.tr.js"></script>
+    <script>
+        $('.tarih').datetimepicker({
+            language: 'tr',
+            weekStart: 1,
+            todayBtn: 1,
+            autoclose: 1,
+            todayHighlight: 1,
+            startView: 2,
+            minView: 2,
+            forceParse: 0,
+            format: "dd MM yyyy",
+            inline: true
+        });
+
+    </script>
+
+    <script>
+        function radiobas(saatId, toplantiId) {
+            //  alert(saatId +" "+ toplantiId);
+            var saatCss = "." + saatId;
+            var toplantiCss = "." + toplantiId.toString();
+
+            $(saatCss).css("background-color", "white");
+            $(toplantiCss).css("background-color", "#F4D03F");
+
+        }
+
+
+    </script>
+    <script>
+        $(".tetikle").click(function () {
+            $(".kayit").click();
+            return false;
+        });
+    </script>
+}

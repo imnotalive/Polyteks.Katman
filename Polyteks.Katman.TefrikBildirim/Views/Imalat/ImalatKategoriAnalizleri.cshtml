@@ -1,0 +1,110 @@
+﻿@model Polyteks.Katman.TefrikBildirim.Models.ImalatModel
+@{
+    ViewBag.Title = "ImalatKategori";
+    Layout = "~/Views/Shared/Layout.cshtml";
+}
+
+@if (TempData["Msg"] != null)
+{
+    <div class="custom-alerts alert alert-@TempData["class"] fade in">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true"></button>
+        <h2>@TempData["Msg"]</h2>
+    </div>
+}
+<div class="portlet box blue">
+    <div class="portlet-title">
+        <div class="caption">
+            <i class="fa fa-money"></i>
+            @{
+                string Sira = "";
+                if (Model.SrcnLabGruplari.Any())
+                {
+                    foreach (var item in Model.SrcnLabGruplari)
+                    {
+                        if (item != Model.SrcnLabGruplari.Last())
+                        {
+                            Sira += item.LabGrupAdi + " >> ";
+
+                        }
+                        else
+                        {
+                            Sira += item.LabGrupAdi;
+                        }
+
+                    }
+                    Sira += "  ANALİZLERİ";
+                }
+            }
+            <span class="caption-subject bold uppercase">@Sira</span>
+        </div>
+    </div>
+    <div class="portlet-body">
+        <div class="row">
+            <div class="col-md-8">
+                <h4><b>@Model.LabGrup.LabGrupAdi</b></h4>
+            </div>
+            <div class="col-md-4">
+                <a href="@Url.Action("ImalatKategoriAnalizTalebi", "Imalat", new {id = Model.LabGrup.LabGrupId})" class="btn btn-block red-sunglo">@Model.LabGrup.LabGrupAdi ANALİZ TALEBİ</a>
+            </div>
+        </div>
+        <br />
+        <div class="row">
+            <div class="col-md-12">
+
+
+                <table class="dtTable table table-bordered">
+                    <thead>
+                        <tr>
+                            <th class="text-center">
+                                #
+                            </th>
+                            <th class="text-center">
+                                KOD
+                            </th>
+                            <th class="text-center">
+                                KAYIT
+                            </th>
+
+                            <th class="text-center">
+                                PERSONEL
+                            </th>
+                            <th class="text-center">
+                                PARTİ NO
+                            </th>
+                            <th class="text-center">
+                               İŞ EMRİ NO
+                            </th>
+                            <th class="text-center">
+                                GÜNCEL DURUM
+                            </th>
+                            <th class="text-center">#</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @{
+                            int say = 0;
+
+                            foreach (var item in Model.LabAnalizleri)
+                            {
+                                say++;
+                                <tr>
+                                    <td class="text-center">@say</td>
+                                    <td class="text-center"><b>@string.Format("#{0}", item.LabAnalizId)</b></td>
+                                    <td class="text-center">@item.KayitTarihi</td>
+                                    <td class="text-center">@item.KayitYapanKulAdi</td>
+                                    <td class="text-center">@item.PartiNo</td>
+                                    <td class="text-center">@item.RefakartKartNo</td>
+                                    <td class="text-center">@item.LabAnalizDurumuAdi</td>
+                                    <td><a href="@Url.Action("LaboratuvarAnalizSonuclari","Laboratuvar",new{id=item.LabAnalizId})" class="btn blue btn-block">İncele</a></td>
+                                </tr>
+                            }
+                        }
+
+                    </tbody>
+
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+

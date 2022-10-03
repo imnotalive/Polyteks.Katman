@@ -1,0 +1,23 @@
+﻿@model Polyteks.Katman.TefrikBildirim.Models.LaboratuvarModel
+
+<div class="row">
+    <div class="col-md-3">
+        <a href="@Url.Action("YapilacakAnalizGrupTipineDon","Laboratuvar",new{id=Model.LabAnaliz.LabAnalizId})" class=" btn purple-seance"> <i class="fa fa-arrow-left"></i> <b>LİSTEYE GERİ DÖN</b></a>
+    </div>
+</div>
+<br/>
+<div class="row">
+    <div class="col-md-3">
+        <a href="@Url.Action("YapilacakAnalizYonlendir","Laboratuvar",new{id=Model.LabAnaliz.LabAnalizId})" class="btn yellow btn-block">ANALİZ TEMEL BİLGİLER</a>
+    </div>
+    <div class="col-md-3">
+        <a href="@Url.Action("LaboratuvarAnalizHareketleri","Laboratuvar",new{id=Model.LabAnaliz.LabAnalizId})" class="btn blue-oleo btn-block">ANALİZ HAREKETLERİ</a>
+    </div>
+    <div class="col-md-3">
+        <a href="@Url.Action("LaboratuvarAnalizSonuclari","Laboratuvar",new{id=Model.LabAnaliz.LabAnalizId})" class="btn blue btn-block">ANALİZ SONUÇLARI</a>
+    </div>
+    <div class="col-md-3">
+        <a href="@Url.Action("PdfOlarakIndir","Base",new{id=Model.LabAnaliz.LabAnalizId})" class="btn red btn-block">PDF İNDİR</a>
+    </div>
+</div>
+<hr />

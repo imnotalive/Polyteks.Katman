@@ -1,0 +1,41 @@
+﻿@model IEnumerable<Polyteks.Katman.DAL.Concrete.EntityFramework.SrcnKullanicis>
+
+<div class="form-group">
+    <div class="table-scrollable">
+        <table class="table table-hover ">
+            <thead>
+            <tr>
+                <th class="text-center"> # </th>
+                <th class="text-center"> İSİM SOYİSİM </th>
+                <th class="text-center"> # </th>
+                                                 
+            </tr>
+            </thead>
+            <tbody>
+            @foreach (var item in Model)
+            {
+            <tr>
+                @if (item.Resim != null)
+                {
+                    string imageBase64 = Convert.ToBase64String(item.Resim);
+                    string imageSrc = string.Format("data:image/gif;base64,{0}", imageBase64);
+                                    
+                    <td class="text-center"><img src="@imageSrc" class="img-fluid" style="max-height: 75px;" /></td>
+                }
+                else
+                {
+                    <td class="text-center">Resim Yüklenmedi</td>
+                }
+                <td class="text-center">@item.IsimSoyisim</td>
+                <td class="text-center">
+                    <button type="button" class="btn yellow btn-block " data-toggle="modal" data-target="#kulgetir" onmouseenter="UzerineGeldi(@item.KullaniciId)">SEÇ</button>
+                </td>
+           
+              @*  @Html.Partial("~/Views/Yetkisiz/_KullaniciGiris.cshtml", item)*@
+
+            </tr>
+            }
+            </tbody>
+        </table>
+    </div>
+</div>

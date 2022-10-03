@@ -1,0 +1,185 @@
+﻿ @model Polyteks.Katman.TefrikBildirim.Models.ImalatModel
+
+@{
+    ViewBag.Title = "PartiNoyaGoreKismiAnalizTalebi";
+    Layout = "~/Views/Shared/Layout.cshtml";
+}
+
+@section styles{
+
+    <style>
+        .mt-radio {
+            font-weight: bold;
+        }
+    </style>
+    <link href="~/Temalar/Select/bootstrap-select.css" rel="stylesheet" />
+ 
+}
+
+
+@if (TempData["Msg"] != null)
+{
+    <div class="custom-alerts alert alert-@TempData["class"] fade in">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true"></button>
+        <h2>@Html.Raw(TempData["Msg"])</h2>
+    </div>
+}
+@{
+    string GrupAdi = "ÇALIŞAN PARTİ KISMİ İMALAT ANALİZ TALEBİ";
+    if (Model.Birim.BirimId != 0)
+    {
+        GrupAdi = Model.Birim.BirimAdi.ToUpper() + " ÇALIŞAN PARTİ KISMİ İMALAT ANALİZ TALEBİ";
+    }
+}
+<div class="row">
+    <div class="col-md-12 ">
+        <div class="portlet light bordered">
+            <div class="portlet-title">
+                <div class="caption font-red-sunglo">
+                    <i class="icon-settings font-red-sunglo"></i>
+                    <span class="caption-subject bold uppercase"> @GrupAdi</span>
+                </div>
+            </div>
+
+
+            <div class="row">
+                <div class="row">
+                    @foreach (var item in Model.Birimler)
+                    {
+                        string ClassAdi = "dark";
+
+
+                        if (item.BirimId == Model.Birim.BirimId)
+                        {
+                            ClassAdi = "red bold";
+
+
+
+                        }
+                        <div class="col-md-3">
+                            <a href="@Url.Action("PartiNoyaGoreKismiAnalizTalebi","Imalat",new{id=item.BirimId})" class="btn btn-block  @ClassAdi">@item.BirimAdi.ToUpper()</a>
+
+                        </div>
+
+                    }
+                </div>
+                <hr />
+                @if (Model.Birim.BirimId != 0)
+                {
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label class="control-label"><b class="font-red-sunglo">PARTİ SEÇİMİ</b></label>
+                                <div class="input-icon right">
+                              
+
+                                    @Html.HiddenFor(a => a.Birim.BirimId, new {@id = "modelId"})
+                                    @Html.DropDownListFor(a => a.SecilenParti, Model.Makineler, "Tümü", new {@class = "selectpicker show-tick form-control", @id = "policeKel"})
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="control-label"><b>&nbsp;</b></label>
+                                <div class="input-icon right">
+                                    <a href="javascript:" onclick="ListeGetir()" class="btn btn-block yellow">SEÇİLEN PARTİYİ LİSTEYE EKLE</a>
+                               
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <hr />
+                        <div class="row" id="aramasonuc">
+
+
+                        </div>
+
+                    </div>
+                }
+                else
+                {
+
+                    <h2 class="red-sunglo text-center">GÜNLÜK İMALAT TALEBİ İÇİN LÜTFEN BİRİM SEÇİNİZ</h2>
+                }
+
+
+            </div>
+        </div>
+    </div>
+</div>
+@section scripts{
+
+    <script src="~/Temalar/Scripts/jquery.decimalMask.js"></script>
+    <script src="~/Temalar/Scripts/sweetalert.js"></script>
+    <script src="~/Temalar/Select/bootstrap-select.js"></script>
+    <script>
+        function ListeGetir() {
+            //  alert(id);
+            var id = $('#policeKel').val();
+            var id2 = $('#modelId').val();
+            var url = "/Yetkisiz/ImalatSecilenPartiNoKIATO/" + id2 + '/' + id;
+
+            $.ajax({
+                url: url,
+
+                dataType: "html",
+                success: function (data) {
+
+                    $("#aramasonuc").empty();
+                    $("#aramasonuc").append(data);
+                    $('.intSayi').decimalMask('-999');
+                    swal({
+                        title: "EKLEME İŞLEMİ ",
+                        text: "SEÇİLEN PARTİ LİSTEYE EKLENMİŞTİR",
+                        //  icon: "warning",
+                        buttons: {
+                            cancel: "Kapat"
+                        }
+                    });
+
+                }
+            });
+
+
+
+        }
+    </script>
+    <script>
+        function ListedenKaldir(id) {
+            //  alert(id);
+          
+            var id2 = $('#modelId').val();
+            var url = "/Yetkisiz/ImalatSecilenPartiNoKaldirKIATO/" + id2 + '/' + id;
+            $.ajax({
+                url: url,
+
+
+                dataType: "html",
+                success: function (data) {
+
+                    $("#aramasonuc").empty();
+                    $("#aramasonuc").append(data);
+                    $('.intSayi').decimalMask('-999');
+                    swal({
+                        title: "SİLME İŞLEMİ",
+                        text: "SEÇİLEN PARTİ LİSTEDEN KALDIRILMIŞTIR",
+                          icon: "warning",
+                        buttons: {
+                            cancel: "Kapat"
+                        }
+                    });
+
+                }
+            });
+
+        }
+    </script>
+    <script>
+        $('#policeKel').selectpicker({
+            liveSearch: true,
+            maxOptions: 1
+        });
+      
+    </script>
+    
+
+}

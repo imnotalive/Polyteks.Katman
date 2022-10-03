@@ -1,0 +1,205 @@
+﻿@model Polyteks.Katman.TefrikBildirim.Models.LaboratuvarModel
+
+@{
+    ViewBag.Title = "GunlukImalatDosyaDuzenle";
+    Layout = "~/Views/Shared/Layout.cshtml";
+}
+@section styles{
+    <style>
+        .rdBuyut {
+            font-weight: bold;
+            font-size: 20px;
+        }
+    </style>
+}
+@if (TempData["Msg"] != null)
+{
+    <div class="custom-alerts alert alert-@TempData["class"] fade in">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true"></button>
+        <h2>@Html.Raw(TempData["Msg"])</h2>
+    </div>
+}
+@{
+    string Baslik = "GÜNLÜK İMALAT ANALİZLERİ";
+
+    if (Model.Birim.BirimId != 0 && Model.DosyaDurumu.DosyaDurumId != 0)
+    {
+        Baslik = string.Format("<b>{0}</b> BİRİMİ <b>{1}</b> DURUMU <b>GÜNLÜK İMALAT ANALİZ SONUÇLARI</b>", Model.Birim.BirimAdi, Model.DosyaDurumu.DosyaDurumAdi);
+    }
+}
+
+<div class="row">
+    <div class="col-md-12 ">
+        <div class="portlet light bordered">
+            <div class="portlet-title">
+                <div class="caption font-green-sharp">
+                    <i class="icon-settings font-green-sharp"></i>
+                    <span class="caption-subject  uppercase"> @Html.Raw(Baslik)</span>
+                </div>
+            </div>
+            @Html.Partial("~/Views/Laboratuvar/_GunlukImalatDosyaOrtakButonlar.cshtml", Model)
+            <div class="row">
+                <div class="col-md-4">
+                    <h4><b>TAKİP KODU / TARİH: </b> <b class="font-red-thunderbird">@string.Format("#{0} / {1}", Model.GunlukImalatDosya.GunlukImalatDosyaId, Model.GunlukImalatDosya.KayitTarihi)</b></h4>
+                </div>
+                <div class="col-md-4">
+                    <h4><b>ANALİZ DURUMU </b> <b class="font-red-thunderbird">@string.Format("{0}", Model.GunlukImalatDosya.DosyaDurumAdi)</b></h4>
+                </div>
+                <div class="col-md-4">
+                    <h4><b>KAYIT YAPAN </b><b class="font-red-thunderbird">@string.Format("{0}", Model.GunlukImalatDosya.KayitYapanKulAdi)</b></h4>
+                </div>
+            </div>
+            <hr />
+            @using (Html.BeginForm())
+            {
+                @Html.HiddenFor(a => a.GunlukImalatDosya.GunlukImalatDosyaId)
+
+                int i = -1;
+                foreach (var Tablo in Model.DosyaLabAnalizTablolar)
+                {
+                    i++;
+                    <div class="row">
+                        <div class="col-md-4">
+                            <h3><b>Parti / İŞ EMRi: </b> <b class="font-green-jungle">@string.Format("{0} / {1}", Tablo.LabAnaliz.PartiNo, Tablo.LabAnaliz.RefakartKartNo)</b></h3>
+
+                        </div>
+                        <div class="col-md-4">
+                            <h3><b>STOK ADI: </b> <b class="font-green-jungle">@string.Format("{0}", Tablo.PartiSonuTakipIzlenebilirlik.StokAdi)</b></h3>
+
+                        </div>
+                        <div class="col-md-4">
+                            <h3><b>MAKİNE: </b> <b class="font-green-jungle">@string.Format("{0} / {1}", Tablo.PartiSonuTakipIzlenebilirlik.MakineNo, Tablo.PartiSonuTakipIzlenebilirlik.MakineAdi)</b></h3>
+
+                        </div>
+
+             
+                    </div>
+                    <div class="row">
+
+
+                        <div class="col-md-12">
+
+
+                            <table class="dtTable table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th class="text-center">
+                                            ANALİZ
+                                        </th>
+                                        @foreach (var aa in Tablo.LabAnalizItemlar)
+                                        {
+                                            string araOzetHead = string.Format("{0}</br> <b>Kanal: {1} T.S: {2} </b>", aa.BobinAdi, aa.KanalNo, aa.TakimSaati);
+                                            <th class="text-center">
+                                            @Html.Raw(araOzetHead)
+                                            </th>
+                                        }
+
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @{
+
+                                        int j = -1;
+                                        foreach (var TabloSatir in Tablo.DosyaLabAnalizTabloSatirlar)
+                                        {
+                                            j++;
+                                            var k = -1;
+                                            <tr>
+
+                                                <td class="text-center">@TabloSatir.LabAnalizCesit.LabAnalizCesitAdi</td>
+                                                @foreach (var sutun in TabloSatir.LabAnalizItemAnalizCesitSonuclari)
+                                                {
+                                                    k++;
+                                                    string degertipiClass = "form-control decSayi";
+                                                    if (sutun.DegerTipi == 1)
+                                                    {
+                                                        degertipiClass = "form-control";
+                                                    }
+
+                                                    <td class="text-center">
+                                                        @Html.HiddenFor(a => a.DosyaLabAnalizTablolar[i].DosyaLabAnalizTabloSatirlar[j].LabAnalizItemAnalizCesitSonuclari[k].LabAnalizItemAnalizCesitId)
+
+                                                     
+                                                            @Html.TextBoxFor(a => a.DosyaLabAnalizTablolar[i].DosyaLabAnalizTabloSatirlar[j].LabAnalizItemAnalizCesitSonuclari[k].AnalizDegeriString, new { @class = degertipiClass }) 
+                                                       
+
+                                                     
+
+                                                    </td>
+                                                }
+                                            </tr>
+                                        }
+                                    }
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="progress-info">
+                        <div class="progress">
+                            <span style="width: 100%;" class="progress-bar progress-bar-success green-sharp">
+                            </span>
+                        </div>
+                    </div>
+                }
+
+
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <label class="control-label"><b>ANALİZ DURUMU</b></label>
+                            <div class="input-icon right">
+                                <div class="input-icon right">
+                                    <div class="mt-radio-inline">
+                                        @foreach (var aa in Model.DosyaDurumlari)
+                                        {
+                                            string rdClass = "mt-radio font-red-sunglo uppercase rdBuyut";
+                                            if (aa.DosyaDurumId == Model.GunlukImalatDosya.DosyaDurumId)
+                                            {
+                                                rdClass = "mt-radio font-green-jungle uppercase rdBuyut";
+                                            }
+                                            <label class="@rdClass">
+                                                @Html.RadioButtonFor(a => a.GunlukImalatDosya.DosyaDurumId, aa.DosyaDurumId) @aa.DosyaDurumAdi
+                                                <span></span>
+                                            </label>
+                                        }
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="form-actions">
+                        <button type="submit" class="btn btn-lg blue btn-block">KAYDET</button>
+                    </div>
+                </div>
+            }
+
+        </div>
+    </div>
+</div>
+
+@section scripts
+{
+    <script src="~/Temalar/Scripts/jquery.decimalMask.js"></script>
+    <script>
+        $(function () {
+            $('.decSayi').decimalMask('-9999,99');
+        });
+    </script>
+}
+
+
+
+    @*<div class="col-md-4">
+        <h3><b>TAKIM SAATİ: </b> <b class="font-green-jungle">@string.Format("{0}", Tablo.LabAnaliz.TakimSaati)</b></h3>
+    </div>
+    <div class="col-md-4">
+        <h3><b>KANAL: </b> <b class="font-green-jungle">@string.Format("{0}", Tablo.LabAnaliz.KanalNo)</b></h3>
+    </div>
+    <div class="col-md-4">
+        <h3><b>ANALİZ TİPİ: </b> <b class="font-green-jungle">@string.Format("{0}", Tablo.LabAnaliz.LabGrupAdi)</b></h3>
+    </div>*@

@@ -1,0 +1,136 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="POTA_PTKSIKDataSet" targetNamespace="http://tempuri.org/POTA_PTKSIKDataSet.xsd" xmlns:mstns="http://tempuri.org/POTA_PTKSIKDataSet.xsd" xmlns="http://tempuri.org/POTA_PTKSIKDataSet.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+          <Connection AppSettingsObjectName="Web.config" AppSettingsPropertyName="POTA_PTKSConnectionString" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="POTA_PTKSConnectionString (Web.config)" ParameterPrefix="@" PropertyReference="AppConfig.System.Configuration.ConfigurationManager.0.ConnectionStrings.POTA_PTKSConnectionString.ConnectionString" Provider="System.Data.SqlClient" />
+        </Connections>
+        <Tables>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="SrcnIkEgitimOturumsTableAdapter" GeneratorDataComponentClassName="SrcnIkEgitimOturumsTableAdapter" Name="SrcnIkEgitimOturums" UserDataComponentName="SrcnIkEgitimOturumsTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="POTA_PTKSConnectionString (Web.config)" DbObjectName="POTA_PTKS.dbo.SrcnIkEgitimOturums" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>SELECT EgitimOturumAdi, KayitTarihi, OturumTarihi, OturumTarihiSaati, OturumTarihiDateTime, KayitYapanKulAdi, IkEgitimAdi, IkFirmaAdi, Aciklama, KatilimDurumAdi, OturumTarihiBitisi, OturumTarihiBitisSaati, OturumTarihiBitisDateTime, OturumSureAciklama FROM dbo.SrcnIkEgitimOturums</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="EgitimOturumAdi" DataSetColumn="EgitimOturumAdi" />
+              <Mapping SourceColumn="KayitTarihi" DataSetColumn="KayitTarihi" />
+              <Mapping SourceColumn="OturumTarihi" DataSetColumn="OturumTarihi" />
+              <Mapping SourceColumn="OturumTarihiSaati" DataSetColumn="OturumTarihiSaati" />
+              <Mapping SourceColumn="OturumTarihiDateTime" DataSetColumn="OturumTarihiDateTime" />
+              <Mapping SourceColumn="KayitYapanKulAdi" DataSetColumn="KayitYapanKulAdi" />
+              <Mapping SourceColumn="IkEgitimAdi" DataSetColumn="IkEgitimAdi" />
+              <Mapping SourceColumn="IkFirmaAdi" DataSetColumn="IkFirmaAdi" />
+              <Mapping SourceColumn="Aciklama" DataSetColumn="Aciklama" />
+              <Mapping SourceColumn="KatilimDurumAdi" DataSetColumn="KatilimDurumAdi" />
+              <Mapping SourceColumn="OturumTarihiBitisi" DataSetColumn="OturumTarihiBitisi" />
+              <Mapping SourceColumn="OturumTarihiBitisSaati" DataSetColumn="OturumTarihiBitisSaati" />
+              <Mapping SourceColumn="OturumTarihiBitisDateTime" DataSetColumn="OturumTarihiBitisDateTime" />
+              <Mapping SourceColumn="OturumSureAciklama" DataSetColumn="OturumSureAciklama" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+        </Tables>
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="POTA_PTKSIKDataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="True" msprop:Generator_DataSetName="POTA_PTKSIKDataSet" msprop:Generator_UserDSName="POTA_PTKSIKDataSet">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="SrcnIkEgitimOturums" msprop:Generator_TableClassName="SrcnIkEgitimOturumsDataTable" msprop:Generator_TableVarName="tableSrcnIkEgitimOturums" msprop:Generator_TablePropName="SrcnIkEgitimOturums" msprop:Generator_RowDeletingName="SrcnIkEgitimOturumsRowDeleting" msprop:Generator_RowChangingName="SrcnIkEgitimOturumsRowChanging" msprop:Generator_RowEvHandlerName="SrcnIkEgitimOturumsRowChangeEventHandler" msprop:Generator_RowDeletedName="SrcnIkEgitimOturumsRowDeleted" msprop:Generator_UserTableName="SrcnIkEgitimOturums" msprop:Generator_RowChangedName="SrcnIkEgitimOturumsRowChanged" msprop:Generator_RowEvArgName="SrcnIkEgitimOturumsRowChangeEvent" msprop:Generator_RowClassName="SrcnIkEgitimOturumsRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="EgitimOturumAdi" msprop:Generator_ColumnVarNameInTable="columnEgitimOturumAdi" msprop:Generator_ColumnPropNameInRow="EgitimOturumAdi" msprop:Generator_ColumnPropNameInTable="EgitimOturumAdiColumn" msprop:Generator_UserColumnName="EgitimOturumAdi" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="KayitTarihi" msprop:Generator_ColumnVarNameInTable="columnKayitTarihi" msprop:Generator_ColumnPropNameInRow="KayitTarihi" msprop:Generator_ColumnPropNameInTable="KayitTarihiColumn" msprop:Generator_UserColumnName="KayitTarihi" type="xs:dateTime" />
+              <xs:element name="OturumTarihi" msprop:Generator_ColumnVarNameInTable="columnOturumTarihi" msprop:Generator_ColumnPropNameInRow="OturumTarihi" msprop:Generator_ColumnPropNameInTable="OturumTarihiColumn" msprop:Generator_UserColumnName="OturumTarihi" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="OturumTarihiSaati" msprop:Generator_ColumnVarNameInTable="columnOturumTarihiSaati" msprop:Generator_ColumnPropNameInRow="OturumTarihiSaati" msprop:Generator_ColumnPropNameInTable="OturumTarihiSaatiColumn" msprop:Generator_UserColumnName="OturumTarihiSaati" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="OturumTarihiDateTime" msprop:Generator_ColumnVarNameInTable="columnOturumTarihiDateTime" msprop:Generator_ColumnPropNameInRow="OturumTarihiDateTime" msprop:Generator_ColumnPropNameInTable="OturumTarihiDateTimeColumn" msprop:Generator_UserColumnName="OturumTarihiDateTime" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="KayitYapanKulAdi" msprop:Generator_ColumnVarNameInTable="columnKayitYapanKulAdi" msprop:Generator_ColumnPropNameInRow="KayitYapanKulAdi" msprop:Generator_ColumnPropNameInTable="KayitYapanKulAdiColumn" msprop:Generator_UserColumnName="KayitYapanKulAdi" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="IkEgitimAdi" msprop:Generator_ColumnVarNameInTable="columnIkEgitimAdi" msprop:Generator_ColumnPropNameInRow="IkEgitimAdi" msprop:Generator_ColumnPropNameInTable="IkEgitimAdiColumn" msprop:Generator_UserColumnName="IkEgitimAdi" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="IkFirmaAdi" msprop:Generator_ColumnVarNameInTable="columnIkFirmaAdi" msprop:Generator_ColumnPropNameInRow="IkFirmaAdi" msprop:Generator_ColumnPropNameInTable="IkFirmaAdiColumn" msprop:Generator_UserColumnName="IkFirmaAdi" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Aciklama" msprop:Generator_ColumnVarNameInTable="columnAciklama" msprop:Generator_ColumnPropNameInRow="Aciklama" msprop:Generator_ColumnPropNameInTable="AciklamaColumn" msprop:Generator_UserColumnName="Aciklama" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="2147483647" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="KatilimDurumAdi" msprop:Generator_ColumnVarNameInTable="columnKatilimDurumAdi" msprop:Generator_ColumnPropNameInRow="KatilimDurumAdi" msprop:Generator_ColumnPropNameInTable="KatilimDurumAdiColumn" msprop:Generator_UserColumnName="KatilimDurumAdi" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="OturumTarihiBitisi" msprop:Generator_ColumnVarNameInTable="columnOturumTarihiBitisi" msprop:Generator_ColumnPropNameInRow="OturumTarihiBitisi" msprop:Generator_ColumnPropNameInTable="OturumTarihiBitisiColumn" msprop:Generator_UserColumnName="OturumTarihiBitisi" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="OturumTarihiBitisSaati" msprop:Generator_ColumnVarNameInTable="columnOturumTarihiBitisSaati" msprop:Generator_ColumnPropNameInRow="OturumTarihiBitisSaati" msprop:Generator_ColumnPropNameInTable="OturumTarihiBitisSaatiColumn" msprop:Generator_UserColumnName="OturumTarihiBitisSaati" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="OturumTarihiBitisDateTime" msprop:Generator_ColumnVarNameInTable="columnOturumTarihiBitisDateTime" msprop:Generator_ColumnPropNameInRow="OturumTarihiBitisDateTime" msprop:Generator_ColumnPropNameInTable="OturumTarihiBitisDateTimeColumn" msprop:Generator_UserColumnName="OturumTarihiBitisDateTime" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="OturumSureAciklama" msprop:Generator_ColumnVarNameInTable="columnOturumSureAciklama" msprop:Generator_ColumnPropNameInRow="OturumSureAciklama" msprop:Generator_ColumnPropNameInTable="OturumSureAciklamaColumn" msprop:Generator_UserColumnName="OturumSureAciklama" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

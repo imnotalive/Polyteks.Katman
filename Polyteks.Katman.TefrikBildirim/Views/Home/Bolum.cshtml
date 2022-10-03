@@ -1,0 +1,128 @@
+﻿@model Polyteks.Katman.Has.Models.TefrikAnalizModel
+
+@{
+    ViewBag.Title = "Bolum";
+    Layout = "~/Views/Shared/Layout.cshtml";
+}
+@if (TempData["Msg"] != null)
+{
+    <div class="custom-alerts alert alert-@TempData["class"] fade in">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true"></button>
+        <h2>@Html.Raw(TempData["Msg"])</h2>
+    </div>
+}
+<div class="row">
+    <div class="col-md-12">
+        <div class="portlet light bordered">
+            <div class="portlet-title">
+                <div class="caption">
+                    <i class="fa fa-industry font-green-sharp"></i>
+                    <span class="caption-subject font-green-sharp bold uppercase">@Model.Makine.OzelAlan14</span>
+                </div>
+
+            </div>
+            <div class="portlet-body">
+                <ul class="nav nav-pills">
+
+                    @foreach (var item in Model.MakineTurListe.ToList())
+                    {
+                        string aktifClass = null;
+
+                        if (Model.Makine.ToplamCalismaSaati.ToString() == item.Id)
+                        {
+                            aktifClass = "active";
+
+                        }
+                        <li class="@aktifClass">
+                            <a href="@Url.Action("Bolum","Home",new{id=item.Id})"> <b> @item.Tanim</b> </a>
+                        </li>
+                    }
+                </ul>
+                <p class="pull-right">Son Sistem Güncelleme Saati: @DateTime.Now</p>
+                <hr />
+
+                <div class="tab-content">
+              
+              
+                    <div class="tab-pane fade active in">
+
+                        <div class="row">
+                            <div class="clearfix">
+
+                            </div>
+
+                            @{
+                                int say = 0;
+                                foreach (var item in Model.TefrikMakineDurumModelItemlar.OrderByDescending(a => a.KalanMiktar))
+                                {
+                                    if (item.KalanMiktar > 0)
+                                    {
+                                        say++;
+                                        string btnClass = "btn red-thunderbird";
+                                        //if (say % 3 == 1)
+                                        //{
+                                        //    btnClass = "btn blue";
+                                        //}
+                                        //if (say % 3 == 2)
+                                        //{
+                                        //    btnClass = "btn yellow";
+                                        //}
+                                        <div class="col-md-6" style="padding: 1px;">
+                                            <div>
+                                                <a href="@Url.Action("MakineHatalari", "Home", new {id = item.Makine.SayacOndalikSayisi})" class="@btnClass btn-circle btn-block">
+                                                    <div class="row">
+                                                        <hr/>
+
+                                                        <h3> <b class="text-center">@item.Makine.MakineAdi - @item.Makine.MakineNo </b></h3>
+
+                                                        <div class="col-md-4">
+                                                            <p>
+                                                                ÖNCEKİ VARDIYA HATA SAYISI <br/>
+                                                                <h2 class="text-center"><b>@item.OncekiVardiyaHataSayisi</b></h2>
+                                                            </p>
+                                                        </div>
+                                                        <div class="col-md-4">
+                                                            <p>
+                                                                BU VARDIYA HATA SAYISI <br/>
+                                                                <h2 class="text-center"><b>@item.SuankiVardiyaHataSayisi</b></h2>
+                                                            </p>
+                                                        </div>
+                                                        <div class="col-md-4">
+                                                            <p>
+                                                                BAKILACAK HATA SAYISI
+                                                                <br/>
+                                                                <h2 class="text-center"><b>@item.KalanMiktar</b></h2>
+                                                            </p>
+                                                        </div>
+                                                    </div>
+                                                    <hr/>
+                                                </a>
+                                            </div>
+
+                                        </div>
+                                    }
+                                }
+                            }
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts
+{
+    <script>
+
+        setTimeout(aaa,15000);
+
+        function aaa() {
+
+            location.reload();
+
+        }
+
+    </script>
+}

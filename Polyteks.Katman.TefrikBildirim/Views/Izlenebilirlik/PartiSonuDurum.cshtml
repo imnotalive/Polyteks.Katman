@@ -1,0 +1,421 @@
+﻿@model Polyteks.Katman.TefrikBildirim.Models.IzlenebilirlikPartiSonuModel
+
+@{
+    ViewBag.Title = "PartiSonuDurum";
+    Layout = "~/Views/Shared/Layout.cshtml";
+}
+@section styles{
+
+
+
+    <style>
+        .mt-radio {
+            font-weight: bold;
+        }
+    </style>
+
+    <style>
+        label {
+            font-weight: bold;
+        }
+    </style>
+    <link href="~/Temalar/TarihSaat/bootstrap-datepicker/css/bootstrap-datetimepicker.css" rel="stylesheet" />
+    <link href="~/Temalar/Select/bootstrap-select.css" rel="stylesheet" />
+}
+
+@if (TempData["Msg"] != null)
+{
+    <div class="custom-alerts alert alert-@TempData["class"] fade in">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true"></button>
+        <h2>@Html.Raw(TempData["Msg"])</h2>
+    </div>
+}
+
+<div class="portlet light bordered">
+    <div class="portlet-title">
+        <div class="caption font-blue">
+            <i class="icon-settings font-blue"></i>
+            <span class="caption-subject bold uppercase"> PARTİ BİLGİSİ İZLENEBİLİRLİK</span>
+        </div>
+    </div>
+
+    @using (Html.BeginForm())
+    {
+        <div class="form-group">
+            <div class="row">
+                <div class="col-md-4">
+                    <label><b>PLANLAMA TERMİN TARİHİ FİLTRESİ YAPILSIN MI ? </b></label>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="mt-radio-inline">
+                                <label class="mt-radio font-green-jungle">
+                                    @Html.RadioButtonFor(a => a.PlanlamaTarihFiltresiYapilsinMi, true) EVET
+                                    <span></span>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="mt-radio-inline">
+                                <label class="mt-radio font-red-sunglo">
+                                    @Html.RadioButtonFor(a => a.PlanlamaTarihFiltresiYapilsinMi, false) HAYIR
+                                    <span></span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <label><b>BAŞLANGIÇ TARİHİ </b></label>
+                                        @Html.TextBoxFor(a => a.PlanlamaBaslangicTarihi, new { @class = "form-control tarih", @onkeydown = "return false" })
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <label><b>BİTİŞ TARİHİ </b></label>
+                                        @Html.TextBoxFor(a => a.PlanlamaBitisTarihi, new { @class = "form-control tarih", @onkeydown = "return false" })
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <label><b>İŞ EMRİ NUMARASI </b></label>
+                                        @Html.DropDownListFor(a => a.SecilenRefNo, Model.RefakatNolar, "Seçim Yok", new { @class = "selectpicker show-tick form-control", @id = "dropPersonel6" })
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+
+        <div class="form-group">
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <label><b>CARİ </b></label>
+                                        @Html.DropDownListFor(a => a.SecilenCariKod, Model.Cariler, "Seçim Yok", new { @class = "selectpicker show-tick form-control", @id = "dropPersonel2" })
+                                    </div>
+
+
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <label><b>PARTİ </b></label>
+                                        @Html.DropDownListFor(a => a.SecilenParti, Model.Partiler, "Seçim Yok", new { @class = "selectpicker show-tick form-control", @id = "dropPersonel" })
+                                    </div>
+
+
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <label><b>STOK ADI </b></label>
+                                        @Html.DropDownListFor(a => a.SecilenStokKodu, Model.Stoklar, "Seçim Yok", new { @class = "selectpicker show-tick form-control", @id = "dropPersonel5" })
+                                    </div>
+
+
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+              
+            </div>
+
+
+        </div>
+        <div class="form-group">
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <label><b>SİPARİŞ NO </b></label>
+                                        @Html.DropDownListFor(a => a.SiparisNo, Model.SiparisNolar, "Seçim Yok", new { @class = "selectpicker show-tick form-control", @id = "dropPersonel4" })
+                                    </div>
+
+
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <label><b>PARTİ SONU TAKİP DURUMU </b></label>
+                                        @Html.DropDownListFor(a => a.PartiSonuTakipDurumId, Model.PartisonuTakipDurumlar, "Seçim Yok", new { @class = "selectpicker show-tick form-control", @id = "dropPersonel3" })
+                                    </div>
+
+
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+               
+            </div>
+
+
+        </div>
+
+        <div class="form-actions">
+            <button type="submit" class="btn btn-lg red-thunderbird btn-block btn-circle"> <i class="fa fa-search"></i> ANALİZ YAP</button>
+        </div>
+
+    }
+    <br />
+    <div class="row table-responsive">
+        <div class="col-md-12 table-responsive">
+            <table class="table table-bordered table-responsive">
+                <thead>
+                    <tr>
+                        <th class="text-center">
+                            #
+                        </th>
+                        <th class="text-center">
+                            CARİ
+                        </th>
+                        <th class="text-center">
+                            PARTİ / İŞ EMRİ
+                        </th>
+                    
+                        <th class="text-center">
+                            SİPARİŞ NO
+                        </th>
+
+                        <th class="text-center">
+                            STOK ADI
+                        </th>
+                        <th class="text-center">
+                            Ürt. Başl. Tar
+                        </th>
+
+                        <th class="text-center">
+                           Pl. TERMİN
+                        </th>
+                  
+                        <th class="text-center">
+                            ÜRT. MİKTAR
+                        </th>
+                        <th class="text-center">
+                            SİP. MİKTAR
+                        </th>
+                        <th class="text-center">
+                            İŞLEM
+                        </th>
+
+                    
+                        <th class="text-center">
+                            GÜNCEL DURUM
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @{
+                        int i = -1;
+
+                        foreach (var item in Model.PartiSonuTakipIzlenebilirlikler)
+                        {
+                            i++;
+                            <tr>
+                                <td class="text-center">@(i+1)</td>
+                                <td class="text-center">@item.CariAdiSecili.Trim()</td>
+                                <td class="text-center"><b class="font-red-sunglo">@item.PartiNo.Trim() </b><br/> @item.RefakatNo</td>
+                                <td class="text-center">
+                                    @Html.Raw(string.Format("<b>{0}-{1}</b> </br> {2}", item.SiparisNo, item.SiparisSiraNo, item.SiparisTuru))
+                                </td>
+                                <td class="text-center">
+                                    @item.StokAdi
+                                    <br />
+                                    <b> @item.StokKodu</b>
+                                </td>
+                                <td class="text-center">@item.IslemBaslamaTarihi</td>
+                                <td class="text-center">@item.PlanlamaTermini</td>
+       
+                                <td class="text-center">@item.NetKG</td>
+                                @if (item.Miktar == null)
+                                {
+                                    <td class="text-center">0</td>
+                                }
+                                else
+                                {
+                                    <td class="text-center">
+                                        @Convert.ToDecimal(item.Miktar).ToString("F")
+                                    </td>
+                                }
+
+                                <td class="text-center">
+                                    @item.IslemAdi
+                                    <br />
+                                    <b> @item.MakineNo</b>
+                                </td>
+
+                                <td class="text-center">
+                                    @{
+                                        string durum = "Parti Sonu Durum Belirlenmedi";
+                                        if (item.PartiSonuTakipHareketAdi != null)
+                                        {
+                                            durum = item.PartiSonuTakipHareketAdi;
+                                        }
+                                    }
+                                    <button type="button" class="btn yellow btn-block " data-toggle="modal" data-target="#kulgetir" onclick="DetayGetir(@item.RefakatNo)">@durum</button>
+
+                                </td>
+                            </tr>
+                        }
+                    }
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<div>
+    <div id="kulgetir" class="modal fade" role="dialog">
+        <div class="modal-dialog modal-full">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">DETAYLAR</h4>
+                </div>
+
+                <div id="modalDoldur">
+
+                </div>
+                <div class="modal-footer">
+
+                    <button type="button" class="btn dark btn-outline" data-dismiss="modal">KAPAT</button>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+@section scripts
+{
+    <script>
+        function DetayGetir(id) {
+            //  alert(id);
+            var url = "/Yetkisiz/IzlenebilirlikRefakatNoDetay/" + id;
+
+            $.ajax({
+                url: url,
+
+                dataType: "html",
+                success: function (data) {
+
+                    $("#modalDoldur").empty();
+                    $("#modalDoldur").append(data);
+                }
+            });
+
+
+
+        }
+
+
+    </script>
+    <script src="~/Temalar/TarihSaat/bootstrap-datepicker/js/bootstrap-datetimepicker.js"></script>
+    <script src="~/Temalar/TarihSaat/bootstrap-datepicker/js/bootstrap-datetimepicker.tr.js"></script>
+    <script src="~/Temalar/Select/bootstrap-select.js"></script>
+    <script src="~/Temalar/Scripts/sweetalert.js"></script>
+    <script>
+        $('.tarih').datetimepicker({
+            language: 'tr',
+            weekStart: 1,
+            todayBtn: 1,
+            autoclose: 1,
+            todayHighlight: 1,
+            startView: 2,
+            minView: 2,
+            forceParse: 0,
+            format: "dd MM yyyy",
+            inline: true
+        });
+
+    </script>
+    <script>
+        $('#dropPersonel').selectpicker({
+            liveSearch: true,
+            maxOptions: 1
+        });
+        $('#dropPersonel2').selectpicker({
+            liveSearch: true,
+            maxOptions: 1
+        });
+        $('#dropPersonel3').selectpicker({
+            liveSearch: true,
+            maxOptions: 1
+        });
+        $('#dropPersonel4').selectpicker({
+            liveSearch: true,
+            maxOptions: 1
+        });
+        $('#dropPersonel5').selectpicker({
+            liveSearch: true,
+            maxOptions: 1
+        });
+        $('#dropPersonel6').selectpicker({
+            liveSearch: true,
+            maxOptions: 1
+        });
+    </script>
+
+
+}
+

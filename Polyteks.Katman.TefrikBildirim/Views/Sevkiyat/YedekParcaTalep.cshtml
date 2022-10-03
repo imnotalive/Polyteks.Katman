@@ -1,0 +1,145 @@
+﻿@model IEnumerable<Polyteks.Katman.DAL.Concrete.EntityFramework.Mrv_MalzemeAna>
+
+@*<link href="~/Content/DataTables/css/jquery.dataTables.min.css" rel="stylesheet" />
+    <link href="~/Content/DataTables/css/dataTables.bootstrap4.min.css" rel="stylesheet" />*@
+
+<br />
+
+<hr />
+<table id="b" class="table table-bordered table-striped">
+    <thead>
+        <tr style="background-color: #17a2b8" class="text-center">
+            <th>
+                <b>TALEP NUMARASI</b>
+            </th>
+            <th>
+                <b>TARİH</b>
+            </th>
+            <th>
+                <b>TALEP EDEN BÖLÜM</b>
+            </th>
+            <th>
+                <b>TALEP EDİLEN AMBAR</b>
+            </th>
+            <th><b>TALEPLER</b></th>
+
+
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    <center><b># @Html.DisplayFor(modelItem => item.MalzemeNo)</b></center>
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Tarih)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Bolum)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.AmbarAdi)
+                </td>
+                <td>
+
+
+                    <table id="b" class="table table-bordered table-info">
+                        <thead>
+                            <tr style="background-color: #80471C">
+
+                                <th>
+                                    Stok Adı
+                                </th>
+
+                                <th>
+                                    Stok Kodu
+                                </th>
+
+                                <th>
+                                    Miktar
+                                </th>
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var detay in item.Mrv_MalzemeDetay)
+                            {
+                                <tr>
+
+                                    <td>@(detay.StokAdi)</td>
+
+                                    <td> @(detay.StokKodu)</td>
+
+                                    <td> @(detay.Miktar)</td>
+
+
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+
+                </td>
+
+
+            </tr>
+        }
+    </tbody>
+</table>
+
+<link href="~/Content/DataTables/css/jquery.dataTables.min.css" rel="stylesheet" />
+<link href="~/Content/DataTables/css/buttons.dataTables.min.css" rel="stylesheet" />
+<script src="~/Scripts/DataTables/jquery.dataTables.min.js"></script>
+<script src="~/Scripts/DataTables/dataTables.buttons.min.js"></script>
+<script src="~/Scripts/DataTables/buttons.flash.min.js"></script>
+<script src="~/Scripts/DataTables/jszip.min.js"></script>
+<script src="~/Scripts/DataTables/pdfmake.min.js"></script>
+<script src="~/Scripts/DataTables/vfs_fonts.js"></script>
+<script src="~/Scripts/DataTables/buttons.html5.min.js"></script>
+<script src="~/Scripts/DataTables/buttons.print.min.js"></script>
+
+
+<script type="text/javascript">
+
+    $(document).ready(function () {
+        $('#b').DataTable({
+            extend: 'print',
+            pageLength: 10,
+            paging: true,
+            searching: true,
+            "order": [[3, "desc"]],
+            "language": {
+                "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Turkish.json"
+            },
+
+            //dom: 'Bfrtip',
+            //buttons: [
+            //    { extend: 'copyHtml5', text: 'KOPYALA' },
+            //    { extend: 'excel', text: 'EXCEL' },
+            //    { extend: 'pdf', text: 'PDF' },
+            //    { extend: 'print', text: 'YAZDIR' }
+            //],
+
+        });
+    });
+</script>
+@*//$('.b').each(function (i) {
+
+    //    var worktable = $(this);
+    //    var num_head_columns = worktable.find('thead tr th').length;
+    //    var rows_to_validate = worktable.find('tbody tr');
+
+    //    rows_to_validate.each(function (i) {
+
+    //        var row_columns = $(this).find('td').length;
+    //        for (i = $(this).find('td').length; i < num_head_columns; i++) {
+    //            $(this).append('<td class="hidden"></td>');
+    //        }
+
+    //    });
+
+    //});*@
+
+
+

@@ -1,0 +1,657 @@
+﻿@model IEnumerable<Polyteks.Katman.DAL.Concrete.EntityFramework.Personel>
+
+@{
+    ViewBag.Title = "Liste";
+    Layout = "~/Views/Shared/Layout.cshtml";
+}
+
+@if (TempData["Msg"] != null)
+{
+    <div class="custom-alerts alert alert-@TempData["class"] fade in">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true"></button>
+        <h2>@Html.Raw(TempData["Msg"])</h2>
+    </div>
+}
+
+<div class="row">
+    <div class="col-md-12 ">
+        <div class="portlet light bordered">
+            <div class="portlet-title">
+                <div class="caption font-blue">
+                    <i class="icon-settings font-blue"></i>
+
+
+                    <span class="caption-subject bold uppercase"> PERSONEL LİSTESİ</span>
+                </div>
+            </div>
+            <div class="portlet-body form">
+
+                @*<div class="row">
+                    <div class="col-md-12">*@
+
+
+                        <table class="dtTable table table-bordered">
+                        <tr>
+                        <th>#</th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.IsyeriKodu)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.PersonelNo)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.PersonelAdi)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.EvTelefonu)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Gorev)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.MaliyetMerkezNo)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.AnaAdi)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.BabaAdi)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Adres1)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Adres2)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Ilce)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Il)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.EsininAdi)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.VatandaslikNo)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.DogumYeri)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.DogumTarihi)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.NufusaKayitliOlduguIl)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.NufusaKayitliOlduguIlce)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.NufusaKayitliOlduguMahalle)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.NufusaKayitliOlduguKoy)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.NufusaKayitliOlduguCiltNo)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.NufusaKayitliOlduguAileSiraNo)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.NufusaKayitliOlduguSiraNo)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.VerilisNedeni)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.KayitNo)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.VerilisTarihi)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.KayitliOlduguNufusDairesi)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.VergiDairesi)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.VergiNo)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Din)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.EhliyetNo)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.EhliyetSinifi)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.PasaportNo)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.AnaDil)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.YabanciDil1)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.YabanciDil2)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.AyakkabiNo)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.AltBedenNo)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.UstBedenNo)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.SapkaNo)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.SigaraIciyormu)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.MedeniHal)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.IseGirisTarihi)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.IlkIsYeri)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.EvlilikTarihi)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.AskerlikDurumu)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.AskerlikBitisTarihi)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.ToplamCocukSayisi)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.OkulOncesiCocukSayisi)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.IlkOgretimCocukSayisi)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.LiseCocukSayisi)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.YuksekOgretimCocukSayisi)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.IstenCikisTarihi)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.IstenCikisSebebi)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.EgitimDurum)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.SonBitirdigiOkul)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.KanGrubu)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.ServisGuzergahi)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.SSKNo)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.TasarrufHesapNo)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Uyrugu)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Gocmenmi)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.SakatlikDurumu)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.NetUcret)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.BrutUcret)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.DovizBirim)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Banka)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.BankaSubeAdi)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.BankaSubeKodu)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.BankaHesapNo)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.HesapDovizBirimi)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.SskDurum)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.SskBelgeTurAdi)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.EmekliNo)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.SendikaNo)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.IlkSoyadi)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Cinsiyeti)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.GvMuafOkulOncesiCocukSayisi)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.GvMuafIlkOgretimCocukSayisi)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.GvMuafLiseCocukSayisi)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.GvMuafYuksekOgretimCocukSayisi)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.SskMuafOkulOncesiCocukSayisi)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.SskMuafIlkOgretimCocukSayisi)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.SskMuafLiseCocukSayisi)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.SskMuafYuksekOgrCocukSayisi)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.KullaniciKodu)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.GSMUlkeKodu)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.GSMAlanKodu)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.GSMTelefon)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.EvTelefonuUlkeKodu)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.EvTelefonuAlanKodu)
+                        </th>
+                       
+                        <th>
+                            @Html.DisplayNameFor(model => model.ElektronikPosta)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.IBAN)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.VardiyaKodu)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.SonKullanimTarihi)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.SonKullaniciKodu)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.TanimlayanKullaniciKodu)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.TanimlandigiTarih)
+                        </th>
+                        <th></th>
+                        </tr>
+
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                @if (item.Resim != null)
+                                {
+                                string imageBase64 = Convert.ToBase64String(item.Resim);
+                                string imageSrc = string.Format("data:image/gif;base64,{0}", imageBase64);
+                                    
+                                    <td><img src="@imageSrc" width="100" height="100" /></td>
+                                }
+                                else
+                                {
+                                    <td>Resim Yüklenmedi</td>
+                                }
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.IsyeriKodu)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.PersonelNo)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.PersonelAdi)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.EvTelefonu)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Gorev)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.MaliyetMerkezNo)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.AnaAdi)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.BabaAdi)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Adres1)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Adres2)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Ilce)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Il)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.EsininAdi)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.VatandaslikNo)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.DogumYeri)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.DogumTarihi)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.NufusaKayitliOlduguIl)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.NufusaKayitliOlduguIlce)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.NufusaKayitliOlduguMahalle)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.NufusaKayitliOlduguKoy)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.NufusaKayitliOlduguCiltNo)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.NufusaKayitliOlduguAileSiraNo)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.NufusaKayitliOlduguSiraNo)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.VerilisNedeni)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.KayitNo)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.VerilisTarihi)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.KayitliOlduguNufusDairesi)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.VergiDairesi)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.VergiNo)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Din)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.EhliyetNo)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.EhliyetSinifi)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.PasaportNo)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.AnaDil)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.YabanciDil1)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.YabanciDil2)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.AyakkabiNo)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.AltBedenNo)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.UstBedenNo)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.SapkaNo)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.SigaraIciyormu)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.MedeniHal)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.IseGirisTarihi)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.IlkIsYeri)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.EvlilikTarihi)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.AskerlikDurumu)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.AskerlikBitisTarihi)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.ToplamCocukSayisi)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.OkulOncesiCocukSayisi)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.IlkOgretimCocukSayisi)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.LiseCocukSayisi)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.YuksekOgretimCocukSayisi)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.IstenCikisTarihi)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.IstenCikisSebebi)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.EgitimDurum)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.SonBitirdigiOkul)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.KanGrubu)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.ServisGuzergahi)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.SSKNo)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.TasarrufHesapNo)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Uyrugu)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Gocmenmi)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.SakatlikDurumu)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.NetUcret)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.BrutUcret)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.DovizBirim)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Banka)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.BankaSubeAdi)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.BankaSubeKodu)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.BankaHesapNo)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.HesapDovizBirimi)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.SskDurum)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.SskBelgeTurAdi)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.EmekliNo)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.SendikaNo)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.IlkSoyadi)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Cinsiyeti)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.GvMuafOkulOncesiCocukSayisi)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.GvMuafIlkOgretimCocukSayisi)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.GvMuafLiseCocukSayisi)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.GvMuafYuksekOgretimCocukSayisi)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.SskMuafOkulOncesiCocukSayisi)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.SskMuafIlkOgretimCocukSayisi)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.SskMuafLiseCocukSayisi)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.SskMuafYuksekOgrCocukSayisi)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.KullaniciKodu)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.GSMUlkeKodu)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.GSMAlanKodu)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.GSMTelefon)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.EvTelefonuUlkeKodu)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.EvTelefonuAlanKodu)
+                                </td>
+                              
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.ElektronikPosta)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.IBAN)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.VardiyaKodu)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.SonKullanimTarihi)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.SonKullaniciKodu)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.TanimlayanKullaniciKodu)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.TanimlandigiTarih)
+                                </td>
+                                <td>
+                                    @Html.ActionLink("Edit", "Edit", new {/* id=item.PrimaryKey */}) |
+                                    @Html.ActionLink("Details", "Details", new {/* id=item.PrimaryKey */}) |
+                                    @Html.ActionLink("Delete", "Delete", new {/* id=item.PrimaryKey */})
+                                </td>
+                                </tr>
+                            }
+
+                        </table>
+                    @*</div>
+                </div>*@
+            </div>
+        </div>
+    </div>
+</div>

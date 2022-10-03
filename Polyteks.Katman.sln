@@ -1,0 +1,79 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.28803.452
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Polyteks.Katman.Has", "Polyteks.Katman.TefrikBildirim\Polyteks.Katman.Has.csproj", "{B67D645D-49EF-45CF-AE79-7727DC9B8547}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Polyteks.Katman.DAL", "Polyteks.Katman.DAL\Polyteks.Katman.DAL.csproj", "{F97E07F3-51EF-4414-B3E3-216B4EE939B9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Polyteks.Katman.Helpers", "Polyteks.Katman.Helpers\Polyteks.Katman.Helpers.csproj", "{179EBFFE-B599-4CC7-8BB2-631100D73D99}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Polyteks.Katman.Entities", "Polyteks.Katman.Entities\Polyteks.Katman.Entities.csproj", "{D0DBEFC5-D26B-4DD2-9386-45971A86D86B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Polyteks.Katman.ArduinoKontrol", "Polyteks.Katman.ArduinoKontrol\Polyteks.Katman.ArduinoKontrol.csproj", "{7F8DE71C-7289-431E-B247-97B4A11C8EE8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Polyteks.Katman.Bildirim", "Polyteks.Katman.Bildirim\Polyteks.Katman.Bildirim.csproj", "{F431FA46-1BAF-4013-92B1-A099F95E64CC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Polyteks.Katman.Toplanti", "Polyteks.Katman.Toplanti\Polyteks.Katman.Toplanti.csproj", "{D16249EF-7646-420B-98D9-76C25058A27F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Polyteks.Katman.WFAanalizGonderim", "Polyteks.Katman.WFAanalizGonderim\Polyteks.Katman.WFAanalizGonderim.csproj", "{5223577D-1A92-4F86-BA69-05EF141C8C19}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Polyteks.Katman.WFALaborantGIAS", "Polyteks.Katman.LaborantGIAS\Polyteks.Katman.WFALaborantGIAS.csproj", "{CDE9E7FD-9D38-4CA3-9ED7-329C8F8AB4D4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Polyteks.Katman.WFATefrikProgrami", "Polyteks.Katman.WFATefrikProgrami\Polyteks.Katman.WFATefrikProgrami.csproj", "{84494A91-7E5B-458D-8E79-921EEAE4C0E0}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B67D645D-49EF-45CF-AE79-7727DC9B8547}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B67D645D-49EF-45CF-AE79-7727DC9B8547}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B67D645D-49EF-45CF-AE79-7727DC9B8547}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B67D645D-49EF-45CF-AE79-7727DC9B8547}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F97E07F3-51EF-4414-B3E3-216B4EE939B9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F97E07F3-51EF-4414-B3E3-216B4EE939B9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F97E07F3-51EF-4414-B3E3-216B4EE939B9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F97E07F3-51EF-4414-B3E3-216B4EE939B9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{179EBFFE-B599-4CC7-8BB2-631100D73D99}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{179EBFFE-B599-4CC7-8BB2-631100D73D99}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{179EBFFE-B599-4CC7-8BB2-631100D73D99}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{179EBFFE-B599-4CC7-8BB2-631100D73D99}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D0DBEFC5-D26B-4DD2-9386-45971A86D86B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D0DBEFC5-D26B-4DD2-9386-45971A86D86B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D0DBEFC5-D26B-4DD2-9386-45971A86D86B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D0DBEFC5-D26B-4DD2-9386-45971A86D86B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7F8DE71C-7289-431E-B247-97B4A11C8EE8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7F8DE71C-7289-431E-B247-97B4A11C8EE8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7F8DE71C-7289-431E-B247-97B4A11C8EE8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7F8DE71C-7289-431E-B247-97B4A11C8EE8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F431FA46-1BAF-4013-92B1-A099F95E64CC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F431FA46-1BAF-4013-92B1-A099F95E64CC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F431FA46-1BAF-4013-92B1-A099F95E64CC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F431FA46-1BAF-4013-92B1-A099F95E64CC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D16249EF-7646-420B-98D9-76C25058A27F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D16249EF-7646-420B-98D9-76C25058A27F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D16249EF-7646-420B-98D9-76C25058A27F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D16249EF-7646-420B-98D9-76C25058A27F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5223577D-1A92-4F86-BA69-05EF141C8C19}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5223577D-1A92-4F86-BA69-05EF141C8C19}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5223577D-1A92-4F86-BA69-05EF141C8C19}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5223577D-1A92-4F86-BA69-05EF141C8C19}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CDE9E7FD-9D38-4CA3-9ED7-329C8F8AB4D4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CDE9E7FD-9D38-4CA3-9ED7-329C8F8AB4D4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CDE9E7FD-9D38-4CA3-9ED7-329C8F8AB4D4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CDE9E7FD-9D38-4CA3-9ED7-329C8F8AB4D4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{84494A91-7E5B-458D-8E79-921EEAE4C0E0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{84494A91-7E5B-458D-8E79-921EEAE4C0E0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{84494A91-7E5B-458D-8E79-921EEAE4C0E0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{84494A91-7E5B-458D-8E79-921EEAE4C0E0}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {3865CFFA-339A-4F3B-BBFF-02F2435B9835}
+	EndGlobalSection
+EndGlobal

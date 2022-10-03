@@ -1,0 +1,41 @@
+﻿@model Polyteks.Katman.TefrikBildirim.Models.LaboratuvarModel
+
+<div class="row">
+
+    @foreach (var item in Model.Birimler)
+    {
+        string BirimClass = "btn grey-gallery btn-block";
+
+        if (item.BirimId==Model.Birim.BirimId)
+        {
+            BirimClass = "btn green-jungle btn-block";
+        }
+        <div class="col-md-3">
+            <div class="row">
+                <div class="col-md-12">
+                    <a href="@Url.Action("GunlukImalatDosyalar", "Laboratuvar", new{id=item.BirimId})" class="@BirimClass">@item.BirimAdi</a>
+                </div>
+            </div>
+            <br/>
+            @foreach (var itt in Model.DosyaDurumlari)
+            {
+                string DurumClass = "btn blue-hoki btn-block";
+                if (itt.DosyaDurumId==Model.DosyaDurumu.DosyaDurumId && item.BirimId==Model.Birim.BirimId)
+                {
+                    DurumClass = "btn red btn-block";
+                }
+
+                <div class="row">
+                        <div class="col-md-12">
+                            <a href="@Url.Action("GunlukImalatDosyalar", "Laboratuvar", new{id=item.BirimId, id2=itt.DosyaDurumId})" class="@DurumClass">@itt.DosyaDurumAdi</a>
+                        </div>
+                    </div>
+               
+                <br/>
+            }
+        </div>
+
+    }
+
+</div>
+<hr/>

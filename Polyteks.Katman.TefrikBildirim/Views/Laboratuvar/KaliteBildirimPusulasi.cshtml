@@ -1,0 +1,133 @@
+﻿@model IEnumerable<Polyteks.Katman.DAL.Concrete.EntityFramework.Mrv_KaliteBildirimDetay>
+@{
+    ViewBag.Title = "KaliteBildirimPusulasi";
+    Layout = "~/Views/Shared/Layout.cshtml";
+}
+@if (TempData["Msg"] != null)
+{
+    <div class="custom-alerts alert alert-@TempData["class"] fade in">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true"></button>
+        <h2>@TempData["Msg"]</h2>
+    </div>
+}
+<CENTER><h2><b>KALİTE BİLDİRİM PUSULASI</b></h2></CENTER>
+<p>
+    @Html.ActionLink("YENİ KALİTE BİLDİRİMİ YAP", "YeniKaliteBildirimiYap", "Laboratuvar", new { @class = "btn btn-info btn-block" })
+</p>
+
+<div class="portlet light bordered">
+
+    <center>
+        <h3><b>KALİTE BİLDİRİM PUSULASI DURUMLARI</b></h3>
+    </center>
+        <ul class="nav nav-tabs">
+            <li class="active"><a data-toggle="tab" href="#home">İŞLETME MÜDAHALESİ BEKLENİYOR</a></li>
+            <li><a data-toggle="tab" href="#menu1">LABORATUVAR MÜDAHALESİ BEKLENİYOR</a></li>
+
+        </ul>
+   
+    <div class="tab-content">
+        <center>
+            <div id="home" class="tab-pane fade in active">
+
+                @Html.ActionLink("İşletme Müdahalesi Bekleyen Bildirimleri Görmek için Tıklayınız", "_IsletmeKaliteBildirimPusulasi", "Laboratuvar", new { @class = "btn btn-primary" })
+            </div>
+      
+            <div id="menu1" class="tab-pane fade">
+
+                @Html.ActionLink("Laboratuvar Müdahalesi Bekleyen Bildirimleri Görmek için Tıklayınız", "_LabKaliteBildirimPusulasi", "Laboratuvar", new { @class = "btn btn-primary" })
+            </div>
+        </center>
+    </div>
+    <style>
+        .nav-tabs > li {
+            float: none;
+            display: inline-block;
+            zoom: 1;
+        }
+
+        .nav-tabs {
+            text-align: center;
+        }
+    </style>
+</div>
+@*<table class="table table-bordered table-striped table-sm">
+    <thead>
+        <tr>
+
+
+            <th style="color: black">
+                <b> BİLDİRİM TARİHİ</b>
+            </th>
+            <th style="color: black">
+                <b>BÖLÜM</b>
+            </th>
+            <th style="color: black">
+                <b>BİLDİRİM YAPAN</b>
+            </th>
+            <th style="color: black">
+                <b>PARTİ NO</b>
+            </th>
+            <th style="color: black">
+                <b> HATA TANIMI/1</b>
+            </th>
+            <th style="color: black">
+                <b> HATA TANIMI/2</b>
+            </th>
+            <th style="color: black">
+                <b> HATA TANIMI/3</b>
+            </th>
+            <th style="color: black">
+                <b>BİLDİRİM YAPILAN BÖLÜM</b>
+            </th>
+
+
+
+
+        </tr>
+    </thead>
+
+    @foreach (var item in Model)
+    {
+
+<tr>
+
+    <td style="color: black">
+        <b> @Html.DisplayFor(modelItem => item.Mrv_KaliteBildirimAna.LabBildirimTarihi)</b>
+    </td>
+    <td style="color: black">
+        @Html.DisplayFor(modelItem => item.Mrv_KaliteBildirimAna.PersonelBolum)
+    </td>
+    <td style="color: black">
+        @Html.DisplayFor(modelItem => item.Mrv_KaliteBildirimAna.Personel)
+    </td>
+    <td style="color: black">
+        @Html.DisplayFor(modelItem => item.PartiNo)
+    </td>
+    <td style="color: black">
+        @Html.DisplayFor(modelItem => item.Mrv_KaliteBildirimHata.HataTanimi)
+    </td>
+    <td style="color: black">
+        @Html.DisplayFor(modelItem => item.Mrv_KaliteBildirimHata1.HataTanimi)
+    </td>
+    <td style="color: black">
+        @Html.DisplayFor(modelItem => item.Mrv_KaliteBildirimHata2.HataTanimi)
+    </td>
+    <td style="color: black">
+        @Html.DisplayFor(modelItem => item.Mrv_KaliteBildirimBolumleri.IsletmeBolumleri)
+    </td>
+<td style="color: black">
+        @Html.DisplayFor(modelItem => item.Mrv_KaliteBildirimDetay. ? "DEVAM EDEN PROJE" : "TAMAMLANAN PROJE")
+    </td>
+
+<td style="color: black">
+        @Html.DisplayFor(modelItem => item.Isletme)
+    </td>
+
+</tr>
+
+
+
+    }
+
+</table>*@

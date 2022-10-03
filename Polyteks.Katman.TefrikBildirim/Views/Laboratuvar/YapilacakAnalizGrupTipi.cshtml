@@ -1,0 +1,127 @@
+﻿@model Polyteks.Katman.TefrikBildirim.Models.LaboratuvarModel
+
+@{
+    ViewBag.Title = "YapilacakAnalizGrupTipi";
+    Layout = "~/Views/Shared/Layout.cshtml";
+}
+
+@if (TempData["Msg"] != null)
+{
+    <div class="custom-alerts alert alert-@TempData["class"] fade in">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true"></button>
+        <h2>@TempData["Msg"]</h2>
+    </div>
+}
+
+
+
+<div class="portlet box blue">
+    <div class="portlet-title">
+        <div class="caption">
+            <i class="fa fa-flask"></i>
+            @{
+                string Sira = string.Format("{0} GRUBU - {1} DURUMUNDA OLAN ANALİZLER", Model.LabGrup.LabGrupAdi, Model.LabAnalizDurumu.LabAnalizDurumuAdi);
+            }
+
+            <span class="caption-subject bold uppercase">@Sira</span>
+        </div>
+    </div>
+
+    <div class="portlet-body">
+        <div class="row">
+            <div class="col-md-3">
+                <a href="@Url.Action("YapilacakAnalizler","Laboratuvar")" class="btn purple-seance"> <i class="fa fa-arrow-left"></i> <b>GERİ</b></a>
+            </div>
+        </div>
+        <br />
+        <div class="row">
+            <div class="col-md-12">
+
+
+                <table class="dtTable table table-bordered">
+                    <thead>
+                        <tr>
+                            <th class="text-center">
+                                #
+                            </th>
+                            <th class="text-center">
+                                KOD
+                            </th>
+                            <th class="text-center">
+                                KAYIT
+                            </th>
+                            <th class="text-center">
+                                İSTENEN TERMİN
+                            </th>
+                            <th class="text-center">
+                                PERSONEL
+                            </th>
+                            @if (Model.LabGrup.AnalizTipi == 0)
+                            {
+                                <th class="text-center">
+                                    PARTİ NO
+                                </th>
+
+                                <th class="text-center">
+                                    İŞ EMRİ
+                                </th>
+
+                            }
+                            @if (Model.LabGrup.AnalizTipi == 3 || Model.LabGrup.AnalizTipi == 2)
+                            {
+                                <th class="text-center">
+                                    CARİ
+                                </th>
+
+
+
+                            }
+                            <th class="text-center">
+                                GÜNCEL DURUM
+                            </th>
+                            <th class="text-center">Sonuç Gir</th>
+                            <th class="text-center">#</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @{
+                            int say = 0;
+
+                            foreach (var item in Model.LabAnalizleri)
+                            {
+                                say++;
+                                <tr>
+                                    <td class="text-center">@say</td>
+                                    <td class="text-center"><b>@string.Format("#{0}", item.LabAnalizId)</b></td>
+                                    <td class="text-center">@item.KayitTarihi</td>
+                                    <td class="text-center">@item.IstenenTerminTarihi.Value.ToShortDateString()</td>
+                                    <td class="text-center">@item.KayitYapanKulAdi</td>
+
+                                    @if (Model.LabGrup.AnalizTipi == 0)
+                                    {
+                                        <td class="text-center">@item.PartiNo</td>
+
+                                        <td class="text-center">@item.RefakartKartNo</td>
+
+                                    }
+                                    @if (Model.LabGrup.AnalizTipi == 2 || Model.LabGrup.AnalizTipi == 3)
+                                    {
+                                        <td class="text-center">@item.CariAdi</td>
+                                    }
+
+                                    <td class="text-center">@item.LabAnalizDurumuAdi</td>
+                                    <td><a href="@Url.Action("LaboratuvarAnalizSonuclari","Laboratuvar",new{id=item.LabAnalizId})" class="btn red btn-block">Analiz Sonucu</a></td>
+
+                                    <td><a href="@Url.Action("YapilacakAnalizYonlendir","Laboratuvar",new{id=item.LabAnalizId})" class="btn blue btn-block">İncele</a></td>
+                                </tr>
+                            }
+                        }
+
+                    </tbody>
+
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+

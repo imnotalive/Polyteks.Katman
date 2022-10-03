@@ -1,0 +1,120 @@
+﻿@model Polyteks.Katman.DAL.Concrete.EntityFramework.Mrv_MalzemeDetay
+
+@{
+    ViewBag.Title = "HamMaddeYedekParcaSil";
+    Layout = "~/Views/Shared/Layout.cshtml";
+}
+
+<h2>HamMaddeYedekParcaSil</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Mrv_MalzemeDetay</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.SiraNo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SiraNo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Tarih)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Tarih)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Parti)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Parti)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Kalite)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Kalite)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Miktar)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Miktar)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.StokAdi)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.StokAdi)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.StokKodu)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.StokKodu)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LotNo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LotNo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Birim)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Birim)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Aciklama)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Aciklama)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TalepEdilenBolum)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TalepEdilenBolum)
+        </dd>
+
+   
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+<div class="form-actions no-color">
+    <input type="submit" value="SİL" class="btn btn-danger" /> 
+    </div>
+    <br />
+    <br />
+    <div>
+
+        @Html.ActionLink("GERİ DÖN", "Sepet", "Sevkiyat", htmlAttributes: new { @class = "btn btn-danger" })
+    </div>
+    }
+</div>

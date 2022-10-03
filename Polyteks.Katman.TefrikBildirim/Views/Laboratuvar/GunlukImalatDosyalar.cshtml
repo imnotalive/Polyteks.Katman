@@ -1,0 +1,116 @@
+﻿@model Polyteks.Katman.TefrikBildirim.Models.LaboratuvarModel
+
+@{
+    ViewBag.Title = "GunlukImalatDosyalar";
+    Layout = "~/Views/Shared/Layout.cshtml";
+}
+
+@if (TempData["Msg"] != null)
+{
+    <div class="custom-alerts alert alert-@TempData["class"] fade in">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true"></button>
+        <h2>@Html.Raw(TempData["Msg"])</h2>
+    </div>
+}
+
+@{
+    string Baslik = "GÜNLÜK İMALAT ANALİZLERİ";
+
+    if (Model.Birim.BirimId != 0 && Model.DosyaDurumu.DosyaDurumId != 0)
+    {
+        Baslik = string.Format("<b>{0}</b> BİRİMİ <b>{1}</b> DURUMU <b>GÜNLÜK İMALAT ANALİZLERİ</b>", Model.Birim.BirimAdi, Model.DosyaDurumu.DosyaDurumAdi);
+    }
+}
+
+<div class="row">
+    <div class="col-md-12 ">
+        <div class="portlet light bordered">
+            <div class="portlet-title">
+                <div class="caption font-green-sharp">
+                    <i class="icon-settings font-green-sharp"></i>
+                    <span class="caption-subject  uppercase"> @Html.Raw(Baslik)</span>
+                </div>
+            </div>
+            @Html.Partial("~/Views/Laboratuvar/_GunlukImalatDosyaOrtakButonlar.cshtml", Model)
+
+     
+            <div class="row">
+
+                <div class="col-md-5">
+                    <a href="@Url.Action("GunlukImalatLabTeknisyeniTalebi","Laboratuvar",new{id=Model.Birim.BirimId})" class="btn yellow btn-block">GÜNLÜK İMALAT ANALİZİ YAP</a>
+                </div>
+            </div>
+            <br />
+            <div class="row">
+                <div class="col-md-12">
+                    <table class="dtTable table table-bordered">
+                        <thead>
+                            <tr>
+                                <th class="text-center">
+                                    #
+                                </th>
+                                <th class="text-center">
+                                    TAKİP KODU
+                                </th>
+                                <th class="text-center">
+                                    KAYIT TARİH
+                                </th>
+                                <th class="text-center">
+                                    BİRİM
+                                </th>
+                                <th class="text-center">
+                                    ANALİZ DURUMU
+                                </th>
+                                <th class="text-center">
+                                   TOPL. BOBİN SAY.
+                                </th>
+                                <th class="text-center">
+                                    KAYIT YAPAN
+                                </th>
+                                <th class="text-center">
+                                    #
+                                </th>
+                                <th class="text-center">
+                                    #
+                                </th>
+                                @*<th class="text-center">
+                                    #
+                                </th>*@
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @{
+                                var say = 0;
+
+                                foreach (var item in Model.GunlukImalatDosyalar)
+                                {
+                                    say++;
+                                                        <tr>
+                                                            <td class="text-center">@say</td>
+                                                            <td class="text-center"><b class="font-red-thunderbird">@item.GunlukImalatDosyaId</b></td>
+                                                            <td class="text-center">@item.KayitTarihi</td>
+                                                            <td class="text-center">@item.BirimAdi</td>
+                                                            <td class="text-center">@item.DosyaDurumAdi</td>
+                                                            <td class="text-center">@item.ToplamBobinSayisi</td>
+                                                            <td class="text-center">@item.KayitYapanKulAdi</td>
+                                                            <td class="text-center">
+                                                                <a href="@Url.Action("GunlukImalatDosyaDuzenle", "Laboratuvar", new {id = item.GunlukImalatDosyaId})" class="btn blue btn-block">İncele</a>
+                                                            </td>
+
+                                                            <td class="text-center">
+                                                                <a href="@Url.Action("GunlukImalatDosyaPdfIndir", "Laboratuvar", new {id = item.GunlukImalatDosyaId})" class="btn red-pink btn-block">PDF İNDİR</a>
+                                                            </td>
+                                                            @*<td class="text-center">
+                                                                <a href="@Url.Action("GunlukImalatMailAt", "Laboratuvar", new {id = item.GunlukImalatDosyaId})" class="btn red-pink btn-block">MAİL AT</a>
+                                                            </td>*@
+                                                        </tr>
+                                }
+                            }
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

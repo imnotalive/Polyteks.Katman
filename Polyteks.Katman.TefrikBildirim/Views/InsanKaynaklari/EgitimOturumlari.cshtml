@@ -1,0 +1,148 @@
+﻿@model Polyteks.Katman.TefrikBildirim.Models.IkModel
+
+@{
+    ViewBag.Title = "EgitimOturumlari";
+    Layout = "~/Views/Shared/Layout.cshtml";
+}
+@section styles
+{
+    <style>
+        label {
+            font-weight: bold;
+        }
+    </style>
+}
+
+@if (TempData["Msg"] != null)
+{
+    <div class="custom-alerts alert alert-@TempData["class"] fade in">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true"></button>
+        <h2>@Html.Raw(TempData["Msg"])</h2>
+    </div>
+}
+
+<div class="row">
+    <div class="col-md-12 ">
+        <div class="portlet light bordered">
+            <div class="portlet-title">
+                <div class="caption font-blue">
+                    <i class="icon-settings font-blue"></i>
+
+
+                    <span class="caption-subject bold uppercase">@Model.IkEgitim.IkEgitimAdi.ToUpper() OTURUMLARI</span>
+                </div>
+            </div>
+            <div class="portlet-body form">
+                @Html.Partial("~/Views/InsanKaynaklari/_IkBaseButonlar.cshtml", Model)
+                <hr />
+                <div class="row">
+                    <div class="col-md-8">
+
+                    </div>
+                    <div class="col-md-4">
+                        <a class="btn blue-oleo btn-block " href="@Url.Action("EgitimOturumEkle","InsanKaynaklari",new{id=Model.IkEgitim.IkEgitimId})">
+                            @Model.IkEgitim.IkEgitimAdi.ToUpper() OTURUMU EKLE
+                        </a>
+
+
+                    </div>
+                </div>
+                <br />
+                <div class="row">
+                    <div class="col-md-12">
+
+
+                        <table class="dtTable table table-bordered">
+                            <thead>
+                            <tr>
+                                <th class="text-center">
+                                    #
+                                </th>
+                                <th class="text-center">
+                                    OTURUM TARİHİ
+                                </th>
+                                <th class="text-center">
+                                    EĞİTİM
+                                </th>
+                                <th class="text-center">
+                                    FİRMA
+                                </th>
+                               
+                                 
+                                   
+                                <th class="text-center">
+                                    OTURUM DURUMU
+                                </th>
+                                <th class="text-center">#</th>
+                                <th class="text-center">#</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            @{
+                                int say = 0;
+
+                                foreach (var item in Model.EgitimOturumlari)
+                                {
+                                    say++;
+                                    <tr>
+                                        <td class="text-center">@say</td>
+                                        <td class="text-center">@item.OturumTarihi</td>
+                                        <td class="text-center">@item.IkEgitimAdi</td>
+                                        <td class="text-center">@item.IkFirmaAdi</td>
+                                        <td class="text-center">@item.KatilimDurumAdi</td>
+                                        <td>
+                                            <a class="btn blue-sharp btn-block" href="@Url.Action("EgitimOturumDuzenle","InsanKaynaklari",new{id=item.EgitimOturumId})">
+                                                DÜZENLE
+                                            </a>
+
+                                        </td>
+                                        <td class="text-center"><a href="javascript:" onclick="Sil(@item.EgitimOturumId)" class="btn red btn-block ">Sil</a></td>
+                                    </tr>
+                                }
+                            }
+
+                            </tbody>
+
+                        </table>
+                    </div>
+                    <hr/>
+                    <div class="col-md-1">
+                        <a href="@Url.Action("EgitimleriTipineGoreGetir","InsanKaynaklari",new{id=Model.IkEgitim.IkEgitimTipi})" class="btn btn-block yellow-gold"><i class="fa fa-arrow-left"></i> GERİ</a>
+                    </div>
+                </div>
+                
+             
+
+            </div>
+            
+       
+        </div>
+    </div>
+</div>
+
+@section scripts{
+    <script src="~/Temalar/Scripts/sweetalert.js"></script>
+    <script>
+        function Sil(id) {
+            var url = "/InsanKaynaklari/EgitimFirmaSil/" + id;
+
+            swal({
+                title: "EMİN MİSİNİZ",
+                text: "Seçilen Kayıdı Listeden Kaldırmak İstiyor musunuz??",
+                icon: "warning",
+                buttons: {
+                    cancel: "Kapat",
+                    git: "Sil"
+                }
+            }).then((value) => {
+                switch (value) {
+                    case "git":
+                        window.location.href = url;
+                        break;
+                }
+            });
+
+
+        }
+    </script>
+}

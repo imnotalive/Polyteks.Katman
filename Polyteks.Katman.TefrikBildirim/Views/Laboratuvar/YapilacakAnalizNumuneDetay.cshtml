@@ -1,0 +1,208 @@
+﻿@model Polyteks.Katman.TefrikBildirim.Models.LaboratuvarModel
+
+@{
+    ViewBag.Title = "YapilacakAnalizNumuneDetay";
+    Layout = "~/Views/Shared/Layout.cshtml";
+}
+
+@section styles{
+
+    <link href="~/Temalar/TarihSaat/bootstrap-datepicker/css/bootstrap-datetimepicker.css" rel="stylesheet" />
+
+    <style>
+        .mt-radio {
+            font-weight: bold;
+        }
+
+        .vl {
+            border: 2px solid #c3cec3;
+        }
+    </style>
+
+}
+
+@if (TempData["Msg"] != null)
+{
+    <div class="custom-alerts alert alert-@TempData["class"] fade in">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true"></button>
+        <h2>@Html.Raw(TempData["Msg"])</h2>
+    </div>
+}
+<div class="row">
+    <div class="col-md-12 ">
+        <div class="portlet light bordered">
+            <div class="portlet-title">
+                <div class="caption font-red-sunglo">
+                    <i class="icon-settings font-red-sunglo"></i>
+                    <span class="caption-subject bold uppercase">@Model.LabGrup.LabGrupAdi LABORATUVAR ANALİZ BİLGİLERİ</span>
+                </div>
+            </div>
+            <div class="portlet-body form">
+                <div class="form-body">
+                    @Html.Partial("~/Views/Laboratuvar/_LaboratuvarAnalizOrtakButonlar.cshtml", Model)
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h3 class="text-center"><b>ANALİZ BİLGİ DETAYLARI</b></h3>
+                            @using (Html.BeginForm())
+                            {
+                                @Html.HiddenFor(a => a.LabGrup.LabGrupId)
+                                @Html.HiddenFor(a => a.LabAnaliz.LabAnalizId)
+                                @Html.HiddenFor(a => a.NumuneYapilabilirlikDosya.NumuneYapilabilirlikDosyaId)
+                                <div class="form-body">
+                                    <div class="form-group">
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <label class="control-label"><b class="font-red-sunglo">GÜNCEL ANALİZ DURUMU @Model.LabAnaliz.LabAnalizDurumu</b></label>
+                                                <div class="input-icon right">
+                                                    @foreach (var item in Model.LabAnalizDurumlari)
+                                                    {
+                                                        <div class="mt-radio">
+                                                            <label class="mt-radio">
+                                                                @Html.RadioButtonFor(a => a.LabAnaliz.LabAnalizDurumu, @item.LabAnalizDurumu)@item.LabAnalizDurumuAdi
+                                                                <span></span>
+                                                            </label>
+
+                                                        </div>
+                                                    }
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="row">
+                                            <div class="col-md-4">
+                                                <label class="control-label"><b class="font-red-sunglo">ANALİZ SONUCU İSTENİLEN TERMİN</b></label>
+                                                <div class="input-icon right">
+                                                    @Html.TextBoxFor(a => a.IstekTarihi, new {@class = "form-control tarih", @onkeydown = "return false"})
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <label class="control-label"><b>PLANLANAN TERMİN</b></label>
+                                                <div class="input-icon right">
+                                                    @Html.TextBoxFor(a => a.PlanlananTarih, new {@class = "form-control tarih", @onkeydown = "return false"})
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <label class="control-label"><b>İSTEK YAPAN</b></label>
+                                                <div class="input-icon right">
+                                                    @Html.TextBoxFor(a => a.LabAnaliz.KayitYapanKulAdi, new {@class = "form-control", @onkeydown = "return false"})
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="form-group">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <label class="control-label"><b >FİRMA</b></label>
+                                                <div class="input-icon right">
+                                                    @Html.TextBoxFor(a => a.NumuneYapilabilirlikDosya.CariAdi, new {@class = "form-control"})
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <label class="control-label"><b class="font-red-sunglo">TALEP EDEN AÇIKLAMA</b></label>
+                                                <div class="input-icon right">
+                                                    @Html.TextAreaFor(a => a.LabAnaliz.Aciklama, new {@class = "form-control", @rows = 3})
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <h3 class="text-center"><b>@Model.LabAnaliz.AnalizAdi İPLİKLERİ ANALİZLERİ</b></h3>
+                                        </div>
+
+                                        @{
+                                            int i = -1;
+                                            foreach (var itt in Model.BobinIplikModelItemlar)
+                                            {
+                                                i++;
+                                                int j = -1;
+                                                string divClass = "col-md-4 vl";
+
+
+                                                <div class="col-md-4 vl">
+
+
+                                                    <div class="form-group text-center">
+                                                        <div class="mt-checkbox">
+                                                            <label class="mt-checkbox mt-checkbox-outline">
+                                                                @Html.HiddenFor(a => a.BobinIplikModelItemlar[i].IplikNo)
+                                                                @Html.CheckBoxFor(a => a.BobinIplikModelItemlar[i].SeciliMi)
+                                                                <b class="font-red-sunglo"> @itt.BobinAdi ANALİZLERİ</b>
+                                                                <span></span>
+                                                            </label>
+
+                                                        </div>
+
+                                                        <div class="row text-left">
+
+
+                                                            @foreach (var item in itt.LabAnalizCesitleri)
+                                                            {
+                                                                j++;
+
+                                                                <div class="col-md-6">
+                                                                    <div class="mt-checkbox">
+                                                                        <label class="mt-checkbox mt-checkbox-outline">
+                                                                            @Html.HiddenFor(a => a.BobinIplikModelItemlar[i].LabAnalizCesitleri[j].LabAnalizCesitId)
+                                                                            @Html.CheckBoxFor(a => a.BobinIplikModelItemlar[i].LabAnalizCesitleri[j].SeciliMi)@item.LabAnalizCesitAdi
+                                                                            <span></span>
+                                                                        </label>
+
+                                                                    </div>
+                                                                </div>
+                                                            }
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            }
+                                        }
+                                    </div>
+                                </div>
+                                <div class="form-actions">
+                                    <button type="submit" class="btn blue btn-block">KAYDET</button>
+                                </div>
+
+                            }
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@section scripts
+{
+    <script src="~/Temalar/TarihSaat/bootstrap-datepicker/js/bootstrap-datetimepicker.js"></script>
+    <script src="~/Temalar/TarihSaat/bootstrap-datepicker/js/bootstrap-datetimepicker.tr.js"></script>
+    <script>
+        $('.tarih').datetimepicker({
+            language: 'tr',
+            weekStart: 1,
+            todayBtn: 1,
+            autoclose: 1,
+            todayHighlight: 1,
+            startView: 2,
+            minView: 2,
+            forceParse: 0,
+            format: "dd MM yyyy",
+            inline: true
+        });
+
+    </script>
+    <script>
+
+        function isNumberKey(evt) {
+            var charCode = (evt.which) ? evt.which : event.keyCode;
+            if (charCode > 31 && (charCode < 48 || charCode > 57)) return false;
+
+            return true;
+        }
+
+
+    </script>
+}

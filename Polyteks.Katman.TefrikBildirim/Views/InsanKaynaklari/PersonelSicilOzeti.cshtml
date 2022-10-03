@@ -1,0 +1,139 @@
+﻿@model Polyteks.Katman.TefrikBildirim.Models.IkModel
+
+@{
+    ViewBag.Title = "EgitimFirmaTanimEkle";
+    Layout = "~/Views/Shared/Layout.cshtml";
+}
+@section styles
+{
+    <style>
+        label {
+            font-weight: bold;
+        }
+    </style>
+    <link href="~/Temalar/TarihSaat/bootstrap-datepicker/css/bootstrap-datetimepicker.css" rel="stylesheet" />
+    <link href="~/Temalar/Select/bootstrap-select.css" rel="stylesheet" />
+}
+
+@if (TempData["Msg"] != null)
+{
+    <div class="custom-alerts alert alert-@TempData["class"] fade in">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true"></button>
+        <h2>@Html.Raw(TempData["Msg"])</h2>
+    </div>
+}
+
+<div class="row">
+    <div class="col-md-12 ">
+        <div class="portlet light bordered">
+            <div class="portlet-title">
+                <div class="caption font-blue">
+                    <i class="icon-settings font-blue"></i>
+
+
+                    <span class="caption-subject bold uppercase">@Model.SrcnKullanici.IsimSoyisim.ToUpper() EĞİTİM SİCİLİ</span>
+                </div>
+            </div>
+            <div class="portlet-body form">
+                @Html.Partial("~/Views/InsanKaynaklari/_IkBaseButonlar.cshtml", Model)
+                <hr />
+          
+                <div class="row">
+
+                    <div class="col-md-12">
+                        @using (Html.BeginForm())
+                        {
+                        
+                            <div class="modal-body">
+                                <div class="form-body">
+
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="row">
+                                                <div class="col-md-3">
+                                                    <div class="form-group">
+                                                        @if (Model.SrcnKullanici.Resim != null)
+                                                        {
+                                                            string imageBase64 = Convert.ToBase64String(Model.SrcnKullanici.Resim);
+                                                            string imageSrc = string.Format("data:image/gif;base64,{0}", imageBase64);
+                                    
+                                                            <img src="@imageSrc" class="img-fluid" style="max-width: 100%;" />
+                                                        }
+                                                        else
+                                                        {
+                                                            <h3 class="text-center">Resim Yüklenmedi</h3>
+                                                        }
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label><b>İSİM SOYİSİM </b></label>
+                                                        @Html.TextBoxFor(a => a.SrcnKullanici.IsimSoyisim, new {@class = "form-control", @onkeydown = "return false"})
+                                                    </div>
+                                                </div>
+
+
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <a href="@Url.Action("PdfPersonelSicilOzeti", "InsanKaynaklari", new {id = Model.SrcnKullanici.KullaniciId})" class="btn btn-block blue">PDF OLARAK İNDİR</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="table-scrollable">
+                                                <table class="table table-hover ">
+                                                    <thead>
+                                                    <tr>
+                                                        <th class="text-center"> # </th>
+                                                        <th class="text-center"> TARİH </th>
+                                                        <th class="text-center"> EĞİTİM TİPİ </th>
+                                                        <th class="text-center"> EĞİTİM </th>
+                                                        <th class="text-center"> FİRMA </th>
+                                                        <th class="text-center"> KATILIM DURUMU </th>
+                                                    </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                    @{
+                                                        int i = 0;
+                                                        foreach (var item in Model.PersonelSicilOzetItemlar)
+                                                        {
+                                                            i++;
+                                                        <tr>
+                                                            <td class="text-center">
+                                                                @i
+                                                            </td>
+                                                            <td class="text-center">@item.EgitimOturum.OturumTarihi</td>
+                                                            <td class="text-center">@item.EgitimFirma.IkEgitimTipiAdi</td>
+                                                            <td class="text-center">@item.EgitimFirma.IkEgitimAdi</td>
+                                                            <td class="text-center">@item.EgitimFirma.IkFirmaAdi</td>
+                                                            <td class="text-center">@item.EgitimOturumSrcnKullanici.KatilimDurumAdi</td>
+      
+                                                        </tr>
+                                                    }
+                                                    }
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                       
+                        }
+                    </div>
+                  
+                
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>

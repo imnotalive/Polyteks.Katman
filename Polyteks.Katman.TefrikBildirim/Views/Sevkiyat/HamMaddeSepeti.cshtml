@@ -1,0 +1,122 @@
+﻿@model Polyteks.Katman.DAL.Concrete.EntityFramework.Mrv_MalzemeAna
+@{
+    ViewBag.Title = "HamMaddeSepeti";
+    Layout = "~/Views/Shared/Layout.cshtml";
+    var model = ViewData["SrcnKullanicis"] as Polyteks.Katman.DAL.Concrete.EntityFramework.SrcnKullanicis;
+}
+@if (TempData["Msg"] != null)
+{
+    <div class="custom-alerts alert alert-@TempData["class"] fade in">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true"></button>
+        <h2>@Html.Raw(TempData["Msg"])</h2>
+    </div>
+}
+<CENTER><h2><b> TALEPLERİM</b></h2></CENTER>
+<h2 class="container"> <b>@Html.Label(model.IsimSoyisim.ToString())</b></h2>
+
+
+
+
+<table class="table table-hover table-bordered table-dark">
+    <thead class="thead-dark">
+        <tr>
+            <th>
+                Tarih
+            </th>
+
+            <th>
+                Ambar Adı
+            </th>
+            <th>
+                Stok Adı
+            </th>
+            @*<th>
+                    Stok Kodu
+                </th>*@
+            <th>
+                Parti Numarası
+            </th>
+            <th>
+                Kalite
+            </th>
+            <th>
+                Miktar
+            </th>
+            <th>
+                Birim
+            </th>
+            <th>
+                Açıklama
+            </th>
+            <th>
+                DÜZENLE
+            </th>
+            <th>
+                SİL
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Mrv_MalzemeDetay)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Tarih)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.AmbarAdi)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.StokAdi)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Parti)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Kalite)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Miktar)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Birim)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Aciklama)
+                </td>
+                <td> @Html.ActionLink("DÜZENLE", "MamulAmbariDuzenle", "Sevkiyat", new { id1 = item.ID }, htmlAttributes: new { @class = "btn btn-danger" })</td>
+                <td> @Html.ActionLink("SİL", "MamulAmbarSil", "Sevkiyat", new { }, htmlAttributes: new { @class = "btn btn-danger" })</td>
+            </tr>
+
+
+            @*<td>
+                    @Html.DisplayFor(modelItem => item.TamamlandiMi)
+                </td>
+                <td>
+                    @if (!item.TamamlandiMi.Value)
+                    {
+                        using (Html.BeginForm("FisAnaOnayla", "Sevkiyat", FormMethod.Post))
+                        {
+                            @Html.Hidden("id", item.MalzemeNo)
+                            <div class="form-group">
+                                <div class="col-md-offset-2 col-md-10">
+                                    <input type="submit" value="Onayla" class="btn btn-default" />
+                                </div>
+                            </div>
+                        }
+                    }
+                </td>*@
+
+        }
+    </tbody>
+</table>
+<div>
+    @if (Model.Mrv_MalzemeDetay.Count != 0)
+    {
+        using (Html.BeginForm("SepetOnayi", "Sevkiyat", FormMethod.Post))
+        {
+            <input class="btn btn-success" type="submit" value="ONAYLA" />
+        }
+    }
+</div>

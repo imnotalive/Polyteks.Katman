@@ -1,0 +1,289 @@
+﻿@model Polyteks.Katman.TefrikBildirim.Models.PaketlemeGunlukTalimatModel
+
+@{
+    ViewBag.Title = "PaketlemeGunlukTalimatDuzenle";
+    Layout = "~/Views/Shared/Layout.cshtml";
+}
+@section styles{
+
+    <link href="~/Temalar/Select/bootstrap-select.css" rel="stylesheet" />
+}
+
+@if (TempData["Msg"] != null)
+{
+    <div class="custom-alerts alert alert-@TempData["class"] fade in">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true"></button>
+        <h2>@Html.Raw(TempData["Msg"])</h2>
+    </div>
+}
+@{
+    string GrupAdi = Model.GunlukTalimat.PaketlemeGunlukTalimatTipiAdi + " - " + Model.GunlukTalimat.TalimatTarihi + " GÜNLÜK TALİMAT DÜZENLE";
+
+}
+<div class="row">
+    <div class="col-md-12 ">
+        <div class="portlet light bordered">
+            <div class="portlet-title">
+                <div class="caption font-red-sunglo">
+                    <i class="icon-settings font-red-sunglo"></i>
+                    <span class="caption-subject bold uppercase"> @GrupAdi</span>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-9">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <label class="control-label"><b class="font-green-jungle">PAKETLEME ALANI</b></label>
+                            <div class="input-icon right">
+                                @Html.TextBoxFor(a => a.GunlukTalimat.PaketlemeGunlukTalimatTipiAdi, new {@class = "form-control tarih", @onkeydown = "return false"})
+                            </div>
+                        </div>
+
+                        <div class="col-md-4">
+                            <label class="control-label"><b class="font-green-jungle">GÜNLÜK TALİMAT TARİHİ</b></label>
+                            <div class="input-icon right">
+                                @Html.TextBoxFor(a => a.GunlukTalimat.TalimatTarihi, new {@class = "form-control tarih", @onkeydown = "return false"})
+                            </div>
+                        </div>
+
+                        <div class="col-md-4">
+                            <label class="control-label"><b class="font-green-jungle">KAYIT YAPAN</b></label>
+                            <div class="input-icon right">
+                                @Html.TextBoxFor(a => a.GunlukTalimat.KayitYapanKulAdi, new {@class = "form-control tarih", @onkeydown = "return false"})
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            
+                <div class="col-md-3">
+                    <div class="row">
+                        <label class="control-label"><b class="font-green-jungle">&nbsp;</b></label>
+                        <div class="input-icon right">
+                            <a href="@Url.Action("PaketlemeGunlukTalimatIndir", "Paketleme", new {id = Model.GunlukTalimat.PaketlemeGunlukTalimatId})" class="btn red-thunderbird btn-block">PDF OLARAK İNDİR </a>
+                        </div>
+                    </div>
+                    <div class="row">
+                </div>
+                </div>
+
+      
+
+            </div>
+            <br />
+
+            <div class="row">
+                <div class="col-md-9">
+                    @using (Html.BeginForm("PaketlemeGunlukTalimatItemEkleDuzenle", "Paketleme"))
+                    {
+                        @Html.HiddenFor(a => a.GunlukTalimat.PaketlemeGunlukTalimatId)
+                        <div class="row">
+                            <div class="col-md-4">
+                                <label class="control-label"><b class="font-green-jungle"> TALİMAT BAŞLIĞI</b></label>
+                                <div class="input-icon right">
+                                    @Html.TextBoxFor(a => a.GunlukTalimatItem.TalimatBaslik, new { @class = "form-control" })
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <label class="control-label"><b>PARTİ SEÇİMİ </b></label>
+                                @Html.DropDownListFor(a => a.GunlukTalimatItem.PartiAnaKlasorId, Model.Partiler, "Seçim Yok", new { @class = "selectpicker show-tick form-control", @id = "dropPersonel" })
+                            </div>
+                            <div class="col-md-4">
+                                <label class="control-label"><b>GÖSTERİM DURUMU </b></label>
+                                <div class="input-icon right">
+
+                                    <div class="mt-radio-inline">
+                                        <label class="mt-radio font-red-sunglo uppercase bold">
+                                            @Html.RadioButtonFor(a => a.GunlukTalimatItem.GizlemeDurumu, "1") Gizlensin
+                                            <span></span>
+                                        </label>
+
+                                        <label class="mt-radio font-blue uppercase">
+                                            @Html.RadioButtonFor(a => a.GunlukTalimatItem.GizlemeDurumu, "0") Gösterilsin
+                                            <span></span>
+                                        </label>
+
+
+                                    </div>
+                                </div>
+                            </div>
+                            <br />
+                            <div class="col-md-12">
+                                <label class="control-label"><b class="font-green-jungle"> TALİMAT İÇERİĞİ</b></label>
+                                <div class="input-icon right">
+                                    @Html.TextAreaFor(a => a.GunlukTalimatItem.TalimatIcerik, new { @class = "ckeditor" })
+
+                                    @*   @Html.TextAreaFor(a => a.GunlukTalimatItem.TalimatIcerik, new {@class = "form-control", @rows = 5})*@
+                                </div>
+                            </div>
+                        </div>
+                        <br />
+                        <div class="row">
+                            <div class="col-md-12">
+                                <button type="submit" class="btn btn-block green-jungle"><b> @Model.GunlukTalimat.TalimatTarihi İÇERİK EKLE <i class="fa fa-book"></i></b></button>
+                            </div>
+                        </div>
+                    }
+
+                </div>
+                <div class="col-md-3">
+                @using (Html.BeginForm("PartiAnaKlasorEkle", "Paketleme"))
+                {
+                    @Html.HiddenFor(a => a.GunlukTalimat.PaketlemeGunlukTalimatId)
+                    <div class="row">
+                        <div class="col-md-12">
+                            <label class="control-label"><b class=""> YENİ PARTİ TANIMI</b></label>
+                            <div class="input-icon right">
+                                @Html.TextBoxFor(a => a.YeniPartiAdi, new { @class = "form-control" })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <label class="control-label"><b class=""> BİRİM</b></label>
+                            <div class="input-icon right">
+                                @Html.DropDownListFor(a => a.BirimId, Model.Birimler, "Seçim Yok", new { @class = "form-control" })
+                            </div>
+                        </div>
+                    </div>
+                    <hr/>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <button type="submit" class="btn btn-block green-jungle"><b> KAYDET <i class="fa fa-book"></i></b></button>
+                        </div>
+                    </div>
+
+                        }
+                  
+                    </div>
+            </div>
+
+            <hr />
+
+            <div class="row">
+                <h2 class="text-center"><b class="font-red-sunglo"> @Model.GunlukTalimat.PaketlemeGunlukTalimatTipiAdi- @Model.GunlukTalimat.TalimatTarihi </b></h2>
+                @if (false)
+                {
+                    <div class="col-md-12">
+                        <a href="@Url.Action("PaketlemeGunlukTalimatIndir", "Paketleme", new {id = Model.GunlukTalimat.PaketlemeGunlukTalimatId})" class="btn green-jungle pull-right">PDF OLARAK İNDİR </a>
+
+                    </div>
+                }
+            </div>
+
+            <div class="row">
+
+
+                <div class="table-scrollable">
+
+                    <table class="table table-striped table-bordered">
+
+                        <thead>
+                            <tr>
+                                <th class="text-center">#</th>
+
+
+                                <th class="text-center">
+                                    BAŞLIK
+                                </th>
+                                <th class="text-center">
+                                    İÇERİK
+                                </th>
+                                <th class="text-center">
+                                    KAYIT YAPAN
+                                </th>
+                                <th class="text-center">
+                                    GÖSTERİM DURUMU
+                                </th>
+                                <th class="text-center">#</th>
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @{
+                                int say = 0;
+
+                                foreach (var item in Model.GunlukTalimatItemlar)
+                                {
+                                    say++;
+                                    string Durum = "GİZLENİYOR";
+                                    string classAdi = "red";
+                                    if (item.GizlemeDurumu == "0")
+                                    {
+                                        Durum = "GÖSTERİLİYOR";
+                                        classAdi = "blue";
+                                    }
+
+                                    <tr>
+                                        <td class="text-center">@say</td>
+                                        <td class="text-center">@item.TalimatBaslik</td>
+                                        <td class="text-center">@Html.Raw(item.TalimatIcerik)</td>
+                                        <td class="text-center">@item.KayitYapanKulAdi</td>
+
+                                        <td class="text-center"><a href="@Url.Action("PaketlemeGunlukTalimatItemDurumDegisiklik","Paketleme",new{id=item.PaketlemeGunlukTalimatItemId})" class="btn @classAdi">@Durum</a></td>
+                                        <td class="text-center"><a href="javascript:" onclick="Sil(@item.PaketlemeGunlukTalimatItemId)" class="btn purple-seance">Sil</a></td>
+
+                                    </tr>
+
+                                }
+                            }
+
+
+
+
+                        </tbody>
+                    </table>
+
+
+
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-2">
+                    <a href="@Url.Action("PaketlemeGunlukTalimatlari", "Paketleme", new {id = Model.GunlukTalimat.PaketlemeGunlukTalimatTipi})" class="btn btn-block yellow-gold"><i class="fa fa-arrow-left"></i> GERİ</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts{
+    <script src="~/Temalar/Select/bootstrap-select.js"></script>
+    <script src="~/Temalar/Scripts/sweetalert.js"></script>
+    <script>
+        function Sil(id) {
+            var url = "/Paketleme/PaketlemeGunlukTalimatItemSil/" + id;
+
+            swal({
+                title: "EMİN MİSİNİZ",
+                text: "Seçilen Kayıdı Silmek istediğinizi Onaylıyor musunuz ??",
+                icon: "warning",
+                buttons: {
+                    cancel: "Kapat",
+                    git: "EVET ONAYLA"
+                }
+            }).then((value) => {
+                switch (value) {
+                    case "git":
+                        window.location.href = url;
+                        break;
+                }
+            });
+
+
+        }
+    </script>
+
+    <script>
+        $('#dropPersonel').selectpicker({
+            liveSearch: true,
+            maxOptions: 1
+        });
+    </script>
+
+    <script src="~/Temalar/Scripts/ckeditor-full/ckeditor.js"></script>
+    <script src="~/Temalar/Scripts/ckeditor-full/tr.js"></script>
+    <script src="~/Temalar/Scripts/ckeditor-full/config.js"></script>
+  
+
+}

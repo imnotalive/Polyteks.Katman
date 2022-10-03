@@ -1,0 +1,100 @@
+﻿@model Polyteks.Katman.TefrikBildirim.Models.LaboratuvarModel
+
+
+<div class="form-group">
+    <label class="control-label"><b>ANALİZ TİPİ</b></label>
+    <div class="input-icon right">
+        <div class="mt-radio-inline">
+            <label class="mt-radio font-red-sunglo">
+                @Html.RadioButtonFor(a => a.LabAnaliz.ImalatAnalizYapilmaTipi, 0) SEÇİM YAPILMADI
+                <span></span>
+            </label>
+            <label class="mt-radio" style="color: #26c281">
+                @Html.RadioButtonFor(a => a.LabAnaliz.ImalatAnalizYapilmaTipi, 1) TECRÜBE
+                <span></span>
+            </label>
+            <label class="mt-radio" style="color: #3598dc">
+                @Html.RadioButtonFor(a => a.LabAnaliz.ImalatAnalizYapilmaTipi, 2) NORMAL
+                <span></span>
+            </label>
+        </div>
+    </div>
+</div>
+
+
+<div class="form-group">
+    <label class="control-label"><b>İŞ EMRİ  NUMARASI OLUŞTURULDU MU ?</b></label>
+    <div class="input-icon right">
+        <div class="mt-radio-inline">
+            <label class="mt-radio" style="color: #26c281">
+                @Html.RadioButtonFor(a => a.IsEmriNumarasiHazirlikDurumu, 1, new { onclick = "radioDurum(1)" }) EVET
+                <span></span>
+            </label>
+            <label class="mt-radio" style="color: #3598dc">
+                @Html.RadioButtonFor(a => a.IsEmriNumarasiHazirlikDurumu, 2, new { onclick = "radioDurum(2)" }) HAYIR
+                <span></span>
+            </label>
+        </div>
+    </div>
+</div>
+@* // iş emri var*@
+<div class="form-group" id="isEmriGrup" style="display: none">
+    <div class="row">
+        <div class="col-md-4">
+            <label class="control-label"><b>İŞ EMRİ NUMARASI</b></label>
+            <div class="input-icon right">
+                @Html.TextBoxFor(a => a.LabAnaliz.RefakartKartNo, new { @class = "form-control" })
+            </div>
+        </div>
+        <div class="col-md-4">
+            <label class="control-label"><b>TAKIM SAATİ</b></label>
+            <div class="input-icon right">
+                @Html.TextBoxFor(a => a.LabAnaliz.TakimSaati, new { @class = "form-control", @type = "time" })
+            </div>
+        </div>
+        <div class="col-md-4">
+            <label class="control-label"><b>ANALİZ YAPILACAK BOBİN SAYISI</b></label>
+            <div class="input-icon right">
+                @Html.TextBoxFor(a => a.LabAnaliz.AnalizYapilacakBobinSayisi, new { @class = "form-control", @onkeypress = "return isNumberKey(event)" })
+            </div>
+        </div>
+    </div>
+
+</div>
+@* // iş emri yok*@
+<div class="form-group" id="partiGrup" style="display: none">
+    <div class="row">
+        <div class="col-md-4">
+            <label class="control-label"><b>PARTİ NO</b></label>
+            <div class="input-icon right">
+                @Html.TextBoxFor(a => a.LabAnaliz.PartiNo, new { @class = "form-control" })
+            </div>
+        </div>
+        <div class="col-md-4">
+            <label class="control-label"><b>TAKIM SAATİ</b></label>
+            <div class="input-icon right">
+                @Html.TextBoxFor(a => a.LabAnaliz.TakimSaati, new { @class = "form-control", @type = "time" })
+            </div>
+        </div>
+        <div class="col-md-4">
+            <label class="control-label"><b>ANALİZ YAPILACAK BOBİN SAYISI</b></label>
+            <div class="input-icon right">
+                @Html.TextBoxFor(a => a.LabAnaliz.AnalizYapilacakBobinSayisi, new { @class = "form-control", @onkeypress = "return isNumberKey(event)" })
+            </div>
+        </div>
+    </div>
+    <br />
+    <div class="row">
+        <div class="col-md-6">
+            <label class="control-label"><b>BÖLÜM</b></label>
+            <div class="input-icon right">
+                @Html.DropDownListFor(a => a.UretimHattiId, Model.UretimHatlari, "Bölüm Seçiniz", new { @class = "form-control", @id = "dropId" })
+            </div>
+        </div>
+        <div id="drop-item">
+
+            @Html.Partial("~/Views/Yetkisiz/_UretimHattiMakineleri.cshtml", Model)
+        </div>
+    </div>
+</div>
+

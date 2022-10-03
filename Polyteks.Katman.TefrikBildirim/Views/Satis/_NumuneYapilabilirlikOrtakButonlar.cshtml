@@ -1,0 +1,43 @@
+﻿@model Polyteks.Katman.TefrikBildirim.Models.SatisModel
+
+@if (Model.NumuneYapilabilirlikDosya.NumuneYapilabilirlikDosyaId != 0)
+{
+    <div class="row">
+        @foreach (var item in Model.NumuneDosyaTipleri.ToList())
+        {
+
+            string ClassAdi = "blue-hoki";
+            if (item.NumuneDosyaTipi == Model.NumuneYapilabilirlikDosya.NumuneDosyaTipi)
+            {
+                ClassAdi = "green-jungle";
+            }
+
+            <div class="col-md-6">
+                <a href="@Url.Action("NumuneYapilabilirlikDosyaTipleri", "Satis", new {id = item.NumuneDosyaTipi})" class="btn btn-block  @ClassAdi">@item.NumuneDosyaTipiAdi.ToUpper() DOSYALAR</a>
+
+            </div>
+
+        }
+    </div>
+
+    <br/>
+
+    int idd = Model.NumuneYapilabilirlikDosya.NumuneYapilabilirlikDosyaId;
+    <div class="row">
+        <div class="col-md-3">
+            <a href="@Url.Action("NumuneYapilabilirlikDosyaBilgileri","Satis",new{id=idd})" class="btn red btn-block" onclick="beklemeAnimasyonu()">DOSYA BİLGİLERİ</a>
+        </div>
+        <div class="col-md-3">
+            <a href="@Url.Action("NumuneYapilabilirlikDosyaHareketleri","Satis",new{id=idd})" class="btn grey-gallery btn-block" onclick="beklemeAnimasyonu()">DOSYA HAREKETLERİ</a>
+        </div>
+        <div class="col-md-3">
+            <a href="@Url.Action("NumuneYapilabilirlikDosyaAnalizleri","Satis",new{id=idd})" class="btn green-meadow btn-block" onclick="beklemeAnimasyonu()">ANALİZLER</a>
+        </div>
+        <div class="col-md-3">
+            <a href="@Url.Action("NumuneYapilabilirlikAnalizResimler","Satis",new{id=idd})" class="btn grey-gallery btn-block " onclick="beklemeAnimasyonu()">FOTOĞRAFLAR</a>
+        </div>
+    </div>
+}
+
+
+<hr/>

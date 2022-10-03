@@ -1,0 +1,43 @@
+﻿@model Polyteks.Katman.TefrikBildirim.Areas.Yonetim.Models.YonetimLayoutModel
+@{
+    /*
+     * Açık
+      <ul class="page-sidebar-menu   " data-keep-expanded="false" data-auto-scroll="true" data-slide-speed="200">
+     */
+
+    string HeaderClass = "";
+    if (TempData["Gizle"] != null)
+    {
+        HeaderClass = "page-sidebar-menu-closed";
+    }
+}
+
+
+    <ul class="page-sidebar-menu @HeaderClass" data-keep-expanded="false" data-auto-scroll="true" data-slide-speed="200">
+        <li class="nav-item start ">
+            <a href="@Url.Action("Index","YonetimHome")" class="nav-link" onclick="beklemeAnimasyonu()">
+                <i class="icon-home"></i>
+                <span class="title">YÖNETİM</span>
+
+            </a>
+        </li>
+        
+        <li class="nav-item  ">
+            <a href="javascript:;" class="nav-link nav-toggle">
+                <i class="fa fa-recycle"></i>
+                <span class="title">İMALAT</span>
+                <span class="arrow"></span>
+            </a>
+            <ul class="sub-menu">
+
+                <li class="nav-item  ">
+                    <a href="@Url.Action("PartiSonuTakipGeriAlListe", "YonetimImalat",new {id=0})" class="nav-link" onclick="beklemeAnimasyonu()">
+                        <span class="title">PARTİ SONU GERİ AL</span>
+                    </a>
+                </li>
+
+
+            </ul>
+        </li>
+      
+    </ul>

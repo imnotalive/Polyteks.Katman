@@ -1,0 +1,229 @@
+﻿@model IEnumerable<Polyteks.Katman.DAL.Concrete.EntityFramework.View_STOK_DURUM_PTKS_TASD>
+
+@{
+    ViewBag.Title = "MamulAmbariStokGoruntuleme";
+    Layout = "~/Views/Shared/Layout.cshtml";
+}
+@if (TempData["Msg"] != null)
+{
+    <div class="custom-alerts alert alert-@TempData["class"] fade in">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true"></button>
+        <h2>@Html.Raw(TempData["Msg"])</h2>
+    </div>
+}
+
+<div class="row">
+    <div class="col-md-20 ">
+        <div class="portlet light bordered">
+            <div class="portlet-title">
+                <div style="display: flex; justify-content: flex-end">
+                    <H5><b>TALEPLER</b></H5>
+
+                </div>
+                <div style="display: flex; justify-content: flex-end">
+
+                    <a href="/Sevkiyat/Sepet/@(ViewBag.Tip)"> <img src="@Url.Content("~/Upload/shopping-basket-min.png")" alt="logo" class="logo-default" style="max-height: 30px; margin: 0px; max-width:30px; padding-top:5px;" /></a>
+                    <label class="basket">
+                        @Html.Action("TotalCount", new { id = ViewBag.Tip })
+                    </label>
+
+                </div>
+                <CENTER><h2><b>★ MAMÜL AMBARI STOK DETAYLARI ★</b></h2></CENTER>
+
+                <ul class="nav navbar-nav navbar-right">
+                </ul>
+                <div class="container">
+                    <div class="form-group">
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-search"></i></span>
+                            <input type="text" id="Search" placeholder="ARA" class="form-control" />
+
+                        </div>
+                    </div>
+                </div>
+
+                <table class="table table-bordered table-hover">
+                    <thead>
+                        <tr>
+                            <th>
+                                <b>SIRA NO</b>
+                            </th>
+                            <th>
+                                <b>PARTİ NUMARASI</b>
+                            </th>
+                            <th>
+                                <b>STOK ADI</b>
+                            </th>
+                            <th>
+                                <b>KALİTE</b>
+                            </th>
+                            <th>
+                                <b>MİKTAR</b>
+                            </th>
+                            <th>
+                                <b>FİRMA</b>
+                            </th>
+                            <th>
+                                <CENTER><b>TALEPTE BULUN</b></CENTER>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @{
+                            int sayac = 0;
+                            foreach (var item in Model)
+                            {
+                                sayac++;
+                                                <tr class="Search" @*id="@(item.IATOPartiNo)"*@>
+                                                    <td>
+                                                        <b> @sayac</b>
+                                                    </td>
+                                                    <td>
+                                                        @Html.DisplayFor(modelItem => item.IATOPartiNo)
+                                                    </td>
+                                                    <td>
+                                                        @Html.DisplayFor(modelItem => item.StokAdi)
+                                                    </td>
+                                                    <td>
+                                                        @Html.DisplayFor(modelItem => item.Kalite)
+                                                    </td>
+                                                    <td>
+                                                        @*@Html.DisplayFor(modelItem => item.Miktar)*@
+                                                        @string.Format("{0:#,0.00}", item.Miktar)
+                                                    </td>
+                                                    <td>
+                                                        @Html.DisplayFor(modelItem => item.Firma)
+                                                    </td>
+                                                    <!--<td>-->
+                                                    @*★<center> @Html.ActionLink("DETAYLAR", "StokTalebiDetay", "Sevkiyat", new { id = item.IATOPartiNo, id2 = item.Kalite }, htmlAttributes: new { @class = "btn btn-info" })</center>*@
+                                                    @*<center><a href="/Sevkiyat/StokTalebiDetay?id1=@(item.IATOPartiNo)&id2=@(item.Kalite)">DETAYLAR</a></center>*@
+                                                    <!--</td>-->
+                                                    @*<td>
+            <center> @(Html.Raw(Html.ActionLink("TALEPTE BULUN", "TalepteBulun", "Sevkiyat", new { id1 = item.IATOPartiNo, id2 = item.Kalite }, htmlAttributes: new { @class = "btn btn-danger" })))</center>
+
+        </td>*@
+                                                    @*<td><center><a class="btn btn-danger" href="/Sevkiyat/MamulAmbariTalepteBulun?id1=@(item.IATOPartiNo)&id2=@(item.Kalite)">TALEPTE BULUN</a></center></td>*@
+                                                <td>
+                                                    <center> @Html.ActionLink("TALEPTE BULUN", "MamulAmbariTalepteBulun", "Sevkiyat", new { id1 = item.IATOPartiNo, id2 = item.Kalite,id3=item.StokAdi }, htmlAttributes: new { @class = "btn btn-danger" })</center>
+                                                    </td>
+                                                    @*<td>
+            <input type="button" value="TALEPTE BULUN" class="btn btn-primary" data-toggle="modal" data-target="#Modal1" onclick="ShowModelPopUp(@(item.IATOPartiNo));"
+            <input type="button" value="TALEPTE BULUN" class="btn btn-primary" data-toggle="modal" data-target="#Modal1" data-url="@Html.Action("_MalzemeTalep")"@item.IATOPartiNo"/>
+            <button class="btn btn-primary" data-toggle="modal" data-target="#Modal1" id="@item.IATOPartiNo">TALEPTE BULUN</button>
+        </td>*@
+</tr>
+                            }
+                        }
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <th>
+                                <b>SIRA NO</b>
+                            </th>
+                            <th>
+                                <b>PARTİ NUMARASI</b>
+                            </th>
+                            <th>
+                                <b>STOK ADI</b>
+                            </th>
+                            <th>
+                                <b>KALİTE</b>
+                            </th>
+                            <th>
+                                <b>MİKTAR</b>
+                            </th>
+                            <th>
+                                <b>FİRMA</b>
+                            </th>
+                            <th>
+                                <CENTER><b>TALEPTE BULUN</b></CENTER>
+                            </th>
+                        </tr>
+                    </tfoot>
+
+                </table>
+
+                @*<div class="modal" id="Modal1">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <center><h2 class="modal-title"><b>MİKTAR TALEBİNDE BULUN</b></h2></center>
+                    </div>
+                    <form>
+                        <div class="modal-body">
+                            <label>Miktar:</label><br />
+                            <input id="#miktar" type="text" placeholder="Miktar Giriniz" /><br />
+                            <input class="btn btn-info" type="submit" value="Onayla" />
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+
+        </div>*@
+                <div>
+                    <h4> <b>TOPLAM MİKTAR:</b>   <b id="toplamMiktarDegeri">@Model.Sum(i => i.Miktar)</b></h4>
+</div>
+                <script src="~/Scripts/jquery-3.0.0.min.js"></script>
+                <script>
+                    //LIVE SEARCH
+                    $(document).ready(function () {
+                        function Contains(text_one, text_two) {
+                            if (text_one.indexOf(text_two) != -1)
+                                return true;
+                        }
+                        $("#Search").keyup(function () {
+                            var searchText = $("#Search").val().toLowerCase();
+                            $(".Search").each(function () {
+                                if (!Contains($(this).text().toLowerCase(), searchText)) {
+                                    $(this).hide();
+                                }
+                                else {
+                                    $(this).show();
+                                }
+                            })
+                        });
+                    });
+                </script>
+                <!--<script type="text/javascript">
+        function ShowModelPopUp(id) {
+            //window.showModalDialog('/Sevkiyat/_MalzemeTalep' + id, "WindowPopup", 'width=400px,height=400px');
+            var partiNo = document.getElementById("#id")
+            @*Url.Action("_MalzemeTalep", new { id=})*@
+        <!--}
+    </script>-->
+                <style>
+                    .button_example {
+                        float: right
+                    }
+                </style>
+                <style>
+                    .basket {
+                        background: #ea222f;
+                        color: #fff;
+                        font-size: 10px;
+                        font-weight: 400;
+                        position: absolute;
+                        height: 16px;
+                        width: 16px;
+                        text-align: center;
+                        line-height: 16px;
+                        border-radius: 8px;
+                    }
+                </style>
+                <script>
+                    function numberWithCommas(x) {
+                        x = x.replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+                        return x;
+                    }
+
+                    //var calculation = 1231739216.34367;
+
+                    var a = document.getElementById("toplamMiktarDegeri");
+                    var number = numberWithCommas(a.textContent);
+                    a.textContent = number;
+                </script>
+            </div>
+</div>
+</div>
+    </div>

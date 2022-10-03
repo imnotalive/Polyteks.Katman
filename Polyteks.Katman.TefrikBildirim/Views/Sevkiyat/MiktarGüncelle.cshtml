@@ -1,0 +1,99 @@
+﻿@model Polyteks.Katman.DAL.Concrete.EntityFramework.ZzzMrvStokDetayTakip
+@{
+    ViewBag.Title = "MiktarGüncelle";
+    Layout = "~/Views/Shared/Layout.cshtml";
+}
+@if (TempData["Msg"] != null)
+{
+    <div class="custom-alerts alert alert-@TempData["class"] fade in">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true"></button>
+        <h2>@Html.Raw(TempData["Msg"])</h2>
+    </div>
+}
+
+<h2>Miktar Güncelle</h2>
+
+@using (Html.BeginForm("MiktarGüncelle", "Sevkiyat", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+
+
+        <hr />
+        <div class="row">
+
+
+
+            @Html.HiddenFor(model => model.AmbarNo)
+            <div class="col-md-6">
+                <div class="form-group">
+                    <b>Ambar Numarası</b>
+                    @Html.EditorFor(model => model.AmbarNo, new { htmlAttributes = new { @class = "form-control", @readonly = true } })
+
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="form-group">
+                    <b>Ambar Adı</b>
+                    @Html.EditorFor(model => model.AmbarAdi, new { htmlAttributes = new { @class = "form-control", @readonly = true } })
+
+                </div>
+            </div>
+
+
+            <div class="col-md-6">
+                <div class="form-group">
+                    <b>Stok Kodu</b>
+                    @Html.EditorFor(model => model.StokKodu, new { htmlAttributes = new { @class = "form-control", @readonly = true } })
+
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="form-group">
+                    <b>Stok Adı</b>
+                    @Html.EditorFor(model => model.StokAdi, new { htmlAttributes = new { @class = "form-control", @readonly = true } })
+
+                </div>
+            </div>
+            @Html.HiddenFor(model => model.LotNo)
+            <div class="col-md-6">
+                <div class="form-group">
+                    <b>Lot Numarası</b>
+                    @Html.EditorFor(model => model.LotNo, new { htmlAttributes = new { @class = "form-control", @readonly = true } })
+
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <b>Lot Numarası</b>
+                    @Html.EditorFor(model => model.StokTuru, new { htmlAttributes = new { @class = "form-control", @readonly = true } })
+
+                </div>
+            </div>
+
+
+            <div class="col-md-12">
+                <div class="form-group">
+                    <b>Miktar</b>
+
+                    @Html.TextBoxFor(model => model.Miktar1, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Miktar1, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <div class="form-group">
+
+        <center>         <input type="submit" value="MİKTAR GÜNCELLE" class="btn btn-primary" /></center>
+
+    </div>
+
+}
+
+<div>
+    @Html.ActionLink("GERİ", "StokAmbar", "Sevkiyat", htmlAttributes: new { @class = "btn btn-success" })
+</div>

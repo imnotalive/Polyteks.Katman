@@ -1,0 +1,8 @@
+﻿@model Polyteks.Katman.TefrikBildirim.Models.ImalatModel
+
+<div class="col-md-6">
+    <label class="control-label"><b>MAKİNE</b></label>
+    <div class="input-icon right">
+        @Html.DropDownListFor(a => a.MakineId, Model.Makineler, new { @class = "form-control" })
+    </div>
+</div>

@@ -1,0 +1,134 @@
+﻿@model Polyteks.Katman.TefrikBildirim.Models.IzlenebilirlikPartiSonuModel
+
+
+       
+            <div class="modal-body">
+                <div class="form-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h2 class="text-center">SİPARİŞ DETAYLARI</h2>
+                            <div class="row">
+                                <div class="col-md-6 text-left">
+                                    <h5><b>CARİ</b></h5>
+                                </div>
+                                <div class="col-md-6 text-left">
+                                    <h5 class="font-blue"><b>@Model.PartiSonuTakipIzlenebilirlik.CariAdiSecili  </b></h5>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-6 text-left">
+                                    <h5><b>PARTİ / İŞ EMRİ</b></h5>
+                                </div>
+                                <div class="col-md-6 text-left">
+                                    <h5 class="font-blue"><b>@Model.PartiSonuTakipIzlenebilirlik.PartiNo / @Model.PartiSonuTakipIzlenebilirlik.RefakatNo </b></h5>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6 text-left">
+                                    <h5><b>STOK KODU</b></h5>
+                                </div>
+                                <div class="col-md-6 text-left">
+                                    <h5 class="font-blue"><b>@Model.PartiSonuTakipIzlenebilirlik.StokKodu  </b></h5>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6 text-left">
+                                    <h5><b>STOK ADI</b></h5>
+                                </div>
+                                <div class="col-md-6 text-left">
+                                    <h5 class="font-blue"><b>@Model.PartiSonuTakipIzlenebilirlik.StokAdi  </b></h5>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6 text-left">
+                                    <h5><b>SİPARİŞ TÜRÜ / SİPARİŞ NO / SIRA NO</b></h5>
+                                </div>
+                                <div class="col-md-6 text-left">
+                                    @{
+                                        string siparisDetay = string.Format("({0}) - {1} - {2}", Model.PartiSonuTakipIzlenebilirlik.SiparisTuru, Model.PartiSonuTakipIzlenebilirlik.SiparisNo, Model.PartiSonuTakipIzlenebilirlik.SiparisSiraNo);
+                                    }
+                                    <h5 class="font-blue"><b>@siparisDetay</b></h5>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6 text-left">
+                                    <h5><b>SİPARİŞ ALINMA</b></h5>
+                                </div>
+                                <div class="col-md-6 text-left">
+                                    <h5 class="font-blue"><b>@Model.SiparisAna.AlinmaTarihi / @Model.PartiSonuTakipIzlenebilirlik.PersonelAdi  </b></h5>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6 text-left">
+                                    <h5><b>PLANLAMA TERMİNİ</b></h5>
+                                </div>
+                                <div class="col-md-6 text-left">
+                                    <h5 class="font-blue"><b>@Model.Siparis.PlanlamaTermini  </b></h5>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <h2 class="text-center">PARTİ SONU DETAYLARI</h2>
+                            <div class="row">
+                                <div class="col-md-6 text-left">
+                                    <h5><b>GÜNCEL DURUMU</b></h5>
+                                </div>
+                                <div class="col-md-6 text-left">
+                                    <h5 class="font-red-thunderbird"><b> @Model.PartiSonuTakip.PartiSonuTakipHareketAdi</b></h5>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6 text-left">
+                                    <h5><b>PARTİ SONU</b></h5>
+                                </div>
+                                <div class="col-md-6 text-left">
+                                    <h5 class="font-green-jungle"><b> @Model.PartiSonuTakip.PartiKapatmaTarihi <br/> @Model.PartiSonuTakip.KapatanKulAdi</b></h5>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6 text-left">
+                                    <h5><b>İŞE EMRİ KAPANIŞ</b></h5>
+                                </div>
+                                <div class="col-md-6 text-left">
+                                    <h5 class="font-yellow"><b> @Model.PartiSonuTakipIzlenebilirlik.IslemBitisTarihi </b></h5>
+                                </div>
+                            </div>
+
+                            @foreach (var item in Model.PartiSonuTakipBilgiOnaylari)
+                            {
+                                <div class="row">
+                                    <div class="col-md-6 text-left">
+                                        <h5><b>@item.BirimAdi ONAYI</b></h5>
+                                    </div>
+                                    <div class="col-md-6 text-left">
+                                        <h5 class="font-blue"><b> @item.OnayTarihi <br/> @item.OnayapanKulAdi</b></h5>
+                                    </div>
+                                </div>
+                            }
+                            <div class="row">
+                                <div class="col-md-6 text-left">
+                                    <h5><b>İMALAT SONU TALEBİ</b></h5>
+                                </div>
+                                <div class="col-md-6 text-left">
+                                    <h5 class="font-red-thunderbird"><b> @Model.PartiSonuTakip.KayitTarihi <br/> @Model.PartiSonuTakip.KayitYapanKulAdi</b></h5>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6 text-left">
+                                    <h5><b>PARTİ SONU TAKİP KAYIT NO</b></h5>
+                                </div>
+                                <div class="col-md-6 text-left">
+                                    <h5 class="font-purple-seance"><b>@Model.PartiSonuTakip.PartiSonuTakipId </b></h5>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+
+     
+
+

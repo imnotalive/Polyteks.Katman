@@ -1,0 +1,159 @@
+﻿@model Polyteks.Katman.TefrikBildirim.Models.YardimciTesisModel
+
+@{
+    ViewBag.Title = "YardimciTesisLabAnalizleri";
+    Layout = "~/Views/Shared/Layout.cshtml";
+}
+
+@if (TempData["Msg"] != null)
+{
+    <div class="custom-alerts alert alert-@TempData["class"] fade in">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true"></button>
+        <h2>@TempData["Msg"]</h2>
+    </div>
+}
+<div class="portlet box purple-plum">
+    <div class="portlet-title">
+        <div class="caption">
+            <i class="fa fa-industry"></i>YARDIMCI TESİSLER- LABORATUVAR ANALİZLERİ
+        </div>
+
+    </div>
+    <div class="portlet-body" style="display: block;">
+        <div class="row">
+            <div class="col-md-3 col-sm-3 col-xs-3">
+                <ul class="nav nav-tabs tabs-left">
+                    @foreach (var item in Model.SrcnLabGruplari)
+                    {
+                        <li>
+                            <a href="@Url.Action("YardimciTesisLabAnalizleri","YardimciTesisler",new {id=item.LabGrupId})"><b> @item.LabGrupAdi </b> </a>
+                        </li>
+                    }
+                </ul>
+            </div>
+            <div class="col-md-9 col-sm-9 col-xs-9">
+                <div class="tab-content">
+                    @if (Model.LabGrup.LabGrupId == 0)
+                    {
+                        <h1 class="text-center">LÜTFEN SOL TARAFTAN ANALİZ GRUBU SEÇİNİZ</h1>
+                    }
+                    else
+                    {
+
+
+
+                        <div class="row">
+                            <div class="col-md-8">
+                                <h4><b>@Model.LabGrup.LabGrupAdi</b></h4>
+                            </div>
+                            <div class="col-md-4">
+                                <a href="@Url.Action("YardimciTesisAnalizIstegi", "YardimciTesisler", new {id = Model.LabGrup.LabGrupId})" class="btn btn-block red-sunglo">@Model.LabGrup.LabGrupAdi  TALEBİ</a>
+                            </div>
+                        </div>
+                        <br />
+                        <div class="row">
+                            <div class="col-md-12">
+
+
+                                <table class="dtTable table table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th class="text-center">
+                                                #
+                                            </th>
+                                            <th class="text-center">
+                                                KOD
+                                            </th>
+                                            <th class="text-center">
+                                                KAYIT
+                                            </th>
+                                            <th class="text-center">
+                                                İSTENEN
+                                            </th>
+                                            <th class="text-center">
+                                                PLANLANAN
+                                            </th>
+                                            <th class="text-center">
+                                                SONUÇLANAN
+                                            </th>
+                                            <th class="text-center">
+                                                TALEP EDEN
+                                            </th>
+                                            <th class="text-center">
+                                                GÜNCEL DURUM
+                                            </th>
+                                            <th class="text-center">#</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @{
+                                            int say = 0;
+
+                                            foreach (var item in Model.LabAnalizleri)
+                                            {
+                                                say++;
+                                                <tr>
+                                                    <td class="text-center">@say</td>
+                                                    <td class="text-center"><b>@string.Format("#{0}", item.LabAnalizId)</b></td>
+                                                    <td class="text-center">@item.KayitTarihi</td>
+                                                    <td class="text-center">@item.IstenenTerminTarihi.Value.ToShortDateString()</td>
+                                                    <td class="text-center">@item.PlanlananTerminTarihi</td>
+                                                    <td class="text-center">@item.GerceklesenTerminTarihi</td>
+                                                    <td class="text-center">@item.KayitYapanKulAdi</td>
+                                                    <td class="text-center">@item.LabAnalizDurumuAdi</td>
+                                                    <td><a href="@Url.Action("YardimciTesisAnalizSonucDetay","YardimciTesisler",new{id=item.LabAnalizId})" class="btn blue btn-block">İncele</a></td>
+                                                </tr>
+                                            }
+                                        }
+
+                                    </tbody>
+
+                                </table>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts
+{
+    <script>
+        var dtable = $('.dtTable').DataTable({
+            //"order": [[0, 'desc']],
+
+            "pageLength": 100,
+            orderCellsTop: true,
+            fixedHeader: true,
+            "ordering": false,
+            responsive: false,
+            "language": {
+                "lengthMenu": "_MENU_",
+                "search": "",
+                searchPlaceholder: "ARA",
+                "zeroRecords": "KAYIT BULUNAMADI",
+                "info": "_TOTAL_ KAYIT BULUNDU",
+                "infoEmpty": "KAYIT BULUNAMADI",
+                "infoFiltered": "(TOPLAM KAYIT _MAX_)",
+                "oPaginate": {
+                    "sFirst": "İlk",
+                    "sLast": "Son",
+                    "sNext": "Sonraki",
+                    "sPrevious": "Önceki"
+                },
+                "oAria": {
+                    "sSortAscending": ": artan sütun sıralamasını aktifleştir",
+                    "sSortDescending": ": azalan sütun sıralamasını aktifleştir"
+                }
+            },
+            columnDefs: [
+                { type: 'date-dd-mmm-yyyy', targets: 0 }
+            ]
+
+        });
+
+
+    </script>
+}

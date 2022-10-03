@@ -1,0 +1,32 @@
+﻿
+@{
+    ViewBag.Title = "Ambarlar";
+    Layout = "~/Views/Shared/Layout.cshtml";
+}
+
+
+<div class="portlet light bordered">
+  
+        <h2><b>AMBARLAR</b></h2>
+        <ul class="nav nav-tabs">
+            <li class="active"><a data-toggle="tab"href="#home">MAMÜL AMBARI STOK GÖRÜNTÜLE</a></li>
+            <li><a data-toggle="tab" href="#menu1">HAM MADDE AMBARI STOK GÖRÜNTÜLE</a></li>
+            <li><a data-toggle="tab" href="#menu2">YEDEK PARÇA AMBARI STOK GÖRÜNTÜLE</a></li>
+        </ul>
+
+        <div class="tab-content">
+            <div id="home" class="tab-pane fade in active">
+
+                @Html.ActionLink("MAMÜL AMBARI STOK GÖRÜNTÜLEMEK İÇİN TIKLAYINIZ", "MamulAmbariStokGoruntuleme", "Sevkiyat", new { @class = "btn btn-primary" })
+            </div>
+            <div id="menu1" class="tab-pane fade">
+
+                @Html.ActionLink("HAM MADDE AMBARI STOK GÖRÜNTÜLEMEK İÇİN TIKLAYINIZ", "HamMaddeAmbariStokGoruntuleme", "Sevkiyat", new { @class = "btn btn-primary" })
+            </div>
+            <div id="menu2" class="tab-pane fade">
+
+                @Html.ActionLink("YEDEK PARÇA AMBARI STOK GÖRÜNTÜLEMEK İÇİN TIKLAYINIZ", "YedekParcaAmbariStokGoruntuleme", "Sevkiyat", new { @class = "btn btn-primary" })
+            </div>
+        </div>
+        
+</div>

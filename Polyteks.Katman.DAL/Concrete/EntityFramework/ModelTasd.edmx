@@ -1,0 +1,434 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="ModelTasd.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Cari">
+          <Key>
+            <PropertyRef Name="CariNo" />
+          </Key>
+          <Property Name="CariNo" Type="varchar" MaxLength="40" Nullable="false" />
+          <Property Name="CariAdi" Type="char" MaxLength="50" />
+          <Property Name="Adres" Type="char" MaxLength="100" />
+          <Property Name="VergiDairesi" Type="char" MaxLength="30" />
+          <Property Name="VergiNo" Type="char" MaxLength="30" />
+          <Property Name="Tel1Aciklama" Type="char" MaxLength="20" />
+          <Property Name="TUlkeKodu1" Type="char" MaxLength="3" />
+          <Property Name="TAlanKodu1" Type="char" MaxLength="5" />
+          <Property Name="Tel1" Type="char" MaxLength="8" />
+          <Property Name="FUlkeKodu1" Type="char" MaxLength="3" />
+          <Property Name="FAlanKodu1" Type="char" MaxLength="5" />
+          <Property Name="Fax1" Type="char" MaxLength="8" />
+          <Property Name="Tel2Aciklama" Type="char" MaxLength="20" />
+          <Property Name="TUlkeKodu2" Type="char" MaxLength="3" />
+          <Property Name="TAlanKodu2" Type="char" MaxLength="5" />
+          <Property Name="Tel2" Type="char" MaxLength="8" />
+          <Property Name="FUlkeKodu2" Type="char" MaxLength="3" />
+          <Property Name="FAlanKodu2" Type="char" MaxLength="5" />
+          <Property Name="Fax2" Type="char" MaxLength="8" />
+          <Property Name="Tel3Aciklama" Type="char" MaxLength="20" />
+          <Property Name="TUlkeKodu3" Type="char" MaxLength="3" />
+          <Property Name="TAlanKodu3" Type="char" MaxLength="5" />
+          <Property Name="Tel3" Type="char" MaxLength="8" />
+          <Property Name="FUlkeKodu3" Type="char" MaxLength="3" />
+          <Property Name="FAlanKodu3" Type="char" MaxLength="5" />
+          <Property Name="Fax3" Type="char" MaxLength="8" />
+          <Property Name="ElektronikPosta" Type="char" MaxLength="100" />
+          <Property Name="Ulke" Type="char" MaxLength="50" />
+          <Property Name="Bolge" Type="char" MaxLength="30" />
+          <Property Name="Yetkili" Type="char" MaxLength="50" />
+          <Property Name="Notlar" Type="char" MaxLength="150" />
+          <Property Name="Uyari" Type="char" MaxLength="1" />
+          <Property Name="TicariPrgKodu" Type="char" MaxLength="40" />
+          <Property Name="CariTuru" Type="char" MaxLength="12" />
+          <Property Name="Semt" Type="char" MaxLength="30" />
+          <Property Name="Il" Type="char" MaxLength="30" />
+          <Property Name="Ilce" Type="char" MaxLength="30" />
+          <Property Name="GSM" Type="char" MaxLength="25" />
+          <Property Name="WebAdres" Type="char" MaxLength="100" />
+          <Property Name="PostaKodu" Type="char" MaxLength="10" />
+          <Property Name="OdemePlaniID" Type="int" />
+          <Property Name="IndirimOrani" Type="decimal" Precision="5" Scale="1" />
+          <Property Name="SubeKodu1" Type="char" MaxLength="15" />
+          <Property Name="HesapNo1" Type="char" MaxLength="30" />
+          <Property Name="SubeKodu2" Type="char" MaxLength="15" />
+          <Property Name="HesapNo2" Type="char" MaxLength="20" />
+          <Property Name="SubeKodu3" Type="char" MaxLength="15" />
+          <Property Name="HesapNo3" Type="char" MaxLength="20" />
+          <Property Name="SubeKodu4" Type="char" MaxLength="15" />
+          <Property Name="HesapNo4" Type="char" MaxLength="20" />
+          <Property Name="SubeKodu5" Type="char" MaxLength="15" />
+          <Property Name="HesapNo5" Type="char" MaxLength="20" />
+          <Property Name="BagliCariNo" Type="char" MaxLength="40" />
+          <Property Name="OdemeSekli" Type="varchar" MaxLength="30" />
+          <Property Name="TeslimSekli" Type="char" MaxLength="20" />
+          <Property Name="NakliyeSekli" Type="char" MaxLength="20" />
+          <Property Name="CalisilanDovizBirimi" Type="char" MaxLength="8" />
+          <Property Name="CariHesapKodu" Type="varchar" MaxLength="35" />
+          <Property Name="HPSNo" Type="tinyint" />
+          <Property Name="AgirlikToleransYuzde" Type="decimal" Precision="6" Scale="2" />
+          <Property Name="IsYukuRenk" Type="varchar" MaxLength="10" />
+          <Property Name="Komisyoncu1" Type="varchar" MaxLength="40" />
+          <Property Name="KomisyonYuzde1" Type="decimal" Precision="5" Scale="1" />
+          <Property Name="KomisyonTutari1" Type="decimal" Precision="18" Scale="4" />
+          <Property Name="KomisyonDovizBirimi1" Type="varchar" MaxLength="8" />
+          <Property Name="Komisyoncu2" Type="varchar" MaxLength="40" />
+          <Property Name="KomisyonYuzde2" Type="decimal" Precision="5" Scale="1" />
+          <Property Name="KomisyonTutari2" Type="decimal" Precision="18" Scale="4" />
+          <Property Name="KomisyonDovizBirimi2" Type="varchar" MaxLength="8" />
+          <Property Name="PlanlamaOnceligi" Type="int" Nullable="false" />
+          <Property Name="MusteriTemsilcisi" Type="varchar" MaxLength="40" />
+          <Property Name="InternetSiparisAmbari" Type="varchar" MaxLength="50" />
+          <Property Name="EtiketNo" Type="int" />
+          <Property Name="TicariUnvani" Type="varchar" MaxLength="200" />
+          <Property Name="PaketlemeSekli" Type="text" />
+          <Property Name="NakliyeFirmasi" Type="varchar" MaxLength="40" />
+          <Property Name="DovizKuruGetirmeYontemi" Type="tinyint" Nullable="false" />
+          <Property Name="HamEtiketNo" Type="int" />
+          <Property Name="VadeGunu" Type="int" />
+          <Property Name="SayacKodu" Type="varchar" MaxLength="30" />
+          <Property Name="KayitSiraNo" Type="int" />
+          <Property Name="TcKimlikNo" Type="char" MaxLength="30" />
+          <Property Name="KullanimdaMi" Type="bit" />
+          <Property Name="ToleransYuzde" Type="decimal" Precision="6" Scale="2" Nullable="false" />
+          <Property Name="ResimAdresi" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'POTA_TASD.dbo.View_Stok_Durum_TASD' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="View_Stok_Durum_TASD">
+          <Key>
+            <PropertyRef Name="Firma" />
+          </Key>
+          <Property Name="IATOPartiNo" Type="varchar" MaxLength="23" />
+          <Property Name="StokAdi" Type="varchar" MaxLength="55" />
+          <Property Name="Kalite" Type="varchar" MaxLength="10" />
+          <Property Name="Miktar" Type="decimal" Precision="38" Scale="2" />
+          <Property Name="Firma" Type="varchar" MaxLength="4" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'POTA_TASD.dbo.ZzzSrcnMusteriSikayetTabloOlusturmaTabloTASD' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="ZzzSrcnMusteriSikayetTabloOlusturmaTabloTASD">
+          <Key>
+            <PropertyRef Name="SevkTarihi" />
+            <PropertyRef Name="StokKodu" />
+            <PropertyRef Name="RefKartNo" />
+            <PropertyRef Name="CariNo" />
+          </Key>
+          <Property Name="SevkTarihi" Type="smalldatetime" Nullable="false" />
+          <Property Name="StokKoduCizgili" Type="varchar" MaxLength="8000" />
+          <Property Name="CariNoCizgili" Type="varchar" MaxLength="8000" />
+          <Property Name="CariAdi" Type="char" MaxLength="50" />
+          <Property Name="StokKodu" Type="char" MaxLength="40" Nullable="false" />
+          <Property Name="StokAdi" Type="char" MaxLength="100" />
+          <Property Name="RefKartNo" Type="char" MaxLength="40" Nullable="false" />
+          <Property Name="PartiNo" Type="varchar" MaxLength="20" />
+          <Property Name="SevkMiktari" Type="numeric" Precision="38" Scale="6" />
+          <Property Name="IrsalıyeNo" Type="char" MaxLength="30" />
+          <Property Name="CariNo" Type="varchar" MaxLength="40" Nullable="false" />
+        </EntityType>
+        <EntityContainer Name="ModelTasdStoreContainer">
+          <EntitySet Name="Cari" EntityType="Self.Cari" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="View_Stok_Durum_TASD" EntityType="Self.View_Stok_Durum_TASD" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [View_Stok_Durum_TASD].[IATOPartiNo] AS [IATOPartiNo], 
+    [View_Stok_Durum_TASD].[StokAdi] AS [StokAdi], 
+    [View_Stok_Durum_TASD].[Kalite] AS [Kalite], 
+    [View_Stok_Durum_TASD].[Miktar] AS [Miktar], 
+    [View_Stok_Durum_TASD].[Firma] AS [Firma]
+    FROM [dbo].[View_Stok_Durum_TASD] AS [View_Stok_Durum_TASD]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="ZzzSrcnMusteriSikayetTabloOlusturmaTabloTASD" EntityType="Self.ZzzSrcnMusteriSikayetTabloOlusturmaTabloTASD" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [ZzzSrcnMusteriSikayetTabloOlusturmaTabloTASD].[SevkTarihi] AS [SevkTarihi], 
+    [ZzzSrcnMusteriSikayetTabloOlusturmaTabloTASD].[StokKoduCizgili] AS [StokKoduCizgili], 
+    [ZzzSrcnMusteriSikayetTabloOlusturmaTabloTASD].[CariNoCizgili] AS [CariNoCizgili], 
+    [ZzzSrcnMusteriSikayetTabloOlusturmaTabloTASD].[CariAdi] AS [CariAdi], 
+    [ZzzSrcnMusteriSikayetTabloOlusturmaTabloTASD].[StokKodu] AS [StokKodu], 
+    [ZzzSrcnMusteriSikayetTabloOlusturmaTabloTASD].[StokAdi] AS [StokAdi], 
+    [ZzzSrcnMusteriSikayetTabloOlusturmaTabloTASD].[RefKartNo] AS [RefKartNo], 
+    [ZzzSrcnMusteriSikayetTabloOlusturmaTabloTASD].[PartiNo] AS [PartiNo], 
+    [ZzzSrcnMusteriSikayetTabloOlusturmaTabloTASD].[SevkMiktari] AS [SevkMiktari], 
+    [ZzzSrcnMusteriSikayetTabloOlusturmaTabloTASD].[IrsalıyeNo] AS [IrsalıyeNo], 
+    [ZzzSrcnMusteriSikayetTabloOlusturmaTabloTASD].[CariNo] AS [CariNo]
+    FROM [dbo].[ZzzSrcnMusteriSikayetTabloOlusturmaTabloTASD] AS [ZzzSrcnMusteriSikayetTabloOlusturmaTabloTASD]</DefiningQuery>
+          </EntitySet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="ModelTasd" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Cari">
+          <Key>
+            <PropertyRef Name="CariNo" />
+          </Key>
+          <Property Name="CariNo" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CariAdi" Type="String" MaxLength="50" FixedLength="true" Unicode="false" />
+          <Property Name="Adres" Type="String" MaxLength="100" FixedLength="true" Unicode="false" />
+          <Property Name="VergiDairesi" Type="String" MaxLength="30" FixedLength="true" Unicode="false" />
+          <Property Name="VergiNo" Type="String" MaxLength="30" FixedLength="true" Unicode="false" />
+          <Property Name="Tel1Aciklama" Type="String" MaxLength="20" FixedLength="true" Unicode="false" />
+          <Property Name="TUlkeKodu1" Type="String" MaxLength="3" FixedLength="true" Unicode="false" />
+          <Property Name="TAlanKodu1" Type="String" MaxLength="5" FixedLength="true" Unicode="false" />
+          <Property Name="Tel1" Type="String" MaxLength="8" FixedLength="true" Unicode="false" />
+          <Property Name="FUlkeKodu1" Type="String" MaxLength="3" FixedLength="true" Unicode="false" />
+          <Property Name="FAlanKodu1" Type="String" MaxLength="5" FixedLength="true" Unicode="false" />
+          <Property Name="Fax1" Type="String" MaxLength="8" FixedLength="true" Unicode="false" />
+          <Property Name="Tel2Aciklama" Type="String" MaxLength="20" FixedLength="true" Unicode="false" />
+          <Property Name="TUlkeKodu2" Type="String" MaxLength="3" FixedLength="true" Unicode="false" />
+          <Property Name="TAlanKodu2" Type="String" MaxLength="5" FixedLength="true" Unicode="false" />
+          <Property Name="Tel2" Type="String" MaxLength="8" FixedLength="true" Unicode="false" />
+          <Property Name="FUlkeKodu2" Type="String" MaxLength="3" FixedLength="true" Unicode="false" />
+          <Property Name="FAlanKodu2" Type="String" MaxLength="5" FixedLength="true" Unicode="false" />
+          <Property Name="Fax2" Type="String" MaxLength="8" FixedLength="true" Unicode="false" />
+          <Property Name="Tel3Aciklama" Type="String" MaxLength="20" FixedLength="true" Unicode="false" />
+          <Property Name="TUlkeKodu3" Type="String" MaxLength="3" FixedLength="true" Unicode="false" />
+          <Property Name="TAlanKodu3" Type="String" MaxLength="5" FixedLength="true" Unicode="false" />
+          <Property Name="Tel3" Type="String" MaxLength="8" FixedLength="true" Unicode="false" />
+          <Property Name="FUlkeKodu3" Type="String" MaxLength="3" FixedLength="true" Unicode="false" />
+          <Property Name="FAlanKodu3" Type="String" MaxLength="5" FixedLength="true" Unicode="false" />
+          <Property Name="Fax3" Type="String" MaxLength="8" FixedLength="true" Unicode="false" />
+          <Property Name="ElektronikPosta" Type="String" MaxLength="100" FixedLength="true" Unicode="false" />
+          <Property Name="Ulke" Type="String" MaxLength="50" FixedLength="true" Unicode="false" />
+          <Property Name="Bolge" Type="String" MaxLength="30" FixedLength="true" Unicode="false" />
+          <Property Name="Yetkili" Type="String" MaxLength="50" FixedLength="true" Unicode="false" />
+          <Property Name="Notlar" Type="String" MaxLength="150" FixedLength="true" Unicode="false" />
+          <Property Name="Uyari" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="TicariPrgKodu" Type="String" MaxLength="40" FixedLength="true" Unicode="false" />
+          <Property Name="CariTuru" Type="String" MaxLength="12" FixedLength="true" Unicode="false" />
+          <Property Name="Semt" Type="String" MaxLength="30" FixedLength="true" Unicode="false" />
+          <Property Name="Il" Type="String" MaxLength="30" FixedLength="true" Unicode="false" />
+          <Property Name="Ilce" Type="String" MaxLength="30" FixedLength="true" Unicode="false" />
+          <Property Name="GSM" Type="String" MaxLength="25" FixedLength="true" Unicode="false" />
+          <Property Name="WebAdres" Type="String" MaxLength="100" FixedLength="true" Unicode="false" />
+          <Property Name="PostaKodu" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+          <Property Name="OdemePlaniID" Type="Int32" />
+          <Property Name="IndirimOrani" Type="Decimal" Precision="5" Scale="1" />
+          <Property Name="SubeKodu1" Type="String" MaxLength="15" FixedLength="true" Unicode="false" />
+          <Property Name="HesapNo1" Type="String" MaxLength="30" FixedLength="true" Unicode="false" />
+          <Property Name="SubeKodu2" Type="String" MaxLength="15" FixedLength="true" Unicode="false" />
+          <Property Name="HesapNo2" Type="String" MaxLength="20" FixedLength="true" Unicode="false" />
+          <Property Name="SubeKodu3" Type="String" MaxLength="15" FixedLength="true" Unicode="false" />
+          <Property Name="HesapNo3" Type="String" MaxLength="20" FixedLength="true" Unicode="false" />
+          <Property Name="SubeKodu4" Type="String" MaxLength="15" FixedLength="true" Unicode="false" />
+          <Property Name="HesapNo4" Type="String" MaxLength="20" FixedLength="true" Unicode="false" />
+          <Property Name="SubeKodu5" Type="String" MaxLength="15" FixedLength="true" Unicode="false" />
+          <Property Name="HesapNo5" Type="String" MaxLength="20" FixedLength="true" Unicode="false" />
+          <Property Name="BagliCariNo" Type="String" MaxLength="40" FixedLength="true" Unicode="false" />
+          <Property Name="OdemeSekli" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="TeslimSekli" Type="String" MaxLength="20" FixedLength="true" Unicode="false" />
+          <Property Name="NakliyeSekli" Type="String" MaxLength="20" FixedLength="true" Unicode="false" />
+          <Property Name="CalisilanDovizBirimi" Type="String" MaxLength="8" FixedLength="true" Unicode="false" />
+          <Property Name="CariHesapKodu" Type="String" MaxLength="35" FixedLength="false" Unicode="false" />
+          <Property Name="HPSNo" Type="Byte" />
+          <Property Name="AgirlikToleransYuzde" Type="Decimal" Precision="6" Scale="2" />
+          <Property Name="IsYukuRenk" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="Komisyoncu1" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+          <Property Name="KomisyonYuzde1" Type="Decimal" Precision="5" Scale="1" />
+          <Property Name="KomisyonTutari1" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="KomisyonDovizBirimi1" Type="String" MaxLength="8" FixedLength="false" Unicode="false" />
+          <Property Name="Komisyoncu2" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+          <Property Name="KomisyonYuzde2" Type="Decimal" Precision="5" Scale="1" />
+          <Property Name="KomisyonTutari2" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="KomisyonDovizBirimi2" Type="String" MaxLength="8" FixedLength="false" Unicode="false" />
+          <Property Name="PlanlamaOnceligi" Type="Int32" Nullable="false" />
+          <Property Name="MusteriTemsilcisi" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+          <Property Name="InternetSiparisAmbari" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="EtiketNo" Type="Int32" />
+          <Property Name="TicariUnvani" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="PaketlemeSekli" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="NakliyeFirmasi" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+          <Property Name="DovizKuruGetirmeYontemi" Type="Byte" Nullable="false" />
+          <Property Name="HamEtiketNo" Type="Int32" />
+          <Property Name="VadeGunu" Type="Int32" />
+          <Property Name="SayacKodu" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="KayitSiraNo" Type="Int32" />
+          <Property Name="TcKimlikNo" Type="String" MaxLength="30" FixedLength="true" Unicode="false" />
+          <Property Name="KullanimdaMi" Type="Boolean" />
+          <Property Name="ToleransYuzde" Type="Decimal" Precision="6" Scale="2" Nullable="false" />
+          <Property Name="ResimAdresi" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityContainer Name="POTA_TASDEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Cari" EntityType="Self.Cari" />
+          <EntitySet Name="ZzzSrcnMusteriSikayetTabloOlusturmaTabloTASD" EntityType="ModelTasd.ZzzSrcnMusteriSikayetTabloOlusturmaTabloTASD" />
+          <EntitySet Name="View_Stok_Durum_TASD" EntityType="ModelTasd.View_Stok_Durum_TASD" />
+        </EntityContainer>
+        <EntityType Name="ZzzSrcnMusteriSikayetTabloOlusturmaTabloTASD">
+          <Key>
+            <PropertyRef Name="SevkTarihi" />
+            <PropertyRef Name="StokKodu" />
+            <PropertyRef Name="RefKartNo" />
+            <PropertyRef Name="CariNo" />
+          </Key>
+          <Property Name="SevkTarihi" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="StokKodu" Type="String" Nullable="false" MaxLength="40" FixedLength="true" Unicode="false" />
+          <Property Name="StokAdi" Type="String" MaxLength="100" FixedLength="true" Unicode="false" />
+          <Property Name="RefKartNo" Type="String" Nullable="false" MaxLength="40" FixedLength="true" Unicode="false" />
+          <Property Name="PartiNo" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="CariAdi" Type="String" MaxLength="50" FixedLength="true" Unicode="false" />
+          <Property Name="SevkMiktari" Type="Decimal" Precision="38" Scale="6" />
+          <Property Name="IrsalıyeNo" Type="String" MaxLength="30" FixedLength="true" Unicode="false" />
+          <Property Name="CariNo" Type="String" Nullable="false" MaxLength="40" FixedLength="false" Unicode="false" />
+          <Property Name="StokKoduCizgili" Type="String" MaxLength="8000" FixedLength="false" Unicode="false" />
+          <Property Name="CariNoCizgili" Type="String" MaxLength="8000" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="View_Stok_Durum_TASD">
+          <Key>
+            <PropertyRef Name="Firma" />
+          </Key>
+          <Property Name="IATOPartiNo" Type="String" MaxLength="23" FixedLength="false" Unicode="false" />
+          <Property Name="StokAdi" Type="String" MaxLength="55" FixedLength="false" Unicode="false" />
+          <Property Name="Kalite" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="Miktar" Type="Decimal" Precision="38" Scale="2" />
+          <Property Name="Firma" Type="String" Nullable="false" MaxLength="4" FixedLength="false" Unicode="false" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ModelTasdStoreContainer" CdmEntityContainer="POTA_TASDEntities">
+          <EntitySetMapping Name="Cari">
+            <EntityTypeMapping TypeName="ModelTasd.Cari">
+              <MappingFragment StoreEntitySet="Cari">
+                <ScalarProperty Name="CariNo" ColumnName="CariNo" />
+                <ScalarProperty Name="CariAdi" ColumnName="CariAdi" />
+                <ScalarProperty Name="Adres" ColumnName="Adres" />
+                <ScalarProperty Name="VergiDairesi" ColumnName="VergiDairesi" />
+                <ScalarProperty Name="VergiNo" ColumnName="VergiNo" />
+                <ScalarProperty Name="Tel1Aciklama" ColumnName="Tel1Aciklama" />
+                <ScalarProperty Name="TUlkeKodu1" ColumnName="TUlkeKodu1" />
+                <ScalarProperty Name="TAlanKodu1" ColumnName="TAlanKodu1" />
+                <ScalarProperty Name="Tel1" ColumnName="Tel1" />
+                <ScalarProperty Name="FUlkeKodu1" ColumnName="FUlkeKodu1" />
+                <ScalarProperty Name="FAlanKodu1" ColumnName="FAlanKodu1" />
+                <ScalarProperty Name="Fax1" ColumnName="Fax1" />
+                <ScalarProperty Name="Tel2Aciklama" ColumnName="Tel2Aciklama" />
+                <ScalarProperty Name="TUlkeKodu2" ColumnName="TUlkeKodu2" />
+                <ScalarProperty Name="TAlanKodu2" ColumnName="TAlanKodu2" />
+                <ScalarProperty Name="Tel2" ColumnName="Tel2" />
+                <ScalarProperty Name="FUlkeKodu2" ColumnName="FUlkeKodu2" />
+                <ScalarProperty Name="FAlanKodu2" ColumnName="FAlanKodu2" />
+                <ScalarProperty Name="Fax2" ColumnName="Fax2" />
+                <ScalarProperty Name="Tel3Aciklama" ColumnName="Tel3Aciklama" />
+                <ScalarProperty Name="TUlkeKodu3" ColumnName="TUlkeKodu3" />
+                <ScalarProperty Name="TAlanKodu3" ColumnName="TAlanKodu3" />
+                <ScalarProperty Name="Tel3" ColumnName="Tel3" />
+                <ScalarProperty Name="FUlkeKodu3" ColumnName="FUlkeKodu3" />
+                <ScalarProperty Name="FAlanKodu3" ColumnName="FAlanKodu3" />
+                <ScalarProperty Name="Fax3" ColumnName="Fax3" />
+                <ScalarProperty Name="ElektronikPosta" ColumnName="ElektronikPosta" />
+                <ScalarProperty Name="Ulke" ColumnName="Ulke" />
+                <ScalarProperty Name="Bolge" ColumnName="Bolge" />
+                <ScalarProperty Name="Yetkili" ColumnName="Yetkili" />
+                <ScalarProperty Name="Notlar" ColumnName="Notlar" />
+                <ScalarProperty Name="Uyari" ColumnName="Uyari" />
+                <ScalarProperty Name="TicariPrgKodu" ColumnName="TicariPrgKodu" />
+                <ScalarProperty Name="CariTuru" ColumnName="CariTuru" />
+                <ScalarProperty Name="Semt" ColumnName="Semt" />
+                <ScalarProperty Name="Il" ColumnName="Il" />
+                <ScalarProperty Name="Ilce" ColumnName="Ilce" />
+                <ScalarProperty Name="GSM" ColumnName="GSM" />
+                <ScalarProperty Name="WebAdres" ColumnName="WebAdres" />
+                <ScalarProperty Name="PostaKodu" ColumnName="PostaKodu" />
+                <ScalarProperty Name="OdemePlaniID" ColumnName="OdemePlaniID" />
+                <ScalarProperty Name="IndirimOrani" ColumnName="IndirimOrani" />
+                <ScalarProperty Name="SubeKodu1" ColumnName="SubeKodu1" />
+                <ScalarProperty Name="HesapNo1" ColumnName="HesapNo1" />
+                <ScalarProperty Name="SubeKodu2" ColumnName="SubeKodu2" />
+                <ScalarProperty Name="HesapNo2" ColumnName="HesapNo2" />
+                <ScalarProperty Name="SubeKodu3" ColumnName="SubeKodu3" />
+                <ScalarProperty Name="HesapNo3" ColumnName="HesapNo3" />
+                <ScalarProperty Name="SubeKodu4" ColumnName="SubeKodu4" />
+                <ScalarProperty Name="HesapNo4" ColumnName="HesapNo4" />
+                <ScalarProperty Name="SubeKodu5" ColumnName="SubeKodu5" />
+                <ScalarProperty Name="HesapNo5" ColumnName="HesapNo5" />
+                <ScalarProperty Name="BagliCariNo" ColumnName="BagliCariNo" />
+                <ScalarProperty Name="OdemeSekli" ColumnName="OdemeSekli" />
+                <ScalarProperty Name="TeslimSekli" ColumnName="TeslimSekli" />
+                <ScalarProperty Name="NakliyeSekli" ColumnName="NakliyeSekli" />
+                <ScalarProperty Name="CalisilanDovizBirimi" ColumnName="CalisilanDovizBirimi" />
+                <ScalarProperty Name="CariHesapKodu" ColumnName="CariHesapKodu" />
+                <ScalarProperty Name="HPSNo" ColumnName="HPSNo" />
+                <ScalarProperty Name="AgirlikToleransYuzde" ColumnName="AgirlikToleransYuzde" />
+                <ScalarProperty Name="IsYukuRenk" ColumnName="IsYukuRenk" />
+                <ScalarProperty Name="Komisyoncu1" ColumnName="Komisyoncu1" />
+                <ScalarProperty Name="KomisyonYuzde1" ColumnName="KomisyonYuzde1" />
+                <ScalarProperty Name="KomisyonTutari1" ColumnName="KomisyonTutari1" />
+                <ScalarProperty Name="KomisyonDovizBirimi1" ColumnName="KomisyonDovizBirimi1" />
+                <ScalarProperty Name="Komisyoncu2" ColumnName="Komisyoncu2" />
+                <ScalarProperty Name="KomisyonYuzde2" ColumnName="KomisyonYuzde2" />
+                <ScalarProperty Name="KomisyonTutari2" ColumnName="KomisyonTutari2" />
+                <ScalarProperty Name="KomisyonDovizBirimi2" ColumnName="KomisyonDovizBirimi2" />
+                <ScalarProperty Name="PlanlamaOnceligi" ColumnName="PlanlamaOnceligi" />
+                <ScalarProperty Name="MusteriTemsilcisi" ColumnName="MusteriTemsilcisi" />
+                <ScalarProperty Name="InternetSiparisAmbari" ColumnName="InternetSiparisAmbari" />
+                <ScalarProperty Name="EtiketNo" ColumnName="EtiketNo" />
+                <ScalarProperty Name="TicariUnvani" ColumnName="TicariUnvani" />
+                <ScalarProperty Name="PaketlemeSekli" ColumnName="PaketlemeSekli" />
+                <ScalarProperty Name="NakliyeFirmasi" ColumnName="NakliyeFirmasi" />
+                <ScalarProperty Name="DovizKuruGetirmeYontemi" ColumnName="DovizKuruGetirmeYontemi" />
+                <ScalarProperty Name="HamEtiketNo" ColumnName="HamEtiketNo" />
+                <ScalarProperty Name="VadeGunu" ColumnName="VadeGunu" />
+                <ScalarProperty Name="SayacKodu" ColumnName="SayacKodu" />
+                <ScalarProperty Name="KayitSiraNo" ColumnName="KayitSiraNo" />
+                <ScalarProperty Name="TcKimlikNo" ColumnName="TcKimlikNo" />
+                <ScalarProperty Name="KullanimdaMi" ColumnName="KullanimdaMi" />
+                <ScalarProperty Name="ToleransYuzde" ColumnName="ToleransYuzde" />
+                <ScalarProperty Name="ResimAdresi" ColumnName="ResimAdresi" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ZzzSrcnMusteriSikayetTabloOlusturmaTabloTASD">
+            <EntityTypeMapping TypeName="ModelTasd.ZzzSrcnMusteriSikayetTabloOlusturmaTabloTASD">
+              <MappingFragment StoreEntitySet="ZzzSrcnMusteriSikayetTabloOlusturmaTabloTASD">
+                <ScalarProperty Name="CariNoCizgili" ColumnName="CariNoCizgili" />
+                <ScalarProperty Name="StokKoduCizgili" ColumnName="StokKoduCizgili" />
+                <ScalarProperty Name="CariNo" ColumnName="CariNo" />
+                <ScalarProperty Name="IrsalıyeNo" ColumnName="IrsalıyeNo" />
+                <ScalarProperty Name="SevkMiktari" ColumnName="SevkMiktari" />
+                <ScalarProperty Name="CariAdi" ColumnName="CariAdi" />
+                <ScalarProperty Name="PartiNo" ColumnName="PartiNo" />
+                <ScalarProperty Name="RefKartNo" ColumnName="RefKartNo" />
+                <ScalarProperty Name="StokAdi" ColumnName="StokAdi" />
+                <ScalarProperty Name="StokKodu" ColumnName="StokKodu" />
+                <ScalarProperty Name="SevkTarihi" ColumnName="SevkTarihi" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="View_Stok_Durum_TASD">
+            <EntityTypeMapping TypeName="ModelTasd.View_Stok_Durum_TASD">
+              <MappingFragment StoreEntitySet="View_Stok_Durum_TASD">
+                <ScalarProperty Name="Firma" ColumnName="Firma" />
+                <ScalarProperty Name="Miktar" ColumnName="Miktar" />
+                <ScalarProperty Name="Kalite" ColumnName="Kalite" />
+                <ScalarProperty Name="StokAdi" ColumnName="StokAdi" />
+                <ScalarProperty Name="IATOPartiNo" ColumnName="IATOPartiNo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="false" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

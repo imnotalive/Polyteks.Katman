@@ -1,0 +1,105 @@
+﻿@model Polyteks.Katman.Toplanti.Models.ToplantiDetayModel
+
+@{
+    ViewBag.Title = "Toplantilar";
+    Layout = "~/Views/Shared/Layout.cshtml";
+}
+
+@if (TempData["Msg"] != null)
+{
+    <div class="custom-alerts alert alert-@TempData["class"] fade in">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true"></button>
+        <h2>@Html.Raw(TempData["Msg"])</h2>
+    </div>
+}
+<div class="row">
+    @foreach (var item in Model.ToplantiDetayModelItemlar)
+    {
+            string classAdi =
+        "btn dark btn-block";
+        if (item.RandevuDurum.ToplantiRandevuDurumId==Model.RandevuDurum.ToplantiRandevuDurumId)
+        {
+            classAdi = "btn red btn-block";
+        }
+
+        <div class="col-md-4">
+            <a href="@Url.Action("Toplantilar","Home",new{id=item.RandevuDurum.ToplantiRandevuDurumId})" class="@classAdi">@item.RandevuDurum.ToplantiRandevuDurumAdi</a>
+        </div>
+    }
+</div>
+<br/>
+<div class="row">
+    <div class="col-md-12 ">
+        <div class="portlet light bordered">
+            <div class="portlet-title">
+                <div class="caption font-blue">
+                    <i class="icon-settings font-blue"></i>
+
+
+                    <span class="caption-subject bold uppercase"> @Model.RandevuDurum.ToplantiRandevuDurumAdi Durumunda Olanlar</span>
+                </div>
+            </div>
+            <div class="portlet-body form">
+                <div class="row">
+                    <div class="col-md-12">
+
+
+                        <table class="dtTable table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th class="text-center">
+                                        #
+                                    </th>
+                                    <th class="text-center">
+                                        KAYIT TARİHİ
+                                    </th>
+                                    <th class="text-center">
+                                        TOPLANTI TARİHİ
+                                    </th>
+
+                                    <th class="text-center">
+                                        KAYIT YAPAN
+                                    </th>
+                                    <th class="text-center">
+                                        TOPLANTI BAŞLIĞI
+                                    </th>
+
+                                    <th class="text-center">
+                                        #
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @{
+                                    var say = 0;
+
+                                    foreach (var item in Model.Randevular)
+                                    {
+                                        say++;
+                                                                <tr>
+
+                                                                    <td class="text-center">@say</td>
+
+                                                                    <td class="text-center">@item.KayitTarihi.ToString()</td>
+                                                                    @*<td class="text-center">@item.ToplantiTarihi.Value.ToShortDateString()</td>*@
+                                                                    <td class="text-center">@item.ToplantiTarihi.Value.ToShortDateString()</td>
+                                                                    <td class="text-center">@item.TalepEdenKulAdi</td>
+                                                                    <td class="text-center">
+                                                                        <b>@item.ToplantiBasligi</b>
+                                                                    </td>
+
+                                                                    <td>
+                                                                        <a href="@Url.Action("ToplantiDuzenle", "Home", new {id = item.ToplantiRandevuId})" class="btn blue btn-block">Düzenle</a>
+                                                                    </td>
+                                                                </tr>
+                                    }
+                                }
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

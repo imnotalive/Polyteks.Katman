@@ -1,0 +1,110 @@
+﻿@model Polyteks.Katman.TefrikBildirim.Models.ImalatPartiSonuModel
+@{
+    ViewBag.Title = "ImalatPartiSonuOzetListe";
+    Layout = "~/Views/Shared/Layout.cshtml";
+}
+@if (TempData["Msg"] != null)
+{
+    <div class="custom-alerts alert alert-@TempData["class"] fade in">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true"></button>
+        <h2>@Html.Raw(TempData["Msg"])</h2>
+    </div>
+}
+@{
+    string GrupAdi = "PARTİ SONU YAPILMAMIŞ ÜRETİMLER";
+    if (Model.Id == 2)
+    {
+        GrupAdi = "PARTİ SONU YAPILMIŞ ÜRETİMLER";
+    }
+}
+<div class="row">
+    @if (Model.Id == 1)
+    {
+        <div class="col-md-6">
+            <a href="@Url.Action("ImalatPartiSonuOzetListe","Imalat",new{id=1})" class="btn btn-block red"> <i class=" fa fa-hand-peace-o"></i> PARTİ SONU YAPILMAMIŞ ÜRETİMLER</a>
+        </div>
+        <div class="col-md-6">
+            <a href="@Url.Action("ImalatPartiSonuOzetListe","Imalat",new{id=2})" class="btn btn-block blue">PARTİ SONU YAPILMIŞ ÜRETİMLER</a>
+        </div>
+    }
+    else
+    {
+        <div class="col-md-6">
+            <a href="@Url.Action("ImalatPartiSonuOzetListe","Imalat",new{id=1})" class="btn btn-block blue">PARTİ SONU YAPILMAMIŞ ÜRETİMLER</a>
+        </div>
+        <div class="col-md-6">
+            <a href="@Url.Action("ImalatPartiSonuOzetListe","Imalat",new{id=2})" class="btn btn-block red"><i class=" fa fa-hand-peace-o"></i> PARTİ SONU YAPILMIŞ ÜRETİMLER</a>
+        </div>
+    }
+</div>
+<br/>
+<div class="row">
+    <div class="col-md-12 ">
+        <div class="portlet light bordered">
+            <div class="portlet-title">
+                <div class="caption font-red-sunglo">
+                    <i class="icon-settings font-red-sunglo"></i>
+                    <span class="caption-subject bold uppercase"> @GrupAdi</span>
+                </div>
+            </div>
+            <div class="portlet-body form">
+                <div class="form-body">
+
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <label class="control-label"><b class="font-red-sunglo">PARTİ SEÇİMİ</b></label>
+                                        <div class="input-icon right">
+                                            @Html.HiddenFor(a=>a.Id,new{@id="modelId"})
+                                            @Html.DropDownListFor(a => a.SecilenParti, Model.DropPartiNolar,"Tümü", new {@class = "form-control", @id = "policeKel"})
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label class="control-label"><b>İSTEK YAPAN</b></label>
+                                        <div class="input-icon right">
+                                            <a href="javascript:" onclick="ListeGetir()" class="btn btn-block yellow">SEÇİLEN PARTİ İÇİN LİSTEYİ GETİR</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <hr/>
+                                <div class="row" id="aramasonuc">
+                                    <h3 class="text-center"><b class="">LÜTFEN PARTİ NUMASI SEÇİNİZ!!</b></h3>
+                                </div>
+                           
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@section scripts{
+    <script>
+        function ListeGetir() {
+            //  alert(id);
+            var id = $('#policeKel').val();
+            var id2 =$('#modelId').val();
+            var url = "/Yetkisiz/ImalatSecilenPartiNoOzetGetir/" + id2+'/'+id;
+       
+            $.ajax({
+                url: url,
+
+                dataType: "html",
+                success: function (data) {
+
+                    $("#aramasonuc").empty();
+                    $("#aramasonuc").append(data);
+                }
+            });
+      
+   
+
+        }
+    </script>
+}

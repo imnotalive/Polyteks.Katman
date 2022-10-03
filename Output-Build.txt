@@ -1,0 +1,15 @@
+﻿1>------ Build started: Project: Polyteks.Katman.WFATefrikProgrami, Configuration: Debug Any CPU ------
+1>C:\Users\SERCAN\Documents\Visual Studio 2019\Projects\Polyteks.Katman\Polyteks.Katman.WFATefrikProgrami\FrmTefrikGiris.cs(135,30,135,31): warning CS0168: The variable 'e' is declared but never used
+1>C:\Users\SERCAN\Documents\Visual Studio 2019\Projects\Polyteks.Katman\Polyteks.Katman.WFATefrikProgrami\FrmNumpadPartiNo.cs(183,30,183,39): warning CS0168: The variable 'exception' is declared but never used
+1>C:\Users\SERCAN\Documents\Visual Studio 2019\Projects\Polyteks.Katman\Polyteks.Katman.WFATefrikProgrami\FrmTefrikGiris.cs(292,30,292,31): warning CS0168: The variable 'e' is declared but never used
+1>C:\Users\SERCAN\Documents\Visual Studio 2019\Projects\Polyteks.Katman\Polyteks.Katman.WFATefrikProgrami\FrmTefrikGiris.cs(698,30,698,39): warning CS0168: The variable 'exception' is declared but never used
+1>C:\Users\SERCAN\Documents\Visual Studio 2019\Projects\Polyteks.Katman\Polyteks.Katman.WFATefrikProgrami\FrmTefrikGiris.cs(989,30,989,39): warning CS0168: The variable 'exception' is declared but never used
+1>  Polyteks.Katman.WFATefrikProgrami -> C:\Users\SERCAN\Documents\Visual Studio 2019\Projects\Polyteks.Katman\Polyteks.Katman.WFATefrikProgrami\bin\Debug\Polyteks.Katman.WFATefrikProgrami.exe
+Building Polyteks.Katman.WFATefrikProgrami...
+2>------ Publish started: Project: Polyteks.Katman.WFATefrikProgrami, Configuration: Debug Any CPU ------
+Connecting to '\\Veeam\smart_pota\Maximize\'...
+Publishing files...
+Publish success.
+\\Veeam\smart_pota\Maximize\publish.htm
+========== Build: 1 succeeded, 0 failed, 2 up-to-date, 0 skipped ==========
+========== Publish: 1 succeeded, 0 failed, 0 skipped ==========

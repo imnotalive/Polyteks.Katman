@@ -1,0 +1,440 @@
+﻿@model Polyteks.Katman.DAL.Concrete.EntityFramework.Mrv_KaliteBildirimDetay
+@{
+    ViewBag.Title = "YeniKaliteBildirimiYap";
+    Layout = "~/Views/Shared/Layout.cshtml";
+
+}
+
+@if (TempData["Msg"] != null)
+{
+    <div class="custom-alerts alert alert-@TempData["class"] fade in">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true"></button>
+        <h2>@TempData["Msg"]</h2>
+    </div>
+}
+<script src="~/Scripts/jquery-3.6.0.min.js"></script>
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="portlet light bordered">
+                <div class="portlet-title">
+                    <div class="caption font-red-sunglo">
+
+                        <span class="caption-subject bold uppercase" style="text-align: center">YENİ KALİTE BİLDİRİMİ YAP</span>
+                    </div>
+                </div>
+                <br />
+                <div class="row">
+                    <div class="col-md-12">
+                        <label class="control-label"><b>İŞLETME</b></label>
+                        <div class="input-icon right">
+                            @Html.DropDownList("Isletme", null, "İŞLETME SEÇİNİZ", htmlAttributes: new { @class = "form-control", required = "required",style = "color:black" })
+                        </div>
+                    </div>
+                </div>
+                <br />
+                <div class="row">
+                    <div class="col-md-4">
+                        <label class="control-label"><b>MAKİNE ADI</b></label>
+                        <div class="input-icon right">
+                            @*@Html.EditorFor(model => model.Mrv_KaliteBildirimAna.MakineAdi, new { htmlAttributes = new { @class = "form-control" } })*@
+                            @*@Html.DropDownListFor(model => model.Mrv_KaliteBildirimAna.MakineAdi, new List<SelectListItem>
+                                {
+                                          new  SelectListItem { Text = "CORE AND SHEATH", Value = "CORE AND SHEATH" },
+                                new  SelectListItem { Text = "HOLLOW", Value = "HOLLOW" },
+
+                                  new  SelectListItem { Text = "SEA AND ISLAND", Value = "SEA AND ISLAND" },
+
+                                      new  SelectListItem { Text = "SIDE BY SIDE", Value = "SIDE BY SIDE" },
+                                          new  SelectListItem { Text = "ROUND", Value = "ROUND" },
+                                              new  SelectListItem { Text = "TRILOBAL", Value = "TRILOBAL" },
+                                                  new  SelectListItem { Text = "OCTOLOBAL", Value = "OCTOLOBAL" },
+                                                      new  SelectListItem { Text = "W", Value = "W" },
+                                                          new  SelectListItem { Text = "WW", Value = "WW" },
+                                                              new  SelectListItem { Text = "YASSI", Value = "YASSI" },
+                                                                       new  SelectListItem { Text = "YASSI YASSI", Value = "YASSI YASSI" },
+                                }, "KESİT TİPİNİ SEÇİNİZ", new { @style = "color:black", @class = "form-control", required = "required", title = "Lütfen Kesit Tipini Seçiniz!" })
+                                      @Html.ValidationMessageFor(model => model.Mrv_KaliteBildirimAna.MakineAdi, "", new { @class = "text-danger" })*@
+                            @Html.DropDownList("MakineAdi", null, "MAKİNE SEÇİNİZ", htmlAttributes: new { @class = "form-control", required = "required", style = "color:black" })
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <label class="control-label"><b>KANAL NO</b></label>
+                        <div class="input-icon right">
+                            @Html.EditorFor(model => model.KanalNo, new { htmlAttributes = new { @min = 0, @max = 9999, @class = "form-control" } })
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <label class="control-label"><b>POZİSYON NO</b></label>
+                        <div class="input-icon right">
+                            @Html.EditorFor(model => model.PozisyonNo, new { htmlAttributes = new { @min = 0, @max = 9999, @class = "form-control" } })
+                        </div>
+                    </div>
+                </div>
+                <br />
+                @*<div class="form-row">
+                        <div class="col-md-12">
+
+                            <b>@Html.Label("HATA", htmlAttributes: new { @class = "control-label col-md-12", style = "color:black" })</b>
+                            <div class="form-group col-md-4">
+                                @Html.DropDownList("Hata1", null, "HATA SEÇİNİZ", htmlAttributes: new { @class = "form-control", required = "required", style = "color:black" })
+                            </div>
+                            <b>@Html.Label("HATA", htmlAttributes: new { @class = "control-label col-md-12", style = "color:black" })</b>
+                            <div class="form-group col-md-4">
+                                @Html.DropDownList("Hata2", null, "HATA SEÇİNİZ", htmlAttributes: new { @class = "form-control", style = "color:black" })
+                            </div>
+                            <b>@Html.Label("HATA", htmlAttributes: new { @class = "control-label col-md-12", style = "color:black" })</b>
+                            <div class="form-group col-md-4">
+                                @Html.DropDownList("Hata2", new SelectList(ViewBag.Hata2, "ID", "HataTanimi"))
+                                @Html.DropDownList("Hata3", null, "HATA SEÇİNİZ", htmlAttributes: new { @class = "form-control", style = "color:black" })
+                            </div>
+                        </div>
+
+                    </div>*@
+                <div class="row">
+                    <div class="col-md-12">
+                        <label class="control-label"><b>PARTİ NO</b></label>
+                        <div class="input-icon right">
+                            @Html.EditorFor(model => model.PartiNo, new { htmlAttributes = new { @class = "form-control" ,required = "required" } })
+                        </div>
+                    </div>
+                </div>
+                <br />
+                <div class="row">
+                    <div class="col-md-4">
+                        <label class="control-label"><b>HATA/1</b></label>
+                        <div class="input-icon right">
+                            @Html.DropDownList("Hata1", null, "HATA SEÇİNİZ", htmlAttributes: new { @class = "form-control", required = "required", style = "color:black" })
+                        </div>
+
+                    </div>
+
+                    <div class="col-md-4">
+                        <label class="control-label"><b>HATA/2</b></label>
+                        <div class="input-icon right">
+                            @Html.DropDownList("Hata2", null, "HATA SEÇİNİZ", htmlAttributes: new { @class = "form-control", required = "required",style = "color:black" })
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <label class="control-label"><b>HATA/3</b></label>
+                        <div class="input-icon right">
+                            @Html.DropDownList("Hata3", null, "HATA SEÇİNİZ", htmlAttributes: new { @class = "form-control", required = "required", style = "color:black" })
+                        </div>
+                    </div>
+                </div>
+                <br />
+                @*<div class="form-row">
+                        <div class="form-group col-md-12">
+                            <b>@Html.Label("PARTİ NO", htmlAttributes: new { @class = "control-label col-md-12", style = "color:black" })</b>
+                            <div class="col-md-12">
+                                @Html.EditorFor(model => model.Mrv_KaliteBildirimAna.PartiNo, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.Mrv_KaliteBildirimAna.PartiNo, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>*@
+
+
+                @*<div class="form-row">
+                    <div class="form-group col-md-4">
+                        <b>@Html.Label("MAKİNE ADI", htmlAttributes: new { @class = "control-label col-md-12", style = "color:black" })</b>
+                        <div class="col-md-12">
+                            @Html.EditorFor(model => model.Mrv_KaliteBildirimAna.MakineAdi, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Mrv_KaliteBildirimAna.MakineAdi, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <b>@Html.Label("KANAL NO", htmlAttributes: new { @class = "control-label col-md-12", style = "color:black" })</b>
+                        <div class="col-md-12">
+                            @Html.EditorFor(model => model.Mrv_KaliteBildirimAna.KanalNo, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Mrv_KaliteBildirimAna.KanalNo, "", new { @class = "text-danger" })
+                        </div>
+                    </div>*@
+
+                @*<b>@Html.Label("POZİSYON NO", htmlAttributes: new { @class = "control-label col-md-12", style = "color:black" })</b>
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.Mrv_KaliteBildirimAna.PozisyonNo, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Mrv_KaliteBildirimAna.PozisyonNo, "", new { @class = "text-danger" })
+                        </div>
+                    </div>*@
+                <div class="row">
+                    <div class="col-md-12">
+                        <label class="control-label"><b>AÇIKLAMA</b></label>
+                        <div class="input-icon right">
+                            @Html.TextAreaFor(model => model.Aciklama, 3, 50, new { @class = "form-control"})
+                        </div>
+                    </div>
+                </div>
+                <br />
+                @*<div class="col-md-12">
+                        <div class="form-row">
+                            <b>@Html.Label("İŞLETME", htmlAttributes: new { @class = "control-label col-md-12", style = "color:black" })</b>
+                            <div class="form-group col-md-12">
+                                @Html.DropDownList("Isletme", null, "İŞLETME SEÇİNİZ", htmlAttributes: new { @class = "form-control", required = "required", style = "color:black" })
+                            </div>
+                        </div>
+                    </div>*@
+
+
+
+
+                <input type="submit" value="YENİ KALİTE BİLDİRİMİ YAP" class="btn btn-success btn-block" />
+
+
+                @*<div class="modal-dialog">
+                        <div class="modal-content">
+                    <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+
+                        </div>
+                    <div class="modal-body">*@
+                @*<div style="margin-left:50px">
+
+                        @Html.Label("İŞLETME")
+                        @Html.DropDownList("DrpIsletme", Model.Mrv_KaliteBildirimAna.Isletme, "--işletme seçin--", new { @class = "form-control" })
+                        <br />
+                        @Html.Label("HATALAR")
+                        @Html.DropDownList("DrpHatalar", Model.Hatalar, "--Hata seçin--", new { @class = "form-control" })
+                    </div>*@
+                <!--<div>-->
+                @*@Html.DropDownList("Isletme", null, htmlAttributes: new { @class = "form-control" })*@
+
+                @*@Html.DropDownList("Isletme", ViewBag.data as List<SelectListItem>, new { style = "width: 200px;" })
+                    @Html.DropDownList("Isletme", ViewBag.Isletme as List<SelectListItem>, new { style = "width: 200px;" })*@
+                @*@Html.DropDownList("data", null, "--LÜTFEN BÖLÜM SEÇİNİZ--", htmlAttributes: new { @class = "form-control", style = "color:black" })*@
+                @*@Html.DropDownList("HataId", null, "--LÜTFEN HATA SEÇİNİZ--", htmlAttributes: new { @class = "form-control", style = "color:black" })
+                    @Html.DropDownList("HataId2", null, "--LÜTFEN HATA SEÇİNİZ--", htmlAttributes: new { @class = "form-control", style = "color:black" })
+                    @Html.DropDownList("HataId3", null, "--LÜTFEN HATA SEÇİNİZ--", htmlAttributes: new { @class = "form-control", style = "color:black" })*@
+                <!--</div>
+                </div>-->
+                @*<div class="col-md-12">
+                            <div class="card" style="background-color:floralwhite">
+                                <div class="card-header">
+                                    <div class="form-group">
+                                        <b>@Html.Label("DIŞ GÖREV ADI", htmlAttributes: new { @class = "control-label col-md-12", style = "color:black" })</b>
+                                        <div class="col-md-12">
+
+                                            @Html.DropDownListFor(model => model.Mrv_KaliteBildirimAna.hata, new List<SelectListItem>
+                                           {
+                                                     new  SelectListItem { Text = "1-Yüksek Lisans Eğitimi", Value = "1" },
+                                           new  SelectListItem { Text = "2-Doktora Eğitimi", Value = "2-Doktora Eğitimi" },
+
+                                             new  SelectListItem { Text = "3-Laboratuvar", Value = "3-Laboratuvar" },
+
+                                                 new  SelectListItem { Text = "4-Analiz", Value = "4-Analiz" },
+
+                                                 new  SelectListItem { Text = "5-Test ve Deney Çalışmalar", Value = "5-Test ve Deney Çalışmalar" },
+
+                                                 new  SelectListItem { Text = "6-Diğer Ar-Ge veya Tasarım Merkezlerinde Yapılan Çalışmalar", Value = "6-Diğer Ar-Ge veya Tasarım Merkezlerinde Yapılan Çalışmalar" },
+
+                                                 new  SelectListItem { Text = "7-Saha Araştırması", Value = "7-Saha Araştırması" },
+
+                                                 new  SelectListItem { Text = "8-Prototip Geliştirmeye Yönelik Faaliyetler", Value = "8-Prototip Geliştirmeye Yönelik Faaliyetler" },
+
+                                                 new  SelectListItem { Text = "9-Bilimsel İçerikli Etkinlik", Value = "9-Bilimsel İçerikli Etkinlik" },
+
+                                                 new  SelectListItem { Text = "10-COVID-19", Value = "10-COVID-19" },
+
+                                           }, "--LÜTFEN DIŞ GÖREVİ SEÇİNİZ--", new { @style = "color:black", @class = "form-control", title = "Lütfen Dış Görevi Seçiniz!" })
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                        </div>*@
+            </div>
+        </div>
+
+    </div>
+    <script>
+        $(function () {
+            $('#Isletme').change(function () {
+                var id = $('#Isletme').val();
+                $.ajax({
+                    url: '/Laboratuvar/hataGetir',
+                    data: { p: id },
+                    type: "POST",
+                    dataType: "Json",
+                    success: function (data) {
+                        console.log(data);
+                        $('#Hata1').empty();
+                        for (var i = 0; i < data.length; i++) {
+                            $('#Hata1').append("<option value='" + data[i].Value + "'>" + data[i].Text + "</Option>");
+                        }
+                        $('#Hata2').empty();
+                        for (var i = 0; i < data.length; i++) {
+                            $('#Hata2').append("<option value='" + data[i].Value + "'>" + data[i].Text + "</Option>");
+                        }
+                        $('#Hata3').empty();
+                        for (var i = 0; i < data.length; i++) {
+                            $('#Hata3').append("<option value='" + data[i].Value + "'>" + data[i].Text + "</Option>");
+                        }
+                    }
+                });
+            });
+        });
+
+
+
+    </script>
+    <script>
+        $(function () {
+            $('#Isletme').change(function () {
+                var id = $('#Isletme').val();
+                $.ajax({
+                    url: '/Laboratuvar/makineGetir',
+                    data: { p: id },
+                    type: "POST",
+                    dataType: "Json",
+                    success: function (data) {
+                        console.log(data);
+                        $('#MakineAdi').empty();
+                        for (var i = 0; i < data.length; i++) {
+                            $('#MakineAdi').append("<option value='" + data[i].Value + "'>" + data[i].Text + "</Option>");
+                        }
+                      
+                    }
+                });
+            });
+        });
+
+
+
+    </script>
+    @*<div class="row main-container">
+            <div class="col-md-2">
+                <div class="menu">
+                    <a href="#" onclick="AddRooms()">
+                        İŞLETME VE HATA TÜRÜ SEÇ
+                    </a>
+                </div>
+            </div>
+        </div>*@
+    @*<div id="showmodal" class="modal fade" tabindex="-1" role="dialog">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    @{
+                        Html.RenderPartial("_showParticalView");
+                    }
+                </div> /.modal-content
+            </div> /.modal-dialog
+        </div> /.modal
+        <button id='open' data-toggle="modal" data-target="#showmodal">open modal</button>*@
+    @*<button id="viewbtn">View Image</button>*@
+
+    @*<div class="form-group">
+            @Html.Label("HATA")
+            <div class="col-md-10">
+                @Html.DropDownList("HataId", null, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.aaa.Mrv_KaliteBildirimAna.HataId, "", new { @class = "text-danger" })
+            </div>
+        </div>*@
+    <!--<div class="modal" id="create-room" data-backdrop="static">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>X</button>
+
+
+                    <h4 class="modal-title">
+                        <center><b> İŞLETME VE HATA TÜRÜ SEÇME</b></center>
+                    </h4>
+                </div>
+                <div class="modal-body" id="roomModalBody">
+                </div>-->
+    @*<div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">KAPAT</button>
+        </div>*@
+
+    <!--</div>
+    </div>
+    <script>
+        var AddRooms = function () {
+            $("#roomModalBody").load("/Laboratuvar/_showParticalView", function () {
+                $("#create-room").modal("show");
+            })
+        }
+    </script>-->
+
+
+
+
+}
+
+@*<div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            @Html.ActionLink("LİSTEYE GERİ DÖN", "Index", new { @class = "btn btn-primary" })
+        </div>
+    </div>*@
+@*<div style="margin-left:50px">
+
+        @Html.Label("İŞLETME")
+        @Html.DropDownList("DrpIsletme", Model.Isletme, "--işletme seçin--", new { @class = "form-control" })
+        <br />
+        @Html.Label("HATALAR")
+        @Html.DropDownList("DrpHatalar", Model.Hatalar, "--işletme seçin--", new { @class = "form-control" })
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.aaa.Aciklama, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.TextAreaFor(model => model.aaa.Aciklama, 3, 50, new { @class = "form-control" } )
+            @Html.ValidationMessageFor(model => model.aaa.Aciklama, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+        <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+    <script src="~/Scripts/jquery-3.6.0.min.js"></script>
+    <script>
+        $(function () {
+            $('#DrpIsletme').change(function () {
+                var id = $('#DrpIsletme').val();
+                $.ajax({
+                    url: '/Laboratuvar/hataGetir',
+                    data: { p: id },
+                    type: "POST",
+                    dataType: "Json",
+                    success: function (data) {
+                        console.log(data);
+                        $('#DrpHatalar').empty();
+                        for (var i = 0; i < data.length; i++) {
+                            $('#DrpHatalar').append("<option value='" + data[i].Value + "'>" + data[i].Text + "</Option>");
+                        }
+                    }
+                });
+            });
+        });
+
+
+
+    </script>*@
+@*<div id="showmodal" class="modal fade" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+
+        </div>
+    </div>
+    @section scripts{
+        <script>
+            $("#showtable").on("click", "#viewbtn", function () {
+                var id = $(this).closest("tr").find("td").eq(0).html();
+                $.ajax({
+                    url: "@Url.Action("ShowImg", "PartialTest")",
+                    data: { id: id },
+                    success: function (data) {
+                        $("#showmodal .modal-dialog").html(data);
+                        $("#showmodal").modal("show");
+                    }
+                });
+            });
+        </script>
+        }*@
+<style>
+</style>

@@ -1,0 +1,126 @@
+﻿@model Polyteks.Katman.TefrikBildirim.Models.SatisModel
+
+@{
+    ViewBag.Title = "NumuneYapilabilirlikAnalizResimler";
+    Layout = "~/Views/Shared/Layout.cshtml";
+}
+
+@if (TempData["Msg"] != null)
+{
+    <div class="custom-alerts alert alert-@TempData["class"] fade in">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true"></button>
+        <h2>@Html.Raw(TempData["Msg"])</h2>
+    </div>
+}
+
+<div class="row">
+    <div class="col-md-12 ">
+        <div class="portlet light bordered">
+            <div class="portlet-title">
+                <div class="caption font-blue">
+                    <i class="icon-settings font-blue"></i>
+
+
+                    <span class="caption-subject bold uppercase"> NUMUNE YAPILABİLİRLİK- DOSYA HAREKETLERİ</span>
+                </div>
+            </div>
+            <div class="portlet-body form">
+                @Html.Partial("~/Views/Satis/_NumuneYapilabilirlikOrtakButonlar.cshtml", Model)
+
+                <div class="row">
+                    @using (Html.BeginForm())
+                    {
+                        @Html.HiddenFor(a => a.NumuneYapilabilirlikDosya.NumuneYapilabilirlikDosyaId)
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <div class="col-md-6">
+                                    <label class="control-label">
+                                        <b>CARİ</b>
+                                    </label>
+                                    <div class="input-icon right">
+                                        @Html.TextBoxFor(a => a.NumuneYapilabilirlikDosya.CariAdi, new { @class = "form-control", @onkeydown = "return false", })
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="control-label">
+                                        <b>KAYIT YAPAN</b>
+                                    </label>
+                                    <div class="input-icon right">
+                                        @Html.TextBoxFor(a => a.NumuneYapilabilirlikDosya.KayitYapanKulAdi, new { @class = "form-control", @onkeydown = "return false", })
+                                    </div>
+                                </div>
+                            </div>
+
+
+                        </div>
+                        <br />
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <div class="col-md-6">
+                                    <label class="control-label">
+                                        <b>HAREKET</b>
+                                    </label>
+                                    <div class="input-icon right">
+                                        @Html.TextAreaFor(a => a.DosyaHareket.HareketAdi, new { @class = "form-control" })
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="control-label">
+                                        <b>&nbsp;</b>
+                                    </label>
+                                    <div class="input-icon right">
+                                        <button type="submit" class="btn blue btn-block">HAREKET OLUŞTUR</button>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                        </div>
+                    }
+                </div>
+                <hr />
+
+                @{
+                    int say = -1;
+
+                    foreach (var item in Model.DosyaHareketleri)
+                    {
+                        say++;
+                        string renkClass = "bg-purple-intense bg-font-purple-intense";
+
+                        if (say % 3 == 0)
+                        {
+                            renkClass = "bg-red-pink bg-font-red-pink";
+                        }
+                        if (say % 3 == 1)
+                        {
+                            renkClass = "bg-green-soft bg-font-green-soft";
+                        }
+                        if (say % 3 == 2)
+                        {
+                            renkClass = "bg-blue-chambray bg-font-blue-chambray";
+                        }
+                        <div class="row ">
+
+                            <div class="col-md-12 ">
+
+
+                                <div class="mt-element-ribbon @renkClass">
+                                    <div class="ribbon ribbon-border-hor ribbon-clip ribbon-color-primary uppercase">
+                                        <div class="ribbon-sub ribbon-clip"></div> @item.KayitTarihi
+                                    </div>
+                                    <div class="ribbon ribbon-right ribbon-vertical-right ribbon-shadow ribbon-border-dash-vert ribbon-color-default uppercase">
+                                        <div class="ribbon-sub ribbon-bookmark"></div>
+                                        <i class="fa fa-heart"></i>
+                                    </div>
+                                   @* <div class="ribbon ribbon-left ribbon-color-primary uppercase ribbon-clip">@item.KayitTarihi</div>*@
+                                    <p class="ribbon-content"> @Html.Raw(item.HareketAdi) </p>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                }
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,348 @@
+﻿@model Polyteks.Katman.TefrikBildirim.Models.SatisModel
+
+@{
+    ViewBag.Title = "MusteriSikayetiDosyaEkle";
+    Layout = "~/Views/Shared/Layout.cshtml";
+}
+
+
+@section styles{
+
+    <link href="~/Temalar/TarihSaat/bootstrap-datepicker/css/bootstrap-datetimepicker.css" rel="stylesheet" />
+
+    <style>
+        .mt-radio {
+            font-weight: bold;
+        }
+    </style>
+
+
+
+}
+
+
+@if (TempData["Msg"] != null)
+{
+    <div class="custom-alerts alert alert-@TempData["class"] fade in">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true"></button>
+        <h2>@Html.Raw(TempData["Msg"])</h2>
+    </div>
+}
+
+<div class="row">
+    <div class="col-md-12 ">
+        <div class="portlet light bordered">
+            <div class="portlet-title">
+                <div class="caption font-red-sunglo">
+                    <i class="icon-settings font-red-sunglo"></i>
+                    <span class="caption-subject bold uppercase"> MÜŞTERİ ŞİKAYETİ</span>
+                </div>
+            </div>
+            <div class="portlet-body form">
+                <div class="form-body">
+                    <div class="row">
+                        @{
+                            string Sira = "";
+                            foreach (var item in Model.SrcnLabGruplari)
+                            {
+                                if (item != Model.SrcnLabGruplari.Last())
+                                {
+                                    Sira += item.LabGrupAdi + " >> ";
+
+                                }
+                                else
+                                {
+                                    Sira += item.LabGrupAdi;
+                                }
+
+                            }
+                            <h4 class="text-center"><b>@Sira </b></h4>
+                            <br />
+                        }
+
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    @using (Html.BeginForm())
+                    {
+                        string CariPoly = null;
+                        string CariTasd = null;
+                        string CariPset = null;
+
+                        if (Model.CariKoduPoly == null)
+                        {
+                            CariPoly = "display:none";
+                        }
+                        if (Model.CariKoduTasd == null)
+                        {
+                            CariTasd = "display:none";
+                        }
+                        if (Model.CariKoduPset == null)
+                        {
+                            CariPset = "display:none";
+                        }
+
+                        @Html.HiddenFor(a => a.LabGrup.LabGrupId)
+                        @Html.HiddenFor(a => a.LabGrup.AnalizTipi)
+                    <div class="form-body">
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label class="control-label"><b class="font-red-sunglo">ANALİZ SONUCU İSTENİLEN TERMİN</b></label>
+                                    <div class="input-icon right">
+                                        @Html.TextBoxFor(a => a.IstekTarihi, new { @class = "form-control tarih", @onkeydown = "return false" })
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="control-label"><b>İSTEK YAPAN</b></label>
+                                    <div class="input-icon right">
+                                        @Html.TextBoxFor(a => a.Kullanici.IsimSoyisim, new { @class = "form-control", @onkeydown = "return false", @readonly = true })
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label class="control-label"><b>FİRMA SEÇİMİ</b></label>
+                                    <div class="input-icon right">
+                                        <div class="input-icon right">
+                                            <div class="mt-radio-inline">
+                                                <label class="mt-radio font-red-sunglo">
+                                                    @Html.RadioButtonFor(a => a.MusteriSikayetDosya.FirmaTipi, 0, new { onclick = "radioDurumCari(0)" }) SEÇİM YAPILMADI
+                                                    <span></span>
+                                                </label>
+                                                <label class="mt-radio font-blue">
+                                                    @Html.RadioButtonFor(a => a.MusteriSikayetDosya.FirmaTipi, 1, new { onclick = "radioDurumCari(1)" }) POLYTEKS
+                                                    <span></span>
+                                                </label>
+                                                <label class="mt-radio font-green-jungle">
+                                                    @Html.RadioButtonFor(a => a.MusteriSikayetDosya.FirmaTipi, 2, new { onclick = "radioDurumCari(2)" }) TAŞDELEN
+                                                    <span></span>
+                                                </label>
+
+                                                <label class="mt-radio font-green">
+                                                    @Html.RadioButtonFor(a => a.MusteriSikayetDosya.FirmaTipi, 3, new { onclick = "radioDurumCari(3)" }) POLYSET
+                                                    <span></span>
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                <div class="col-md-2" id="rdpoly" style="@CariPoly">
+                                    <label class="control-label"><b class="font-blue">POLYTEKS CARİ SEÇİMİ</b></label>
+                                    <div class="input-icon right">
+                                        @Html.DropDownListFor(a => a.CariKoduPoly, Model.CarilerPoly, "Seçiniz", new { @class = "form-control " })
+                                    </div>
+                                </div>
+                                <div class="col-md-2" id="rdTasd" style="@CariTasd">
+                                    <label class="control-label"><b class="font-green-jungle">TAŞDELEN CARİ SEÇİMİ</b></label>
+                                    <div class="input-icon right">
+                                        @Html.DropDownListFor(a => a.CariKoduTasd, Model.CarilerTasd, "Seçiniz", new { @class = "form-control " })
+                                    </div>
+                                </div>
+
+                                <div class="col-md-2" id="rdPset" style="@CariPset">
+                                    <label class="control-label"><b class="font-green">POLYSET CARİ SEÇİMİ</b></label>
+                                    <div class="input-icon right">
+                                        @Html.DropDownListFor(a => a.CariKoduPset, Model.CarilerPset, "Seçiniz", new { @class = "form-control " })
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <label class="control-label"><b>PARTİ NO</b></label>
+                                    <div class="input-icon right">
+                                        @Html.TextBoxFor(a => a.MusteriSikayetDosya.PartiNo, new { @class = "form-control" })
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <label class="control-label"><b>BOBİN İÇİ ETİKET</b></label>
+                                    <div class="input-icon right">
+                                        @Html.TextBoxFor(a => a.MusteriSikayetDosya.BobinIciLotNo, new { @class = "form-control" })
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <label class="control-label"><b>SEVK MİKTARI (Kg)</b></label>
+                                    <div class="input-icon right">
+                                        @Html.TextBoxFor(a => a.MusteriSikayetDosya.SevkMiktari, new { @class = "form-control decSayi" })
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <label class="control-label"><b>SEVK TARİHİ</b></label>
+                                    <div class="input-icon right">
+                                        @Html.TextBoxFor(a => a.MusteriSikayetDosya.SevkTarihi, new { @class = "form-control tarih", @onkeydown = "return false" })
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label class="control-label"><b>Analiz Yapılacak Bobin Sayısı</b></label>
+                                    <div class="input-icon right">
+                                        @Html.TextBoxFor(a => a.MusteriSikayetDosya.AnalizYapilacakBobinSayisi, new { @class = "form-control decSayi" })
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="control-label"><b>Analiz Yapılacak Kumaş Sayısı</b></label>
+                                    <div class="input-icon right">
+                                        @Html.TextBoxFor(a => a.MusteriSikayetDosya.AnalizYapilacakKumasSayisi, new { @class = "form-control decSayi" })
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <h3 class="text-center"><b>DETAYLAR</b></h3>
+                        </div>
+                        <hr />
+                      
+                        @{
+                            int i = -1;
+                            foreach (var item in Model.MusteriSikayetGrupItemModeller)
+                            {
+                                i++;
+                                int j = -1;
+
+                                <div class="form-group">
+                                    <div class="row">
+                                                                <div class="col-md-12">
+
+                                                                    <label class="control-label"><b class="font-blue">@item.AnaGrup.MusteriSikayetGrupAdi</b></label>
+                                                                    <br />
+                                                                    @foreach (var itt in item.AltItemGruplar)
+                                                                    {
+                                                                        j++;
+
+                                                                        @Html.HiddenFor(a => a.MusteriSikayetGrupItemModeller[i].AnaGrup.MusteriSikayetGrupId)
+
+                                                                        if (item.AnaGrup.RadioSecimMi == null)
+                                                                        {
+                                                                            @Html.HiddenFor(a => a.MusteriSikayetGrupItemModeller[i].AltItemGruplar[j].MusteriSikayetGrupId)
+                                                                            @Html.HiddenFor(a => a.MusteriSikayetGrupItemModeller[i].AltItemGruplar[j].MusteriSikayetGrupAdi)
+                                                                            <div class=" col-md-2">
+                                                                                <div class="mt-checkbox">
+                                                                                    <label class="mt-checkbox">
+                                                                                        @Html.CheckBoxFor(a => a.MusteriSikayetGrupItemModeller[i].AltItemGruplar[j].SeciliMi) <b>@itt.MusteriSikayetGrupAdi</b>
+                                                                                        <span></span>
+                                                                                    </label>
+                                                                                </div>
+                                                                            </div>
+                                                                        }
+                                                                        else
+                                                                        {
+
+                                                                            @Html.HiddenFor(a => a.MusteriSikayetGrupItemModeller[i].AltItemGruplar[j].MusteriSikayetGrupId)
+                                                                            @Html.HiddenFor(a => a.MusteriSikayetGrupItemModeller[i].AltItemGruplar[j].MusteriSikayetGrupAdi)
+                                                                            <div class=" col-md-2">
+                                                                                <div class="mt-radio-inline">
+                                                                                    <label class="mt-radio font-yellow">
+                                                                                        @Html.RadioButtonFor(a => a.MusteriSikayetGrupItemModeller[i].RadioId, itt.MusteriSikayetGrupId) @itt.MusteriSikayetGrupAdi
+                                                                                        <span></span>
+                                                                                    </label>
+                                                                                </div>
+                                                                            </div>
+                                                                        }
+
+                                                                    }
+
+
+
+                                                                </div>
+                                    </div>
+                                </div>
+
+                                <hr />
+                            }
+
+
+                        }
+                        <div class="row">
+                            <div class="col-md-12">
+                                <label class="control-label"><b>AÇIKLAMA</b></label>
+                                <div class="input-icon right">
+                                    @Html.TextAreaFor(a => a.MusteriSikayetDosya.Aciklama, new { @class = "form-control", @rows = 5 })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-actions">
+                            <button type="submit" class="btn blue btn-block">ANALİZ TALEBİNDE BULUN</button>
+                        </div>
+                    </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@section scripts
+{
+    <script src="~/Temalar/TarihSaat/bootstrap-datepicker/js/bootstrap-datetimepicker.js"></script>
+    <script src="~/Temalar/TarihSaat/bootstrap-datepicker/js/bootstrap-datetimepicker.tr.js"></script>
+    <script>
+        $('.tarih').datetimepicker({
+            language: 'tr',
+            weekStart: 1,
+            todayBtn: 1,
+            autoclose: 1,
+            todayHighlight: 1,
+            startView: 2,
+            minView: 2,
+            forceParse: 0,
+            format: "dd MM yyyy",
+            inline: true
+        });
+
+    </script>
+
+    <script>
+        function radioDurumCari(id) {
+
+            var polyGrup = document.getElementById("rdpoly");
+            var tasdGrup = document.getElementById("rdTasd");
+            var psetGrup = document.getElementById("rdPset");
+
+            polyGrup.style.visibility = "hidden";
+            polyGrup.style.display = "none";
+            tasdGrup.style.visibility = "hidden";
+            tasdGrup.style.display = "none";
+            psetGrup.style.visibility = "hidden";
+            psetGrup.style.display = "none";
+            if (id == 1) {
+
+                polyGrup.style.display = "block";
+                polyGrup.style.visibility = "visible";
+
+            }
+
+            if (id == 2) {
+
+                tasdGrup.style.display = "block";
+                tasdGrup.style.visibility = "visible";
+            }
+            if (id == 3) {
+
+                psetGrup.style.display = "block";
+                psetGrup.style.visibility = "visible";
+            }
+
+
+        }
+    </script>
+
+    <script src="~/Temalar/Scripts/jquery.decimalMask.js"></script>
+    <script>
+        $(function () {
+            $('.decSayi').decimalMask('-999999,99');
+        });
+    </script>
+
+
+}
+

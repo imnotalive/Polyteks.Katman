@@ -1,0 +1,121 @@
+﻿@model Polyteks.Katman.TefrikBildirim.Models.LaboratuvarModel
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/Layout.cshtml";
+}
+
+@section styles{
+    <link href="~/Temalar/treeflex.css" rel="stylesheet">
+    <link href="~/Temalar/responsiveHier.css" rel="stylesheet">
+}
+
+
+@helper YukaridanAsagiya(int SiraNo)
+{
+    var model = Model.SrcnLabGruplari.Where(a => a.UstLabGrupId == SiraNo).OrderBy(a=>a.LabGrupAdi).ToList();
+    if (model.Any())
+    {
+<ol>
+    @{
+        int say = 0;
+        foreach (var item in model)
+        {
+            say++;
+
+            string ozet = say.ToString()+"- "+ item.LabGrupAdi;
+
+            <li>
+
+                <div>
+                    @if (Model.SrcnLabGruplari.Any(a => a.UstLabGrupId == item.LabGrupId))
+                    {
+                        <h4><b>@ozet</b></h4>
+                    }
+                    else
+                    {
+                        <h4><a href="@Url.Action("LaboratuvarGorevSecimi", "Laboratuvar", new {id = item.LabGrupId})" class="font-red-sunglo"> <b>@ozet</b> </a></h4>
+                    }
+
+                </div>
+
+                @YukaridanAsagiya((item.LabGrupId))
+
+
+
+
+
+            </li>
+        }
+    }
+</ol>
+    }
+}
+
+@helper SoldanSaga(int SiraNo)
+{
+    var model = Model.SrcnLabGruplari.Where(a => a.UstLabGrupId == SiraNo).ToList();
+    if (model.Any())
+    {
+        foreach (var item in model)
+        {
+
+            string ozet = item.LabGrupAdi;
+            <ol>
+                <li>
+                    <div>
+                        <p><a href="@Url.Action("UretimHatRotalari","Tanimlamalar",new{id=item.LabGrupId})"> <b>@Html.Raw(ozet)</b>  </a></p>
+                    </div>
+                    @SoldanSaga(item.LabGrupId)
+                </li>
+            </ol>
+        }
+
+
+
+
+
+    }
+}
+
+<div class="row">
+    <div class="col-md-12 ">
+        <div class="portlet light bordered">
+            <div class="portlet-title">
+                <div class="caption font-red-sunglo">
+                    <i class="icon-settings font-red-sunglo"></i>
+                    <span class="caption-subject bold uppercase">AĞAÇ</span>
+                </div>
+            </div>
+            <div class="portlet-body form">
+                <div class="form-body">
+                    <div class="row">
+                        <div class="">
+
+                            @if (Model.SrcnLabGruplari.Any())
+                            {
+                                <ol class="organizational-chart">
+                                    <li>
+                                        <div class="col-md-12">
+                                            <h1> LABORATUVAR ANALİZLERİ </h1>
+                                        </div>
+
+                                        @Html.Raw(YukaridanAsagiya(0))
+                                    </li>
+                                </ol>
+                            }
+                            else
+                            {
+                                <h2 class="font-red-sunglo text-center"><b>ROTA OLUŞTURMADINIZ YA DA HAM MALZEME İÇİN ÜRÜN AĞACINI KONTROL EDİYORSUNUZ!!!!</b></h2>
+                            }
+                            </div>
+
+                      
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

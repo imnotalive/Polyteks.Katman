@@ -1,0 +1,65 @@
+﻿@model Polyteks.Katman.TefrikBildirim.Models.PaketlemeGunlukTalimatModel
+ @if (Model.GunlukTalimatItemlar.Any())
+ {
+     <div class="row">
+
+
+         <div class="table-scrollable">
+
+             <table class="table table-striped table-bordered">
+                 <thead>
+                 <tr>
+                     <th class="text-center">#</th>
+
+                     <th class="text-center">
+                         TARİH
+                     </th>
+                     <th class="text-center">
+                         BAŞLIK
+                     </th>
+                     <th class="text-center">
+                         İÇERİK
+                     </th>
+                     <th class="text-center">
+                         KAYIT YAPAN
+                     </th>
+                 </tr>
+                 </thead>
+                 <tbody>
+                 @{
+                     int say = 0;
+
+                     foreach (var item in Model.GunlukTalimatItemlar)
+                     {
+                         say++;
+
+
+                         <tr>
+                             <td class="text-center">@say</td>
+                             <td class="text-center">@item.KayitTarihi.ToShortDateString()</td>
+                             <td class="text-center">@item.TalimatBaslik</td>
+                             <td class="text-center">@item.TalimatIcerik</td>
+                             <td class="text-center">@item.KayitYapanKulAdi</td>
+
+
+
+                         </tr>
+
+                     }
+                 }
+
+
+
+
+                 </tbody>
+             </table>
+
+
+
+         </div>
+     </div>
+ }
+ else
+ {
+     <h2 class="text-center"> KAYIT BULUNAMADI</h2>
+ }

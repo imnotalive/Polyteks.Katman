@@ -1,0 +1,36 @@
+﻿@model Polyteks.Katman.TefrikBildirim.Models.LaboratuvarModel
+
+
+@{
+    int i = -1;
+    foreach (var itt in Model.YardimciTesisKategoriModeller)
+    {
+        i++;
+        int j = -1;
+        <hr/>
+        <div class="form-group">
+            <label class="control-label"><b>@itt.Kategori</b></label>
+         
+            <div class="row">
+
+           
+            @foreach (var item in itt.YardimciTesisKontrolNoktalari)
+            {
+                j++;
+
+                <div class="col-md-2">
+                    <div class="mt-checkbox">
+                        <label class="mt-checkbox mt-checkbox-outline">
+                            @Html.HiddenFor(a => a.YardimciTesisKategoriModeller[i].YardimciTesisKontrolNoktalari[j].YardimciTesisKontrolNoktaId)
+                            @Html.CheckBoxFor(a => a.YardimciTesisKategoriModeller[i].YardimciTesisKontrolNoktalari[j].SeciliMi)@item.YardimciTesisKontrolNoktaAdi
+                            <span></span>
+                        </label>
+
+                    </div>
+                </div>
+            }
+            </div>
+        </div>
+    }
+}
+

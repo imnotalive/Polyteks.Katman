@@ -1,0 +1,92 @@
+﻿@model Polyteks.Katman.DAL.Concrete.EntityFramework.View_STOK_DURUM_PTKS_TASD
+
+@{
+    ViewBag.Title = "StokTalebiDetay";
+    Layout = "~/Views/Shared/Layout.cshtml";
+}
+
+<center>
+    <h2>
+        <b>
+           STOK DETAY
+        </b>
+    </h2>
+</center>
+
+
+<div>
+
+    <dl class="dl-horizontal">
+        <dt>
+            <b>PARTİ NO</b>
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IATOPartiNo, new { @class = "form-control", id = "id" })
+        </dd>
+
+        <dt>
+            <b>STOK ADI</b>
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.StokAdi, new { @class = "form-control" })
+        </dd>
+
+        <dt>
+            <b>KALİTE</b>
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Kalite, new { @class = "form-control" })
+        </dd>
+
+        <dt>
+            <B>MİKTAR</B>
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Miktar, new { @class = "form-control" })
+        </dd>
+
+    </dl>
+</div>
+
+@section scripts
+{
+    @*<script src="~/Scripts/jquery-3.0.0.js"></script>
+    <script>
+        function selectChange() {
+            var id = $("#dropId").val();
+            var alan = $("#alan-summary");
+            alan.empty();
+            var url = "/Sevkiyat/TalepAna/" + id;
+            $.get(url,
+                function (data) {
+
+                    alan.empty();
+                    alan.append(data);
+                    Yenile();
+                });
+
+        }
+
+    </script>
+    <script>
+        function selectChange() {
+            var id = $("#dropId").val();
+            var alan = $("#alan-summary");
+            alan.empty();
+            var url = "/Sevkiyat/Talep/" + id;
+            $.get(url,
+                function (data) {
+
+                    alan.empty();
+                    alan.append(data);
+                    Yenile();
+                });
+
+        }
+
+    </script>*@
+}

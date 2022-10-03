@@ -1,0 +1,60 @@
+﻿
+@model Polyteks.Katman.TefrikBildirim.Models.ImalatPartiSonuModel
+
+<div class="row">
+    @foreach (var item in Model.Birimler)
+    {
+        string ClassAdi = "dark";
+        string calisanParti = "dark";
+        string partiSonuBeklenen = "dark";
+        string partiSonuTalebi = "dark";
+        string partiSonuOnayi = "dark";
+
+        if (item.BirimId == Model.Birim.BirimId)
+        {
+            ClassAdi = "red bold";
+
+            if (Model.IkinciButonGrup == 1 )
+            {
+                calisanParti = "yellow mint bold";
+            }
+            if (Model.IkinciButonGrup == 2)
+            {
+                partiSonuOnayi = "green-turquoise bold";
+            }
+            if (Model.IkinciButonGrup == 3)
+            {
+                partiSonuTalebi = "purple-wisteria bold";
+            }
+
+        }
+        <div class="col-md-3">
+            <a href="@Url.Action("ImalatPartiSonuBirimeGoreListe","Imalat",new{id=item.BirimId})" class="btn btn-block  @ClassAdi">@item.BirimAdi.ToUpper()</a>
+            @if (Model.Birim.BirimId != 0)
+            {
+                if (Model.Birim.BirimId == item.BirimId)
+                {
+                    <br/>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <a href="@Url.Action("ImalatPartiSonuBirimeGoreListe", "Imalat", new {id = item.BirimId})" class="btn btn-block  @calisanParti">  ÇALIŞAN PARTİLER</a>
+                        </div>
+                        <hr/>
+                        <div class="col-md-12">
+                            <a href="@Url.Action("ImalatPartiSonuBilgiOnayiBekleyenListe", "Imalat", new {id = item.BirimId})" class="btn btn-block @partiSonuOnayi">BİLGİ ONAYI BEKLEYEN PARTİLER </a>
+                        </div>
+                
+                        <hr/>
+                        <br/>
+                        <div class="col-md-12">
+                            <a href="@Url.Action("ImalatPartiSonuBekleyenListe", "Imalat", new {id = item.BirimId})" class="btn btn-block @partiSonuTalebi"> PARTİ SONU BEKLEYEN PARTİLER </a>
+                        </div>
+                    </div>  
+                }
+          
+            }
+        </div>
+
+    }
+</div>
+<hr/>

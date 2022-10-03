@@ -1,0 +1,195 @@
+﻿@model IEnumerable<Polyteks.Katman.DAL.Concrete.EntityFramework.Mrv_KaliteBildirimDetay>
+@{
+    ViewBag.Title = "KaliteBildirimPusulasiImalat";
+    Layout = "~/Views/Shared/Layout.cshtml";
+  
+
+}
+
+@if (TempData["Msg"] != null)
+{
+    <div class="custom-alerts alert alert-@TempData["class"] fade in">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true"></button>
+        <h2>@TempData["Msg"]</h2>
+    </div>
+}
+
+<script src="~/Scripts/jquery-3.6.0.min.js"></script>
+<table class="table table-bordered table-striped table-sm">
+    <thead>
+        <tr>
+
+
+            <th style="color: black">
+                <b> BİLDİRİM TARİHİ</b>
+            </th>
+            <th style="color: black">
+                <b>BÖLÜM</b>
+            </th>
+            <th style="color: black">
+                <b>BİLDİRİM YAPAN</b>
+            </th>
+            <th style="color: black">
+                <b>PARTİ NO</b>
+            </th>
+            <th style="color: black">
+                <b> HATA TANIMI/1</b>
+            </th>
+            <th style="color: black">
+                <b> HATA TANIMI/2</b>
+            </th>
+            <th style="color: black">
+                <b> HATA TANIMI/3</b>
+            </th>
+            <th style="color: black">
+                <b>BİLDİRİM YAPILAN BÖLÜM</b>
+            </th>
+            <th></th>
+
+
+
+        </tr>
+    </thead>
+
+    @foreach (var item in Model)
+    {
+
+        <tr>
+
+            <td style="color: black">
+                <b> @Html.DisplayFor(modelItem => item.Mrv_KaliteBildirimAna.LabBildirimTarihi)</b>
+            </td>
+            <td style="color: black">
+                @Html.DisplayFor(modelItem => item.Mrv_KaliteBildirimAna.PersonelBolum)
+            </td>
+            <td style="color: black">
+                @Html.DisplayFor(modelItem => item.Mrv_KaliteBildirimAna.Personel)
+            </td>
+            <td style="color: black">
+                @Html.DisplayFor(modelItem => item.PartiNo)
+            </td>
+            <td style="color: black">
+                @Html.DisplayFor(modelItem => item.Mrv_KaliteBildirimHata.HataTanimi)
+            </td>
+            <td style="color: black">
+                @Html.DisplayFor(modelItem => item.Mrv_KaliteBildirimHata1.HataTanimi)
+            </td>
+            <td style="color: black">
+                @Html.DisplayFor(modelItem => item.Mrv_KaliteBildirimHata2.HataTanimi)
+            </td>
+            <td style="color: black">
+                @Html.DisplayFor(modelItem => item.Mrv_KaliteBildirimBolumleri.IsletmeBolumleri)
+            </td>
+            <td>  @Html.ActionLink("DÜZENLE", "KaliteBildirimPusulasiMudahale", new { id = item.ID, @class = "btn btn-primary" })</td>
+
+
+            @*<td style="color: black">
+                    @Html.DisplayFor(modelItem => item.Isletme)
+                </td>*@
+
+        </tr>
+
+
+
+    }
+
+</table>
+@*<table class="table table-bordered">
+
+        <tr>
+
+
+            <th style="color: black">
+                <b> BİLDİRİM TARİHİ</b>
+            </th>
+            <th style="color: black">
+                <b>BÖLÜM</b>
+            </th>
+            <th style="color: black">
+                <b>BİLDİRİM YAPAN</b>
+            </th>
+            <th style="color: black">
+                <b>PARTİ NO</b>
+            </th>
+            <th style="color: black">
+                <b> HATA TANIMI/1</b>
+            </th>
+            <th style="color: black">
+                <b> HATA TANIMI/2</b>
+            </th>
+            <th style="color: black">
+                <b> HATA TANIMI/3</b>
+            </th>
+            <th style="color: black">
+                <b>BİLDİRİM YAPILAN BÖLÜM</b>
+            </th>
+
+
+
+
+        </tr>
+
+
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SiraNo)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MudahaleTarihSaat)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MudahaleKullanici)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MudahaleKullaniciBolum)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Hata1YapilanMudahale)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Hata2YapilanMudahale)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Hata3YapilanMudahale)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Aciklama)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MakineAdi)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.KanalNo)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PozisyonNo)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PartiNo)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Mrv_KaliteBildirimAna.Personel)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Mrv_KaliteBildirimBolumleri.IsletmeBolumleri)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Mrv_KaliteBildirimHata.HataTanimi)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Mrv_KaliteBildirimHata1.HataTanimi)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Mrv_KaliteBildirimHata2.HataTanimi)
+                </td>
+                <td>
+                    @Html.ActionLink("DÜZENLE", "KaliteBildirimPusulasiMudahale", new { id = item.ID }) |
+                    @Html.ActionLink("DETAYLAR", "Details", new { id = item.ID }) |
+                </td>
+            </tr>
+        }
+
+    </table>*@

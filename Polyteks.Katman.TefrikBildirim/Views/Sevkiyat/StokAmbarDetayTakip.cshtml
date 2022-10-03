@@ -1,0 +1,167 @@
+﻿@model IEnumerable<Polyteks.Katman.DAL.Concrete.EntityFramework.ZzzMrvStokDetayTakip>
+
+@{
+    ViewBag.Title = "StokAmbarDetayTakip";
+
+}
+@if (TempData["Msg"] != null)
+{
+    <div class="custom-alerts alert alert-@TempData["class"] fade in">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true"></button>
+        <h2>@Html.Raw(TempData["Msg"])</h2>
+    </div>
+}
+
+<br />
+<br />
+
+<div class="container">
+    <div class="form-group">
+        <div class="input-group">
+            <span class="input-group-addon"><i class="glyphicon glyphicon-search"></i></span>
+            <input type="text" id="Search" placeholder="ARA" class="form-control" />
+        </div>
+    </div>
+</div>
+
+<br />
+<br />
+
+
+<table class="table table-bordered table-hover">
+    <thead class="thead-dark">
+        <tr>
+            <th>
+                SIRA NO
+            </th>
+            <th>
+                AMBAR NO
+            </th>
+            <th>
+                AMBAR ADI
+            </th>
+            <th>
+                STOK KODU
+            </th>
+            <th>
+                LOT NO
+            </th>
+            <th>
+                STOK ADI
+            </th>
+            <th>
+                STOK TÜRÜ
+
+            </th>
+            <th>
+                MİKTAR
+            </th>
+            <th>
+                ÖLÇÜ BİRİMİ
+            </th>
+
+            <th><center>DETAY</center></th>
+
+        </tr>
+    </thead>
+    <tbody>
+        @{
+            int sayac = 0;
+            foreach (var item in Model)
+            {
+                sayac++;
+                <tr class="Search">
+                    <td>
+                        @sayac
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.AmbarNo)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.AmbarAdi)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.StokKodu)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.LotNo)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.StokAdi)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.StokTuru)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Miktar1)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.OlcuBirimi1)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Malzeme Detayları", "AmbarStokTalep", new { id1 = item.AmbarNo, id2 = item.StokKodu, id3 = item.LotNo }, htmlAttributes: new { @class = "btn btn-danger" })
+
+                    </td>
+           
+                </tr>
+            }
+        }
+    </tbody>
+    <tfoot>
+        <tr>
+            <th>
+                SIRA NO
+            </th>
+            <th>
+                AMBAR NO
+            </th>
+            <th>
+                AMBAR ADI
+            </th>
+            <th>
+                STOK KODU
+            </th>
+            <th>
+                LOT NO
+            </th>
+            <th>
+                STOK ADI
+            </th>
+            <th>
+                STOK TÜRÜ
+
+            </th>
+            <th>
+                MİKTAR
+            </th>
+            <th>
+                ÖLÇÜ BİRİMİ
+            </th>
+            <th><center>DETAY</center></th>
+     
+        </tr>
+    </tfoot>
+</table>
+
+
+<script src="~/Scripts/jquery-3.0.0.min.js"></script>
+<script>
+    //LIVE SEARCH
+    $(document).ready(function () {
+        function Contains(text_one, text_two) {
+            if (text_one.indexOf(text_two) != -1)
+                return true;
+        }
+        $("#Search").keyup(function () {
+            var searchText = $("#Search").val().toLowerCase();
+            $(".Search").each(function () {
+                if (!Contains($(this).text().toLowerCase(), searchText)) {
+                    $(this).hide();
+                }
+                else {
+                    $(this).show();
+                }
+            })
+        });
+    });
+</script>

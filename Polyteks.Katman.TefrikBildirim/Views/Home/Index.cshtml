@@ -1,0 +1,56 @@
+﻿@model Polyteks.Katman.TefrikBildirim.Models.AnasayfaModel
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/Layout.cshtml";
+}
+@if (TempData["Msg"] != null)
+{
+    <div class="custom-alerts alert alert-@TempData["class"] fade in">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true"></button>
+        <h2>@TempData["Msg"]</h2>
+    </div>
+}
+
+<div class="portlet light bordered">
+
+    <div class="row">
+        <h1 class="text-center font-red-thunderbird">
+            <b>SMART POTA</b>
+        </h1>
+    </div>
+    <hr />
+    <div class="row">
+        <h3 class="text-center font-green-jungle"><b>BU UYGULAMA POTA PROGRAMINA DESTEK OLARAK, TALEP VE ÖNERİLERİNİZ DOĞRULTUSUNDA SÜREKLİ GELİŞTİRMEYE AÇIK BİR UYGULAMADIR.</b></h3>
+    </div>
+  
+</div>
+
+@{
+    int i = -1;
+    foreach (var item in Model.BildirimItems)
+    {
+        i++;
+        string classAdi = "btn btn-lg btn-block ";
+        if (i%4==0)
+        {
+            classAdi += "red";
+        }
+        if (i%4==1)
+        {
+            classAdi += "blue";
+        }
+        if (i%4==2)
+        {
+            classAdi += "yellow";
+        }
+        if (i%4==3)
+        {
+            classAdi += "dark";
+        }
+        <div class="portlet light bordered">
+            <div class="row">
+                <a href="@Url.Action(item.ActionAdi, item.ControllerAdi, new{id=item.Id})" class="@classAdi">@item.Aciklama.ToUpper()</a>
+            </div>
+        </div>
+    }
+}

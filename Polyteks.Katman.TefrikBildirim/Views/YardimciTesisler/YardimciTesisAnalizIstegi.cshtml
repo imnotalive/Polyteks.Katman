@@ -1,0 +1,186 @@
+﻿@model Polyteks.Katman.TefrikBildirim.Models.YardimciTesisModel
+
+@{
+    ViewBag.Title = "YardimciTesisAnalizIstegi";
+    Layout = "~/Views/Shared/Layout.cshtml";
+}
+@section styles{
+
+    <link href="~/Temalar/TarihSaat/bootstrap-datepicker/css/bootstrap-datetimepicker.css" rel="stylesheet" />
+
+    <style>
+        .mt-radio {
+            font-weight: bold;
+        }
+    </style>
+
+}
+@if (TempData["Msg"] != null)
+{
+    <div class="custom-alerts alert alert-@TempData["class"] fade in">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true"></button>
+        <h2>@Html.Raw(TempData["Msg"])</h2>
+    </div>
+}
+
+<div class="row">
+    <div class="col-md-12 ">
+        <div class="portlet light bordered">
+            <div class="portlet-title">
+                <div class="caption font-red-sunglo">
+                    <i class="icon-settings font-red-sunglo"></i>
+                    <span class="caption-subject bold uppercase">@Model.LabGrup.LabGrupAdi LABORATUVAR ANALİZ İSTEĞİ</span>
+                </div>
+            </div>
+            <div class="portlet-body form">
+                <div class="form-body">
+                    @if (Model.SrcnLabGruplari.Any())
+                    {
+                        string Sira = "";
+                        <div class="row">
+
+                            @foreach (var item in Model.SrcnLabGruplari)
+                            {
+                                if (item != Model.SrcnLabGruplari.Last())
+                                {
+                                    Sira += item.LabGrupAdi + " >> ";
+
+                                }
+                                else
+                                {
+                                    Sira += item.LabGrupAdi;
+                                }
+
+                            }
+                            <h4 class="text-center"><b>@Sira </b></h4>
+                            <br />
+                        </div>
+                    }
+                    <div class="row">
+                        <h5 class="text-center"><b class="font-blue-steel">YAPILACAK ANALİZLER</b></h5>
+                        @foreach (var item in Model.LabGrubuAnalizleri)
+                        {
+
+                            <div class="col-md-3">
+                                <p class="text-center"><b><i class="fa fa-check"></i> @item.LabAnalizCesitAdi</b></p>
+                            </div>
+                        }
+
+                    </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <h5 class="text-center"><b class="font-blue">ANALİZ İSTEĞİ DETAYLARI</b></h5>
+                                    <hr/>
+                                    @using (Html.BeginForm())
+                                    {
+                                        @Html.HiddenFor(a => a.LabGrup.LabGrupId)
+                                        @Html.HiddenFor(a => a.LabGrup.AnalizTipi)
+                                        <div class="form-body">
+                                            <div class="form-group">
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <label class="control-label"><b class="font-red-sunglo">ANALİZ SONUCU İSTENİLEN TERMİN</b></label>
+                                                        <div class="input-icon right">
+                                                            @Html.TextBoxFor(a => a.IstekTarihi, new {@class = "form-control tarih", @onkeydown = "return false"})
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <label class="control-label"><b>İSTEK YAPAN</b></label>
+                                                        <div class="input-icon right">
+                                                            @Html.TextBoxFor(a => a.Kullanici.IsimSoyisim, new {@class = "form-control", @onkeydown = "return false"})
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            @{
+                                                int i = -1;
+                                                foreach (var itt in Model.YardimciTesisKategoriModeller)
+                                                {
+                                                    i++;
+                                                    int j = -1;
+                                                    <hr/>
+                                                    <div class="form-group">
+                                                        <label class="control-label"><b>@itt.Kategori</b></label>
+
+                                                        <div class="row">
+
+
+                                                            @foreach (var item in itt.YardimciTesisKontrolNoktalari)
+                                                            {
+                                                                j++;
+
+                                                                <div class="col-md-2">
+                                                                    <div class="mt-checkbox">
+                                                                        <label class="mt-checkbox mt-checkbox-outline">
+                                                                            @Html.HiddenFor(a => a.YardimciTesisKategoriModeller[i].YardimciTesisKontrolNoktalari[j].YardimciTesisKontrolNoktaId)
+                                                                            @Html.CheckBoxFor(a => a.YardimciTesisKategoriModeller[i].YardimciTesisKontrolNoktalari[j].SeciliMi)@item.YardimciTesisKontrolNoktaAdi
+                                                                            <span></span>
+                                                                        </label>
+
+                                                                    </div>
+                                                                </div>
+                                                            }
+                                                        </div>
+                                                    </div>
+                                                }
+                                            }
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <label class="control-label"><b>AÇIKLAMA</b></label>
+                                                    <div class="input-icon right">
+                                                        @Html.TextAreaFor(a => a.LabAnaliz.Aciklama, new {@class = "form-control", @rows = 5})
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-actions">
+                                            <button type="submit" class="btn blue btn-block">KAYDET</button>
+                                        </div>
+
+                                    }
+                                </div>
+
+                            </div>
+                        </div>
+
+
+
+            </div>
+            <div>
+                <a href="#" class="btn yellow"><i class="fa fa-arrow-left"></i> GERİ</a>
+            </div>
+        </div>
+    </div>
+</div>
+@section scripts
+{
+    <script src="~/Temalar/TarihSaat/bootstrap-datepicker/js/bootstrap-datetimepicker.js"></script>
+    <script src="~/Temalar/TarihSaat/bootstrap-datepicker/js/bootstrap-datetimepicker.tr.js"></script>
+    <script>
+        $('.tarih').datetimepicker({
+            language: 'tr',
+            weekStart: 1,
+            todayBtn: 1,
+            autoclose: 1,
+            todayHighlight: 1,
+            startView: 2,
+            minView: 2,
+            forceParse: 0,
+            format: "dd MM yyyy",
+            inline: true
+        });
+
+    </script>
+    <script>
+
+        function isNumberKey(evt) {
+            var charCode = (evt.which) ? evt.which : event.keyCode;
+            if (charCode > 31 && (charCode < 48 || charCode > 57)) return false;
+
+            return true;
+        }
+
+
+    </script>
+}

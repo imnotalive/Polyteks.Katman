@@ -1,0 +1,85 @@
+﻿@model IEnumerable<Polyteks.Katman.DAL.Concrete.EntityFramework.SrcnIkEgitimOturums>
+@using GridMvc.Html
+@{
+    ViewBag.Title = "PersonelEgitimGenel";
+    Layout = "~/Views/Shared/Layout.cshtml";
+}
+
+@if (TempData["Msg"] != null)
+{
+    <div class="custom-alerts alert alert-@TempData["class"] fade in">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true"></button>
+        <h2>@TempData["Msg"]</h2>
+    </div>
+}
+<link href="~/Content/Gridmvc.css" rel="stylesheet" />
+<script src="~/Scripts/jquery-3.0.0.min.js"></script>
+<script src="~/Scripts/gridmvc.min.js"></script>
+<script type="text/javascript"></script>
+<script src="~/scripts/jquery-1.10.2.js"></script>
+
+
+<center><h2><b>TÜM EĞİTİMLER</b></h2></center>
+<p>
+    <h4><b>RAPORLAMA</b></h4>
+    <a href="@Url.Action("Report",new { id = "PDF" })" class="btn btn-success btn-xl">PDF Dönüştür</a>
+
+    <a href="@Url.Action("Report",new { id = "Excel" })" class="btn btn-success btn-xl">Excel Dönüştür</a>
+</p>
+
+<div class="row-cols-sm-1">
+    @Html.Grid(Model).Columns(Columns =>
+{
+    Columns.Add(c => c.IkFirmaAdi).Titled("EĞİTİM VEREN KURUM ADI").Sortable(true).Filterable(true);
+    Columns.Add(c => c.OturumTarihi).Titled("EĞİTİM TARİHİ").Sortable(true).Filterable(true);
+    Columns.Add(c => c.OturumSureAciklama).Titled("EĞİTİM SÜRESİ").Sortable(true).Filterable(true);
+
+    Columns.Add(c => c.IkEgitimAdi).Titled("EĞİTİM").Sortable(true).Filterable(true);
+    Columns.Add(c => c.KatilimDurumAdi).Titled("EĞİTİMİN TAMAMLANMA DURUMU").Sortable(true).Filterable(true);
+
+    Columns.Add()
+
+.Encoded(false)
+.Sanitized(false)
+.SetWidth(10)
+.RenderValueAs(o => Html.ActionLink("DETAYLAR", "PersonelEgitimGenelDetay",new { id = o.EgitimOturumId }, new { @class = "btn red btn-block btn-xl" })).Encoded(false).Filterable(false).Sortable(false).Titled("DETAY");
+
+
+
+}
+).WithPaging(20).SetLanguage("tr").Sortable(true).Filterable(true).WithMultipleFilters()
+</div>
+
+
+
+<script>
+    /***
+* Grid.Mvc russian language (ru-RU) http://gridmvc.codeplex.com/
+*/
+    window.GridMvc = window.GridMvc || {};
+    window.GridMvc.lang = window.GridMvc.lang || {};
+    GridMvc.lang.tr = {
+        filterTypeLabel: "Filtre: ",
+        filterValueLabel: "Değer:",
+        applyFilterButtonText: "Uygula",
+        filterSelectTypes: {
+            Equals: "Eşittir",
+            StartsWith: "Başlar",
+            Contains: "İçerir",
+            EndsWith: "Biter",
+            GreaterThan: "Büyüktür",
+            LessThan: "Küçüktür"
+        },
+        code: 'tr',
+        boolTrueLabel: "Doğru",
+        boolFalseLabel: "Yanlış",
+        clearFilterLabel: "Temizle"
+    };
+</script>
+<style>
+    .grid-header a {
+        font-size: 12px;
+    }
+</style>
+
+

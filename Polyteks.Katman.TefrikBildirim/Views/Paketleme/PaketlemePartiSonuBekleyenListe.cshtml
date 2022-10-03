@@ -1,0 +1,221 @@
+﻿@model Polyteks.Katman.TefrikBildirim.Models.ImalatPartiSonuModel
+
+@{
+    ViewBag.Title = "PaketlemePartiSonuBekleyenListe";
+    Layout = "~/Views/Shared/Layout.cshtml";
+}
+
+
+@if (TempData["Msg"] != null)
+{
+    <div class="custom-alerts alert alert-@TempData["class"] fade in">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true"></button>
+        <h2>@Html.Raw(TempData["Msg"])</h2>
+    </div>
+}
+@{
+    string GrupAdi = "PAKETLEME PARTİ SONU MODÜLÜ";
+
+}
+
+
+<div class="row">
+    <div class="col-md-12 ">
+        <div class="portlet light bordered">
+            <div class="portlet-title">
+                <div class="caption font-red-sunglo">
+                    <i class="icon-settings font-red-sunglo"></i>
+                    <span class="caption-subject bold uppercase"> @GrupAdi</span>
+                </div>
+            </div>
+
+
+            <div class="row">
+                <div class="row">
+                    @{
+                        int k = 0;
+                        foreach (var item in Model.PartiSonuTakipHareketleri)
+                        {
+                            k++;
+                            string ClassAdi = "dark";
+                            if (item.PartiSonuTakipHareketTipi == Model.Id)
+                            {
+                                ClassAdi = "red bold";
+                            }
+                            <div class="col-md-6">
+                                <a href="@Url.Action("PaketlemePartiSonuBekleyenListe","Paketleme",new{id=item.PartiSonuTakipHareketTipi})" class="btn btn-block  @ClassAdi">@item.PartiSonuTakipHareketAdi.ToUpper()</a>
+                            </div>
+
+                            if (k % 2 == 0)
+                            {
+                                <hr />
+                            }
+                        }
+                    }
+                </div>
+                <hr />
+                @using (Html.BeginForm("PaketlemeHizliPartiSonuYap", "Paketleme"))
+                {
+                    <div class="col-md-12">
+                        <table class="dtTable table table-bordered">
+                            <thead>
+                                <tr>
+                                    @if (Model.Id == 3)
+                                    {
+                                        <th class="text-center">
+                                            #
+                                        </th>
+                                    }
+                                    <th class="text-center">
+                                        KAYIT
+                                    </th>
+                                    <th class="text-center">
+                                        PARTİ
+                                    </th>
+                                    <th class="text-center">
+                                        İŞ EMRİ
+                                    </th>
+
+                                    <th class="text-center">
+                                        SİPARİŞ TÜRÜ
+                                    </th>
+                                    <th class="text-center">
+                                        SİPARİŞ NO
+                                    </th>
+
+                                    <th class="text-center">
+                                        STOK ADI
+                                    </th>
+
+                                    <th class="text-center">
+                                        CARİ
+                                    </th>
+                                    <th class="text-center">
+                                        PARTİ SONU DURUMU
+                                    </th>
+                                    <th class="text-center">
+                                        #
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @{
+                                    int i = -1;
+                                    if (Model.Id == 6)
+                                    {
+                                        foreach (var item in Model.PartiSonuDurumOzetCheckItemlar)
+                                        {
+                                            i++;
+                                            <tr>
+                                                @Html.HiddenFor(a => a.PartiSonuDurumOzetCheckItemlar[i].PartiSonuTakipIzlenebilirlik.RefakatNo)
+                                                @Html.HiddenFor(a => a.PartiSonuDurumOzetCheckItemlar[i].PartiSonuTakip.PartiSonuTakipId)
+
+                                                <td class="text-center ">
+                                                    <b class="font-red-thunderbird">@item.PartiSonuTakip.KayitTarihi</b>
+                                                    <br />
+                                                    @item.PartiSonuTakip.KayitYapanKulAdi
+                                                </td>
+                                                <td class="text-center">@item.PartiSonuTakipIzlenebilirlik.PartiNo.Trim()</td>
+                                                <td class="text-center">@item.PartiSonuTakipIzlenebilirlik.RefakatNo</td>
+                                                <td class="text-center">@item.PartiSonuTakipIzlenebilirlik.SiparisTuru</td>
+                                                <td class="text-center">@Html.Raw(string.Format("{0}</br>  <b>Sıra : {1}</b>", item.PartiSonuTakipIzlenebilirlik.SiparisNo, item.PartiSonuTakipIzlenebilirlik.SiparisSiraNo)) </td>
+
+
+
+                                                <td class="text-center">
+                                                    @item.PartiSonuTakipIzlenebilirlik.StokAdi
+                                                    <br />
+                                                    <b> @item.PartiSonuTakipIzlenebilirlik.StokKodu</b>
+                                                </td>
+
+
+                                                <td class="text-center">@item.PartiSonuTakipIzlenebilirlik.CariAdiSecili.Trim()</td>
+                                                <td class="text-center">
+
+                                                    <b class="font-red-thunderbird">
+                                                        @item.PartiSonuTakip.PartiSonuTakipHareketAdi
+                                                    </b>
+                                                    <br />
+                                                    @item.PartiSonuTakip.PartiKapatmaTarihi - @item.PartiSonuTakip.KapatanKulAdi
+                                                </td>
+                                                <td class="text-center">
+                                                    <a href="@Url.Action("PaketlemePartiSonuDuzenle","Paketleme",new{id=item.PartiSonuTakip.PartiSonuTakipId})" class=" btn red btn-block"> Düzenle</a>
+                                                </td>
+                                            </tr>
+                                        }
+                                    }
+                                    else
+                                    {
+                                        foreach (var item in Model.PartiSonuDurumOzetCheckItemlar)
+                                        {
+                                            i++;
+                                            <tr>
+                                                @Html.HiddenFor(a => a.PartiSonuDurumOzetCheckItemlar[i].PartiSonuDurumOzet.RefakatNo)
+                                                @Html.HiddenFor(a => a.PartiSonuDurumOzetCheckItemlar[i].PartiSonuTakip.PartiSonuTakipId)
+                                                @if (Model.Id == 3)
+                                                {
+                                                    <td class="text-center">
+                                                        <div class=" col-md-2">
+                                                            <div class="mt-checkbox">
+                                                                <label class="mt-checkbox">
+                                                                    @Html.CheckBoxFor(a => a.PartiSonuDurumOzetCheckItemlar[i].SeciliMi)<b class="font-green-jungle">SEÇ</b>
+                                                                    <span></span>
+                                                                </label>
+                                                            </div>
+                                                        </div>
+
+
+                                                    </td>
+                                                }
+
+                                                <td class="text-center ">
+                                                    <b class="font-red-thunderbird">@item.PartiSonuTakip.KayitTarihi</b>
+                                                    <br />
+                                                    @item.PartiSonuTakip.KayitYapanKulAdi
+                                                </td>
+
+                                                <td class="text-center"><b class="font-purple-seance">@item.PartiSonuDurumOzet.PartiNo.Trim()</b></td>
+                                                <td class="text-center">@item.PartiSonuDurumOzet.RefakatNo</td>
+                                                <td class="text-center">@item.PartiSonuDurumOzet.SiparisTuru</td>
+                                                <td class="text-center">@Html.Raw(string.Format("{0}</br>  <b>Sıra : {1}</b>", item.PartiSonuDurumOzet.SiparisNo, item.PartiSonuDurumOzet.SiparisSiraNo)) </td>
+
+
+
+                                                <td class="text-center">
+                                                    @item.PartiSonuDurumOzet.StokAdi
+                                                    <br />
+                                                    <b> @item.PartiSonuDurumOzet.StokKodu</b>
+                                                </td>
+
+
+                                                <td class="text-center">@item.PartiSonuDurumOzet.CariAdi.Trim()</td>
+                                                <td class="text-center font-red-thunderbird bold">@item.PartiSonuTakip.PartiSonuTakipHareketAdi</td>
+                                                <td class="text-center">
+                                                    <a href="@Url.Action("PaketlemePartiSonuDuzenle","Paketleme",new{id=item.PartiSonuTakip.PartiSonuTakipId})" class=" btn red btn-block"> Düzenle</a>
+                                                </td>
+                                            </tr>
+                                        }
+                                    }
+
+
+
+                                }
+
+                            </tbody>
+                        </table>
+                    </div>
+                    if (Model.Id == 3)
+                    {
+                        <div class="form-actions">
+                            <button type="submit" class="btn btn-lg blue btn-block"><i class="fa fa-legal"></i> SEÇİLİ PARTİLER İÇİN HIZLI PARTİ SONU YAP</button>
+                        </div>
+                    }
+                }
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+

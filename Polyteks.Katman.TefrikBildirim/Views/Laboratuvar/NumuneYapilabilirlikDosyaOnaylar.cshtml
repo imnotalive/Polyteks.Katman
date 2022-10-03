@@ -1,0 +1,114 @@
+﻿@model Polyteks.Katman.TefrikBildirim.Models.LaboratuvarModel
+
+@{
+    ViewBag.Title = "NumuneYapilabilirlikDosyaOnaylar";
+    Layout = "~/Views/Shared/Layout.cshtml";
+}
+
+@if (TempData["Msg"] != null)
+{
+    <div class="custom-alerts alert alert-@TempData["class"] fade in">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true"></button>
+        <h2>@Html.Raw(TempData["Msg"])</h2>
+    </div>
+}
+<div class="row">
+    <div class="col-md-12 ">
+        <div class="portlet light bordered">
+            <div class="portlet-title">
+                <div class="caption font-red-sunglo">
+                    <i class="icon-settings font-red-sunglo"></i>
+                    <span class="caption-subject bold uppercase"> NUMUNE YAPILABİLİRLİK ANALİZ SONUÇLARI</span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="row">
+                        @foreach (var item in Model.DosyaDurumlari)
+                        {
+                      
+                            string classAdi = "btn dark btn-block ";
+                            if (Model.DosyaDurumu.DosyaDurumId==item.DosyaDurumId)
+                            {
+                                classAdi = "btn red btn-block ";
+                            }
+                            <div class="col-md-6">
+                                <a href="@Url.Action("NumuneYapilabilirlikDosyaOnaylar", "Laboratuvar", new{id=item.DosyaDurumId})" class="@classAdi">@item.DosyaDurumAdi.ToUpper()</a>
+                          
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+            <br/>
+                    <div class="row">
+                        <div class="col-md-12">
+
+
+                            <table class="dtTable table table-bordered">
+                                <thead>
+                                <tr>
+                                    <th class="text-center">
+                                        #
+                                    </th>
+                                    <th class="text-center">
+                                        TAKİP KODU
+                                    </th>
+                                    <th class="text-center">
+                                        KAYIT TARİH
+                                    </th>
+                                    <th class="text-center">
+                                        CARİ
+                                    </th>
+                                    <th class="text-center">
+                                        ANALİZ DURUMU
+                                    </th>
+                                    <th class="text-center">
+                                        KAYIT YAPAN
+                                    </th>
+                                    <th class="text-center">
+                                        BOBİN SAYISI
+                                    </th>
+                                    <th class="text-center">
+                                        KUMAŞ SAYISI
+                                    </th>
+                                    <th class="text-center">
+                                        #
+                                    </th>
+                               
+                                </tr>
+                                </thead>
+                                <tbody>
+                                @{
+                                    var say = 0;
+
+                                    foreach (var item in Model.NumuneYapilabilirlikDosyalar)
+                                    {
+                                        say++;
+                                        <tr>
+
+                                            <td class="text-center">@say</td>
+                                            <td class="text-center"><b class="font-red-thunderbird">@item.NumuneYapilabilirlikDosyaId</b></td>
+                                            <td class="text-center">@item.KayitTarihi</td>
+                                            <td class="text-center">@item.CariAdi</td>
+                                            <td class="text-center">@item.DosyaDurumAdi</td>
+                                            <td class="text-center">@item.KayitYapanKulAdi</td>
+                                            <td class="text-center">@item.AnalizYapilacakBobinSayisi</td>
+                                            <td class="text-center">@item.AnalizYapilacakKumasSayisi</td>
+
+                                            <td class="text-center">
+                                                <a href="@Url.Action("NumuneYapilabilirlikDosyaOnayDuzenle", "Laboratuvar", new {id = item.NumuneYapilabilirlikDosyaId})" class="btn blue btn-block">İncele</a>
+                                            </td>
+                                   
+                                        </tr>
+                                    }
+                                }
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+    </div>
+</div>
+

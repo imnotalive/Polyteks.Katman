@@ -1,0 +1,47 @@
+﻿@model Polyteks.Katman.DAL.Concrete.EntityFramework.SrcnPaketlemeGunlukTalimatItems
+
+    <div id="@Model.PaketlemeGunlukTalimatItemId" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">DEPO TANIMLAMA</h4>
+                </div>
+                @using (Html.BeginForm("PaketlemeGunlukTalimatItemEkleDuzenle", "Paketleme"))
+                {
+                    @Html.HiddenFor(a => a.PaketlemeGunlukTalimatId)
+                    @Html.HiddenFor(a => a.PaketlemeGunlukTalimatItemId)
+
+                    <div class="modal-body">
+                        <div class="form-body">
+                            <div class="row">
+                         
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label><b>BAŞLIK </b></label>
+                                        @Html.TextBoxFor(a => a.TalimatBaslik, new { @class = "form-control" })
+                                    </div>
+                                </div>
+                                
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label><b>İÇERİK </b></label>
+                                        @Html.TextAreaFor(a => a.TalimatIcerik, new { @class = "form-control", @rows=5 })
+                                    </div>
+                                </div>
+                            </div>
+
+
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn green">KAYDET</button>
+                        <button type="button" class="btn dark btn-outline" data-dismiss="modal">KAPAT</button>
+                    </div>
+                }
+            </div>
+
+        </div>
+    </div>
