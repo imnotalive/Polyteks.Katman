@@ -1653,7 +1653,7 @@ namespace Polyteks.Katman.TefrikBildirim.Controllers
                     var refListe = new List<RefakatKarti>();
                     string mailKonu = "";
                     string mailIcerik = "";
-                    var ccMailler = new List<string> { "muygur@polyteks.com.tr", "sayhan@polyteks.com.tr" };
+                    var ccMailler = new List<string> { "muygur@polyteks.com.tr", "sayhan@polyteks.com.tr", "ytophisar@polyteks.com.tr", "fteknisyeni@polyteks.com.tr" };
                     var ccOnayMailler = new List<string>();
                     string Gonderici = "MDIKICI@polyteks.com.tr";
 
@@ -1756,8 +1756,13 @@ namespace Polyteks.Katman.TefrikBildirim.Controllers
                             foreach (var item in onayAlinacakBirimler)
                             {
                                 var onayBirim = _dbPoly.SrcnFabrikaBirims.AsNoTracking().First(a => a.BirimId == item.BirimId);
+                                ccOnayMailler.Add("odogan@polyteks.com.tr");
+                                ccOnayMailler.Add("fayvali@polyteks.com.tr");
+                                ccOnayMailler.Add("kkontrol@polyteks.com.tr");
+                                ccOnayMailler.Add("pazarlama@polyteks.com.tr");
                                 ccOnayMailler.AddRange(_dbPoly.SrcnMailBildirimGrupItems.Where(a => a.MailBildirimGrupId == onayBirim.BirimId).Select(a => a.EmailAdres).ToList());
-                                _dbPoly.SrcnPartiSonuTakipBilgiOnays.Add(new SrcnPartiSonuTakipBilgiOnays()
+                           
+                                    _dbPoly.SrcnPartiSonuTakipBilgiOnays.Add(new SrcnPartiSonuTakipBilgiOnays()
                                 {
                                     BirimId = onayBirim.BirimId,
                                     BirimAdi = onayBirim.BirimAdi,
@@ -1830,7 +1835,17 @@ namespace Polyteks.Katman.TefrikBildirim.Controllers
                         {
                             if (_dbPoly.SrcnMailBildirimGrupItems.Any(a => a.MailBildirimGrupId == BirimId))
                             {
+                                //MailMessage mailim = new MailMessage();
+                                //mailim.To.Add("pazarlama@polyteks.com.tr");
+                                //mailim.To.Add("kkontrol@polyteks.com.tr");
+                                //mailim.To.Add("fayvali@polyteks.com.tr");
+                                //mailim.To.Add("odogan@polyteks.com.tr");
+                                ccMailler.Add("odogan@polyteks.com.tr");
+                                ccMailler.Add("fayvali@polyteks.com.tr");
+                                ccMailler.Add("kkontrol@polyteks.com.tr");
+                                ccMailler.Add("pazarlama@polyteks.com.tr");
                                 ccMailler.AddRange(_dbPoly.SrcnMailBildirimGrupItems.Where(a => a.MailBildirimGrupId == BirimId).Select(a => a.EmailAdres).ToList());
+
                             }
                             else
                             {

@@ -163,15 +163,13 @@
             // 
             // tabControl1
             // 
-            this.tabControl1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+    
             this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Controls.Add(this.tabPage2);
             this.tabControl1.Controls.Add(this.tabPage3);
             this.tabControl1.Controls.Add(this.tabPage4);
             this.tabControl1.Controls.Add(this.tabPage5);
-            this.tabControl1.Font = new System.Drawing.Font("Times New Roman", 20.25F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+       
             this.tabControl1.HotTrack = true;
             this.tabControl1.Location = new System.Drawing.Point(1, -1);
             this.tabControl1.Name = "tabControl1";
@@ -182,11 +180,10 @@
             // tabPage1
             // 
             this.tabPage1.AutoScroll = true;
-            this.tabPage1.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.tabPage1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+        
             this.tabPage1.Controls.Add(this.grpTefrikGirisi);
             this.tabPage1.Controls.Add(this.groupBox1);
-            this.tabPage1.ForeColor = System.Drawing.Color.Black;
+         
             this.tabPage1.Location = new System.Drawing.Point(4, 40);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
@@ -196,9 +193,9 @@
             // 
             // grpTefrikGirisi
             // 
-            this.grpTefrikGirisi.Anchor = System.Windows.Forms.AnchorStyles.None;
+    
             this.grpTefrikGirisi.AutoSize = true;
-            this.grpTefrikGirisi.BackColor = System.Drawing.Color.Transparent;
+        
             this.grpTefrikGirisi.Controls.Add(this.BtnTefrikFinalKaydet);
             this.grpTefrikGirisi.Controls.Add(this.btnHataliUretimSil);
             this.grpTefrikGirisi.Controls.Add(this.lstHataliUretimler);
@@ -209,7 +206,7 @@
             this.grpTefrikGirisi.Controls.Add(this.groupBox3);
             this.grpTefrikGirisi.Controls.Add(this.btnHataListeyeEkle);
             this.grpTefrikGirisi.Controls.Add(this.btnPozisyonsuzEkle);
-            this.grpTefrikGirisi.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+
             this.grpTefrikGirisi.Location = new System.Drawing.Point(7, 132);
             this.grpTefrikGirisi.Name = "grpTefrikGirisi";
             this.grpTefrikGirisi.Size = new System.Drawing.Size(1036, 518);
@@ -218,8 +215,7 @@
             // 
             // BtnTefrikFinalKaydet
             // 
-            this.BtnTefrikFinalKaydet.BackColor = System.Drawing.Color.ForestGreen;
-            this.BtnTefrikFinalKaydet.ForeColor = System.Drawing.Color.White;
+   
             this.BtnTefrikFinalKaydet.Location = new System.Drawing.Point(942, 303);
             this.BtnTefrikFinalKaydet.Name = "BtnTefrikFinalKaydet";
             this.BtnTefrikFinalKaydet.Size = new System.Drawing.Size(72, 135);
@@ -230,8 +226,7 @@
             // 
             // btnHataliUretimSil
             // 
-            this.btnHataliUretimSil.BackColor = System.Drawing.Color.Red;
-            this.btnHataliUretimSil.ForeColor = System.Drawing.SystemColors.Info;
+        
             this.btnHataliUretimSil.Location = new System.Drawing.Point(942, 163);
             this.btnHataliUretimSil.Name = "btnHataliUretimSil";
             this.btnHataliUretimSil.Size = new System.Drawing.Size(72, 134);
@@ -242,7 +237,7 @@
             // 
             // lstHataliUretimler
             // 
-            this.lstHataliUretimler.Font = new System.Drawing.Font("Times New Roman", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+ 
             this.lstHataliUretimler.FormattingEnabled = true;
             this.lstHataliUretimler.ItemHeight = 23;
             this.lstHataliUretimler.Location = new System.Drawing.Point(629, 118);
@@ -252,7 +247,7 @@
             // 
             // groupBox4
             // 
-            this.groupBox4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+         
             this.groupBox4.Controls.Add(this.button6);
             this.groupBox4.Controls.Add(this.txtPozisyonArama);
             this.groupBox4.Controls.Add(this.vScrolHatalar);
@@ -262,7 +257,7 @@
             this.groupBox4.Controls.Add(this.label8);
             this.groupBox4.Controls.Add(this.label10);
             this.groupBox4.Controls.Add(this.label7);
-            this.groupBox4.ForeColor = System.Drawing.Color.Black;
+    
             this.groupBox4.Location = new System.Drawing.Point(16, 86);
             this.groupBox4.Name = "groupBox4";
             this.groupBox4.Size = new System.Drawing.Size(508, 412);
@@ -272,7 +267,7 @@
             // 
             // button6
             // 
-            this.button6.Font = new System.Drawing.Font("Microsoft PhagsPa", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+
             this.button6.Location = new System.Drawing.Point(190, 8);
             this.button6.Name = "button6";
             this.button6.Size = new System.Drawing.Size(67, 80);
@@ -309,27 +304,26 @@
             // 
             // lstHatalar
             // 
-            this.lstHatalar.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.lstHatalar.ForeColor = System.Drawing.Color.Red;
+         
             this.lstHatalar.FormattingEnabled = true;
             this.lstHatalar.ItemHeight = 33;
             this.lstHatalar.Location = new System.Drawing.Point(260, 32);
             this.lstHatalar.Name = "lstHatalar";
             this.lstHatalar.ScrollAlwaysVisible = true;
-            this.lstHatalar.SelectionMode = System.Windows.Forms.SelectionMode.MultiSimple;
+     
             this.lstHatalar.Size = new System.Drawing.Size(198, 367);
             this.lstHatalar.TabIndex = 5;
             // 
             // lstPozisyonlar
             // 
-            this.lstPozisyonlar.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.lstPozisyonlar.ForeColor = System.Drawing.Color.Maroon;
+  
+         
             this.lstPozisyonlar.FormattingEnabled = true;
             this.lstPozisyonlar.ItemHeight = 33;
             this.lstPozisyonlar.Location = new System.Drawing.Point(6, 86);
             this.lstPozisyonlar.Name = "lstPozisyonlar";
             this.lstPozisyonlar.ScrollAlwaysVisible = true;
-            this.lstPozisyonlar.SelectionMode = System.Windows.Forms.SelectionMode.MultiSimple;
+          
             this.lstPozisyonlar.Size = new System.Drawing.Size(178, 301);
             this.lstPozisyonlar.TabIndex = 5;
             // 

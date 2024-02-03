@@ -75,39 +75,40 @@ namespace Polyteks.Katman.TefrikBildirim.Controllers
             MailMessage mailim = new MailMessage();
             if (fisAna.Tip == 1)//mamül
             {
-                //if(fisAna.Bolum== "FANTAZİ/BÜKÜM")
-                //{
+                if (fisAna.Bolum == "FANTAZİ/BÜKÜM")
+                {
                     mailim.To.Add("sevkiyat@polyteks.com.tr");
                     mailim.To.Add("pazarlama@polyteks.com.tr");
                     mailim.To.Add("Bilgislem@polyteks.com.tr");
                     mailim.To.Add("FTeknisyeni@polyteks.com.tr");
                     mailim.To.Add("YTOPHISAR@polyteks.com.tr");
-                mailim.To.Add("ACORAPCI@polyteks.com.tr");
+                    mailim.To.Add("ACORAPCI@polyteks.com.tr");
                     mailim.CC.Add("scelik@polyteks.com.tr");
                     mailim.CC.Add("denetim@polyteks.com.tr");
-                //}
-                //if (fisAna.Bolum == "TEKNİK TEKSTİL")
-                //{
-                //    mailim.To.Add("sevkiyat@polyteks.com.tr");
-                //    mailim.To.Add("pazarlama@polyteks.com.tr");
-                //    mailim.To.Add("Bilgislem@polyteks.com.tr");
-                //    mailim.To.Add("FTeknisyeni@polyteks.com.tr");
-                //    mailim.To.Add("YTOPHISAR@polyteks.com.tr");
+                }
+                if (fisAna.Bolum == "TEKSTÜRE")
+                {
+                    mailim.To.Add("sevkiyat@polyteks.com.tr");
+                    mailim.To.Add("pazarlama@polyteks.com.tr");
+                    mailim.To.Add("Bilgislem@polyteks.com.tr");
+                    mailim.To.Add("teksturebolumu@polyteks.com.tr");
+                  
+                    mailim.To.Add("ACORAPCI@polyteks.com.tr");
 
-                //    mailim.CC.Add("scelik@polyteks.com.tr");
-                //    mailim.CC.Add("denetim@polyteks.com.tr");
-                //}
-                //if (fisAna.Bolum == "TEKNİK TEKSTİL")
-                //{
-                //    mailim.To.Add("sevkiyat@polyteks.com.tr");
-                //    mailim.To.Add("pazarlama@polyteks.com.tr");
-                //    mailim.To.Add("Bilgislem@polyteks.com.tr");
-                //    mailim.To.Add("FTeknisyeni@polyteks.com.tr");
-                //    mailim.To.Add("YTOPHISAR@polyteks.com.tr");
+                    mailim.CC.Add("scelik@polyteks.com.tr");
+                    mailim.CC.Add("denetim@polyteks.com.tr");
+                }
+                if (fisAna.Bolum == "TEKNİK TEKSTİL")
+                {
+                    mailim.To.Add("sevkiyat@polyteks.com.tr");
+                    mailim.To.Add("pazarlama@polyteks.com.tr");
+                    mailim.To.Add("Bilgislem@polyteks.com.tr");
+                 
+                    mailim.To.Add("MTUTUK@polyteks.com.tr");
 
-                //    mailim.CC.Add("scelik@polyteks.com.tr");
-                //    mailim.CC.Add("denetim@polyteks.com.tr");
-                //}
+                    mailim.CC.Add("scelik@polyteks.com.tr");
+                  
+                }
 
 
                 mailim.From = new MailAddress("pota_bilgi@polyteks.com.tr");

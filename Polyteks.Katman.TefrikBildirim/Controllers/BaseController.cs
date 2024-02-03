@@ -742,7 +742,7 @@ namespace Polyteks.Katman.Has.Controllers
         }
         public List<DosyaLabAnalizTablo> DosyaLabAnalizTablolariOlustur(int Tip, int id)
         {
-            //tip=> 1=günlük imalat, 2- numune yapılabilirlik, 3- denemeDosyaItem 4-PoyIkaz
+            //tip=> 1=günlük imalat, 2- numune yapılabilirlik, 3- denemeDosyaItem
             if (Tip == 1)
             {
                 var araModel = new List<DosyaLabAnalizTablo>();
@@ -847,86 +847,7 @@ namespace Polyteks.Katman.Has.Controllers
                 }
                 return araModel;
             }
-             if (Tip == 2)
-            {
-                //id = denemeDosyaItemId
-                var araModel = new List<DosyaLabAnalizTablo>();
-                var labAnalizler = _dbPoly.SrcnLabAnalizs.AsNoTracking().Where(a => a.DosyaTipi == 2 && a.BagliOlduguDosyaId == id).OrderBy(a => a.PartiNo).ToList();
-                var LabIdler = labAnalizler.Select(a => a.LabAnalizId).ToList();
 
-                var TumLabAnalizItemlar = _dbPoly.SrcnLabAnalizItems.AsNoTracking()
-                    .Where(a => LabIdler.Any(b => b == a.LabAnalizId)).ToList();
-                var LabAnalizItemIdler = TumLabAnalizItemlar.Select(a => a.LabAnalizItemId).ToList();
-
-                var TumAnalizItemCesitSonuclar = _dbPoly.SrcnLabAnalizItemAnalizCesitSonucs.AsNoTracking()
-                    .Where(a => LabAnalizItemIdler.Any(b => b == a.LabAnalizItemId)).ToList();
-
-                var distIdler = TumAnalizItemCesitSonuclar.Select(a => a.LabAnalizCesitId).Distinct().ToList();
-                var TumAnalizCesitler = _dbPoly.SrcnLabAnalizCesits.AsNoTracking()
-                    .Where(a => distIdler.Any(b => b == a.LabAnalizCesitId)).OrderBy(a => a.Sira).ToList();
-
-                foreach (var labAnaliz in labAnalizler)
-                {
-
-                    var LabAnalizItems = TumLabAnalizItemlar.Where(a => a.LabAnalizId == labAnaliz.LabAnalizId).ToList();
-                    var grupLabAnalizItemlar = new List<SrcnLabAnalizItems>();
-                    int BobinSay = 0;
-                    foreach (var aa in LabAnalizItems)
-                    {
-                        BobinSay++;
-                        grupLabAnalizItemlar.Add(aa);
-                        bool TabloOlusturulabilirMi = false;
-                        if (BobinSay == 6)
-                        {
-                            TabloOlusturulabilirMi = true;
-                            BobinSay = 0;
-                        }
-                        if (aa == LabAnalizItems.Last())
-                        {
-                            // son item kontrol et var mi 
-                            if (grupLabAnalizItemlar.Any())
-                            {
-                                TabloOlusturulabilirMi = true;
-                            }
-                        }
-
-                        if (TabloOlusturulabilirMi)
-                        {
-                            grupLabAnalizItemlar = grupLabAnalizItemlar.OrderBy(a => a.IplikNo).ToList();
-                            // tablo hazırlanabilir
-                            var tablo = new DosyaLabAnalizTablo()
-                            {
-                                LabAnaliz = labAnaliz,
-
-                                LabAnalizItemlar = grupLabAnalizItemlar
-                            };
-                            foreach (var analizCesit in TumAnalizCesitler)
-                            {
-                                var tabloSatir = new DosyaLabAnalizTabloSatir
-                                {
-                                    LabAnalizCesit = analizCesit
-                                };
-                                var analizCesitSonuclar = new List<SrcnLabAnalizItemAnalizCesitSonucs>();
-                                foreach (var grpLabAnalizItem in grupLabAnalizItemlar)
-                                {
-                                    analizCesitSonuclar.AddRange(TumAnalizItemCesitSonuclar.Where(a => a.LabAnalizCesitId == analizCesit.LabAnalizCesitId && a.LabAnalizItemId == grpLabAnalizItem.LabAnalizItemId));
-                                }
-
-                                if (analizCesitSonuclar.Any())
-                                {
-                                    tabloSatir.LabAnalizItemAnalizCesitSonuclari = analizCesitSonuclar.OrderBy(a => a.IplikNo).ToList();
-                                    tablo.DosyaLabAnalizTabloSatirlar.Add(tabloSatir);
-                                }
-                            }
-                            araModel.Add(tablo);
-                            grupLabAnalizItemlar = new List<SrcnLabAnalizItems>();
-                            TabloOlusturulabilirMi = false;
-                        }
-
-                    }
-                }
-                return araModel;
-            }
             if (Tip == 3)
             {
                 //id = denemeDosyaItemId
@@ -1007,86 +928,7 @@ namespace Polyteks.Katman.Has.Controllers
                 }
                 return araModel;
             }
-            if (Tip == 4)
-            {
-                //id = PoyIkaz
-                var araModel = new List<DosyaLabAnalizTablo>();
-                var labAnalizler = _dbPoly.SrcnLabAnalizs.AsNoTracking().Where(a => a.DosyaTipi == 3 && a.BagliOlduguDosyaId == id).OrderBy(a => a.PartiNo).ToList();
-                var LabIdler = labAnalizler.Select(a => a.LabAnalizId).ToList();
 
-                var TumLabAnalizItemlar = _dbPoly.SrcnLabAnalizItems.AsNoTracking()
-                    .Where(a => LabIdler.Any(b => b == a.LabAnalizId)).ToList();
-                var LabAnalizItemIdler = TumLabAnalizItemlar.Select(a => a.LabAnalizItemId).ToList();
-
-                var TumAnalizItemCesitSonuclar = _dbPoly.SrcnLabAnalizItemAnalizCesitSonucs.AsNoTracking()
-                    .Where(a => LabAnalizItemIdler.Any(b => b == a.LabAnalizItemId)).ToList();
-
-                var distIdler = TumAnalizItemCesitSonuclar.Select(a => a.LabAnalizCesitId).Distinct().ToList();
-                var TumAnalizCesitler = _dbPoly.SrcnLabAnalizCesits.AsNoTracking()
-                    .Where(a => distIdler.Any(b => b == a.LabAnalizCesitId)).OrderBy(a => a.Sira).ToList();
-
-                foreach (var labAnaliz in labAnalizler)
-                {
-
-                    var LabAnalizItems = TumLabAnalizItemlar.Where(a => a.LabAnalizId == labAnaliz.LabAnalizId).ToList();
-                    var grupLabAnalizItemlar = new List<SrcnLabAnalizItems>();
-                    int BobinSay = 0;
-                    foreach (var aa in LabAnalizItems)
-                    {
-                        BobinSay++;
-                        grupLabAnalizItemlar.Add(aa);
-                        bool TabloOlusturulabilirMi = false;
-                        if (BobinSay == 6)
-                        {
-                            TabloOlusturulabilirMi = true;
-                            BobinSay = 0;
-                        }
-                        if (aa == LabAnalizItems.Last())
-                        {
-                            // son item kontrol et var mi 
-                            if (grupLabAnalizItemlar.Any())
-                            {
-                                TabloOlusturulabilirMi = true;
-                            }
-                        }
-
-                        if (TabloOlusturulabilirMi)
-                        {
-                            grupLabAnalizItemlar = grupLabAnalizItemlar.OrderBy(a => a.IplikNo).ToList();
-                            // tablo hazırlanabilir
-                            var tablo = new DosyaLabAnalizTablo()
-                            {
-                                LabAnaliz = labAnaliz,
-
-                                LabAnalizItemlar = grupLabAnalizItemlar
-                            };
-                            foreach (var analizCesit in TumAnalizCesitler)
-                            {
-                                var tabloSatir = new DosyaLabAnalizTabloSatir
-                                {
-                                    LabAnalizCesit = analizCesit
-                                };
-                                var analizCesitSonuclar = new List<SrcnLabAnalizItemAnalizCesitSonucs>();
-                                foreach (var grpLabAnalizItem in grupLabAnalizItemlar)
-                                {
-                                    analizCesitSonuclar.AddRange(TumAnalizItemCesitSonuclar.Where(a => a.LabAnalizCesitId == analizCesit.LabAnalizCesitId && a.LabAnalizItemId == grpLabAnalizItem.LabAnalizItemId));
-                                }
-
-                                if (analizCesitSonuclar.Any())
-                                {
-                                    tabloSatir.LabAnalizItemAnalizCesitSonuclari = analizCesitSonuclar.OrderBy(a => a.IplikNo).ToList();
-                                    tablo.DosyaLabAnalizTabloSatirlar.Add(tabloSatir);
-                                }
-                            }
-                            araModel.Add(tablo);
-                            grupLabAnalizItemlar = new List<SrcnLabAnalizItems>();
-                            TabloOlusturulabilirMi = false;
-                        }
-
-                    }
-                }
-                return araModel;
-            }
             return new List<DosyaLabAnalizTablo>();
         }
         public string FormNoOlustur(int id, int tip)
@@ -1591,7 +1433,6 @@ namespace Polyteks.Katman.Has.Controllers
 
             #endregion
         }
-   
         public FileStreamResult GunlukImalatDosyaPdfOlusturYeni(int id)
         {
             var gunlukImalatDosya = _dbPoly.SrcnGunlukImalatDosyas.Find(id);
@@ -2367,8 +2208,8 @@ namespace Polyteks.Katman.Has.Controllers
         }
         public bool GenelDurumMailGonder(string ccKullanici, List<string> Gonderilecekler, string mailIcerik, string konu)
         {
-            string GonderenMail = "pmailsystem1@tasdelengroup.com";
-            string MailSifre = "";
+            string GonderenMail = "pota_bilgi@polyteks.com.tr";
+            string MailSifre = "ptks1986";
 
 
             var body = mailIcerik;
@@ -2404,8 +2245,8 @@ namespace Polyteks.Katman.Has.Controllers
                         Password = MailSifre
                     };
                     smtp.Credentials = credential;
-                    smtp.Host = "smtprelay.yaanimail.com";
-                    smtp.Port = 587;
+                    smtp.Host = "10.10.1.5";
+                    smtp.Port = 25;
                     smtp.EnableSsl = false;
                     smtp.Send(message);
                     return true;
@@ -2420,8 +2261,8 @@ namespace Polyteks.Katman.Has.Controllers
         }
         public bool SistemMailGonder()
         {
-            string GonderenMail = "pmailsystem1@tasdelengroup.com";
-            string MailSifre = "";
+            string GonderenMail = "pota_bilgi@polyteks.com.tr";
+            string MailSifre = "ptks1986";
             // string GonderenMail = mailKullanici.EmailAdresi;
             // string MailSifre = mailKullanici.EmailSifre;
 
@@ -2430,8 +2271,8 @@ namespace Polyteks.Katman.Has.Controllers
 
             var message = new MailMessage();
 
-            message.To.Add(new MailAddress("mdikici@tasdelengroup.com"));
-            message.CC.Add(new MailAddress("edogan@tasdelengroup.com"));
+            message.To.Add(new MailAddress("kvural@polyteks.com.tr"));
+            message.CC.Add(new MailAddress("edogan@polyteks.com.tr"));
             message.From = new MailAddress(GonderenMail);
             message.Subject = "Sistem Mail Gönderme Deneme - ";
             message.Body = body;
@@ -2448,8 +2289,8 @@ namespace Polyteks.Katman.Has.Controllers
                         Password = MailSifre
                     };
                     smtp.Credentials = credential;
-                    smtp.Host = "smtprelay.yaanimail.com";
-                    smtp.Port = 587;
+                    smtp.Host = "10.10.1.5";
+                    smtp.Port = 25;
                     smtp.EnableSsl = false;
                     smtp.Send(message);
 
@@ -2477,7 +2318,7 @@ namespace Polyteks.Katman.Has.Controllers
             string mailIcerik = "";
             var refListe = new List<RefakatKarti>();
             var ccMailler = new List<string>();
-            string Gonderici = "mdikici@tasdelengroup.com";
+            string Gonderici = "kvural@polyteks.com.tr";
             bool MailGondermeSorunVarmi = false;
 
 
@@ -2487,10 +2328,9 @@ namespace Polyteks.Katman.Has.Controllers
                 if (partisonuTakip.PartiSonuTakipHareketTipi == 6)
                 {
                     // parti sonu yapıldı
-                    ccMailler.Add("planlama@tasdelengroup.com");
-                    ccMailler.Add("edogan@tasdelengroup.com");
-                    ccMailler.Add("sevkiyat@tasdelengroup.com");
-                    ccMailler.Add("SACAR@polyteks.com.tr");
+                    ccMailler.Add("planlama@polyteks.local");
+                    ccMailler.Add("edogan@polyteks.com.tr");
+                    ccMailler.Add("sevkiyat@polyteks.local");
                     ccMailler.AddRange(_dbPoly.SrcnMailBildirimGrupItems.Where(a => a.MailBildirimGrupId == 8 || a.MailBildirimGrupId == 10).Select(a => a.EmailAdres).ToList());
                 }
                 refListe.AddRange(_dbPoly.RefakatKarti.Where(a => a.RefakatNo == partisonuTakip.RefakatNo && a.IslemSiraNo == 100 && a.IslemNo != "001" && a.IslemNo != "900").ToList());
@@ -2519,7 +2359,7 @@ namespace Polyteks.Katman.Has.Controllers
 
             if (Kullanici.EmailAdres != null)
             {
-                if (Kullanici.EmailAdres.Contains("@tasdelengroup.com"))
+                if (Kullanici.EmailAdres.Contains("@polyteks.com.tr"))
                 {
                     Gonderici = Kullanici.EmailAdres;
                 }
@@ -2548,7 +2388,7 @@ namespace Polyteks.Katman.Has.Controllers
             }
             if (MailGondermeSorunVarmi)
             {
-                ccMailler.Add("mdikici@tasdelengroup.com");
+                ccMailler.Add("kvural@polyteks.com.tr");
             }
             if (PartiSonuTakipBilgiId == 0)
             {
@@ -2595,33 +2435,27 @@ namespace Polyteks.Katman.Has.Controllers
 
             var EgitimPersoneller =
                 _dbPoly.SrcnIkEgitimOturumSrcnKullanicis.AsNoTracking().Where(a => a.SrcnKullaniciId == id).ToList();
+            var OturumIdler = EgitimPersoneller.Select(a => a.EgitimOturumId).Distinct().ToList();
 
-            var OturumIdler = EgitimPersoneller.Select(a => a.EgitimOturumId).ToList();
-
-            var AnaOturumlar = _dbPoly.SrcnIkEgitimOturums.Where(a => OturumIdler.Any(b => b == a.EgitimOturumId))
+            var AnaOturumlar = _dbPoly.SrcnIkEgitimOturums.AsNoTracking().Where(a => OturumIdler.Any(b => b == a.EgitimOturumId))
                 .OrderByDescending(a => a.OturumTarihiDateTime).ToList();
-            var EgitimFirmaIdler = AnaOturumlar.Select(a => a.IkEgitimFirmaId).ToList();
-            var EgitimFirmalar = _dbPoly.SrcnIkEgitimFirmas.Where(a => EgitimFirmaIdler.Any(b => b == a.IkEgitimFirmaId))
+            var EgitimFirmaIdler = AnaOturumlar.Select(a => a.IkEgitimFirmaId).Distinct().ToList();
+            var EgitimFirmalar = _dbPoly.SrcnIkEgitimFirmas.AsNoTracking().Where(a => EgitimFirmaIdler.Any(b => b == a.IkEgitimFirmaId))
                 .ToList();
 
             foreach (var egtPers in EgitimPersoneller)
             {
-                var anaoturum = AnaOturumlar.SingleOrDefault(a => a.EgitimOturumId == egtPers.EgitimOturumId);
-        
-                //var egitimFirma = EgitimFirmalar.First(a => a.IkEgitimFirmaId == anaoturum.IkEgitimFirmaId);
-               // int abc = Convert.ToInt32(egitimFirma.IkEgitimFirmaId);
+                var anaoturum = AnaOturumlar.First(a => a.EgitimOturumId == egtPers.EgitimOturumId);
+                var egitimFirma = EgitimFirmalar.First(a => a.IkEgitimFirmaId == anaoturum.IkEgitimFirmaId);
                 model.Add(new PersonelSicilOzetItem
                 {
-                   // EgitimOturum = anaoturum,
-                  //  EgitimFirma = egitimFirma,
+                    EgitimOturum = anaoturum,
+                    EgitimFirma = egitimFirma,
                     EgitimOturumSrcnKullanici = egtPers
                 });
             }
-            //return model.
-            //    OrderByDescending(a => a.EgitimOturum.OturumTarihiDateTime).ThenBy(a => a.EgitimFirma.IkEgitimTipiAdi)
-            //    .ThenBy(a => a.EgitimFirma.IkEgitimAdi).ThenBy(a => a.EgitimFirma.IkFirmaAdi).ToList();
             return model.
-                OrderByDescending(a => a.EgitimFirma.IkEgitimTipiAdi)
+                OrderByDescending(a => a.EgitimOturum.OturumTarihiDateTime).ThenBy(a => a.EgitimFirma.IkEgitimTipiAdi)
                 .ThenBy(a => a.EgitimFirma.IkEgitimAdi).ThenBy(a => a.EgitimFirma.IkFirmaAdi).ToList();
         }
 
@@ -2768,7 +2602,7 @@ namespace Polyteks.Katman.Has.Controllers
                 string mailIcerik = "";
                 var ccMailler = new List<string>();
                 var ccOnayMailler = new List<string>();
-                string Gonderici = "mdikici@tasdelengroup.com";
+                string Gonderici = "kvural@polyteks.com.tr";
 
 
 
@@ -2809,13 +2643,13 @@ namespace Polyteks.Katman.Has.Controllers
 
                 if (MailGondermeSorunVarmi)
                 {
-                    ccMailler.Add("mdikici@tasdelengroup.com");
+                    ccMailler.Add("kvural@polyteks.com.tr");
                 }
 
 
                 if (Kullanici.EmailAdres != null)
                 {
-                    if (Kullanici.EmailAdres.Contains("@tasdelengroup.com"))
+                    if (Kullanici.EmailAdres.Contains("@polyteks.com.tr"))
                     {
                         Gonderici = Kullanici.EmailAdres;
                     }

@@ -56,7 +56,7 @@
             // 
             // groupBox1
             // 
-            this.groupBox1.BackColor = System.Drawing.SystemColors.ActiveCaption;
+         
             this.groupBox1.Controls.Add(this.vScrolKullanici);
             this.groupBox1.Controls.Add(this.button1);
             this.groupBox1.Controls.Add(this.lstKullanicilar);
@@ -66,8 +66,8 @@
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Controls.Add(this.txtSifre);
             this.groupBox1.Controls.Add(this.picResim);
-            this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.groupBox1.ForeColor = System.Drawing.Color.Black;
+        
+         
             this.groupBox1.Location = new System.Drawing.Point(-4, 0);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(1085, 684);
@@ -85,8 +85,7 @@
             // 
             // button1
             // 
-            this.button1.BackColor = System.Drawing.Color.OrangeRed;
-            this.button1.ForeColor = System.Drawing.Color.White;
+      
             this.button1.Location = new System.Drawing.Point(627, 596);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(334, 54);
@@ -97,8 +96,7 @@
             // 
             // lstKullanicilar
             // 
-            this.lstKullanicilar.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.lstKullanicilar.ForeColor = System.Drawing.SystemColors.MenuHighlight;
+     
             this.lstKullanicilar.FormattingEnabled = true;
             this.lstKullanicilar.ItemHeight = 33;
             this.lstKullanicilar.Location = new System.Drawing.Point(22, 49);
@@ -109,8 +107,7 @@
             // 
             // btnGiris
             // 
-            this.btnGiris.BackColor = System.Drawing.Color.Maroon;
-            this.btnGiris.ForeColor = System.Drawing.Color.White;
+        
             this.btnGiris.Location = new System.Drawing.Point(627, 527);
             this.btnGiris.Name = "btnGiris";
             this.btnGiris.Size = new System.Drawing.Size(334, 54);
@@ -122,9 +119,7 @@
             // lblIsimSoyisim
             // 
             this.lblIsimSoyisim.AutoSize = true;
-            this.lblIsimSoyisim.BackColor = System.Drawing.Color.Transparent;
-            this.lblIsimSoyisim.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.lblIsimSoyisim.ForeColor = System.Drawing.Color.Black;
+
             this.lblIsimSoyisim.Location = new System.Drawing.Point(621, 403);
             this.lblIsimSoyisim.Name = "lblIsimSoyisim";
             this.lblIsimSoyisim.Size = new System.Drawing.Size(46, 31);
@@ -150,7 +145,7 @@
             // 
             // txtSifre
             // 
-            this.txtSifre.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+        
             this.txtSifre.Location = new System.Drawing.Point(627, 473);
             this.txtSifre.Name = "txtSifre";
             this.txtSifre.PasswordChar = '*';
@@ -163,7 +158,7 @@
             this.picResim.Location = new System.Drawing.Point(627, 49);
             this.picResim.Name = "picResim";
             this.picResim.Size = new System.Drawing.Size(334, 336);
-            this.picResim.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+       
             this.picResim.TabIndex = 0;
             this.picResim.TabStop = false;
             // 
@@ -171,7 +166,7 @@
             // 
             this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Controls.Add(this.tabPage2);
-            this.tabControl1.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+        
             this.tabControl1.ItemSize = new System.Drawing.Size(188, 36);
             this.tabControl1.Location = new System.Drawing.Point(1, 0);
             this.tabControl1.Name = "tabControl1";
@@ -204,8 +199,7 @@
             // 
             // btnVeriYenile
             // 
-            this.btnVeriYenile.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.btnVeriYenile.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+   
             this.btnVeriYenile.Location = new System.Drawing.Point(0, 612);
             this.btnVeriYenile.Name = "btnVeriYenile";
             this.btnVeriYenile.Size = new System.Drawing.Size(1077, 62);
@@ -233,14 +227,12 @@
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+       
             this.ClientSize = new System.Drawing.Size(1084, 722);
             this.Controls.Add(this.tabControl1);
             this.Name = "Form1";
             this.Text = "GİRİŞ YAP";
-            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+      
             this.Load += new System.EventHandler(this.Form1_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();

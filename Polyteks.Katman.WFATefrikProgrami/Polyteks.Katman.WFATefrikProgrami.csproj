@@ -124,21 +124,27 @@
     <Compile Include="Model\HataliUretimModel.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="Form1.resx">
+    <Compile Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
-    </EmbeddedResource>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
+    </Compile>
     <EmbeddedResource Include="FrmNumPad.resx">
       <DependentUpon>FrmNumPad.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FrmNumPadParolacs.resx">
       <DependentUpon>FrmNumPadParolacs.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FrmNumpadPartiNo.resx">
+    <Compile Include="FrmNumpadPartiNo.resx">
       <DependentUpon>FrmNumpadPartiNo.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="FrmTefrikGiris.resx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
+    </Compile>
+    <Compile Include="FrmTefrikGiris.resx">
       <DependentUpon>FrmTefrikGiris.cs</DependentUpon>
-    </EmbeddedResource>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
+    </Compile>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -149,7 +155,6 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <None Include="Polyteks.Katman.WFATefrikProgrami_TemporaryKey.pfx" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
